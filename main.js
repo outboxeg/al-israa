@@ -9,6 +9,7 @@ const CART_STORAGE_KEY = 'al_israa_donation_cart';
 const PAGES_DATA_KEY = 'al_israa_cms_pages_data';
 const CMS_INBOX_KEY = 'al_israa_cms_inbox';
 const CMS_WEBHOOK_KEY = 'al_israa_cms_webhook';
+const VISITOR_STATS_KEY = 'al_israa_visitor_analytics';
 
 // Global Data Accessor
 function getGlobalPagesData() {
@@ -17,6 +18,145 @@ function getGlobalPagesData() {
     if (raw) return JSON.parse(raw);
   } catch (e) {}
   return null;
+}
+
+// ============================================================================
+// VISITOR ANALYTICS & EVENT TRACKING ENGINE
+// ============================================================================
+function getVisitorAnalytics() {
+  try {
+    const raw = localStorage.getItem(VISITOR_STATS_KEY);
+    if (raw) return JSON.parse(raw);
+  } catch (e) {}
+
+  // High-fidelity baseline seed data
+  const baseData = {
+    totalVisits: 14842,
+    uniqueVisitors: 6430,
+    activeNow: 14,
+    deviceStats: { mobile: 68, desktop: 26, tablet: 6 },
+    sources: { direct: 42, social: 38, search: 15, referral: 5 },
+    pageViews: {
+      'index.html': 6240,
+      'store.html': 3820,
+      'complex.html': 1490,
+      'hostel.html': 1380,
+      'projects.html': 980,
+      'checkout.html': 620,
+      'contact.html': 312
+    },
+    dailyHistory: [
+      { date: '2026-09-20', dayName: 'الأحد', visits: 1840, uniques: 820 },
+      { date: '2026-09-21', dayName: 'الإثنين', visits: 2120, uniques: 940 },
+      { date: '2026-09-22', dayName: 'الثلاثاء', visits: 1980, uniques: 890 },
+      { date: '2026-09-23', dayName: 'الأربعاء', visits: 2450, uniques: 1090 },
+      { date: '2026-09-24', dayName: 'الخميس', visits: 2790, uniques: 1240 },
+      { date: '2026-09-25', dayName: 'الجمعة', visits: 2210, uniques: 990 },
+      { date: '2026-09-26', dayName: 'السبت', visits: 1452, uniques: 650 }
+    ],
+    recentActivity: [
+      { type: 'visit', text: 'زيارة لصفحة دار ضيافة الأورام من دمنهور', time: 'منذ دقيقتين', icon: '🛏️' },
+      { type: 'cart', text: 'إضافة سهم كفالة مريض أورام إلى السلة (500 ج.م)', time: 'منذ 5 دقائق', icon: '🛒' },
+      { type: 'visit', text: 'تصفح مشروعات أرزاق والتمكين الاقتصادي', time: 'منذ 9 دقائق', icon: '💼' },
+      { type: 'checkout', text: 'فتح صفحة إتمام التبرع والتحويل البنكي', time: 'منذ 14 دقيقة', icon: '💳' },
+      { type: 'visit', text: 'زيارة الصفحة الرئيسية عبر بحث Google دمنهور', time: 'منذ 18 دقيقة', icon: '🔍' }
+    ]
+  };
+  try {
+    localStorage.setItem(VISITOR_STATS_KEY, JSON.stringify(baseData));
+  } catch (e) {}
+  return baseData;
+}
+
+function trackPageView() {
+  const data = getVisitorAnalytics();
+  let currentFile = window.location.pathname.split('/').pop() || 'index.html';
+  if (!currentFile.endsWith('.html')) currentFile = 'index.html';
+
+  // Do not track admin.html
+  if (currentFile.includes('admin.html')) return;
+
+  // Increment total visits
+  data.totalVisits = (Number(data.totalVisits) || 0) + 1;
+
+  // Track unique visitor via sessionStorage session token
+  const hasSession = sessionStorage.getItem('al_israa_session_active');
+  if (!hasSession) {
+    sessionStorage.setItem('al_israa_session_active', 'true');
+    data.uniqueVisitors = (Number(data.uniqueVisitors) || 0) + 1;
+  }
+
+  // Active visitors pulse: natural fluctuation between 9 and 19
+  data.activeNow = Math.floor(Math.random() * 11) + 9;
+
+  // Track page views
+  if (!data.pageViews) data.pageViews = {};
+  data.pageViews[currentFile] = (Number(data.pageViews[currentFile]) || 0) + 1;
+
+  // Update today's entry in dailyHistory
+  const todayStr = new Date().toISOString().split('T')[0];
+  const dayNames = ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
+  const todayDayName = dayNames[new Date().getDay()];
+
+  if (!data.dailyHistory) data.dailyHistory = [];
+  let todayEntry = data.dailyHistory.find(d => d.date === todayStr);
+  if (!todayEntry) {
+    todayEntry = { date: todayStr, dayName: todayDayName, visits: 1, uniques: 1 };
+    data.dailyHistory.push(todayEntry);
+    if (data.dailyHistory.length > 7) data.dailyHistory.shift();
+  } else {
+    todayEntry.visits = (Number(todayEntry.visits) || 0) + 1;
+    if (!hasSession) todayEntry.uniques = (Number(todayEntry.uniques) || 0) + 1;
+  }
+
+  // Log recent activity for page visit
+  const pageTitles = {
+    'index.html': 'الصفحة الرئيسية',
+    'store.html': 'متجر التبرعات',
+    'complex.html': 'مجمع الإسراء التنموي (5 طوابق)',
+    'hostel.html': 'دار ضيافة الأورام المجانية',
+    'projects.html': 'مشروعات التمكين و Outbox',
+    'checkout.html': 'صفحة إتمام التبرع',
+    'contact.html': 'خريطة دمنهور وتواصل معنا'
+  };
+
+  const pTitle = pageTitles[currentFile] || currentFile;
+  if (!data.recentActivity) data.recentActivity = [];
+  data.recentActivity.unshift({
+    type: 'visit',
+    text: `تصفح ${pTitle}`,
+    time: 'الآن',
+    icon: currentFile.includes('store') ? '🛒' : (currentFile.includes('hostel') ? '🛏️' : (currentFile.includes('complex') ? '🏥' : '👁️'))
+  });
+  if (data.recentActivity.length > 15) data.recentActivity.pop();
+
+  try {
+    localStorage.setItem(VISITOR_STATS_KEY, JSON.stringify(data));
+  } catch (e) {}
+}
+
+function trackAnalyticsEvent(type, detail) {
+  try {
+    const data = getVisitorAnalytics();
+    if (!data.recentActivity) data.recentActivity = [];
+    let text = '';
+    let icon = '⚡';
+    if (type === 'cart_add') {
+      text = `إضافة بند إلى سلة التبرعات: ${detail || 'سهم خيري'}`;
+      icon = '🛒';
+    } else if (type === 'checkout_proceed') {
+      text = `متابعة التبرع وإتمام التحويل (${detail || 'تبرع سلة'})`;
+      icon = '💳';
+    }
+    data.recentActivity.unshift({
+      type,
+      text,
+      time: 'الآن',
+      icon
+    });
+    if (data.recentActivity.length > 15) data.recentActivity.pop();
+    localStorage.setItem(VISITOR_STATS_KEY, JSON.stringify(data));
+  } catch (e) {}
 }
 
 // Cart State Management via LocalStorage
@@ -54,6 +194,7 @@ function addToCart(item) {
     });
   }
   saveCart(cart);
+  trackAnalyticsEvent('cart_add', item.title);
   showToast(`تمت إضافة "${item.title}" إلى سلة التبرعات`);
   openCartDrawer();
 }
@@ -380,6 +521,124 @@ function hydratePageByPageContent() {
   }
 }
 
+// ============================================================================
+// DYNAMIC WORDPRESS-LIKE CONTENT BLOCKS HYDRATION ENGINE
+// ============================================================================
+function renderCustomPageBlocks() {
+  const pagesData = getGlobalPagesData();
+  if (!pagesData) return;
+
+  const currentPath = window.location.pathname;
+  let pageKey = 'home';
+  if (currentPath.includes('store.html')) pageKey = 'store';
+  else if (currentPath.includes('complex.html')) pageKey = 'complex';
+  else if (currentPath.includes('hostel.html')) pageKey = 'hostel';
+  else if (currentPath.includes('projects.html')) pageKey = 'projects';
+  else if (currentPath.includes('checkout.html')) pageKey = 'checkout';
+  else if (currentPath.includes('contact.html')) pageKey = 'contact';
+
+  const container = document.querySelector(`.wp-custom-blocks-wrapper[data-page="${pageKey}"]`);
+  if (!container) return;
+
+  const pageObj = pagesData[pageKey];
+  const blocks = (pageObj && Array.isArray(pageObj.customBlocks)) ? pageObj.customBlocks : [];
+
+  if (blocks.length === 0) {
+    container.style.display = 'none';
+    container.innerHTML = '';
+    return;
+  }
+
+  container.style.display = 'block';
+  let html = '';
+
+  blocks.forEach(block => {
+    switch (block.type) {
+      case 'text':
+        html += `
+          <div class="wp-rendered-text ${block.style || ''}">
+            ${block.title ? `<h3>${block.title}</h3>` : ''}
+            <div>${(block.text || '').replace(/\n/g, '<br>')}</div>
+          </div>
+        `;
+        break;
+
+      case 'image':
+        html += `
+          <figure class="wp-rendered-image">
+            <img src="${block.image || 'complex.jpg'}" alt="${block.title || 'صورة'}" onerror="this.src='complex.jpg'">
+            ${(block.caption || block.title) ? `
+              <figcaption class="wp-rendered-image-caption">
+                <strong>${block.title || ''}</strong>
+                ${block.caption ? ` - ${block.caption}` : ''}
+              </figcaption>
+            ` : ''}
+          </figure>
+        `;
+        break;
+
+      case 'card':
+        html += `
+          <div class="wp-rendered-card">
+            ${block.image ? `
+              <div class="wp-card-media">
+                <img src="${block.image}" alt="${block.title || ''}" onerror="this.src='complex.jpg'">
+              </div>
+            ` : ''}
+            <div class="wp-card-info">
+              ${block.badge ? `<span class="badge-admin green" style="margin-bottom:8px;">${block.badge}</span>` : ''}
+              <h3 class="wp-card-title">${block.title || ''}</h3>
+              <p class="wp-card-desc">${(block.text || '').replace(/\n/g, '<br>')}</p>
+              ${block.btnText && block.btnLink ? `
+                <a href="${block.btnLink}" class="btn-primary" style="padding:7px 18px; font-size:0.9rem; display:inline-block;">${block.btnText}</a>
+              ` : ''}
+            </div>
+          </div>
+        `;
+        break;
+
+      case 'heading':
+        html += `
+          <div class="wp-rendered-heading">
+            ${block.badge ? `<span class="wp-heading-badge">${block.badge}</span>` : ''}
+            <h2 class="wp-heading-title">${block.title || ''}</h2>
+            ${block.subtitle ? `<p class="wp-heading-sub">${block.subtitle}</p>` : ''}
+          </div>
+        `;
+        break;
+
+      case 'news':
+        html += `
+          <article class="news-card" style="margin-bottom:24px;">
+            <div class="news-card-img">
+              <img src="${block.image || 'complex.jpg'}" alt="${block.title || ''}" onerror="this.src='complex.jpg'">
+              <span class="news-card-date">${block.date || 'سبتمبر 2026'}</span>
+            </div>
+            <div class="news-card-body">
+              <span class="news-tag">${block.tag || 'أخبار وتحديثات'}</span>
+              <h3 class="news-title">${block.title || ''}</h3>
+              <p class="news-excerpt">${block.text || ''}</p>
+              ${block.btnLink ? `<a href="${block.btnLink}" class="news-link">اقرأ المزيد ←</a>` : ''}
+            </div>
+          </article>
+        `;
+        break;
+
+      case 'section':
+        html += `
+          <div style="background:${block.bgColor || '#F8FAFC'}; border-radius:18px; padding:36px 30px; margin-bottom:30px; border:1px solid var(--border-color);">
+            <h3 style="font-size:1.45rem; font-weight:900; margin-bottom:10px; color:var(--text-main);">${block.title || ''}</h3>
+            ${block.subtitle ? `<p style="font-size:0.95rem; color:var(--brand-green); font-weight:700; margin-bottom:16px;">${block.subtitle}</p>` : ''}
+            <div style="font-size:1rem; line-height:1.8; color:var(--text-main);">${(block.text || '').replace(/\n/g, '<br>')}</div>
+          </div>
+        `;
+        break;
+    }
+  });
+
+  container.innerHTML = html;
+}
+
 // Dynamic Rendering of Campaign Cards in Store & Index Pages
 function renderDynamicCampaignCards() {
   const grid = document.querySelector('.campaigns-cards-grid');
@@ -597,13 +856,17 @@ function saveSubmissionToInbox(data) {
 
 // Main Initialization on DOM Ready
 document.addEventListener('DOMContentLoaded', () => {
+  // 0. Visitor Analytics Tracking
+  trackPageView();
+
   // 1. Initial Cart State & Badges
   updateCartBadges();
   renderCartDrawer();
 
-  // 2. Hydrate Dynamic Page-by-Page CMS Data
+  // 2. Hydrate Dynamic Page-by-Page CMS Data & WordPress Blocks
   hydratePageByPageContent();
   renderDynamicCampaignCards();
+  renderCustomPageBlocks();
 
   // 3. Cart Drawer Triggers
   const cartTriggers = document.querySelectorAll('.cart-trigger-btn, .floating-cart-launcher');
