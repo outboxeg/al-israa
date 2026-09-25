@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>متجر التبرعات الشامل | جمعية الإسراء الخيرية بدمنهور</title>
+  <meta name="description" content="تصفح واختر من بين حملات التبرع المتنوعة لجمعية الإسراء الخيرية بدمنهور: رعاية مرضى الأورام، كفالات التعليم والشنط المدرسية، عربات أرزاق، ومشروع برة الصندوق Outbox.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="logo.png">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-badge">
+        <span>🛒 متجر التبرعات الخيري الرسمي - جمعية الإسراء بدمنهور</span>
+      </div>
+      <div class="top-bar-links">
+        <a href="checkout.html" class="top-bar-link" style="color:#FEF08A; font-weight:800;">💳 حسابات البنوك وفودافون كاش وإنستاباي</a>
+        <a href="tel:+20453312345" class="top-bar-link">📞 هاتف الجمعية: 045-3312345</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Main Navigation Header -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-identity">
+        <img src="logo.png" alt="شعار جمعية الإسراء الخيرية" class="brand-logo-img">
+        <div class="brand-names">
+          <span class="brand-title">جمعية الإسراء الخيرية</span>
+          <span class="brand-subtitle">لتنمية المجتمع بدمنهور</span>
+        </div>
+      </a>
+
+      <nav class="main-navigation">
+        <ul class="nav-links-list">
+          <li><a href="index.html" class="nav-item-link">الرئيسية</a></li>
+          <li><a href="store.html" class="nav-item-link active">متجر التبرعات 🛒</a></li>
+          <li><a href="complex.html" class="nav-item-link">مجمع الإسراء</a></li>
+          <li><a href="hostel.html" class="nav-item-link">دار ضيافة الأورام</a></li>
+          <li><a href="projects.html" class="nav-item-link">المشروعات والتمكين</a></li>
+          <li><a href="contact.html" class="nav-item-link">تواصل معنا</a></li>
+        </ul>
+
+        <div class="nav-actions-group">
+          <!-- Cart Trigger Button -->
+          <button class="cart-trigger-btn" aria-label="عرض سلة التبرعات">
+            <span>🛒 سلة التبرعات</span>
+            <span class="cart-badge-count">0</span>
+          </button>
+
+          <!-- Direct Donate CTA Button -->
+          <a href="checkout.html" class="header-donate-btn">
+            <span>إنهاء التبرع 💳</span>
+          </a>
+
+          <button class="mobile-nav-toggle" aria-label="فتح القائمة الرئيسية">☰</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Slide-Over Cart Drawer -->
+  <div class="cart-drawer-overlay"></div>
+  <div class="cart-drawer">
+    <div class="cart-drawer-header">
+      <div class="cart-drawer-title">
+        <span>🛒 سلة التبرعات</span>
+      </div>
+      <button class="cart-drawer-close" aria-label="إغلاق السلة">✕</button>
+    </div>
+    <div class="cart-drawer-body">
+      <!-- Injected dynamically via main.js -->
+    </div>
+    <div class="cart-drawer-footer">
+      <div class="cart-total-row">
+        <span class="cart-total-label">إجمالي التبرع:</span>
+        <span class="cart-total-amount">0 ج.م</span>
+      </div>
+      <a href="checkout.html" class="btn-orange" style="width:100%; text-align:center; padding:14px; font-size:1.05rem;">
+        متابعة التبرع وبيانات التحويل ←
+      </a>
+    </div>
+  </div>
+
+  <!-- Floating Cart Launcher Button -->
+  <button class="floating-cart-launcher" aria-label="سلة التبرعات السريعة" title="سلة التبرعات">
+    <span style="font-size:1.6rem;">🛒</span>
+    <span class="floating-cart-badge">0</span>
+  </button>
+
+  <!-- Store Header Banner -->
+  <section class="hero-section" style="padding: 50px 0 60px;">
+    <div class="container text-center">
+      <div class="hero-badge-pill">
+        <span>🛒 متجر الخير والصدقة الجارية بدمنهور</span>
+      </div>
+      <h1 class="hero-heading" style="font-size: 2.6rem; margin-bottom: 14px;">
+        اختر ما تجود به نفسك.. وكن شريكاً في صناعة الأثر
+      </h1>
+      <p class="hero-description" style="max-width: 780px; margin: 0 auto;">
+        جميع أسهم وحملات التبرع أدناه معتمدة وموجهة لخدمة المستحقين الأولى بالرعاية، مرضى الأورام، والتعليم المجتمعي بمحافظة البحيرة. يمكنك إضافة أكثر من بند لسلتك ثم إتمام التحويل عبر البنك أو فودافون كاش أو إنستاباي.
+      </p>
+    </div>
+  </section>
+
+  <!-- Store Catalog Section -->
+  <section class="section-padding" style="background-color: var(--bg-secondary);">
+    <div class="container">
+      
+      <!-- Catalog Grid (9 Diverse Products) -->
+      <div class="campaigns-cards-grid">
+        
+        <!-- 1: شنطة مدرسية -->
+        <div class="campaign-card" data-id="store_bag_575">
+          <div class="campaign-card-poster">
+            <img src="school.jpg" alt="شنطة مدرسية">
+            <div class="campaign-card-overlay">
+              <span class="campaign-poster-badge">تعليم</span>
+              <div class="campaign-poster-title">شنطة مدرسية<br>بأدواتها</div>
+              <div class="campaign-poster-amount">575 <span class="campaign-poster-currency">ج</span></div>
+            </div>
+          </div>
+          <div class="campaign-card-body">
+            <span class="campaign-category-tag">#التعليم_وبناء_الإنسان</span>
+            <h3 class="campaign-item-title">شنطة مدرسية متكاملة بأدواتها لطفل مستحق</h3>
+            <p class="campaign-item-desc">توفير حقيبة متينة وكراسات وأقلام وأدوات هندسية لأطفال الفصول المجتمعية بالبحيرة.</p>
+            <div class="campaign-controls-row">
+              <div class="amount-stepper-box">
+                <input type="text" class="amount-stepper-input" value="575" readonly>
+                <div class="stepper-arrows">
+                  <button class="stepper-btn stepper-up">+</button>
+                  <button class="stepper-btn stepper-down">-</button>
+                </div>
+              </div>
+              <button class="btn-add-cart"><span>🛒 أضف للسلة</span></button>
+            </div>
+            <button class="btn-donate-now-orange"><span>تبرع الآن 🧡</span></button>
+            <div class="campaign-progress-bar-wrap"><div class="campaign-progress-bar-fill" style="width: 100%;"></div></div>
+            <div class="campaign-progress-stats"><span>نسبة الإنجاز: 100%</span><span style="color:var(--brand-green);">مكتملة جزئياً</span></div>
+          </div>
+        </div>
+
+        <!-- 2: زي مدرسي -->
+        <div class="campaign-card" data-id="store_uniform_1000">
+          <div class="campaign-card-poster">
+            <img src="sewing.jpg" alt="زي مدرسي">
+            <div class="campaign-card-overlay">
+              <span class="campaign-poster-badge">كساء</span>
+              <div class="campaign-poster-title">زي مدرسي<br>كامل</div>
+              <div class="campaign-poster-amount">1000 <span class="campaign-poster-currency">ج</span></div>
+            </div>
+          </div>
+          <div class="campaign-card-body">
+            <span class="campaign-category-tag">#التعليم_وبناء_الإنسان</span>
+            <h3 class="campaign-item-title">ساعده يحفظ كرامته بلبس مدرسته</h3>
+            <p class="campaign-item-desc">تفصيل وتوفير زي مدرسي كامل وحذاء للتلاميذ بقرى دمنهور من إنتاج مشاغل الجمعية.</p>
+            <div class="campaign-controls-row">
+              <div class="amount-stepper-box">
+                <input type="text" class="amount-stepper-input" value="1000" readonly>
+                <div class="stepper-arrows">
+                  <button class="stepper-btn stepper-up">+</button>
+                  <button class="stepper-btn stepper-down">-</button>
+                </div>
+              </div>
+              <button class="btn-add-cart"><span>🛒 أضف للسلة</span></button>
+            </div>
+            <button class="btn-donate-now-orange"><span>تبرع الآن 🧡</span></button>
+            <div class="campaign-progress-bar-wrap"><div class="campaign-progress-bar-fill" style="width: 45%;"></div></div>
+            <div class="campaign-progress-stats"><span>نسبة الإنجاز: 45%</span><span>450 / 1000 ج.م</span></div>
+          </div>
+        </div>
+
+        <!-- 3: كفالة تعليمية -->
+        <div class="campaign-card" data-id="store_edu_1000">
+          <div class="campaign-card-poster">
+            <img src="school.jpg" alt="كفالة تعليمية">
+            <div class="campaign-card-overlay">
+              <span class="campaign-poster-badge">كفالة</span>
+              <div class="campaign-poster-title">كفالة تعليمية<br>لطفل</div>
+              <div class="campaign-poster-amount">1000 <span class="campaign-poster-currency">ج</span></div>
+            </div>
+          </div>
+          <div class="campaign-card-body">
+            <span class="campaign-category-tag">#التعليم_وبناء_الإنسان</span>
+            <h3 class="campaign-item-title">كفالة تعليمية لأطفال تكمل حلمها</h3>
+            <p class="campaign-item-desc">تغطية المصاريف الدراسية والأنشطة الداعمة للأطفال المتسربين لضمان استمرارهم بالتعليم.</p>
+            <div class="campaign-controls-row">
+              <div class="amount-stepper-box">
+                <input type="text" class="amount-stepper-input" value="1000" readonly>
+                <div class="stepper-arrows">
+                  <button class="stepper-btn stepper-up">+</button>
+                  <button class="stepper-btn stepper-down">-</button>
+                </div>
+              </div>
+              <button class="btn-add-cart"><span>🛒 أضف للسلة</span></button>
+            </div>
+            <button class="btn-donate-now-orange"><span>تبرع الآن 🧡</span></button>
+            <div class="campaign-progress-bar-wrap"><div class="campaign-progress-bar-fill" style="width: 60%;"></div></div>
+            <div class="campaign-progress-stats"><span>نسبة الإنجاز: 60%</span><span>600 / 1000 ج.م</span></div>
+          </div>
+        </div>
+
+        <!-- 4: كوبون وجبة مدرسية -->
+        <div class="campaign-card" data-id="store_meal_200">
+          <div class="campaign-card-poster">
+            <img src="kitchen.jpg" alt="وجبة مدرسية">
+            <div class="campaign-card-overlay">
+              <span class="campaign-poster-badge">تغذية</span>
+              <div class="campaign-poster-title">وجبة مدرسية<br>لمدة شهر</div>
+              <div class="campaign-poster-amount">200 <span class="campaign-poster-currency">ج</span></div>
+            </div>
+          </div>
+          <div class="campaign-card-body">
+            <span class="campaign-category-tag">#التعليم_والإطعام</span>
+            <h3 class="campaign-item-title">كوبون وجبة مدرسية صحية لمدة شهر</h3>
+            <p class="campaign-item-desc">توفير وجبة يومية طازجة غنية بالعناصر المفيدة لتلاميذ المدارس المجتمعية.</p>
+            <div class="campaign-controls-row">
+              <div class="amount-stepper-box">
+                <input type="text" class="amount-stepper-input" value="200" readonly>
+                <div class="stepper-arrows">
+                  <button class="stepper-btn stepper-up">+</button>
+                  <button class="stepper-btn stepper-down">-</button>
+                </div>
+              </div>
+              <button class="btn-add-cart"><span>🛒 أضف للسلة</span></button>
+            </div>
+            <button class="btn-donate-now-orange"><span>تبرع الآن 🧡</span></button>
+            <div class="campaign-progress-bar-wrap"><div class="campaign-progress-bar-fill" style="width: 100%;"></div></div>
+            <div class="campaign-progress-stats"><span>نسبة الإنجاز: 100%</span><span style="color:var(--brand-green);">مكتملة</span></div>
+          </div>
+        </div>
+
+        <!-- 5: دار ضيافة الأورام -->
+        <div class="campaign-card" data-id="store_hostel_750">
+          <div class="campaign-card-poster">
+            <img src="hostel.jpg" alt="دار ضيافة الأورام">
+            <div class="campaign-card-overlay">
+              <span class="campaign-poster-badge" style="background:#EF4444;">حالة عاجلة ⚠️</span>
+              <div class="campaign-poster-title">إقامة أسبوع<br>لمريض أورام</div>
+              <div class="campaign-poster-amount">750 <span class="campaign-poster-currency">ج</span></div>
+            </div>
+          </div>
+          <div class="campaign-card-body">
+            <span class="campaign-category-tag">#رعاية_مرضى_الأورام</span>
+            <h3 class="campaign-item-title">استضافة فندقية مجانية لمريض معهد الأورام ومرافقه</h3>
+            <p class="campaign-item-desc">توفير غرفة مكيفة وسرير طبي و3 وجبات صحية يومية للمرضى القادمين من مراكز البحيرة البعيدة.</p>
+            <div class="campaign-controls-row">
+              <div class="amount-stepper-box">
+                <input type="text" class="amount-stepper-input" value="750" readonly>
+                <div class="stepper-arrows">
+                  <button class="stepper-btn stepper-up">+</button>
+                  <button class="stepper-btn stepper-down">-</button>
+                </div>
+              </div>
+              <button class="btn-add-cart"><span>🛒 أضف للسلة</span></button>
+            </div>
+            <button class="btn-donate-now-orange"><span>تبرع الآن 🧡</span></button>
+            <div class="campaign-progress-bar-wrap"><div class="campaign-progress-bar-fill" style="width: 72%;"></div></div>
+            <div class="campaign-progress-stats"><span>نسبة الإنجاز: 72%</span><span>540 / 750 ج.م</span></div>
+          </div>
+        </div>
+
+        <!-- 6: سهم أرزاق -->
+        <div class="campaign-card" data-id="store_arzaq_1500">
+          <div class="campaign-card-poster">
+            <img src="arzaq.jpg" alt="تروسيكل أرزاق">
+            <div class="campaign-card-overlay">
+              <span class="campaign-poster-badge" style="background:#15803D;">تمكين اقتصادي</span>
+              <div class="campaign-poster-title">سهم تروسيكل<br>مشروع أرزاق</div>
+              <div class="campaign-poster-amount">1500 <span class="campaign-poster-currency">ج</span></div>
+            </div>
+          </div>
+          <div class="campaign-card-body">
+            <span class="campaign-category-tag">#مشروع_أرزاق</span>
+            <h3 class="campaign-item-title">سهم تصنيع عربة أرزاق لشاب معيل بدمنهور</h3>
+            <p class="campaign-item-desc">المساهمة في تكلفة تصنيع التروسيكل بمدرسة دمنهور الزخرفية لتوفير مصدر رزق كريم ومستقل.</p>
+            <div class="campaign-controls-row">
+              <div class="amount-stepper-box">
+                <input type="text" class="amount-stepper-input" value="1500" readonly>
+                <div class="stepper-arrows">
+                  <button class="stepper-btn stepper-up">+</button>
+                  <button class="stepper-btn stepper-down">-</button>
+                </div>
+              </div>
+              <button class="btn-add-cart"><span>🛒 أضف للسلة</span></button>
+            </div>
+            <button class="btn-donate-now-orange"><span>تبرع الآن 🧡</span></button>
+            <div class="campaign-progress-bar-wrap"><div class="campaign-progress-bar-fill" style="width: 85%;"></div></div>
+            <div class="campaign-progress-stats"><span>نسبة الإنجاز: 85%</span><span>1275 / 1500 ج.م</span></div>
+          </div>
+        </div>
+
+        <!-- 7: برة الصندوق Outbox -->
+        <div class="campaign-card" data-id="store_outbox_500">
+          <div class="campaign-card-poster">
+            <img src="trees.jpg" alt="برة الصندوق Outbox">
+            <div class="campaign-card-overlay">
+              <span class="campaign-poster-badge" style="background:#0F5132;">بيئة وتعليم</span>
+              <div class="campaign-poster-title">سهم برة الصندوق<br>المدرسة الخضراء</div>
+              <div class="campaign-poster-amount">500 <span class="campaign-poster-currency">ج</span></div>
+            </div>
+          </div>
+          <div class="campaign-card-body">
+            <span class="campaign-category-tag">#برة_الصندوق_Outbox</span>
+            <h3 class="campaign-item-title">سهم تدوير الورق وتشغيل الأمهات المعيلات بمدارس البحيرة</h3>
+            <p class="campaign-item-desc">دعم إنتاج 9 وسائل تعليمية كرتونية بديلة للبلاستيك وتشجير مستشفى الصدر والمنشآت الصحية.</p>
+            <div class="campaign-controls-row">
+              <div class="amount-stepper-box">
+                <input type="text" class="amount-stepper-input" value="500" readonly>
+                <div class="stepper-arrows">
+                  <button class="stepper-btn stepper-up">+</button>
+                  <button class="stepper-btn stepper-down">-</button>
+                </div>
+              </div>
+              <button class="btn-add-cart"><span>🛒 أضف للسلة</span></button>
+            </div>
+            <button class="btn-donate-now-orange"><span>تبرع الآن 🧡</span></button>
+            <div class="campaign-progress-bar-wrap"><div class="campaign-progress-bar-fill" style="width: 50%;"></div></div>
+            <div class="campaign-progress-stats"><span>نسبة الإنجاز: 50%</span><span>250 / 500 ج.م</span></div>
+          </div>
+        </div>
+
+        <!-- 8: سهم النول والسجاد اليدوي -->
+        <div class="campaign-card" data-id="store_loom_800">
+          <div class="campaign-card-poster">
+            <img src="loom.jpg" alt="مشاغل النول">
+            <div class="campaign-card-overlay">
+              <span class="campaign-poster-badge" style="background:#CA8A04;">تراث وحرف</span>
+              <div class="campaign-poster-title">سهم نول وسجاد<br>للمرأة المعيلة</div>
+              <div class="campaign-poster-amount">800 <span class="campaign-poster-currency">ج</span></div>
+            </div>
+          </div>
+          <div class="campaign-card-body">
+            <span class="campaign-category-tag">#التمكين_الحرفي</span>
+            <h3 class="campaign-item-title">سهم تدريب وتوفير نول منزلي لأم معيلة</h3>
+            <p class="campaign-item-desc">تدريب على غزل السجاد والكليم اليدوي وتوفير الخيوط لتصنيع وبيع المنتجات من المنزل.</p>
+            <div class="campaign-controls-row">
+              <div class="amount-stepper-box">
+                <input type="text" class="amount-stepper-input" value="800" readonly>
+                <div class="stepper-arrows">
+                  <button class="stepper-btn stepper-up">+</button>
+                  <button class="stepper-btn stepper-down">-</button>
+                </div>
+              </div>
+              <button class="btn-add-cart"><span>🛒 أضف للسلة</span></button>
+            </div>
+            <button class="btn-donate-now-orange"><span>تبرع الآن 🧡</span></button>
+            <div class="campaign-progress-bar-wrap"><div class="campaign-progress-bar-fill" style="width: 65%;"></div></div>
+            <div class="campaign-progress-stats"><span>نسبة الإنجاز: 65%</span><span>520 / 800 ج.م</span></div>
+          </div>
+        </div>
+
+        <!-- 9: كرتونة إطعام المطبخ الخيري -->
+        <div class="campaign-card" data-id="store_kitchen_300">
+          <div class="campaign-card-poster">
+            <img src="kitchen.jpg" alt="المطبخ الخيري">
+            <div class="campaign-card-overlay">
+              <span class="campaign-poster-badge" style="background:#EF4444;">حالة عاجلة ⚠️</span>
+              <div class="campaign-poster-title">كرتونة إطعام<br>المطبخ الخيري</div>
+              <div class="campaign-poster-amount">300 <span class="campaign-poster-currency">ج</span></div>
+            </div>
+          </div>
+          <div class="campaign-card-body">
+            <span class="campaign-category-tag">#إطعام_الأسر_الأولى_بالرعاية</span>
+            <h3 class="campaign-item-title">كرتونة مواد غذائية ووجبات ساخنة لأسر المرضى</h3>
+            <p class="campaign-item-desc">إعداد وتوصيل وجبات غذائية متكاملة للأسر المتعففة والمقيمة بجوار المرضى بدمنهور.</p>
+            <div class="campaign-controls-row">
+              <div class="amount-stepper-box">
+                <input type="text" class="amount-stepper-input" value="300" readonly>
+                <div class="stepper-arrows">
+                  <button class="stepper-btn stepper-up">+</button>
+                  <button class="stepper-btn stepper-down">-</button>
+                </div>
+              </div>
+              <button class="btn-add-cart"><span>🛒 أضف للسلة</span></button>
+            </div>
+            <button class="btn-donate-now-orange"><span>تبرع الآن 🧡</span></button>
+            <div class="campaign-progress-bar-wrap"><div class="campaign-progress-bar-fill" style="width: 90%;"></div></div>
+            <div class="campaign-progress-stats"><span>نسبة الإنجاز: 90%</span><span>270 / 300 ج.م</span></div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="brand-identity" style="margin-bottom: 16px;">
+          <img src="logo.png" alt="جمعية الإسراء الخيرية" class="brand-logo-img">
+          <div class="brand-names">
+            <span class="brand-title">جمعية الإسراء الخيرية</span>
+            <span class="brand-subtitle">لتنمية المجتمع بدمنهور</span>
+          </div>
+        </div>
+        <p class="footer-bio">
+          مؤسسة أهلية ذات نفع عام بمحافظة البحيرة، مسجلة برقم 1124 لسنة 2006. نعمل على خدمة المجتمع، وتوفير الرعاية المجانية لمرضى الأورام، والتمكين المهني للأسر الأولى بالرعاية، والمبادرات البيئية المدرسية الذكية.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="footer-col-title">أقسام الموقع والمتجر</h4>
+        <ul class="footer-links-list">
+          <li><a href="index.html">الصفحة الرئيسية</a></li>
+          <li><a href="store.html">متجر التبرعات الشامل</a></li>
+          <li><a href="checkout.html">الحسابات البنكية والمحافظ</a></li>
+          <li><a href="complex.html">مجمع الإسراء التنموي (5 طوابق)</a></li>
+          <li><a href="hostel.html">دار ضيافة مرضى الأورام</a></li>
+          <li><a href="projects.html">مشروعات التمكين و Outbox</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-col-title">أبرز الحملات الخيرية</h4>
+        <ul class="footer-links-list">
+          <li><a href="store.html">شنطة مدرسية وزي مدرسي</a></li>
+          <li><a href="store.html">كفالة أسبوع مريض أورام بدار الضيافة</a></li>
+          <li><a href="store.html">سهم تروسيكل مشروع أرزاق</a></li>
+          <li><a href="store.html">سهم تدوير الورق بمدارس دمنهور Outbox</a></li>
+          <li><a href="store.html">كوبونات وجبات المطبخ الخيري</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-col-title">بيانات التواصل والتحويل</h4>
+        <div class="footer-contact-item">
+          <span>📍</span>
+          <span>مجمع الإسراء، دمنهور، محافظة البحيرة، جمهورية مصر العربية</span>
+        </div>
+        <div class="footer-contact-item">
+          <span>💳</span>
+          <span>حساب بنك مصر: 123456789</span>
+        </div>
+        <div class="footer-contact-item">
+          <span>📱</span>
+          <span>فودافون كاش / إنستاباي: 01012345678</span>
+        </div>
+        <div class="footer-contact-item">
+          <span>📞</span>
+          <a href="tel:+20453312345" style="color: inherit;">045-3312345</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Powered by NGOHub Strip -->
+    <div class="powered-by-strip">
+      <div class="container">
+        <div class="powered-by-inner">
+          <p class="copyright-text">
+            جميع الحقوق محفوظة © 2026 جمعية الإسراء الخيرية لتنمية المجتمع بدمنهور - مشهرة برقم 1124 لسنة 2006 - ذات نفع عام
+          </p>
+          <a href="https://ngohub.org" target="_blank" rel="noopener noreferrer" class="ngohub-badge-link" title="منصة NGOHub لدعم وإدارة المنظمات غير الحكومية">
+            <img src="ngohub-logo.png" alt="شعار NGOHub" class="ngohub-logo-img">
+            <span class="ngohub-powered-text">Powered by <span class="ngohub-name">NGOhub</span></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/201000000000?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AD%D9%85%D9%84%D8%A7%D8%AA%20%D8%A7%D9%84%D8%AA%D8%A8%D8%B1%D8%B9" class="whatsapp-float-btn" target="_blank" aria-label="تواصل مباشر عبر واتساب" title="تواصل عبر واتساب">
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm.01 18.06c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.106 8.106 0 0 1-1.24-4.29c0-4.51 3.67-8.18 8.18-8.18 2.18 0 4.24.85 5.78 2.39 1.54 1.54 2.39 3.6 2.38 5.78-.01 4.51-3.68 8.16-8.2 8.16z"/>
+    </svg>
+  </a>
+
+  <!-- Toast Notification Box -->
+  <div class="toast-notice"></div>
+
+  <script src="main.js"></script>
+</body>
+</html>

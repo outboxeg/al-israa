@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>جمعية الإسراء الخيرية لتنمية المجتمع بدمنهور | الصفحة الرئيسية</title>
-  <meta name="description" content="الموقع الرسمي لجمعية الإسراء الخيرية لتنمية المجتمع بدمنهور - جمعية ذات نفع عام مشهرة برقم 1124 لسنة 2006. خدمات طبية، دار ضيافة لمرضى الأورام، وتمكين اقتصادي وتعليمي.">
+  <title>جمعية الإسراء الخيرية لتنمية المجتمع بدمنهور | المنصة الرسمية ومتجر التبرعات</title>
+  <meta name="description" content="الموقع الرسمي ومتجر التبرعات لجمعية الإسراء الخيرية بدمنهور - ذات نفع عام بقرار 646 لسنة 2024. رعاية مجانية لمرضى الأورام، كفالات تعليمية، تمكين اقتصادي، ومشروع برة الصندوق Outbox.">
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="logo.png">
 </head>
@@ -15,17 +15,18 @@
     <div class="container top-bar-inner">
       <div class="top-bar-badge">
         <span>⚖️ صفة النفع العام بقرار وزيرة التضامن رقم 646 لسنة 2024</span>
-        <span style="opacity: 0.7;">|</span>
+        <span style="opacity: 0.6;">|</span>
         <span>مشهرة برقم 1124 لسنة 2006</span>
       </div>
-      <div class="top-bar-contact">
+      <div class="top-bar-links">
         <span class="top-bar-link">📍 دمنهور، محافظة البحيرة</span>
         <a href="tel:+20453312345" class="top-bar-link">📞 هاتف الجمعية: 045-3312345</a>
+        <a href="checkout.html" class="top-bar-link" style="color: #FEF08A; font-weight:800;">💳 الحسابات البنكية والمحافظ</a>
       </div>
     </div>
   </div>
 
-  <!-- Main Navigation Header -->
+  <!-- Sticky Main Navigation Header -->
   <header class="site-header">
     <div class="container nav-container">
       <a href="index.html" class="brand-identity">
@@ -39,42 +40,85 @@
       <nav class="main-navigation">
         <ul class="nav-links-list">
           <li><a href="index.html" class="nav-item-link active">الرئيسية</a></li>
-          <li><a href="complex.html" class="nav-item-link">مجمع الإسراء التنموي</a></li>
+          <li><a href="store.html" class="nav-item-link">متجر التبرعات 🛒</a></li>
+          <li><a href="complex.html" class="nav-item-link">مجمع الإسراء</a></li>
           <li><a href="hostel.html" class="nav-item-link">دار ضيافة الأورام</a></li>
-          <li><a href="projects.html" class="nav-item-link">مشروعات التمكين</a></li>
+          <li><a href="projects.html" class="nav-item-link">المشروعات والتمكين</a></li>
           <li><a href="contact.html" class="nav-item-link">تواصل معنا</a></li>
         </ul>
-        <a href="hostel.html" class="header-action-btn">
-          <span>دار ضيافة الأورام</span>
-          <span>←</span>
-        </a>
-        <button class="mobile-nav-toggle" aria-label="فتح القائمة الرئيسية">☰</button>
+
+        <div class="nav-actions-group">
+          <!-- Cart Trigger Button -->
+          <button class="cart-trigger-btn" aria-label="عرض سلة التبرعات">
+            <span>🛒 سلة التبرعات</span>
+            <span class="cart-badge-count">0</span>
+          </button>
+
+          <!-- Direct Donate CTA Button -->
+          <a href="store.html" class="header-donate-btn">
+            <span>تبرع الآن 🧡</span>
+          </a>
+
+          <button class="mobile-nav-toggle" aria-label="فتح القائمة الرئيسية">☰</button>
+        </div>
       </nav>
     </div>
   </header>
 
   <!-- Mobile Drawer Menu -->
   <div class="mobile-nav-drawer">
-    <div class="mobile-drawer-content">
-      <div class="mobile-drawer-header">
+    <div class="mobile-drawer-content" style="background:#FFFFFF; padding:24px; width:290px; height:100%; position:fixed; top:0; right:0; box-shadow:-4px 0 20px rgba(0,0,0,0.15); z-index:1100; display:flex; flex-direction:column;">
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-color); padding-bottom:16px; margin-bottom:20px;">
         <div class="brand-identity">
-          <img src="logo.png" alt="جمعية الإسراء" style="width: 40px; height: 40px; object-fit: contain;">
+          <img src="logo.png" alt="جمعية الإسراء" style="width: 42px; height: 42px; object-fit: contain;">
           <span style="font-weight: 800; font-size: 1.1rem; color: var(--text-main);">جمعية الإسراء</span>
         </div>
         <button class="mobile-drawer-close" style="background:none; border:none; font-size:1.6rem; cursor:pointer;" aria-label="إغلاق القائمة">✕</button>
       </div>
-      <div class="mobile-drawer-links">
-        <a href="index.html" class="active">الرئيسية</a>
+      <div style="display:flex; flex-direction:column; gap:14px; font-weight:700; font-size:1.05rem;">
+        <a href="index.html" style="color:var(--brand-green);">الرئيسية</a>
+        <a href="store.html">متجر التبرعات 🛒</a>
         <a href="complex.html">مجمع الإسراء التنموي</a>
         <a href="hostel.html">دار ضيافة الأورام</a>
-        <a href="projects.html">مشروعات التمكين</a>
-        <a href="contact.html">تواصل معنا</a>
+        <a href="projects.html">مشروعات التمكين و Outbox</a>
+        <a href="checkout.html">الحسابات البنكية والمحافظ</a>
+        <a href="contact.html">تواصل معنا والتدريب</a>
       </div>
-      <div style="margin-top: auto; padding-top: 20px; border-top: 1px solid var(--border-color);">
-        <a href="hostel.html" class="btn-primary" style="width: 100%; text-align: center;">حجز استضافة مريض أورام</a>
+      <div style="margin-top:auto; padding-top:20px; border-top:1px solid var(--border-color); display:flex; flex-direction:column; gap:10px;">
+        <a href="store.html" class="btn-orange" style="width:100%; text-align:center;">تبرع الآن 🧡</a>
+        <a href="hostel.html" class="btn-outline" style="width:100%; text-align:center;">حجز دار الضيافة</a>
       </div>
     </div>
   </div>
+
+  <!-- Slide-Over Cart Drawer -->
+  <div class="cart-drawer-overlay"></div>
+  <div class="cart-drawer">
+    <div class="cart-drawer-header">
+      <div class="cart-drawer-title">
+        <span>🛒 سلة التبرعات</span>
+      </div>
+      <button class="cart-drawer-close" aria-label="إغلاق السلة">✕</button>
+    </div>
+    <div class="cart-drawer-body">
+      <!-- Injected dynamically via main.js -->
+    </div>
+    <div class="cart-drawer-footer">
+      <div class="cart-total-row">
+        <span class="cart-total-label">إجمالي التبرع:</span>
+        <span class="cart-total-amount">0 ج.م</span>
+      </div>
+      <a href="checkout.html" class="btn-orange" style="width:100%; text-align:center; padding:14px; font-size:1.05rem;">
+        متابعة التبرع وبيانات التحويل ←
+      </a>
+    </div>
+  </div>
+
+  <!-- Floating Cart Launcher Button -->
+  <button class="floating-cart-launcher" aria-label="سلة التبرعات السريعة" title="سلة التبرعات">
+    <span style="font-size:1.6rem;">🛒</span>
+    <span class="floating-cart-badge">0</span>
+  </button>
 
   <!-- Hero Section -->
   <section class="hero-section">
@@ -84,30 +128,29 @@
           <span>🌿 مسيرة عطاء وتنمية مستدامة منذ 2006</span>
         </div>
         <h1 class="hero-heading">
-          نبتكر الحلول التنموية، ونرعى كرامة الإنسان في دمنهور والبحيرة
+          نصنع الأثر، نداوي الألم، ونبني <span class="highlight">مستقبلاً كريماً</span> للإنسان بالبحيرة
         </h1>
         <p class="hero-description">
-          جمعية الإسراء الخيرية لتنمية المجتمع بدمنهور؛ صرح أهلي معتمد ذو نفع عام. نُقدّم رعاية صحية متخصصة بمشروع "صحتك تهمنا"، واستضافة مجانية لمرضى معهد الأورام ومرافقيهم، وتمكيناً اقتصادياً للأسر الأولى بالرعاية عبر سلاسل الإنتاج والتعليم المجتمعي.
+          جمعية الإسراء الخيرية لتنمية المجتمع بدمنهور؛ صرح أهلي معتمد ذو نفع عام. نُقدّم رعاية مجانية كاملة لمرضى معهد دمنهور للأورام، ونطلق مشروعات التمكين الاقتصادي "أرزاق"، ومنظومة المدارس الخضراء الذكية "برة الصندوق Outbox".
         </p>
         <div class="hero-actions-group">
+          <a href="#campaigns-section" class="btn-orange">
+            <span>تصفح حملات التبرع 🧡</span>
+          </a>
           <a href="complex.html" class="btn-primary">
-            <span>استكشف مجمع الإسراء التنموي</span>
-            <span>←</span>
+            <span>مجمع الإسراء (5 طوابق)</span>
           </a>
-          <a href="hostel.html" class="btn-outline">
-            <span>دار ضيافة مرضى الأورام</span>
-          </a>
-          <a href="projects.html" class="btn-outline">
-            <span>مشروعات التمكين الاقتصادي</span>
+          <a href="checkout.html" class="btn-outline">
+            <span>أرقام الحسابات والمحافظ 💳</span>
           </a>
         </div>
       </div>
       <div class="hero-media-wrapper">
         <div class="hero-image-card">
-          <img src="complex.jpg" alt="مجمع جمعية الإسراء الخيري التنموي بدمنهور">
+          <img src="complex.jpg" alt="مجمع جمعية الإسراء الخيري بدمنهور">
         </div>
         <div class="hero-floating-stat">
-          <div class="stat-icon-circle">🏥</div>
+          <div class="stat-icon-circle">🎗️</div>
           <div>
             <div class="stat-number">100% مجاناً</div>
             <div class="stat-label">إقامة ووجبات لمرضى معهد الأورام</div>
@@ -118,221 +161,551 @@
   </section>
 
   <!-- Key Institutional Metrics (KPIs Strip) -->
-  <section class="stats-strip">
-    <div class="container stats-grid">
-      <div class="kpi-card">
-        <div class="kpi-val">5 طوابق</div>
-        <div class="kpi-title">مجمع الإسراء التنموي</div>
-        <div class="kpi-desc">صرح متكامل بمساحة 200م² يضم عيادات ودار استضافة ومشاغل إنتاجية</div>
+  <section class="stats-strip" style="background:#FFFFFF; padding:45px 0; border-bottom:1px solid var(--border-color);">
+    <div class="container stats-grid" style="display:grid; grid-template-columns:repeat(4, 1fr); gap:24px; text-align:center;">
+      <div class="kpi-card" style="padding:16px;">
+        <div class="kpi-val" style="font-size:2.4rem; font-weight:900; color:var(--brand-green);">5 طوابق</div>
+        <div style="font-size:1.05rem; font-weight:800; color:var(--text-main); margin-top:4px;">مجمع الإسراء التنموي</div>
+        <div style="font-size:0.85rem; color:var(--text-light);">عيادات متخصصة، دار ضيافة أورام، ومشاغل نول وسجاد</div>
       </div>
-      <div class="kpi-card">
-        <div class="kpi-val">486,000+</div>
-        <div class="kpi-title">مشروع "صحتك تهمنا" (جنيه)</div>
-        <div class="kpi-desc">تمويل وتجهيز عيادات طبية متخصصة ومساعدات صحية متطورة للأهالي</div>
+      <div class="kpi-card" style="padding:16px;">
+        <div class="kpi-val" style="font-size:2.4rem; font-weight:900; color:var(--accent-orange);">510,000 ج.م</div>
+        <div style="font-size:1.05rem; font-weight:800; color:var(--text-main); margin-top:4px;">مشروع برة الصندوق Outbox</div>
+        <div style="font-size:0.85rem; color:var(--text-light);">عوائد تدوير سنوية في 26 مدرسة لتمكين 217 سيدة معيلة</div>
       </div>
-      <div class="kpi-card">
-        <div class="kpi-val">100+ أسرة</div>
-        <div class="kpi-title">تمكين اقتصادي مستدام</div>
-        <div class="kpi-desc">عربات "أرزاق" المتنقلة، مشاغل السجاد والنول، وورش تفصيل الملابس</div>
+      <div class="kpi-card" style="padding:16px;">
+        <div class="kpi-val" style="font-size:2.4rem; font-weight:900; color:var(--brand-green);">486,000+ ج.م</div>
+        <div style="font-size:1.05rem; font-weight:800; color:var(--text-main); margin-top:4px;">مشروع صحتك تهمنا</div>
+        <div style="font-size:0.85rem; color:var(--text-light);">تجهيز عيادات تخصصية ورعاية صحية شاملة لغير القادرين</div>
       </div>
-      <div class="kpi-card">
-        <div class="kpi-val">18 عاماً</div>
-        <div class="kpi-title">ثقة وعمل مؤسسي موثق</div>
-        <div class="kpi-desc">شراكات دولية مع Save the Children وUSAID وتكريمات رسمية من محافظة البحيرة</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Core Pillars Section -->
-  <section class="section-padding" style="background-color: var(--bg-secondary);">
-    <div class="container">
-      <div class="section-title-wrap">
-        <span class="section-tag">ركائز العمل المؤسسي</span>
-        <h2 class="section-title">برامج نوعية تخدم الإنسان وتبني مجتمعاً منتجاً</h2>
-        <p class="section-subtitle">تعمل جمعية الإسراء وفق منظومة متكاملة تجمع بين الرعاية الصحية الكريمة، الإيواء الآمن لمرضى الأورام، والتمكين الاقتصادي والتعليمي المستدام.</p>
-      </div>
-
-      <div class="features-grid">
-        <!-- Feature 1 -->
-        <div class="feature-card">
-          <div class="feature-icon-box">🏢</div>
-          <h3 class="feature-card-title">مجمع الإسراء التنموي الطبي</h3>
-          <p class="feature-card-text">
-            مبنى مكون من خمسة طوابق مجهزة يضم مسجداً، مقراً إدارياً، عيادات تخصصية بمشروع "صحتك تهمنا"، مطبخاً خيرياً تعليمياً، ومشاغل تدريب للسجاد والنول والحياكة.
-          </p>
-          <a href="complex.html" class="feature-card-link">تفاصيل طوابق المجمع ←</a>
-        </div>
-
-        <!-- Feature 2 -->
-        <div class="feature-card">
-          <div class="feature-icon-box">🛏️</div>
-          <h3 class="feature-card-title">دار ضيافة مرضى الأورام</h3>
-          <p class="feature-card-text">
-            خدمة إنسانية فريدة توفر إقامة فندقية كريمة ووجبات غذائية صحية مجاناً بالكامل لمرضى معهد دمنهور للأورام ومرافقيهم القادمين من القرى والمحافظات البعيدة.
-          </p>
-          <a href="hostel.html" class="feature-card-link">معايير وطلب الاستضافة ←</a>
-        </div>
-
-        <!-- Feature 3 -->
-        <div class="feature-card">
-          <div class="feature-icon-box">🛺</div>
-          <h3 class="feature-card-title">مشروع عربات "أرزاق"</h3>
-          <p class="feature-card-text">
-            تمكين اقتصادي حقيقي للشباب والمعيلين بتصنيع وتسليم تروسيكلات طعام مجهزة بالشراكة مع مدرسة دمنهور الزخرفية لتوفير مصادر دخل كريمة ومستقلة.
-          </p>
-          <a href="projects.html" class="feature-card-link">استعراض مشروعات أرزاق ←</a>
-        </div>
-
-        <!-- Feature 4 -->
-        <div class="feature-card">
-          <div class="feature-icon-box">🧵</div>
-          <h3 class="feature-card-title">مشاغل النول والسجاد اليدوي</h3>
-          <p class="feature-card-text">
-            إحياء الحرف التراثية وتدريب الفتيات وربات البيوت على صناعة السجاد اليدوي والكليم، مع فتح منافذ تسويق منتجاتهن لدعم استقلالهن المالي.
-          </p>
-          <a href="projects.html" class="feature-card-link">الورش والمشاغل الحرفية ←</a>
-        </div>
-
-        <!-- Feature 5 -->
-        <div class="feature-card">
-          <div class="feature-icon-box">📚</div>
-          <h3 class="feature-card-title">التعليم المجتمعي "قرية متعلمة"</h3>
-          <p class="feature-card-text">
-            دعم مدارس التعليم المجتمعي ومكافحة التسرب من التعليم في قرى البحيرة بالشراكة مع هيئة إنقاذ الطفولة والوكالة الأمريكية للتنمية الدولية (USAID).
-          </p>
-          <a href="projects.html" class="feature-card-link">برامج التعليم والتوعية ←</a>
-        </div>
-
-        <!-- Feature 6 -->
-        <div class="feature-card">
-          <div class="feature-icon-box">🌱</div>
-          <h3 class="feature-card-title">مبادرة "برة الصندوق" والبيئة</h3>
-          <p class="feature-card-text">
-            تدوير الورق المدرسي لصالح تشجير وزراعة الأشجار المثمرة (مستشفى الصدر بدمنهور)، والتدريب المهني على تركيب وصيانة ألواح الطاقة الشمسية المتجددة.
-          </p>
-          <a href="projects.html" class="feature-card-link">مبادرات البيئة والطاقة ←</a>
-        </div>
+      <div class="kpi-card" style="padding:16px;">
+        <div class="kpi-val" style="font-size:2.4rem; font-weight:900; color:var(--accent-orange);">100+ أسرة</div>
+        <div style="font-size:1.05rem; font-weight:800; color:var(--text-main); margin-top:4px;">عربات أرزاق والنول</div>
+        <div style="font-size:0.85rem; color:var(--text-light);">مشروعات كسب عمل مستقلة بالتعاون مع مدرسة دمنهور الزخرفية</div>
       </div>
     </div>
   </section>
 
-  <!-- Photo Gallery / Living Impact Showcase -->
-  <section class="section-padding">
+  <!-- ==========================================================================
+       Donation Campaigns Showcase (Exact Life Makers Style & Uploaded Image)
+       ========================================================================== -->
+  <section id="campaigns-section" class="section-padding donation-store-section">
     <div class="container">
-      <div class="section-title-wrap">
-        <span class="section-tag">شواهد الأثر الميداني</span>
-        <h2 class="section-title">من قلب الميدان.. صور توثق إنجازات جمعية الإسراء</h2>
-        <p class="section-subtitle">لقطات حقيقية من أنشطة الجمعية، ومشاغل الإنتاج، ودورات التدريب، ومبادرات خدمة المجتمع بدمنهور والبحيرة.</p>
-      </div>
-
-      <div class="gallery-grid">
-        <div class="gallery-item">
-          <img src="complex.jpg" alt="مجمع الإسراء التنموي الطبي الخيري بدمنهور">
-          <div class="gallery-overlay">
-            <span class="gallery-caption">مجمع الإسراء التنموي الطبي الخيري المكون من 5 طوابق</span>
-          </div>
+      
+      <!-- Section Header with Category Tabs & Nominate Button (Matching Image) -->
+      <div class="campaign-tabs-header">
+        <div class="campaign-tabs-nav">
+          <button class="campaign-tab-btn active" data-tab="all">حملات التبرع</button>
+          <button class="campaign-tab-btn" data-tab="humanitarian">حالات إنسانية</button>
+          <button class="campaign-tab-btn" data-tab="urgent">حملات عاجلة ⚠️</button>
         </div>
-
-        <div class="gallery-item">
-          <img src="governor.jpg" alt="لقاء تكريمي مع القائم بأعمال محافظ البحيرة">
-          <div class="gallery-overlay">
-            <span class="gallery-caption">لقاء رسمي مع قيادة محافظة البحيرة لبحث ودعم مشروعات الجمعية التنموية</span>
-          </div>
-        </div>
-
-        <div class="gallery-item">
-          <img src="arzaq.jpg" alt="مشروع عربات أرزاق للتمكين الاقتصادي">
-          <div class="gallery-overlay">
-            <span class="gallery-caption">عربات وتروسيكلات أرزاق المصنعة لدعم الشباب والأسر المعيلة</span>
-          </div>
-        </div>
-
-        <div class="gallery-item">
-          <img src="loom.jpg" alt="مشغل صناعة السجاد اليدوي والنول">
-          <div class="gallery-overlay">
-            <span class="gallery-caption">مشاغل النول والسجاد اليدوي لتدريب وتمكين المرأة المعيلة</span>
-          </div>
-        </div>
-
-        <div class="gallery-item">
-          <img src="kitchen.jpg" alt="المطبخ التعليمي الخيري بمجمع الإسراء">
-          <div class="gallery-overlay">
-            <span class="gallery-caption">المطبخ الخيري لإعداد الوجبات الغذائية لمرضى الأورام والأسر المستحقة</span>
-          </div>
-        </div>
-
-        <div class="gallery-item">
-          <img src="solar.jpg" alt="ورشة تدريب فنيي الطاقة الشمسية">
-          <div class="gallery-overlay">
-            <span class="gallery-caption">تدريب الشباب على تكنولوجيا وتركيب ألواح الطاقة الشمسية النظيفة</span>
-          </div>
-        </div>
-
-        <div class="gallery-item">
-          <img src="trees.jpg" alt="مبادرة تشجير مستشفى الصدر بدمنهور">
-          <div class="gallery-overlay">
-            <span class="gallery-caption">زراعة وتشجير مستشفى الصدر بدمنهور ضمن مبادرة برة الصندوق</span>
-          </div>
-        </div>
-
-        <div class="gallery-item">
-          <img src="school.jpg" alt="احتفالية دعم أطفال المدارس المجتمعية">
-          <div class="gallery-overlay">
-            <span class="gallery-caption">دعم مدارس التعليم المجتمعي والاحتفاء بالمتعلمين الصغار</span>
-          </div>
-        </div>
-
-        <div class="gallery-item">
-          <img src="sewing.jpg" alt="ورشة تعليم الخياطة والتفصيل">
-          <div class="gallery-overlay">
-            <span class="gallery-caption">مشاغل الخياطة والتفصيل المهني لفتيات وأمهات دمنهور</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Leadership & Governance Section -->
-  <section class="section-padding" style="background-color: var(--bg-secondary); border-top: 1px solid var(--border-color);">
-    <div class="container">
-      <div class="service-showcase-row" style="margin-bottom: 0;">
-        <div class="service-showcase-media">
-          <img src="governor.jpg" alt="حوكمة جمعية الإسراء الخيرية وإدارتها المعتمدة" style="height: 420px;">
-        </div>
-        <div class="service-showcase-content">
-          <span class="section-tag">الحوكمة والقيادة المؤسسية</span>
-          <h3 style="font-size: 2.1rem; margin-bottom: 18px;">إدارة واعية، ورقابة رسمية، وشفافية كاملة</h3>
-          <p style="font-size: 1.05rem; line-height: 1.8; color: var(--text-muted); margin-bottom: 24px;">
-            تُدار جمعية الإسراء الخيرية لتنمية المجتمع بدمنهور برئاسة <strong>الأستاذة فاطمة عبد المجيد راضي</strong> وفريق عمل تنفيذي ومجلس إدارة منتخب، تحت الإشراف المباشر لمديرية التضامن الاجتماعي بالبحيرة، وبموجب صفة النفع العام الممنوحة رسمياً من الدولة المصرية.
-          </p>
-          <ul class="feature-check-list">
-            <li>صفة النفع العام بقرار وزيرة التضامن الاجتماعي رقم 646 لسنة 2024</li>
-            <li>إشهار رسمي مقيد برقم 1124 لسنة 2006 بمديرية التضامن الاجتماعي بالبحيرة</li>
-            <li>شراكات تنموية موثقة مع منظمات دولية وهيئات حكومية ومدارس صناعية</li>
-            <li>سجلات مالية وإدارية منتظمة تخضع لأعلى معايير التدقيق والمراجعة المحاسبية</li>
-          </ul>
-          <div style="margin-top: 30px;">
-            <a href="contact.html" class="btn-primary">تواصل مع إدارة الجمعية ←</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Pre-Footer Call to Action -->
-  <section style="background: linear-gradient(135deg, var(--brand-green) 0%, var(--brand-green-hover) 100%); color: #FFFFFF; padding: 60px 0; text-align: center;">
-    <div class="container">
-      <h2 style="font-size: 2.2rem; font-weight: 900; margin-bottom: 16px;">هل تبحث عن استضافة لمريض أورام أو ترغب في الاستفادة من برامجنا؟</h2>
-      <p style="font-size: 1.15rem; max-width: 750px; margin: 0 auto 30px; opacity: 0.95;">
-        أبواب جمعية الإسراء ومجمعها التنموي مفتوحة دائماً لخدمة أهالينا. فريقنا متواجد لاستقبال حالات الاستضافة وطلبات التدريب المهني يومياً.
-      </p>
-      <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
-        <a href="hostel.html" class="btn-outline" style="background-color: #FFFFFF; color: var(--brand-green) !important; border-color: #FFFFFF;">
-          حجز إقامة مجانية لمريض أورام
+        <a href="contact.html" class="nominate-case-btn">
+          <span>رشح حالة تستحق الدعم +</span>
         </a>
-        <a href="contact.html" class="btn-outline" style="background-color: transparent; color: #FFFFFF !important; border-color: rgba(255,255,255,0.6);">
-          التواصل والاستفسار المباشر
+      </div>
+
+      <!-- Campaign Cards Grid (Matching Image Architecture) -->
+      <div class="campaigns-cards-grid">
+        
+        <!-- Card 1: شنطة مدرسية بأدواتها (From User Image) -->
+        <div class="campaign-card" data-id="bag_575" data-tab-type="all">
+          <div class="campaign-card-poster">
+            <img src="school.jpg" alt="شنطة مدرسية بأدواتها">
+            <div class="campaign-card-overlay">
+              <span class="campaign-poster-badge">تعليم</span>
+              <div class="campaign-poster-title">شنطة مدرسية<br>بأدواتها</div>
+              <div class="campaign-poster-amount">575 <span class="campaign-poster-currency">ج</span></div>
+            </div>
+          </div>
+          <div class="campaign-card-body">
+            <span class="campaign-category-tag">#الاحتياجات_الأساسية</span>
+            <h3 class="campaign-item-title">ساعد طفل من أسرة مستحقة بشنطة مدرسية بأدواتها</h3>
+            <p class="campaign-item-desc">كل الأطفال ليهم حق في التعليم والعيش بكرامة، أطفال كتير من الأسر المستحقة بيعانوا من قلة الأدوات المدرسية.</p>
+            
+            <div class="campaign-controls-row">
+              <div class="amount-stepper-box">
+                <input type="text" class="amount-stepper-input" value="575" readonly>
+                <div class="stepper-arrows">
+                  <button class="stepper-btn stepper-up" aria-label="زيادة">+</button>
+                  <button class="stepper-btn stepper-down" aria-label="نقصان">-</button>
+                </div>
+              </div>
+              <button class="btn-add-cart">
+                <span>🛒 أضف للسلة</span>
+              </button>
+            </div>
+            
+            <button class="btn-donate-now-orange">
+              <span>تبرع الآن 🧡</span>
+            </button>
+
+            <div class="campaign-progress-bar-wrap">
+              <div class="campaign-progress-bar-fill" style="width: 100%;"></div>
+            </div>
+            <div class="campaign-progress-stats">
+              <span>نسبة التبرع: 100%</span>
+              <span style="color:var(--brand-green);">مكتملة جزئياً</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: زي مدرسي (From User Image) -->
+        <div class="campaign-card" data-id="uniform_1000" data-tab-type="all">
+          <div class="campaign-card-poster">
+            <img src="sewing.jpg" alt="زي مدرسي">
+            <div class="campaign-card-overlay">
+              <span class="campaign-poster-badge">ملابس</span>
+              <div class="campaign-poster-title">زي<br>مدرسي</div>
+              <div class="campaign-poster-amount">1000 <span class="campaign-poster-currency">ج</span></div>
+            </div>
+          </div>
+          <div class="campaign-card-body">
+            <span class="campaign-category-tag">#الاحتياجات_الأساسية</span>
+            <h3 class="campaign-item-title">ساعده يحفظ كرامته بلبس مدرسته</h3>
+            <p class="campaign-item-desc">توفير زي مدرسي كامل ومحترم مصنوع بأيدي الأمهات المعيلات بمشاغل جمعية الإسراء لحفظ كرامة التلميذ.</p>
+            
+            <div class="campaign-controls-row">
+              <div class="amount-stepper-box">
+                <input type="text" class="amount-stepper-input" value="1000" readonly>
+                <div class="stepper-arrows">
+                  <button class="stepper-btn stepper-up" aria-label="زيادة">+</button>
+                  <button class="stepper-btn stepper-down" aria-label="نقصان">-</button>
+                </div>
+              </div>
+              <button class="btn-add-cart">
+                <span>🛒 أضف للسلة</span>
+              </button>
+            </div>
+            
+            <button class="btn-donate-now-orange">
+              <span>تبرع الآن 🧡</span>
+            </button>
+
+            <div class="campaign-progress-bar-wrap">
+              <div class="campaign-progress-bar-fill" style="width: 45%;"></div>
+            </div>
+            <div class="campaign-progress-stats">
+              <span>نسبة التبرع: 45%</span>
+              <span>450 / 1000 ج.م</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: كفالة تعليمية (From User Image) -->
+        <div class="campaign-card" data-id="edu_1000" data-tab-type="humanitarian">
+          <div class="campaign-card-poster">
+            <img src="school.jpg" alt="كفالة تعليمية">
+            <div class="campaign-card-overlay">
+              <span class="campaign-poster-badge">كفالة</span>
+              <div class="campaign-poster-title">كفالة<br>تعليمية</div>
+              <div class="campaign-poster-amount">1000 <span class="campaign-poster-currency">ج</span></div>
+            </div>
+          </div>
+          <div class="campaign-card-body">
+            <span class="campaign-category-tag">#الاحتياجات_الأساسية</span>
+            <h3 class="campaign-item-title">كفالة تعليمية لأطفال تكمل حلمها</h3>
+            <p class="campaign-item-desc">دعم مصاريف الدراسة والكتب والدروس التقوية للأطفال المتسربين بمدارس التعليم المجتمعي بقرى البحيرة.</p>
+            
+            <div class="campaign-controls-row">
+              <div class="amount-stepper-box">
+                <input type="text" class="amount-stepper-input" value="1000" readonly>
+                <div class="stepper-arrows">
+                  <button class="stepper-btn stepper-up" aria-label="زيادة">+</button>
+                  <button class="stepper-btn stepper-down" aria-label="نقصان">-</button>
+                </div>
+              </div>
+              <button class="btn-add-cart">
+                <span>🛒 أضف للسلة</span>
+              </button>
+            </div>
+            
+            <button class="btn-donate-now-orange">
+              <span>تبرع الآن 🧡</span>
+            </button>
+
+            <div class="campaign-progress-bar-wrap">
+              <div class="campaign-progress-bar-fill" style="width: 60%;"></div>
+            </div>
+            <div class="campaign-progress-stats">
+              <span>نسبة التبرع: 60%</span>
+              <span>600 / 1000 ج.م</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4: كوبون وجبة مدرسية (From User Image) -->
+        <div class="campaign-card" data-id="meal_200" data-tab-type="all">
+          <div class="campaign-card-poster">
+            <img src="kitchen.jpg" alt="كوبون وجبة مدرسية">
+            <div class="campaign-card-overlay">
+              <span class="campaign-poster-badge">إطعام</span>
+              <div class="campaign-poster-title">كوبون وجبة مدرسية<br>لمدة شهر</div>
+              <div class="campaign-poster-amount">200 <span class="campaign-poster-currency">ج</span></div>
+            </div>
+          </div>
+          <div class="campaign-card-body">
+            <span class="campaign-category-tag">#الاحتياجات_الأساسية</span>
+            <h3 class="campaign-item-title">كوبون وجبة مدرسية لمدة شهر</h3>
+            <p class="campaign-item-desc">توفير وجبات غذائية متوازنة وصحية شهرياً للأطفال في الفصول المجتمعية لمساعدتهم على التركيز والتحصيل.</p>
+            
+            <div class="campaign-controls-row">
+              <div class="amount-stepper-box">
+                <input type="text" class="amount-stepper-input" value="200" readonly>
+                <div class="stepper-arrows">
+                  <button class="stepper-btn stepper-up" aria-label="زيادة">+</button>
+                  <button class="stepper-btn stepper-down" aria-label="نقصان">-</button>
+                </div>
+              </div>
+              <button class="btn-add-cart">
+                <span>🛒 أضف للسلة</span>
+              </button>
+            </div>
+            
+            <button class="btn-donate-now-orange">
+              <span>تبرع الآن 🧡</span>
+            </button>
+
+            <div class="campaign-progress-bar-wrap">
+              <div class="campaign-progress-bar-fill" style="width: 100%;"></div>
+            </div>
+            <div class="campaign-progress-stats">
+              <span>نسبة التبرع: 100%</span>
+              <span style="color:var(--brand-green);">مكتملة</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5: إقامة مريض أورام بدار الضيافة (Urgent Al-Israa Campaign) -->
+        <div class="campaign-card" data-id="cancer_hostel_750" data-tab-type="urgent">
+          <div class="campaign-card-poster">
+            <img src="hostel.jpg" alt="إقامة مريض أورام">
+            <div class="campaign-card-overlay">
+              <span class="campaign-poster-badge" style="background:#EF4444;">حالة عاجلة ⚠️</span>
+              <div class="campaign-poster-title">إقامة مريض أورام<br>بدار الضيافة</div>
+              <div class="campaign-poster-amount">750 <span class="campaign-poster-currency">ج</span></div>
+            </div>
+          </div>
+          <div class="campaign-card-body">
+            <span class="campaign-category-tag">#رعاية_مرضى_الأورام</span>
+            <h3 class="campaign-item-title">كفالة أسبوع استضافة فندقية لمريض أورام ومرافقه</h3>
+            <p class="campaign-item-desc">توفير سرير طبي مجهز وتكييف ووجبات صحية لمريض يتلقى جلسات العلاج بمعهد أورام دمنهور من خارج المحافظة.</p>
+            
+            <div class="campaign-controls-row">
+              <div class="amount-stepper-box">
+                <input type="text" class="amount-stepper-input" value="750" readonly>
+                <div class="stepper-arrows">
+                  <button class="stepper-btn stepper-up" aria-label="زيادة">+</button>
+                  <button class="stepper-btn stepper-down" aria-label="نقصان">-</button>
+                </div>
+              </div>
+              <button class="btn-add-cart">
+                <span>🛒 أضف للسلة</span>
+              </button>
+            </div>
+            
+            <button class="btn-donate-now-orange">
+              <span>تبرع الآن 🧡</span>
+            </button>
+
+            <div class="campaign-progress-bar-wrap">
+              <div class="campaign-progress-bar-fill" style="width: 72%;"></div>
+            </div>
+            <div class="campaign-progress-stats">
+              <span>نسبة التبرع: 72%</span>
+              <span>540 / 750 ج.م</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6: سهم عربة أرزاق للتمكين (Empowerment Campaign) -->
+        <div class="campaign-card" data-id="arzaq_1500" data-tab-type="humanitarian">
+          <div class="campaign-card-poster">
+            <img src="arzaq.jpg" alt="عربات أرزاق">
+            <div class="campaign-card-overlay">
+              <span class="campaign-poster-badge" style="background:#15803D;">تمكين اقتصادي</span>
+              <div class="campaign-poster-title">سهم تروسيكل<br>مشروع أرزاق</div>
+              <div class="campaign-poster-amount">1500 <span class="campaign-poster-currency">ج</span></div>
+            </div>
+          </div>
+          <div class="campaign-card-body">
+            <span class="campaign-category-tag">#مشروع_أرزاق</span>
+            <h3 class="campaign-item-title">سهم تجهيز عربة طعام متنقلة لشاب معيل</h3>
+            <p class="campaign-item-desc">مساهمة في تصنيع تروسيكل طعام مجهز بمدرسة دمنهور الزخرفية لتحويل شاب باحث عن عمل إلى صاحب مشروع مستقل.</p>
+            
+            <div class="campaign-controls-row">
+              <div class="amount-stepper-box">
+                <input type="text" class="amount-stepper-input" value="1500" readonly>
+                <div class="stepper-arrows">
+                  <button class="stepper-btn stepper-up" aria-label="زيادة">+</button>
+                  <button class="stepper-btn stepper-down" aria-label="نقصان">-</button>
+                </div>
+              </div>
+              <button class="btn-add-cart">
+                <span>🛒 أضف للسلة</span>
+              </button>
+            </div>
+            
+            <button class="btn-donate-now-orange">
+              <span>تبرع الآن 🧡</span>
+            </button>
+
+            <div class="campaign-progress-bar-wrap">
+              <div class="campaign-progress-bar-fill" style="width: 85%;"></div>
+            </div>
+            <div class="campaign-progress-stats">
+              <span>نسبة التبرع: 85%</span>
+              <span>1275 / 1500 ج.م</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 7: سهم المدرسة الخضراء برة الصندوق (Outbox Campaign) -->
+        <div class="campaign-card" data-id="outbox_500" data-tab-type="all">
+          <div class="campaign-card-poster">
+            <img src="trees.jpg" alt="برة الصندوق Outbox">
+            <div class="campaign-card-overlay">
+              <span class="campaign-poster-badge" style="background:#0F5132;">بيئة خضراء</span>
+              <div class="campaign-poster-title">سهم تدوير الورق<br>برة الصندوق Outbox</div>
+              <div class="campaign-poster-amount">500 <span class="campaign-poster-currency">ج</span></div>
+            </div>
+          </div>
+          <div class="campaign-card-body">
+            <span class="campaign-category-tag">#برة_الصندوق_Outbox</span>
+            <h3 class="campaign-item-title">سهم تصنيع وسائل تعليمية كرتونية وتشجير المدارس</h3>
+            <p class="campaign-item-desc">دعم منظومة تدوير الورق المدرسي بالبحيرة وتشغيل 217 سيدة معيلة لإنتاج ألعاب كرتونية بديلة للبلاستيك.</p>
+            
+            <div class="campaign-controls-row">
+              <div class="amount-stepper-box">
+                <input type="text" class="amount-stepper-input" value="500" readonly>
+                <div class="stepper-arrows">
+                  <button class="stepper-btn stepper-up" aria-label="زيادة">+</button>
+                  <button class="stepper-btn stepper-down" aria-label="نقصان">-</button>
+                </div>
+              </div>
+              <button class="btn-add-cart">
+                <span>🛒 أضف للسلة</span>
+              </button>
+            </div>
+            
+            <button class="btn-donate-now-orange">
+              <span>تبرع الآن 🧡</span>
+            </button>
+
+            <div class="campaign-progress-bar-wrap">
+              <div class="campaign-progress-bar-fill" style="width: 50%;"></div>
+            </div>
+            <div class="campaign-progress-stats">
+              <span>نسبة التبرع: 50%</span>
+              <span>250 / 500 ج.م</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 8: وجبات إطعام ساخنة من المطبخ الخيري (Urgent Campaign) -->
+        <div class="campaign-card" data-id="kitchen_300" data-tab-type="urgent">
+          <div class="campaign-card-poster">
+            <img src="kitchen.jpg" alt="المطبخ الخيري">
+            <div class="campaign-card-overlay">
+              <span class="campaign-poster-badge" style="background:#EF4444;">حالة عاجلة ⚠️</span>
+              <div class="campaign-poster-title">كرتونة إطعام<br>المطبخ الخيري</div>
+              <div class="campaign-poster-amount">300 <span class="campaign-poster-currency">ج</span></div>
+            </div>
+          </div>
+          <div class="campaign-card-body">
+            <span class="campaign-category-tag">#إطعام_الأسر_الأولى_بالرعاية</span>
+            <h3 class="campaign-item-title">توفير وجبات غذائية ساخنة يومية لمرافقي المرضى</h3>
+            <p class="campaign-item-desc">إعداد وجبات صحية طازجة في المطبخ التجاري لجمعية الإسراء وتوزيعها على أسر المرضى المتعففة.</p>
+            
+            <div class="campaign-controls-row">
+              <div class="amount-stepper-box">
+                <input type="text" class="amount-stepper-input" value="300" readonly>
+                <div class="stepper-arrows">
+                  <button class="stepper-btn stepper-up" aria-label="زيادة">+</button>
+                  <button class="stepper-btn stepper-down" aria-label="نقصان">-</button>
+                </div>
+              </div>
+              <button class="btn-add-cart">
+                <span>🛒 أضف للسلة</span>
+              </button>
+            </div>
+            
+            <button class="btn-donate-now-orange">
+              <span>تبرع الآن 🧡</span>
+            </button>
+
+            <div class="campaign-progress-bar-wrap">
+              <div class="campaign-progress-bar-fill" style="width: 90%;"></div>
+            </div>
+            <div class="campaign-progress-stats">
+              <span>نسبة التبرع: 90%</span>
+              <span>270 / 300 ج.م</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Call to Action Link to Full Store -->
+      <div style="text-align: center; margin-top: 45px;">
+        <a href="store.html" class="btn-primary" style="padding: 14px 34px; font-size: 1.05rem;">
+          <span>تصفح جميع حملات ومشروعات المتجر بالكامل (9+ حملات)</span>
+          <span>←</span>
         </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       Outbox Green Smart Schools Showcase (Obsidian Flagship Initiative)
+       ========================================================================== -->
+  <section class="outbox-showcase-section">
+    <div class="container outbox-grid">
+      <div>
+        <div class="outbox-badge">
+          <span>📦 مشروع جمعية الإسراء الرائد بالمبادرة الوطنية للمشروعات الخضراء الذكية</span>
+        </div>
+        <h2 class="outbox-title">
+          برة الصندوق (Outbox) – منظومة المدارس الخضراء الذكية بالبحيرة
+        </h2>
+        <p class="outbox-desc">
+          مبادرة بيئية واقتصادية رائدة ابتكرتها وترعاها <strong>أ. فاطمة عبد المجيد راضي</strong> وجمعية الإسراء بدمنهور بالشراكة مع مديرية التربية والتعليم بالبحيرة. تقوم على تدوير 180 طناً من الورق والكتب المدرسية سنوياً، وتصنيع 9 وسائل وألعاب تعليمية كرتونية بديلة للبلاستيك، مع تشغيل 217 سيدة معيلة في 10 فرق عمل.
+        </p>
+
+        <div class="outbox-kpis-grid">
+          <div class="outbox-kpi-card">
+            <div class="outbox-kpi-num">26 مدرسة</div>
+            <div class="outbox-kpi-label">تغطية معتمدة للفرز من المنبع</div>
+          </div>
+          <div class="outbox-kpi-card">
+            <div class="outbox-kpi-num">180 طناً</div>
+            <div class="outbox-kpi-label">ورق وكرتون يتم تدويره سنوياً</div>
+          </div>
+          <div class="outbox-kpi-card">
+            <div class="outbox-kpi-num">510,000 ج.م</div>
+            <div class="outbox-kpi-label">عوائد مستدامة بنموذج 40-25-25-10</div>
+          </div>
+          <div class="outbox-kpi-card">
+            <div class="outbox-kpi-num">3,060 شجرة</div>
+            <div class="outbox-kpi-label">محمية من القطع + وفر 4.77M لتر ماء</div>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:16px; flex-wrap:wrap;">
+          <a href="https://outboxeg.github.io/main/" target="_blank" rel="noopener noreferrer" class="btn-orange" style="background:#FEF08A; color:#0F5132 !important;">
+            <span>زيارة منصة Outbox الحية ↗</span>
+          </a>
+          <a href="https://outboxeg.github.io/main/simulator.html" target="_blank" rel="noopener noreferrer" class="btn-outline" style="border-color:rgba(255,255,255,0.4); color:#FFFFFF !important; background:transparent;">
+            <span>محاكي المدارس الخضراء الذكية 📊</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <div style="border-radius:var(--radius-xl); overflow:hidden; border:4px solid rgba(255,255,255,0.25); box-shadow:var(--shadow-xl);">
+          <img src="trees.jpg" alt="مشروع برة الصندوق وتشجير مستشفى الصدر بدمنهور" style="width:100%; height:400px; object-fit:cover;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       News & Impact Stories (Element from Life Makers lifemakers.org)
+       ========================================================================== -->
+  <section class="section-padding" style="background-color: #FFFFFF;">
+    <div class="container">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 45px; flex-wrap: wrap; gap: 16px;">
+        <div>
+          <span style="color: var(--brand-green); font-size: 0.88rem; font-weight: 800; letter-spacing: 0.5px;">أحدث المستجدات الميدانية</span>
+          <h2 style="font-size: 2.2rem; font-weight: 900; color: var(--text-main); margin-top: 6px;">أخبار جمعية الإسراء وقصص الأثر</h2>
+        </div>
+        <a href="projects.html" class="btn-outline" style="border-color: var(--brand-green); color: var(--brand-green) !important;">
+          جميع الأخبار والتقارير ←
+        </a>
+      </div>
+
+      <div class="news-cards-grid">
+        <!-- News 1 -->
+        <article class="news-card">
+          <div class="news-card-img">
+            <img src="governor.jpg" alt="تكريم محافظة البحيرة لمشروعات الإسراء">
+            <span class="news-card-date">24 سبتمبر 2026</span>
+          </div>
+          <div class="news-card-body">
+            <span class="news-tag">شراكات رسمية</span>
+            <h3 class="news-title">بحث سبل التوسع في مشروعات التمكين الاقتصادي بالبحيرة</h3>
+            <p class="news-excerpt">لقاء رسمي لبحث دعم تروسيكلات أرزاق ومشاغل النول والسجاد، والتنسيق لدعم ورعاية مرضى معهد أورام دمنهور.</p>
+            <a href="projects.html" class="news-link">اقرأ التفاصيل الكاملة ←</a>
+          </div>
+        </article>
+
+        <!-- News 2 -->
+        <article class="news-card">
+          <div class="news-card-img">
+            <img src="school.jpg" alt="احتفالية التعليم المجتمعي">
+            <span class="news-card-date">18 سبتمبر 2026</span>
+          </div>
+          <div class="news-card-body">
+            <span class="news-tag">التعليم والطفولة</span>
+            <h3 class="news-title">توزيع الشنط والزي المدرسي لأطفال الفصول المجتمعية</h3>
+            <p class="news-excerpt">بالشراكة مع هيئة إنقاذ الطفولة وUSAID، احتفت الجمعية بتسليم الأدوات المدرسية والوجبات للأطفال المتفوقين في قرى دمنهور.</p>
+            <a href="projects.html" class="news-link">اقرأ التفاصيل الكاملة ←</a>
+          </div>
+        </article>
+
+        <!-- News 3 -->
+        <article class="news-card">
+          <div class="news-card-img">
+            <img src="arzaq.jpg" alt="تسليم عربات أرزاق للشباب">
+            <span class="news-card-date">10 سبتمبر 2026</span>
+          </div>
+          <div class="news-card-body">
+            <span class="news-tag">مشروع أرزاق</span>
+            <h3 class="news-title">تسليم دفعة جديدة من تروسيكلات الطعام المصنعة بمدرسة دمنهور الزخرفية</h3>
+            <p class="news-excerpt">تم تسليم عربات مجهزة بالكامل لعدد من الشباب والمعيلين بالبحيرة لبدء أنشطتهم وتوفير دخل شهري كريم ومستدام.</p>
+            <a href="projects.html" class="news-link">اقرأ التفاصيل الكاملة ←</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       Success Partners Grid (Element from Life Makers lifemakers.org)
+       ========================================================================== -->
+  <section class="partners-section">
+    <div class="container">
+      <div class="text-center" style="margin-bottom: 40px;">
+        <span style="color: var(--brand-green); font-size: 0.85rem; font-weight: 800; letter-spacing: 0.5px;">تكامل العمل الأهلي والمؤسسي</span>
+        <h2 style="font-size: 2rem; font-weight: 900; color: var(--text-main); margin-top: 4px;">شركاء النجاح والتنمية</h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">نتشرف بالتعاون مع كبرى المؤسسات الحكومية والجهات الدولية والتعليمية لتوسيع دائرة الأثر الإنساني.</p>
+      </div>
+
+      <div class="partners-grid">
+        <div class="partner-card">
+          <div class="partner-icon">🏛️</div>
+          <div class="partner-name">وزارة التضامن الاجتماعي</div>
+        </div>
+        <div class="partner-card">
+          <div class="partner-icon">🎓</div>
+          <div class="partner-name">مديرية التربية والتعليم بالبحيرة</div>
+        </div>
+        <div class="partner-card">
+          <div class="partner-icon">🌿</div>
+          <div class="partner-name">المبادرة الوطنية للمشروعات الخضراء</div>
+        </div>
+        <div class="partner-card">
+          <div class="partner-icon">🏥</div>
+          <div class="partner-name">معهد دمنهور للأورام</div>
+        </div>
+        <div class="partner-card">
+          <div class="partner-icon">👶</div>
+          <div class="partner-name">هيئة إنقاذ الطفولة (Save the Children)</div>
+        </div>
+        <div class="partner-card">
+          <div class="partner-icon">🌐</div>
+          <div class="partner-name">منصة NGOhub الرقمية</div>
+        </div>
       </div>
     </div>
   </section>
@@ -349,49 +722,50 @@
           </div>
         </div>
         <p class="footer-bio">
-          مؤسسة أهلية ذات نفع عام بمحافظة البحيرة، مسجلة برقم 1124 لسنة 2006. نعمل على خدمة المجتمع وتوفير الرعاية الكريمة لمرضى الأورام والتمكين المهني للأسر الأولى بالرعاية.
+          مؤسسة أهلية ذات نفع عام بمحافظة البحيرة، مسجلة برقم 1124 لسنة 2006. نعمل على خدمة المجتمع، وتوفير الرعاية المجانية لمرضى الأورام، والتمكين المهني للأسر الأولى بالرعاية، والمبادرات البيئية المدرسية الذكية.
         </p>
       </div>
 
       <div>
-        <h4 class="footer-col-title">أقسام الموقع</h4>
+        <h4 class="footer-col-title">أقسام الموقع والمتجر</h4>
         <ul class="footer-links-list">
           <li><a href="index.html">الصفحة الرئيسية</a></li>
-          <li><a href="complex.html">مجمع الإسراء التنموي الطبي</a></li>
+          <li><a href="store.html">متجر التبرعات الشامل</a></li>
+          <li><a href="checkout.html">الحسابات البنكية والمحافظ</a></li>
+          <li><a href="complex.html">مجمع الإسراء التنموي (5 طوابق)</a></li>
           <li><a href="hostel.html">دار ضيافة مرضى الأورام</a></li>
-          <li><a href="projects.html">مشروعات التمكين الاقتصادي</a></li>
-          <li><a href="contact.html">تواصل معنا وحجز المواعيد</a></li>
+          <li><a href="projects.html">مشروعات التمكين و Outbox</a></li>
         </ul>
       </div>
 
       <div>
-        <h4 class="footer-col-title">خدماتنا الرئيسية</h4>
+        <h4 class="footer-col-title">أبرز الحملات الخيرية</h4>
         <ul class="footer-links-list">
-          <li><a href="hostel.html">إقامة مجانية لمرضى الأورام</a></li>
-          <li><a href="complex.html">عيادات "صحتك تهمنا" التخصصية</a></li>
-          <li><a href="projects.html">مشروع عربات "أرزاق"</a></li>
-          <li><a href="projects.html">مشاغل النول والسجاد اليدوي</a></li>
-          <li><a href="projects.html">مدارس التعليم المجتمعي</a></li>
+          <li><a href="store.html">شنطة مدرسية وزي مدرسي</a></li>
+          <li><a href="store.html">كفالة أسبوع مريض أورام بدار الضيافة</a></li>
+          <li><a href="store.html">سهم تروسيكل مشروع أرزاق</a></li>
+          <li><a href="store.html">سهم تدوير الورق بمدارس دمنهور Outbox</a></li>
+          <li><a href="store.html">كوبونات وجبات المطبخ الخيري</a></li>
         </ul>
       </div>
 
       <div>
-        <h4 class="footer-col-title">بيانات التواصل والاعتماد</h4>
+        <h4 class="footer-col-title">بيانات التواصل والتحويل</h4>
         <div class="footer-contact-item">
           <span>📍</span>
-          <span>مجمع الإسراء التنموي، دمنهور، محافظة البحيرة، جمهورية مصر العربية</span>
+          <span>مجمع الإسراء، دمنهور، محافظة البحيرة، جمهورية مصر العربية</span>
         </div>
         <div class="footer-contact-item">
-          <span>⚖️</span>
-          <span>صفة النفع العام: قرار وزاري 646 لسنة 2024</span>
+          <span>💳</span>
+          <span>حساب بنك مصر: 123456789</span>
+        </div>
+        <div class="footer-contact-item">
+          <span>📱</span>
+          <span>فودافون كاش / إنستاباي: 01012345678</span>
         </div>
         <div class="footer-contact-item">
           <span>📞</span>
           <a href="tel:+20453312345" style="color: inherit;">045-3312345</a>
-        </div>
-        <div class="footer-contact-item">
-          <span>✉️</span>
-          <span>info@al-israa.org</span>
         </div>
       </div>
     </div>
@@ -401,7 +775,7 @@
       <div class="container">
         <div class="powered-by-inner">
           <p class="copyright-text">
-            جميع الحقوق محفوظة © 2026 جمعية الإسراء الخيرية لتنمية المجتمع بدمنهور - مشهرة برقم 1124 لسنة 2006
+            جميع الحقوق محفوظة © 2026 جمعية الإسراء الخيرية لتنمية المجتمع بدمنهور - مشهرة برقم 1124 لسنة 2006 - ذات نفع عام
           </p>
           <a href="https://ngohub.org" target="_blank" rel="noopener noreferrer" class="ngohub-badge-link" title="منصة NGOHub لدعم وإدارة المنظمات غير الحكومية">
             <img src="ngohub-logo.png" alt="شعار NGOHub" class="ngohub-logo-img">
@@ -413,20 +787,14 @@
   </footer>
 
   <!-- Floating WhatsApp Button -->
-  <a href="https://wa.me/201000000000?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%20%D8%AC%D9%85%D8%B9%D9%8A%D8%A9%20%D8%A7%D9%84%D8%A5%D8%B3%D8%B1%D8%A7%D8%A1" class="whatsapp-float-btn" target="_blank" aria-label="تواصل مباشر عبر واتساب" title="تواصل عبر واتساب">
+  <a href="https://wa.me/201000000000?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AD%D9%85%D9%84%D8%A7%D8%AA%20%D8%A7%D9%84%D8%AA%D8%A8%D8%B1%D8%B9%20%D9%88%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%20%D8%AC%D9%85%D8%B9%D9%8A%D8%A9%20%D8%A7%D9%84%D8%A5%D8%B3%D8%B1%D8%A7%D8%A1" class="whatsapp-float-btn" target="_blank" aria-label="تواصل مباشر عبر واتساب" title="تواصل عبر واتساب">
     <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
       <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm.01 18.06c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.106 8.106 0 0 1-1.24-4.29c0-4.51 3.67-8.18 8.18-8.18 2.18 0 4.24.85 5.78 2.39 1.54 1.54 2.39 3.6 2.38 5.78-.01 4.51-3.68 8.16-8.2 8.16z"/>
     </svg>
   </a>
 
-  <!-- Lightbox Modal for Full View -->
-  <div class="lightbox-modal">
-    <button class="lightbox-close-btn" aria-label="إغلاق الصورة المكبرة">✕</button>
-    <div class="lightbox-content">
-      <img src="complex.jpg" alt="معاينة الصورة" class="lightbox-img">
-      <p class="lightbox-caption-text"></p>
-    </div>
-  </div>
+  <!-- Toast Notification Box -->
+  <div class="toast-notice"></div>
 
   <script src="main.js"></script>
 </body>

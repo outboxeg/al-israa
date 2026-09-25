@@ -16,8 +16,8 @@
       <div class="top-bar-badge">
         <span>🏢 صرح الإسراء التنموي: 5 طوابق في خدمة المجتمع بدمنهور</span>
       </div>
-      <div class="top-bar-contact">
-        <span class="top-bar-link">📍 دمنهور، محافظة البحيرة</span>
+      <div class="top-bar-links">
+        <a href="checkout.html" class="top-bar-link" style="color:#FEF08A; font-weight:800;">💳 الحسابات البنكية والمحافظ</a>
         <a href="tel:+20453312345" class="top-bar-link">📞 هاتف المجمع: 045-3312345</a>
       </div>
     </div>
@@ -37,19 +37,53 @@
       <nav class="main-navigation">
         <ul class="nav-links-list">
           <li><a href="index.html" class="nav-item-link">الرئيسية</a></li>
+          <li><a href="store.html" class="nav-item-link">متجر التبرعات 🛒</a></li>
           <li><a href="complex.html" class="nav-item-link active">مجمع الإسراء التنموي</a></li>
           <li><a href="hostel.html" class="nav-item-link">دار ضيافة الأورام</a></li>
           <li><a href="projects.html" class="nav-item-link">مشروعات التمكين</a></li>
           <li><a href="contact.html" class="nav-item-link">تواصل معنا</a></li>
         </ul>
-        <a href="hostel.html" class="header-action-btn">
-          <span>دار ضيافة الأورام</span>
-          <span>←</span>
-        </a>
-        <button class="mobile-nav-toggle" aria-label="فتح القائمة الرئيسية">☰</button>
+
+        <div class="nav-actions-group">
+          <button class="cart-trigger-btn" aria-label="عرض سلة التبرعات">
+            <span>🛒 السلة</span>
+            <span class="cart-badge-count">0</span>
+          </button>
+          <a href="store.html" class="header-donate-btn">
+            <span>تبرع للمجمع 🧡</span>
+          </a>
+          <button class="mobile-nav-toggle" aria-label="فتح القائمة الرئيسية">☰</button>
+        </div>
       </nav>
     </div>
   </header>
+
+  <!-- Slide-Over Cart Drawer -->
+  <div class="cart-drawer-overlay"></div>
+  <div class="cart-drawer">
+    <div class="cart-drawer-header">
+      <div class="cart-drawer-title">
+        <span>🛒 سلة التبرعات</span>
+      </div>
+      <button class="cart-drawer-close" aria-label="إغلاق السلة">✕</button>
+    </div>
+    <div class="cart-drawer-body"></div>
+    <div class="cart-drawer-footer">
+      <div class="cart-total-row">
+        <span class="cart-total-label">إجمالي التبرع:</span>
+        <span class="cart-total-amount">0 ج.م</span>
+      </div>
+      <a href="checkout.html" class="btn-orange" style="width:100%; text-align:center; padding:14px; font-size:1.05rem;">
+        متابعة التبرع وبيانات التحويل ←
+      </a>
+    </div>
+  </div>
+
+  <!-- Floating Cart Launcher Button -->
+  <button class="floating-cart-launcher" aria-label="سلة التبرعات السريعة" title="سلة التبرعات">
+    <span style="font-size:1.6rem;">🛒</span>
+    <span class="floating-cart-badge">0</span>
+  </button>
 
   <!-- Mobile Drawer Menu -->
   <div class="mobile-nav-drawer">
