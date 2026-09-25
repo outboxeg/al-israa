@@ -639,12 +639,33 @@ button, input, select, textarea {
   border-color: #CBD5E1;
 }
 
-/* Image Top Poster with Bold Overlay (Identical to Image) */
+/* ==========================================================================
+   Campaign Cards (Al-Israa Modern Redesign - Anti-Generic & Purpose-Built)
+   ========================================================================== */
+.campaign-card {
+  background-color: #FFFFFF;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid #E2E8F0;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  position: relative;
+}
+
+.campaign-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.1);
+  border-color: #CBD5E1;
+}
+
+/* Crisp Photo Presentation (No Dark Stamped Overlay) */
 .campaign-card-poster {
   position: relative;
-  height: 220px;
+  height: 200px;
   overflow: hidden;
-  background-color: #0284C7;
+  background-color: #F1F5F9;
 }
 
 .campaign-card-poster img {
@@ -658,100 +679,185 @@ button, input, select, textarea {
   transform: scale(1.05);
 }
 
-.campaign-card-overlay {
+/* Elegant Floating Category Badge */
+.campaign-card-badge {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(2, 69, 122, 0.4) 0%, rgba(2, 69, 122, 0.85) 100%);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 16px;
+  top: 12px;
+  right: 12px;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(8px);
   color: #FFFFFF;
-}
-
-.campaign-poster-badge {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(4px);
-  padding: 3px 10px;
-  border-radius: var(--radius-sm);
-  font-size: 0.75rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.78rem;
   font-weight: 700;
-  color: #FFFFFF;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  z-index: 2;
 }
 
-.campaign-poster-title {
-  font-size: 1.35rem;
-  font-weight: 900;
-  line-height: 1.3;
-  margin-bottom: 6px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+.campaign-card-badge.urgent {
+  background: rgba(220, 38, 38, 0.9);
 }
 
-.campaign-poster-amount {
-  font-size: 2.2rem;
-  font-weight: 900;
-  line-height: 1;
-  color: #FFFFFF;
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+.campaign-card-badge.green {
+  background: rgba(21, 128, 61, 0.9);
 }
 
-.campaign-poster-currency {
-  font-size: 1.1rem;
-  font-weight: 700;
-  margin-right: 4px;
+.campaign-card-badge.blue {
+  background: rgba(2, 132, 199, 0.9);
 }
 
 /* Card Body */
 .campaign-card-body {
-  padding: 20px 18px 16px;
+  padding: 18px 18px 16px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 }
 
 .campaign-category-tag {
-  color: #D97706;
-  font-size: 0.82rem;
+  color: var(--brand-green);
+  font-size: 0.8rem;
   font-weight: 800;
   margin-bottom: 6px;
+  display: inline-block;
 }
 
 .campaign-item-title {
-  font-size: 1.15rem;
-  font-weight: 800;
-  color: #0369A1;
-  line-height: 1.35;
+  font-size: 1.12rem;
+  font-weight: 900;
+  color: var(--text-main);
+  line-height: 1.4;
   margin-bottom: 8px;
   min-height: 48px;
 }
 
 .campaign-item-desc {
-  font-size: 0.88rem;
+  font-size: 0.86rem;
   color: var(--text-muted);
-  line-height: 1.5;
-  margin-bottom: 16px;
+  line-height: 1.55;
+  margin-bottom: 14px;
   flex-grow: 1;
 }
 
-/* Donation Controls & Actions (Matching Image) */
+/* Purpose-Built Target & Collected Metric Box */
+.campaign-metrics-box {
+  background-color: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  margin-bottom: 14px;
+}
+
+.metrics-target-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.metric-target-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.metric-target-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-light);
+}
+
+.metric-target-value {
+  font-size: 0.98rem;
+  font-weight: 900;
+  color: var(--text-main);
+}
+
+.metric-collected-value {
+  font-size: 0.98rem;
+  font-weight: 900;
+  color: var(--brand-green);
+}
+
+/* Modern Gradient Progress Bar */
+.campaign-progress-bar-wrap {
+  width: 100%;
+  height: 8px;
+  background-color: #E2E8F0;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.campaign-progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #10B981, #15803D);
+  border-radius: var(--radius-full);
+  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.campaign-progress-bar-fill.orange {
+  background: linear-gradient(90deg, #F59E0B, #EA580C);
+}
+
+.metrics-sub-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-light);
+}
+
+.remaining-amount-tag {
+  color: var(--accent-orange);
+  font-weight: 800;
+}
+
+/* Preset Amount Chips */
+.amount-presets-row {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.amount-preset-chip {
+  flex: 1;
+  background: #F1F5F9;
+  border: 1px solid #CBD5E1;
+  border-radius: 6px;
+  padding: 5px 2px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.amount-preset-chip:hover,
+.amount-preset-chip.active {
+  background: #E0F2FE;
+  border-color: #0284C7;
+  color: #0369A1;
+}
+
+/* Stepper and Add to Cart */
 .campaign-controls-row {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .amount-stepper-box {
   display: flex;
   align-items: center;
-  border: 1.5px solid var(--border-color);
+  border: 1.5px solid #CBD5E1;
   border-radius: var(--radius-sm);
   background-color: #FFFFFF;
   overflow: hidden;
-  height: 40px;
+  height: 42px;
   width: 110px;
 }
 
@@ -759,8 +865,8 @@ button, input, select, textarea {
   width: 100%;
   border: none;
   text-align: center;
-  font-weight: 800;
-  font-size: 1rem;
+  font-weight: 900;
+  font-size: 1.05rem;
   color: var(--text-main);
   outline: none;
   background: transparent;
@@ -770,21 +876,22 @@ button, input, select, textarea {
   display: flex;
   flex-direction: column;
   height: 100%;
-  border-right: 1px solid var(--border-color);
+  border-right: 1px solid #E2E8F0;
 }
 
 .stepper-btn {
   background: #F8FAFC;
   border: none;
-  width: 24px;
+  width: 26px;
   height: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
+  font-weight: 800;
   cursor: pointer;
   color: var(--text-muted);
-  transition: var(--transition-fast);
+  transition: background-color 0.15s;
 }
 
 .stepper-btn:hover {
@@ -794,71 +901,48 @@ button, input, select, textarea {
 
 .btn-add-cart {
   flex: 1;
-  height: 40px;
+  height: 42px;
   background-color: #0284C7;
   color: #FFFFFF;
   border: none;
   border-radius: var(--radius-sm);
   font-weight: 800;
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
   cursor: pointer;
-  transition: var(--transition-fast);
+  transition: all 0.2s ease;
 }
 
 .btn-add-cart:hover {
   background-color: #0369A1;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
 }
 
 .btn-donate-now-orange {
   width: 100%;
-  height: 38px;
-  background-color: #F59E0B;
+  height: 42px;
+  background-color: #EA580C;
   color: #FFFFFF;
   border: none;
   border-radius: var(--radius-sm);
-  font-weight: 800;
-  font-size: 0.95rem;
+  font-weight: 900;
+  font-size: 1rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 8px;
   cursor: pointer;
-  margin-bottom: 12px;
-  transition: var(--transition-fast);
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(234, 88, 12, 0.25);
 }
 
 .btn-donate-now-orange:hover {
-  background-color: #D97706;
-}
-
-/* Progress Bar at Bottom of Card */
-.campaign-progress-bar-wrap {
-  width: 100%;
-  height: 6px;
-  background-color: #E2E8F0;
-  border-radius: var(--radius-full);
-  overflow: hidden;
-  margin-bottom: 6px;
-}
-
-.campaign-progress-bar-fill {
-  height: 100%;
-  background-color: #0284C7;
-  border-radius: var(--radius-full);
-  transition: width 0.8s ease;
-}
-
-.campaign-progress-stats {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--text-light);
+  background-color: #C2410C;
+  box-shadow: 0 6px 18px rgba(234, 88, 12, 0.35);
+  transform: translateY(-1px);
 }
 
 /* ==========================================================================
@@ -1041,43 +1125,169 @@ button, input, select, textarea {
 
 .partners-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 20px;
-  align-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+  align-items: stretch;
 }
 
 .partner-card {
-  background-color: var(--bg-secondary);
+  background-color: #FFFFFF;
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
-  padding: 20px 14px;
+  padding: 18px 12px 14px;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  min-height: 110px;
-  transition: var(--transition-fast);
+  gap: 12px;
+  min-height: 125px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  transition: all 0.25s ease;
 }
 
 .partner-card:hover {
   background-color: #FFFFFF;
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   border-color: var(--brand-green);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
-.partner-icon {
-  font-size: 2rem;
-  line-height: 1;
+.partner-logo-box {
+  width: 100%;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.partner-logo-img {
+  max-height: 48px;
+  max-width: 130px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.partner-card:hover .partner-logo-img {
+  transform: scale(1.06);
 }
 
 .partner-name {
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-weight: 800;
   color: var(--text-main);
-  line-height: 1.3;
+  line-height: 1.35;
+}
+
+/* ==========================================================================
+   Mobile Navigation Drawer (Bulletproof Slide-In with Overlay)
+   ========================================================================== */
+.mobile-nav-drawer {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(5px);
+  z-index: 1500;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.mobile-nav-drawer.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.mobile-drawer-content {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 310px;
+  max-width: 86vw;
+  height: 100%;
+  background: #FFFFFF;
+  box-shadow: -6px 0 30px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  padding: 24px 20px;
+  z-index: 1510;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow-y: auto;
+}
+
+.mobile-nav-drawer.active .mobile-drawer-content {
+  transform: translateX(0);
+}
+
+.mobile-drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 16px;
+  margin-bottom: 18px;
+}
+
+.mobile-drawer-close {
+  background: #F1F5F9;
+  border: 1px solid var(--border-color);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  line-height: 1;
+}
+
+.mobile-drawer-close:hover,
+.mobile-drawer-close:active {
+  background: #FEE2E2;
+  color: #DC2626;
+  border-color: #FCA5A5;
+  transform: rotate(90deg);
+}
+
+.mobile-drawer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.mobile-drawer-links a {
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  color: var(--text-main);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mobile-drawer-links a:hover,
+.mobile-drawer-links a.active {
+  background-color: var(--brand-green-light);
+  color: var(--brand-green-dark);
+}
+
+.mobile-drawer-footer {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 /* ==========================================================================
@@ -1645,10 +1855,25 @@ button, input, select, textarea {
   .nav-links-list { display: none; }
   .mobile-nav-toggle { display: block; }
   .campaigns-cards-grid { grid-template-columns: 1fr; }
-  .partners-grid { grid-template-columns: repeat(2, 1fr); }
+  .partners-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .partner-card { padding: 14px 10px; min-height: 110px; }
+  .partner-logo-box { height: 42px; }
+  .partner-logo-img { max-height: 38px; max-width: 110px; }
   .news-cards-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .hero-heading { font-size: 2.1rem; }
-  .campaign-tabs-header { flex-direction: column; align-items: flex-start; }
+  .campaign-tabs-header { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .campaign-tabs-nav { width: 100%; overflow-x: auto; padding-bottom: 6px; }
+  .hero-image-card img { height: 260px; }
+  .campaign-card-poster { height: 185px; }
+  .floating-cart-launcher { bottom: 95px; left: 20px; width: 54px; height: 54px; }
+  .whatsapp-float-btn { bottom: 25px; left: 20px; width: 52px; height: 52px; font-size: 1.7rem; }
+}
+
+@media (max-width: 480px) {
+  .partners-grid { grid-template-columns: 1fr 1fr; }
+  .hero-heading { font-size: 1.8rem; }
+  .hero-badge-pill span { font-size: 0.82rem; }
+  .campaign-item-title { font-size: 1.05rem; }
 }

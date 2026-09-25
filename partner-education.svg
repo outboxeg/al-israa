@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100" width="300" height="100">
+  <defs>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284C7"/>
+      <stop offset="100%" stop-color="#0369A1"/>
+    </linearGradient>
+  </defs>
+  <!-- Education Crest Motif -->
+  <g transform="translate(12, 10)">
+    <circle cx="38" cy="40" r="36" fill="#F0F9FF" stroke="#0284C7" stroke-width="2"/>
+    <!-- Book Motif -->
+    <path d="M26 48 Q38 42 38 30 Q38 42 50 48 L48 54 Q38 48 38 34 Q38 48 28 54 Z" fill="url(#blueGrad)"/>
+    <!-- Pen / Torch -->
+    <path d="M36 22 L40 22 L40 32 L36 32 Z" fill="#F59E0B"/>
+    <path d="M38 16 L41 21 L35 21 Z" fill="#EF4444"/>
+    <!-- Laurel Branches -->
+    <path d="M18 42 Q20 58 38 64 Q56 58 58 42" fill="none" stroke="#15803D" stroke-width="1.8"/>
+  </g>
+  <!-- Typography -->
+  <text x="96" y="38" font-family="'Cairo', Arial, sans-serif" font-weight="900" font-size="17" fill="#0F172A">مديرية التربية والتعليم</text>
+  <text x="96" y="60" font-family="'Cairo', Arial, sans-serif" font-weight="700" font-size="13" fill="#0284C7">محافظة البحيرة</text>
+  <text x="96" y="78" font-family="'Cairo', Arial, sans-serif" font-weight="600" font-size="10.5" fill="#64748B">Ministry of Education &amp; Tech. Education</text>
+</svg>

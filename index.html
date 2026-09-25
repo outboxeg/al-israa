@@ -59,24 +59,24 @@
             <span>تبرع الآن 🧡</span>
           </a>
 
-          <button class="mobile-nav-toggle" aria-label="فتح القائمة الرئيسية">☰</button>
+          <button class="mobile-nav-toggle" onclick="openMobileNav()" aria-label="فتح القائمة الرئيسية">☰</button>
         </div>
       </nav>
     </div>
   </header>
 
-  <!-- Mobile Drawer Menu -->
-  <div class="mobile-nav-drawer">
-    <div class="mobile-drawer-content" style="background:#FFFFFF; padding:24px; width:290px; height:100%; position:fixed; top:0; right:0; box-shadow:-4px 0 20px rgba(0,0,0,0.15); z-index:1100; display:flex; flex-direction:column;">
-      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-color); padding-bottom:16px; margin-bottom:20px;">
+  <!-- Mobile Drawer Menu (Slide-In) -->
+  <div class="mobile-nav-drawer" onclick="if(event.target===this)closeMobileNav()">
+    <div class="mobile-drawer-content">
+      <div class="mobile-drawer-header">
         <div class="brand-identity">
-          <img src="logo.png" alt="جمعية الإسراء" style="width: 42px; height: 42px; object-fit: contain;">
-          <span style="font-weight: 800; font-size: 1.1rem; color: var(--text-main);">جمعية الإسراء</span>
+          <img src="logo.png" alt="جمعية الإسراء" style="width: 40px; height: 40px; object-fit: contain;">
+          <span style="font-weight: 800; font-size: 1.05rem; color: var(--text-main);">جمعية الإسراء</span>
         </div>
-        <button class="mobile-drawer-close" style="background:none; border:none; font-size:1.6rem; cursor:pointer;" aria-label="إغلاق القائمة">✕</button>
+        <button class="mobile-drawer-close" onclick="closeMobileNav()" aria-label="إغلاق القائمة">✕</button>
       </div>
-      <div style="display:flex; flex-direction:column; gap:14px; font-weight:700; font-size:1.05rem;">
-        <a href="index.html" style="color:var(--brand-green);">الرئيسية</a>
+      <div class="mobile-drawer-links">
+        <a href="index.html" class="active">الرئيسية</a>
         <a href="store.html">متجر التبرعات 🛒</a>
         <a href="complex.html">مجمع الإسراء التنموي</a>
         <a href="hostel.html">دار ضيافة الأورام</a>
@@ -84,7 +84,7 @@
         <a href="checkout.html">الحسابات البنكية والمحافظ</a>
         <a href="contact.html">تواصل معنا والتدريب</a>
       </div>
-      <div style="margin-top:auto; padding-top:20px; border-top:1px solid var(--border-color); display:flex; flex-direction:column; gap:10px;">
+      <div class="mobile-drawer-footer">
         <a href="store.html" class="btn-orange" style="width:100%; text-align:center;">تبرع الآن 🧡</a>
         <a href="hostel.html" class="btn-outline" style="width:100%; text-align:center;">حجز دار الضيافة</a>
       </div>
@@ -204,342 +204,454 @@
         </a>
       </div>
 
-      <!-- Campaign Cards Grid (Matching Image Architecture) -->
+      <!-- Campaign Cards Grid (Customized for Al-Israa Charity Association) -->
       <div class="campaigns-cards-grid">
         
-        <!-- Card 1: شنطة مدرسية بأدواتها (From User Image) -->
-        <div class="campaign-card" data-id="bag_575" data-tab-type="all">
+        <!-- Card 1: دار ضيافة مرضى الأورام -->
+        <div class="campaign-card" data-id="hostel_patient" data-tab-type="urgent">
           <div class="campaign-card-poster">
-            <img src="school.jpg" alt="شنطة مدرسية بأدواتها">
-            <div class="campaign-card-overlay">
-              <span class="campaign-poster-badge">تعليم</span>
-              <div class="campaign-poster-title">شنطة مدرسية<br>بأدواتها</div>
-              <div class="campaign-poster-amount">575 <span class="campaign-poster-currency">ج</span></div>
-            </div>
-          </div>
-          <div class="campaign-card-body">
-            <span class="campaign-category-tag">#الاحتياجات_الأساسية</span>
-            <h3 class="campaign-item-title">ساعد طفل من أسرة مستحقة بشنطة مدرسية بأدواتها</h3>
-            <p class="campaign-item-desc">كل الأطفال ليهم حق في التعليم والعيش بكرامة، أطفال كتير من الأسر المستحقة بيعانوا من قلة الأدوات المدرسية.</p>
-            
-            <div class="campaign-controls-row">
-              <div class="amount-stepper-box">
-                <input type="text" class="amount-stepper-input" value="575" readonly>
-                <div class="stepper-arrows">
-                  <button class="stepper-btn stepper-up" aria-label="زيادة">+</button>
-                  <button class="stepper-btn stepper-down" aria-label="نقصان">-</button>
-                </div>
-              </div>
-              <button class="btn-add-cart">
-                <span>🛒 أضف للسلة</span>
-              </button>
-            </div>
-            
-            <button class="btn-donate-now-orange">
-              <span>تبرع الآن 🧡</span>
-            </button>
-
-            <div class="campaign-progress-bar-wrap">
-              <div class="campaign-progress-bar-fill" style="width: 100%;"></div>
-            </div>
-            <div class="campaign-progress-stats">
-              <span>نسبة التبرع: 100%</span>
-              <span style="color:var(--brand-green);">مكتملة جزئياً</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 2: زي مدرسي (From User Image) -->
-        <div class="campaign-card" data-id="uniform_1000" data-tab-type="all">
-          <div class="campaign-card-poster">
-            <img src="sewing.jpg" alt="زي مدرسي">
-            <div class="campaign-card-overlay">
-              <span class="campaign-poster-badge">ملابس</span>
-              <div class="campaign-poster-title">زي<br>مدرسي</div>
-              <div class="campaign-poster-amount">1000 <span class="campaign-poster-currency">ج</span></div>
-            </div>
-          </div>
-          <div class="campaign-card-body">
-            <span class="campaign-category-tag">#الاحتياجات_الأساسية</span>
-            <h3 class="campaign-item-title">ساعده يحفظ كرامته بلبس مدرسته</h3>
-            <p class="campaign-item-desc">توفير زي مدرسي كامل ومحترم مصنوع بأيدي الأمهات المعيلات بمشاغل جمعية الإسراء لحفظ كرامة التلميذ.</p>
-            
-            <div class="campaign-controls-row">
-              <div class="amount-stepper-box">
-                <input type="text" class="amount-stepper-input" value="1000" readonly>
-                <div class="stepper-arrows">
-                  <button class="stepper-btn stepper-up" aria-label="زيادة">+</button>
-                  <button class="stepper-btn stepper-down" aria-label="نقصان">-</button>
-                </div>
-              </div>
-              <button class="btn-add-cart">
-                <span>🛒 أضف للسلة</span>
-              </button>
-            </div>
-            
-            <button class="btn-donate-now-orange">
-              <span>تبرع الآن 🧡</span>
-            </button>
-
-            <div class="campaign-progress-bar-wrap">
-              <div class="campaign-progress-bar-fill" style="width: 45%;"></div>
-            </div>
-            <div class="campaign-progress-stats">
-              <span>نسبة التبرع: 45%</span>
-              <span>450 / 1000 ج.م</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 3: كفالة تعليمية (From User Image) -->
-        <div class="campaign-card" data-id="edu_1000" data-tab-type="humanitarian">
-          <div class="campaign-card-poster">
-            <img src="school.jpg" alt="كفالة تعليمية">
-            <div class="campaign-card-overlay">
-              <span class="campaign-poster-badge">كفالة</span>
-              <div class="campaign-poster-title">كفالة<br>تعليمية</div>
-              <div class="campaign-poster-amount">1000 <span class="campaign-poster-currency">ج</span></div>
-            </div>
-          </div>
-          <div class="campaign-card-body">
-            <span class="campaign-category-tag">#الاحتياجات_الأساسية</span>
-            <h3 class="campaign-item-title">كفالة تعليمية لأطفال تكمل حلمها</h3>
-            <p class="campaign-item-desc">دعم مصاريف الدراسة والكتب والدروس التقوية للأطفال المتسربين بمدارس التعليم المجتمعي بقرى البحيرة.</p>
-            
-            <div class="campaign-controls-row">
-              <div class="amount-stepper-box">
-                <input type="text" class="amount-stepper-input" value="1000" readonly>
-                <div class="stepper-arrows">
-                  <button class="stepper-btn stepper-up" aria-label="زيادة">+</button>
-                  <button class="stepper-btn stepper-down" aria-label="نقصان">-</button>
-                </div>
-              </div>
-              <button class="btn-add-cart">
-                <span>🛒 أضف للسلة</span>
-              </button>
-            </div>
-            
-            <button class="btn-donate-now-orange">
-              <span>تبرع الآن 🧡</span>
-            </button>
-
-            <div class="campaign-progress-bar-wrap">
-              <div class="campaign-progress-bar-fill" style="width: 60%;"></div>
-            </div>
-            <div class="campaign-progress-stats">
-              <span>نسبة التبرع: 60%</span>
-              <span>600 / 1000 ج.م</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 4: كوبون وجبة مدرسية (From User Image) -->
-        <div class="campaign-card" data-id="meal_200" data-tab-type="all">
-          <div class="campaign-card-poster">
-            <img src="kitchen.jpg" alt="كوبون وجبة مدرسية">
-            <div class="campaign-card-overlay">
-              <span class="campaign-poster-badge">إطعام</span>
-              <div class="campaign-poster-title">كوبون وجبة مدرسية<br>لمدة شهر</div>
-              <div class="campaign-poster-amount">200 <span class="campaign-poster-currency">ج</span></div>
-            </div>
-          </div>
-          <div class="campaign-card-body">
-            <span class="campaign-category-tag">#الاحتياجات_الأساسية</span>
-            <h3 class="campaign-item-title">كوبون وجبة مدرسية لمدة شهر</h3>
-            <p class="campaign-item-desc">توفير وجبات غذائية متوازنة وصحية شهرياً للأطفال في الفصول المجتمعية لمساعدتهم على التركيز والتحصيل.</p>
-            
-            <div class="campaign-controls-row">
-              <div class="amount-stepper-box">
-                <input type="text" class="amount-stepper-input" value="200" readonly>
-                <div class="stepper-arrows">
-                  <button class="stepper-btn stepper-up" aria-label="زيادة">+</button>
-                  <button class="stepper-btn stepper-down" aria-label="نقصان">-</button>
-                </div>
-              </div>
-              <button class="btn-add-cart">
-                <span>🛒 أضف للسلة</span>
-              </button>
-            </div>
-            
-            <button class="btn-donate-now-orange">
-              <span>تبرع الآن 🧡</span>
-            </button>
-
-            <div class="campaign-progress-bar-wrap">
-              <div class="campaign-progress-bar-fill" style="width: 100%;"></div>
-            </div>
-            <div class="campaign-progress-stats">
-              <span>نسبة التبرع: 100%</span>
-              <span style="color:var(--brand-green);">مكتملة</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 5: إقامة مريض أورام بدار الضيافة (Urgent Al-Israa Campaign) -->
-        <div class="campaign-card" data-id="cancer_hostel_750" data-tab-type="urgent">
-          <div class="campaign-card-poster">
-            <img src="hostel.jpg" alt="إقامة مريض أورام">
-            <div class="campaign-card-overlay">
-              <span class="campaign-poster-badge" style="background:#EF4444;">حالة عاجلة ⚠️</span>
-              <div class="campaign-poster-title">إقامة مريض أورام<br>بدار الضيافة</div>
-              <div class="campaign-poster-amount">750 <span class="campaign-poster-currency">ج</span></div>
-            </div>
+            <img src="hostel.jpg" alt="دار ضيافة مرضى الأورام بدمنهور">
+            <span class="campaign-card-badge urgent">حالة عاجلة ⚠️</span>
           </div>
           <div class="campaign-card-body">
             <span class="campaign-category-tag">#رعاية_مرضى_الأورام</span>
-            <h3 class="campaign-item-title">كفالة أسبوع استضافة فندقية لمريض أورام ومرافقه</h3>
-            <p class="campaign-item-desc">توفير سرير طبي مجهز وتكييف ووجبات صحية لمريض يتلقى جلسات العلاج بمعهد أورام دمنهور من خارج المحافظة.</p>
+            <h3 class="campaign-item-title">كفالة استضافة مريض أورام بدار ضيافة الإسراء</h3>
+            <p class="campaign-item-desc">إقامة كاملة وسرير مجهز ورعاية كريمة لمريض أورام ومرافقه من قرى ومراكز البحيرة طوال فترة تلقي العلاج بمعهد دمنهور للأورام.</p>
             
-            <div class="campaign-controls-row">
-              <div class="amount-stepper-box">
-                <input type="text" class="amount-stepper-input" value="750" readonly>
-                <div class="stepper-arrows">
-                  <button class="stepper-btn stepper-up" aria-label="زيادة">+</button>
-                  <button class="stepper-btn stepper-down" aria-label="نقصان">-</button>
+            <div class="campaign-metrics-box">
+              <div class="metrics-target-row">
+                <div class="metric-target-item">
+                  <span class="metric-target-label">المستهدف:</span>
+                  <span class="metric-target-value">50,000 ج.م</span>
+                </div>
+                <div class="metric-target-item" style="text-align: left;">
+                  <span class="metric-target-label">تم جمع:</span>
+                  <span class="metric-collected-value">37,500 ج.م</span>
                 </div>
               </div>
-              <button class="btn-add-cart">
-                <span>🛒 أضف للسلة</span>
-              </button>
-            </div>
-            
-            <button class="btn-donate-now-orange">
-              <span>تبرع الآن 🧡</span>
-            </button>
-
-            <div class="campaign-progress-bar-wrap">
-              <div class="campaign-progress-bar-fill" style="width: 72%;"></div>
-            </div>
-            <div class="campaign-progress-stats">
-              <span>نسبة التبرع: 72%</span>
-              <span>540 / 750 ج.م</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 6: سهم عربة أرزاق للتمكين (Empowerment Campaign) -->
-        <div class="campaign-card" data-id="arzaq_1500" data-tab-type="humanitarian">
-          <div class="campaign-card-poster">
-            <img src="arzaq.jpg" alt="عربات أرزاق">
-            <div class="campaign-card-overlay">
-              <span class="campaign-poster-badge" style="background:#15803D;">تمكين اقتصادي</span>
-              <div class="campaign-poster-title">سهم تروسيكل<br>مشروع أرزاق</div>
-              <div class="campaign-poster-amount">1500 <span class="campaign-poster-currency">ج</span></div>
-            </div>
-          </div>
-          <div class="campaign-card-body">
-            <span class="campaign-category-tag">#مشروع_أرزاق</span>
-            <h3 class="campaign-item-title">سهم تجهيز عربة طعام متنقلة لشاب معيل</h3>
-            <p class="campaign-item-desc">مساهمة في تصنيع تروسيكل طعام مجهز بمدرسة دمنهور الزخرفية لتحويل شاب باحث عن عمل إلى صاحب مشروع مستقل.</p>
-            
-            <div class="campaign-controls-row">
-              <div class="amount-stepper-box">
-                <input type="text" class="amount-stepper-input" value="1500" readonly>
-                <div class="stepper-arrows">
-                  <button class="stepper-btn stepper-up" aria-label="زيادة">+</button>
-                  <button class="stepper-btn stepper-down" aria-label="نقصان">-</button>
-                </div>
+              <div class="campaign-progress-bar-wrap">
+                <div class="campaign-progress-bar-fill orange" style="width: 75%;"></div>
               </div>
-              <button class="btn-add-cart">
-                <span>🛒 أضف للسلة</span>
-              </button>
+              <div class="metrics-sub-row">
+                <span>المتبقي: <strong class="remaining-amount-tag">12,500 ج.م</strong></span>
+                <span class="badge-pct">75% منجز</span>
+              </div>
             </div>
-            
-            <button class="btn-donate-now-orange">
-              <span>تبرع الآن 🧡</span>
-            </button>
 
-            <div class="campaign-progress-bar-wrap">
-              <div class="campaign-progress-bar-fill" style="width: 85%;"></div>
+            <div class="amount-presets-row">
+              <button type="button" class="amount-preset-chip" data-amt="250">250 ج</button>
+              <button type="button" class="amount-preset-chip active" data-amt="500">500 ج</button>
+              <button type="button" class="amount-preset-chip" data-amt="1000">1000 ج</button>
             </div>
-            <div class="campaign-progress-stats">
-              <span>نسبة التبرع: 85%</span>
-              <span>1275 / 1500 ج.م</span>
-            </div>
-          </div>
-        </div>
 
-        <!-- Card 7: سهم المدرسة الخضراء برة الصندوق (Outbox Campaign) -->
-        <div class="campaign-card" data-id="outbox_500" data-tab-type="all">
-          <div class="campaign-card-poster">
-            <img src="trees.jpg" alt="برة الصندوق Outbox">
-            <div class="campaign-card-overlay">
-              <span class="campaign-poster-badge" style="background:#0F5132;">بيئة خضراء</span>
-              <div class="campaign-poster-title">سهم تدوير الورق<br>برة الصندوق Outbox</div>
-              <div class="campaign-poster-amount">500 <span class="campaign-poster-currency">ج</span></div>
-            </div>
-          </div>
-          <div class="campaign-card-body">
-            <span class="campaign-category-tag">#برة_الصندوق_Outbox</span>
-            <h3 class="campaign-item-title">سهم تصنيع وسائل تعليمية كرتونية وتشجير المدارس</h3>
-            <p class="campaign-item-desc">دعم منظومة تدوير الورق المدرسي بالبحيرة وتشغيل 217 سيدة معيلة لإنتاج ألعاب كرتونية بديلة للبلاستيك.</p>
-            
             <div class="campaign-controls-row">
               <div class="amount-stepper-box">
                 <input type="text" class="amount-stepper-input" value="500" readonly>
                 <div class="stepper-arrows">
-                  <button class="stepper-btn stepper-up" aria-label="زيادة">+</button>
-                  <button class="stepper-btn stepper-down" aria-label="نقصان">-</button>
+                  <button type="button" class="stepper-btn stepper-up" aria-label="زيادة">+</button>
+                  <button type="button" class="stepper-btn stepper-down" aria-label="نقصان">-</button>
                 </div>
               </div>
-              <button class="btn-add-cart">
+              <button type="button" class="btn-add-cart">
                 <span>🛒 أضف للسلة</span>
               </button>
             </div>
             
-            <button class="btn-donate-now-orange">
+            <button type="button" class="btn-donate-now-orange">
               <span>تبرع الآن 🧡</span>
             </button>
-
-            <div class="campaign-progress-bar-wrap">
-              <div class="campaign-progress-bar-fill" style="width: 50%;"></div>
-            </div>
-            <div class="campaign-progress-stats">
-              <span>نسبة التبرع: 50%</span>
-              <span>250 / 500 ج.م</span>
-            </div>
           </div>
         </div>
 
-        <!-- Card 8: وجبات إطعام ساخنة من المطبخ الخيري (Urgent Campaign) -->
-        <div class="campaign-card" data-id="kitchen_300" data-tab-type="urgent">
+        <!-- Card 2: وجبات غذائية علاجية لمرضى الأورام -->
+        <div class="campaign-card" data-id="oncology_meals" data-tab-type="humanitarian">
           <div class="campaign-card-poster">
-            <img src="kitchen.jpg" alt="المطبخ الخيري">
-            <div class="campaign-card-overlay">
-              <span class="campaign-poster-badge" style="background:#EF4444;">حالة عاجلة ⚠️</span>
-              <div class="campaign-poster-title">كرتونة إطعام<br>المطبخ الخيري</div>
-              <div class="campaign-poster-amount">300 <span class="campaign-poster-currency">ج</span></div>
-            </div>
+            <img src="kitchen.jpg" alt="وجبات مطبخ الإسراء الخيري لمرضى الأورام">
+            <span class="campaign-card-badge green">إطعام ورعاية</span>
           </div>
           <div class="campaign-card-body">
-            <span class="campaign-category-tag">#إطعام_الأسر_الأولى_بالرعاية</span>
-            <h3 class="campaign-item-title">توفير وجبات غذائية ساخنة يومية لمرافقي المرضى</h3>
-            <p class="campaign-item-desc">إعداد وجبات صحية طازجة في المطبخ التجاري لجمعية الإسراء وتوزيعها على أسر المرضى المتعففة.</p>
+            <span class="campaign-category-tag">#المطبخ_الخيري_للأورام</span>
+            <h3 class="campaign-item-title">وجبات علاجية طازجة لمرضى معهد الأورام</h3>
+            <p class="campaign-item-desc">طهي وتوزيع وجبات صحية متكاملة بإشراف طبي يومياً مصممة لمناعة مرضى الكيماوي والإشعاعي ومرافقيهم المتعففين.</p>
             
+            <div class="campaign-metrics-box">
+              <div class="metrics-target-row">
+                <div class="metric-target-item">
+                  <span class="metric-target-label">المستهدف:</span>
+                  <span class="metric-target-value">30,000 ج.م</span>
+                </div>
+                <div class="metric-target-item" style="text-align: left;">
+                  <span class="metric-target-label">تم جمع:</span>
+                  <span class="metric-collected-value">24,000 ج.م</span>
+                </div>
+              </div>
+              <div class="campaign-progress-bar-wrap">
+                <div class="campaign-progress-bar-fill" style="width: 80%;"></div>
+              </div>
+              <div class="metrics-sub-row">
+                <span>المتبقي: <strong class="remaining-amount-tag">6,000 ج.م</strong></span>
+                <span class="badge-pct">80% منجز</span>
+              </div>
+            </div>
+
+            <div class="amount-presets-row">
+              <button type="button" class="amount-preset-chip" data-amt="100">100 ج</button>
+              <button type="button" class="amount-preset-chip active" data-amt="200">200 ج</button>
+              <button type="button" class="amount-preset-chip" data-amt="500">500 ج</button>
+            </div>
+
+            <div class="campaign-controls-row">
+              <div class="amount-stepper-box">
+                <input type="text" class="amount-stepper-input" value="200" readonly>
+                <div class="stepper-arrows">
+                  <button type="button" class="stepper-btn stepper-up" aria-label="زيادة">+</button>
+                  <button type="button" class="stepper-btn stepper-down" aria-label="نقصان">-</button>
+                </div>
+              </div>
+              <button type="button" class="btn-add-cart">
+                <span>🛒 أضف للسلة</span>
+              </button>
+            </div>
+            
+            <button type="button" class="btn-donate-now-orange">
+              <span>تبرع الآن 🧡</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 3: سهم تروسيكل وعربة أرزاق -->
+        <div class="campaign-card" data-id="arzaq_trike" data-tab-type="humanitarian">
+          <div class="campaign-card-poster">
+            <img src="arzaq.jpg" alt="تروسيكل مشروع أرزاق للتمكين الاقتصادي">
+            <span class="campaign-card-badge blue">تمكين اقتصادي</span>
+          </div>
+          <div class="campaign-card-body">
+            <span class="campaign-category-tag">#مشروع_أرزاق_دمنهور</span>
+            <h3 class="campaign-item-title">سهم تروسيكل أرزاق لتمكين شاب معيل</h3>
+            <p class="campaign-item-desc">تصنيع وتجهيز تروسيكل بضائع مرخص بالتعاون مع مدرسة دمنهور الزخرفية لتوفير مصدر دخل كريم ومستدام لرب أسرة معيل.</p>
+            
+            <div class="campaign-metrics-box">
+              <div class="metrics-target-row">
+                <div class="metric-target-item">
+                  <span class="metric-target-label">المستهدف:</span>
+                  <span class="metric-target-value">45,000 ج.م</span>
+                </div>
+                <div class="metric-target-item" style="text-align: left;">
+                  <span class="metric-target-label">تم جمع:</span>
+                  <span class="metric-collected-value">31,500 ج.م</span>
+                </div>
+              </div>
+              <div class="campaign-progress-bar-wrap">
+                <div class="campaign-progress-bar-fill" style="width: 70%;"></div>
+              </div>
+              <div class="metrics-sub-row">
+                <span>المتبقي: <strong class="remaining-amount-tag">13,500 ج.م</strong></span>
+                <span class="badge-pct">70% منجز</span>
+              </div>
+            </div>
+
+            <div class="amount-presets-row">
+              <button type="button" class="amount-preset-chip" data-amt="500">500 ج</button>
+              <button type="button" class="amount-preset-chip active" data-amt="1000">1000 ج</button>
+              <button type="button" class="amount-preset-chip" data-amt="2000">2000 ج</button>
+            </div>
+
+            <div class="campaign-controls-row">
+              <div class="amount-stepper-box">
+                <input type="text" class="amount-stepper-input" value="1000" readonly>
+                <div class="stepper-arrows">
+                  <button type="button" class="stepper-btn stepper-up" aria-label="زيادة">+</button>
+                  <button type="button" class="stepper-btn stepper-down" aria-label="نقصان">-</button>
+                </div>
+              </div>
+              <button type="button" class="btn-add-cart">
+                <span>🛒 أضف للسلة</span>
+              </button>
+            </div>
+            
+            <button type="button" class="btn-donate-now-orange">
+              <span>تبرع الآن 🧡</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 4: برة الصندوق Outbox -->
+        <div class="campaign-card" data-id="outbox_green" data-tab-type="all">
+          <div class="campaign-card-poster">
+            <img src="trees.jpg" alt="المدرسة الخضراء الذكية برة الصندوق">
+            <span class="campaign-card-badge green">استدامة وبيئة</span>
+          </div>
+          <div class="campaign-card-body">
+            <span class="campaign-category-tag">#المدرسة_الخضراء_الذكية</span>
+            <h3 class="campaign-item-title">سهم تدوير الورق والوسائل الخضراء Outbox</h3>
+            <p class="campaign-item-desc">تدوير أوراق 26 مدرسة سنوياً بالبحيرة وتصنيع 9 وسائل تعليمية حسية مجانية لمدارس الدمج وتشغيل 217 سيدة معيلة.</p>
+            
+            <div class="campaign-metrics-box">
+              <div class="metrics-target-row">
+                <div class="metric-target-item">
+                  <span class="metric-target-label">المستهدف:</span>
+                  <span class="metric-target-value">60,000 ج.م</span>
+                </div>
+                <div class="metric-target-item" style="text-align: left;">
+                  <span class="metric-target-label">تم جمع:</span>
+                  <span class="metric-collected-value">48,000 ج.م</span>
+                </div>
+              </div>
+              <div class="campaign-progress-bar-wrap">
+                <div class="campaign-progress-bar-fill" style="width: 80%;"></div>
+              </div>
+              <div class="metrics-sub-row">
+                <span>المتبقي: <strong class="remaining-amount-tag">12,000 ج.م</strong></span>
+                <span class="badge-pct">80% منجز</span>
+              </div>
+            </div>
+
+            <div class="amount-presets-row">
+              <button type="button" class="amount-preset-chip" data-amt="150">150 ج</button>
+              <button type="button" class="amount-preset-chip active" data-amt="300">300 ج</button>
+              <button type="button" class="amount-preset-chip" data-amt="600">600 ج</button>
+            </div>
+
             <div class="campaign-controls-row">
               <div class="amount-stepper-box">
                 <input type="text" class="amount-stepper-input" value="300" readonly>
                 <div class="stepper-arrows">
-                  <button class="stepper-btn stepper-up" aria-label="زيادة">+</button>
-                  <button class="stepper-btn stepper-down" aria-label="نقصان">-</button>
+                  <button type="button" class="stepper-btn stepper-up" aria-label="زيادة">+</button>
+                  <button type="button" class="stepper-btn stepper-down" aria-label="نقصان">-</button>
                 </div>
               </div>
-              <button class="btn-add-cart">
+              <button type="button" class="btn-add-cart">
                 <span>🛒 أضف للسلة</span>
               </button>
             </div>
             
-            <button class="btn-donate-now-orange">
+            <button type="button" class="btn-donate-now-orange">
               <span>تبرع الآن 🧡</span>
             </button>
+          </div>
+        </div>
 
-            <div class="campaign-progress-bar-wrap">
-              <div class="campaign-progress-bar-fill" style="width: 90%;"></div>
+        <!-- Card 5: عيادات مجمع الإسراء التخصصية -->
+        <div class="campaign-card" data-id="clinic_medicine" data-tab-type="urgent">
+          <div class="campaign-card-poster">
+            <img src="complex.jpg" alt="مجمع الإسراء الطبي التنموي بدمنهور">
+            <span class="campaign-card-badge urgent">صحة وعلاج ⚠️</span>
+          </div>
+          <div class="campaign-card-body">
+            <span class="campaign-category-tag">#مجمع_الإسراء_التنموي</span>
+            <h3 class="campaign-item-title">سهم عيادات مجمع الإسراء التخصصية والأدوية</h3>
+            <p class="campaign-item-desc">كفالة الكشف التخصصي والتحاليل وصرف الأدوية الشهرية للأسر الأكثر احتياجاً وكبار السن بالمجمع الطبي المكون من 5 طوابق.</p>
+            
+            <div class="campaign-metrics-box">
+              <div class="metrics-target-row">
+                <div class="metric-target-item">
+                  <span class="metric-target-label">المستهدف:</span>
+                  <span class="metric-target-value">80,000 ج.م</span>
+                </div>
+                <div class="metric-target-item" style="text-align: left;">
+                  <span class="metric-target-label">تم جمع:</span>
+                  <span class="metric-collected-value">56,000 ج.م</span>
+                </div>
+              </div>
+              <div class="campaign-progress-bar-wrap">
+                <div class="campaign-progress-bar-fill orange" style="width: 70%;"></div>
+              </div>
+              <div class="metrics-sub-row">
+                <span>المتبقي: <strong class="remaining-amount-tag">24,000 ج.م</strong></span>
+                <span class="badge-pct">70% منجز</span>
+              </div>
             </div>
-            <div class="campaign-progress-stats">
-              <span>نسبة التبرع: 90%</span>
-              <span>270 / 300 ج.م</span>
+
+            <div class="amount-presets-row">
+              <button type="button" class="amount-preset-chip" data-amt="150">150 ج</button>
+              <button type="button" class="amount-preset-chip active" data-amt="250">250 ج</button>
+              <button type="button" class="amount-preset-chip" data-amt="500">500 ج</button>
             </div>
+
+            <div class="campaign-controls-row">
+              <div class="amount-stepper-box">
+                <input type="text" class="amount-stepper-input" value="250" readonly>
+                <div class="stepper-arrows">
+                  <button type="button" class="stepper-btn stepper-up" aria-label="زيادة">+</button>
+                  <button type="button" class="stepper-btn stepper-down" aria-label="نقصان">-</button>
+                </div>
+              </div>
+              <button type="button" class="btn-add-cart">
+                <span>🛒 أضف للسلة</span>
+              </button>
+            </div>
+            
+            <button type="button" class="btn-donate-now-orange">
+              <span>تبرع الآن 🧡</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 6: نول وسجاد يدوي -->
+        <div class="campaign-card" data-id="loom_carpet" data-tab-type="humanitarian">
+          <div class="campaign-card-poster">
+            <img src="loom.jpg" alt="ورشة النول والسجاد اليدوي بجمعية الإسراء">
+            <span class="campaign-card-badge blue">تمكين المرأة</span>
+          </div>
+          <div class="campaign-card-body">
+            <span class="campaign-category-tag">#مشاغل_التطريز_والنول</span>
+            <h3 class="campaign-item-title">سهم نول وسجاد يدوي لتمكين أسرة معيلة</h3>
+            <p class="campaign-item-desc">تجهيز نول نسيج يدوي وتوفير خامات الصوف وتدريب أمهات معيلات على إنتاج الكليم والسجاد لضمان كسب حلال مستمر من المنزل.</p>
+            
+            <div class="campaign-metrics-box">
+              <div class="metrics-target-row">
+                <div class="metric-target-item">
+                  <span class="metric-target-label">المستهدف:</span>
+                  <span class="metric-target-value">25,000 ج.م</span>
+                </div>
+                <div class="metric-target-item" style="text-align: left;">
+                  <span class="metric-target-label">تم جمع:</span>
+                  <span class="metric-collected-value">16,250 ج.م</span>
+                </div>
+              </div>
+              <div class="campaign-progress-bar-wrap">
+                <div class="campaign-progress-bar-fill" style="width: 65%;"></div>
+              </div>
+              <div class="metrics-sub-row">
+                <span>المتبقي: <strong class="remaining-amount-tag">8,750 ج.م</strong></span>
+                <span class="badge-pct">65% منجز</span>
+              </div>
+            </div>
+
+            <div class="amount-presets-row">
+              <button type="button" class="amount-preset-chip" data-amt="200">200 ج</button>
+              <button type="button" class="amount-preset-chip active" data-amt="400">400 ج</button>
+              <button type="button" class="amount-preset-chip" data-amt="800">800 ج</button>
+            </div>
+
+            <div class="campaign-controls-row">
+              <div class="amount-stepper-box">
+                <input type="text" class="amount-stepper-input" value="400" readonly>
+                <div class="stepper-arrows">
+                  <button type="button" class="stepper-btn stepper-up" aria-label="زيادة">+</button>
+                  <button type="button" class="stepper-btn stepper-down" aria-label="نقصان">-</button>
+                </div>
+              </div>
+              <button type="button" class="btn-add-cart">
+                <span>🛒 أضف للسلة</span>
+              </button>
+            </div>
+            
+            <button type="button" class="btn-donate-now-orange">
+              <span>تبرع الآن 🧡</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 7: فصول التعليم المجتمعي -->
+        <div class="campaign-card" data-id="community_education" data-tab-type="all">
+          <div class="campaign-card-poster">
+            <img src="school.jpg" alt="فصول التعليم المجتمعي ومكافحة التسرب">
+            <span class="campaign-card-badge blue">تعليم وبناء إنسان</span>
+          </div>
+          <div class="campaign-card-body">
+            <span class="campaign-category-tag">#مكافحة_التسرب_المدرسي</span>
+            <h3 class="campaign-item-title">كفالة تعليمية وتغذية لأطفال الفصول المجتمعية</h3>
+            <p class="campaign-item-desc">كفالة المصاريف، الحقيبة المدرسية، والوجبة اليومية لتلاميذ الفصول المجتمعية بقرى دمنهور لإعادتهم لمسار التعليم الكريم.</p>
+            
+            <div class="campaign-metrics-box">
+              <div class="metrics-target-row">
+                <div class="metric-target-item">
+                  <span class="metric-target-label">المستهدف:</span>
+                  <span class="metric-target-value">40,000 ج.م</span>
+                </div>
+                <div class="metric-target-item" style="text-align: left;">
+                  <span class="metric-target-label">تم جمع:</span>
+                  <span class="metric-collected-value">28,000 ج.م</span>
+                </div>
+              </div>
+              <div class="campaign-progress-bar-wrap">
+                <div class="campaign-progress-bar-fill" style="width: 70%;"></div>
+              </div>
+              <div class="metrics-sub-row">
+                <span>المتبقي: <strong class="remaining-amount-tag">12,000 ج.م</strong></span>
+                <span class="badge-pct">70% منجز</span>
+              </div>
+            </div>
+
+            <div class="amount-presets-row">
+              <button type="button" class="amount-preset-chip" data-amt="150">150 ج</button>
+              <button type="button" class="amount-preset-chip active" data-amt="350">350 ج</button>
+              <button type="button" class="amount-preset-chip" data-amt="700">700 ج</button>
+            </div>
+
+            <div class="campaign-controls-row">
+              <div class="amount-stepper-box">
+                <input type="text" class="amount-stepper-input" value="350" readonly>
+                <div class="stepper-arrows">
+                  <button type="button" class="stepper-btn stepper-up" aria-label="زيادة">+</button>
+                  <button type="button" class="stepper-btn stepper-down" aria-label="نقصان">-</button>
+                </div>
+              </div>
+              <button type="button" class="btn-add-cart">
+                <span>🛒 أضف للسلة</span>
+              </button>
+            </div>
+            
+            <button type="button" class="btn-donate-now-orange">
+              <span>تبرع الآن 🧡</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 8: الصدقة الجارية في مجمع الإسراء الطبي -->
+        <div class="campaign-card" data-id="ongoing_charity" data-tab-type="all">
+          <div class="campaign-card-poster">
+            <img src="solar.jpg" alt="الصدقة الجارية في مجمع الإسراء التنموي">
+            <span class="campaign-card-badge green">صدقة جارية ممتدة</span>
+          </div>
+          <div class="campaign-card-body">
+            <span class="campaign-category-tag">#صدقة_جارية_تنموية</span>
+            <h3 class="campaign-item-title">سهم الصدقة الجارية بمجمع الإسراء الطبي</h3>
+            <p class="campaign-item-desc">مساهمة ممتدة في البنية التحتية، محطة الطاقة الشمسية، والأجهزة الطبية بالمجمع الخيري ليبقى أثر صدقتك في كل مريض ومتعلم.</p>
+            
+            <div class="campaign-metrics-box">
+              <div class="metrics-target-row">
+                <div class="metric-target-item">
+                  <span class="metric-target-label">المستهدف:</span>
+                  <span class="metric-target-value">150,000 ج.م</span>
+                </div>
+                <div class="metric-target-item" style="text-align: left;">
+                  <span class="metric-target-label">تم جمع:</span>
+                  <span class="metric-collected-value">112,500 ج.م</span>
+                </div>
+              </div>
+              <div class="campaign-progress-bar-wrap">
+                <div class="campaign-progress-bar-fill" style="width: 75%;"></div>
+              </div>
+              <div class="metrics-sub-row">
+                <span>المتبقي: <strong class="remaining-amount-tag">37,500 ج.م</strong></span>
+                <span class="badge-pct">75% منجز</span>
+              </div>
+            </div>
+
+            <div class="amount-presets-row">
+              <button type="button" class="amount-preset-chip" data-amt="500">500 ج</button>
+              <button type="button" class="amount-preset-chip active" data-amt="1000">1000 ج</button>
+              <button type="button" class="amount-preset-chip" data-amt="2500">2500 ج</button>
+            </div>
+
+            <div class="campaign-controls-row">
+              <div class="amount-stepper-box">
+                <input type="text" class="amount-stepper-input" value="1000" readonly>
+                <div class="stepper-arrows">
+                  <button type="button" class="stepper-btn stepper-up" aria-label="زيادة">+</button>
+                  <button type="button" class="stepper-btn stepper-down" aria-label="نقصان">-</button>
+                </div>
+              </div>
+              <button type="button" class="btn-add-cart">
+                <span>🛒 أضف للسلة</span>
+              </button>
+            </div>
+            
+            <button type="button" class="btn-donate-now-orange">
+              <span>تبرع الآن 🧡</span>
+            </button>
           </div>
         </div>
 
@@ -683,27 +795,45 @@
 
       <div class="partners-grid">
         <div class="partner-card">
-          <div class="partner-icon">🏛️</div>
+          <div class="partner-logo-box">
+            <img src="partner-tadamun.svg" alt="وزارة التضامن الاجتماعي" class="partner-logo-img">
+          </div>
           <div class="partner-name">وزارة التضامن الاجتماعي</div>
         </div>
         <div class="partner-card">
-          <div class="partner-icon">🎓</div>
+          <div class="partner-logo-box">
+            <img src="partner-education.svg" alt="مديرية التربية والتعليم بالبحيرة" class="partner-logo-img">
+          </div>
           <div class="partner-name">مديرية التربية والتعليم بالبحيرة</div>
         </div>
         <div class="partner-card">
-          <div class="partner-icon">🌿</div>
-          <div class="partner-name">المبادرة الوطنية للمشروعات الخضراء</div>
-        </div>
-        <div class="partner-card">
-          <div class="partner-icon">🏥</div>
+          <div class="partner-logo-box">
+            <img src="partner-oncology.svg" alt="معهد دمنهور القومي للأورام" class="partner-logo-img">
+          </div>
           <div class="partner-name">معهد دمنهور للأورام</div>
         </div>
         <div class="partner-card">
-          <div class="partner-icon">👶</div>
+          <div class="partner-logo-box">
+            <img src="partner-save-children.svg" alt="هيئة إنقاذ الطفولة الدولية" class="partner-logo-img">
+          </div>
           <div class="partner-name">هيئة إنقاذ الطفولة (Save the Children)</div>
         </div>
         <div class="partner-card">
-          <div class="partner-icon">🌐</div>
+          <div class="partner-logo-box">
+            <img src="logo-outbox.png" alt="المبادرة الوطنية للمشروعات الخضراء الذكية برة الصندوق" class="partner-logo-img">
+          </div>
+          <div class="partner-name">المبادرة الوطنية للمشروعات الخضراء (Outbox)</div>
+        </div>
+        <div class="partner-card">
+          <div class="partner-logo-box">
+            <img src="partner-decor.svg" alt="مدرسة دمنهور الثانوية الزخرفية" class="partner-logo-img">
+          </div>
+          <div class="partner-name">مدرسة دمنهور الزخرفية الفنية</div>
+        </div>
+        <div class="partner-card">
+          <div class="partner-logo-box">
+            <img src="ngohub-logo.png" alt="منصة NGOhub الرقمية" class="partner-logo-img">
+          </div>
           <div class="partner-name">منصة NGOhub الرقمية</div>
         </div>
       </div>

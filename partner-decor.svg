@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100" width="300" height="100">
+  <defs>
+    <linearGradient id="gearGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EA580C"/>
+      <stop offset="100%" stop-color="#C2410C"/>
+    </linearGradient>
+  </defs>
+  <!-- Technical Emblem -->
+  <g transform="translate(14, 12)">
+    <circle cx="36" cy="38" r="34" fill="#FFF7ED" stroke="#EA580C" stroke-width="2"/>
+    <!-- Gear & Caliper Motif -->
+    <circle cx="36" cy="38" r="22" fill="none" stroke="url(#gearGrad)" stroke-width="4" stroke-dasharray="8,4"/>
+    <circle cx="36" cy="38" r="8" fill="#15803D"/>
+    <!-- Compass / Draft tool -->
+    <path d="M26 52 L36 24 L46 52" fill="none" stroke="#0F172A" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+  <!-- Typography -->
+  <text x="96" y="38" font-family="'Cairo', Arial, sans-serif" font-weight="900" font-size="17" fill="#0F172A">مدرسة دمنهور الزخرفية</text>
+  <text x="96" y="60" font-family="'Cairo', Arial, sans-serif" font-weight="700" font-size="12.5" fill="#EA580C">الشريك الفني لمشروع أرزاق</text>
+  <text x="96" y="78" font-family="'Cairo', Arial, sans-serif" font-weight="600" font-size="10.5" fill="#64748B">Damanhour Decorative School</text>
+</svg>

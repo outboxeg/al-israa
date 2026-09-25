@@ -53,11 +53,37 @@
           <a href="store.html" class="header-donate-btn">
             <span>تبرع الآن 🧡</span>
           </a>
-          <button class="mobile-nav-toggle" aria-label="فتح القائمة الرئيسية">☰</button>
+          <button class="mobile-nav-toggle" onclick="openMobileNav()" aria-label="فتح القائمة الرئيسية">☰</button>
         </div>
       </nav>
     </div>
   </header>
+
+  <!-- Mobile Drawer Menu (Slide-In) -->
+  <div class="mobile-nav-drawer" onclick="if(event.target===this)closeMobileNav()">
+    <div class="mobile-drawer-content">
+      <div class="mobile-drawer-header">
+        <div class="brand-identity">
+          <img src="logo.png" alt="جمعية الإسراء" style="width: 40px; height: 40px; object-fit: contain;">
+          <span style="font-weight: 800; font-size: 1.05rem; color: var(--text-main);">جمعية الإسراء</span>
+        </div>
+        <button class="mobile-drawer-close" onclick="closeMobileNav()" aria-label="إغلاق القائمة">✕</button>
+      </div>
+      <div class="mobile-drawer-links">
+        <a href="index.html">الرئيسية</a>
+        <a href="store.html">متجر التبرعات 🛒</a>
+        <a href="complex.html">مجمع الإسراء التنموي</a>
+        <a href="hostel.html">دار ضيافة الأورام</a>
+        <a href="projects.html">مشروعات التمكين و Outbox</a>
+        <a href="checkout.html">الحسابات البنكية والمحافظ</a>
+        <a href="contact.html" class="active">تواصل معنا والتدريب</a>
+      </div>
+      <div class="mobile-drawer-footer">
+        <a href="store.html" class="btn-orange" style="width:100%; text-align:center;">تبرع الآن 🧡</a>
+        <a href="hostel.html" class="btn-outline" style="width:100%; text-align:center;">حجز دار الضيافة</a>
+      </div>
+    </div>
+  </div>
 
   <!-- Slide-Over Cart Drawer -->
   <div class="cart-drawer-overlay"></div>
@@ -85,29 +111,6 @@
     <span style="font-size:1.6rem;">🛒</span>
     <span class="floating-cart-badge">0</span>
   </button>
-
-  <!-- Mobile Drawer Menu -->
-  <div class="mobile-nav-drawer">
-    <div class="mobile-drawer-content">
-      <div class="mobile-drawer-header">
-        <div class="brand-identity">
-          <img src="logo.png" alt="جمعية الإسراء" style="width: 40px; height: 40px; object-fit: contain;">
-          <span style="font-weight: 800; font-size: 1.1rem; color: var(--text-main);">جمعية الإسراء</span>
-        </div>
-        <button class="mobile-drawer-close" style="background:none; border:none; font-size:1.6rem; cursor:pointer;" aria-label="إغلاق القائمة">✕</button>
-      </div>
-      <div class="mobile-drawer-links">
-        <a href="index.html">الرئيسية</a>
-        <a href="complex.html">مجمع الإسراء التنموي</a>
-        <a href="hostel.html">دار ضيافة الأورام</a>
-        <a href="projects.html">مشروعات التمكين</a>
-        <a href="contact.html" class="active">تواصل معنا</a>
-      </div>
-      <div style="margin-top: auto; padding-top: 20px; border-top: 1px solid var(--border-color);">
-        <a href="hostel.html" class="btn-primary" style="width: 100%; text-align: center;">حجز استضافة مريض أورام</a>
-      </div>
-    </div>
-  </div>
 
   <!-- Page Header -->
   <section class="hero-section" style="padding: 60px 0 70px;">

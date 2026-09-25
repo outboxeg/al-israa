@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100" width="300" height="100">
+  <defs>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7C3AED"/>
+      <stop offset="100%" stop-color="#4C1D95"/>
+    </linearGradient>
+  </defs>
+  <!-- Medical / Ribbon Crest -->
+  <g transform="translate(12, 10)">
+    <circle cx="38" cy="40" r="36" fill="#FAF5FF" stroke="#7C3AED" stroke-width="2"/>
+    <!-- Cancer Awareness Ribbon Motif -->
+    <path d="M38 22 C32 22 28 28 32 36 L44 54 C46 57 44 60 40 60 C36 60 34 56 36 52" fill="none" stroke="url(#purpleGrad)" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M38 22 C44 22 48 28 44 36 L32 54 C30 57 32 60 36 60 C40 60 42 56 40 52" fill="none" stroke="#F59E0B" stroke-width="4.5" stroke-linecap="round"/>
+    <!-- Heart Caduceus -->
+    <circle cx="38" cy="30" r="3" fill="#EF4444"/>
+  </g>
+  <!-- Typography -->
+  <text x="96" y="38" font-family="'Cairo', Arial, sans-serif" font-weight="900" font-size="19" fill="#0F172A">معهد أورام دمنهور</text>
+  <text x="96" y="60" font-family="'Cairo', Arial, sans-serif" font-weight="700" font-size="12.5" fill="#7C3AED">الهيئة العامة للمستشفيات والمعاهد</text>
+  <text x="96" y="78" font-family="'Cairo', Arial, sans-serif" font-weight="600" font-size="10.5" fill="#64748B">Damanhour Oncology Institute</text>
+</svg>

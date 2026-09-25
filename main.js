@@ -174,6 +174,23 @@ function showToast(message) {
   }, 3000);
 }
 
+// Global Mobile Nav Drawer Controls
+window.openMobileNav = function() {
+  const drawer = document.querySelector('.mobile-nav-drawer');
+  if (drawer) {
+    drawer.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+};
+
+window.closeMobileNav = function() {
+  const drawer = document.querySelector('.mobile-nav-drawer');
+  if (drawer) {
+    drawer.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+};
+
 // Global Copy to Clipboard Function
 window.copyToClipboard = function(text, btnElem) {
   navigator.clipboard.writeText(text).then(() => {
@@ -214,57 +231,82 @@ document.addEventListener('DOMContentLoaded', () => {
   if (drawerCloseBtn) drawerCloseBtn.addEventListener('click', closeCartDrawer);
   if (drawerOverlay) drawerOverlay.addEventListener('click', closeCartDrawer);
 
-  // 3. Campaign Stepper Controls on Cards
+  // 3. Campaign Stepper Controls & Presets on Cards
   document.querySelectorAll('.campaign-card').forEach(card => {
     const input = card.querySelector('.amount-stepper-input');
     const btnUp = card.querySelector('.stepper-up');
     const btnDown = card.querySelector('.stepper-down');
     const btnAdd = card.querySelector('.btn-add-cart');
     const btnDonateNow = card.querySelector('.btn-donate-now-orange');
+    const presetChips = card.querySelectorAll('.amount-preset-chip');
 
     const cardId = card.getAttribute('data-id') || Math.random().toString(36).substring(7);
     const cardTitle = card.querySelector('.campaign-item-title') ? card.querySelector('.campaign-item-title').textContent.trim() : 'تبرع عام';
     const cardCategory = card.querySelector('.campaign-category-tag') ? card.querySelector('.campaign-category-tag').textContent.trim() : 'عام';
+    const cardImg = card.querySelector('.campaign-card-poster img') ? card.querySelector('.campaign-card-poster img').getAttribute('src') : 'hostel.jpg';
     const defaultAmount = input ? Number(input.value) || 100 : 100;
     const baseStep = defaultAmount >= 500 ? 100 : (defaultAmount >= 100 ? 50 : 25);
 
+    // Preset Chips Selection
+    if (presetChips.length > 0 && input) {
+      presetChips.forEach(chip => {
+        chip.addEventListener('click', (e) => {
+          e.preventDefault();
+          presetChips.forEach(c => c.classList.remove('active'));
+          chip.classList.add('active');
+          const amtVal = Number(chip.getAttribute('data-amt'));
+          if (amtVal) {
+            input.value = amtVal;
+          }
+        });
+      });
+    }
+
     if (btnUp && input) {
-      btnUp.addEventListener('click', () => {
+      btnUp.addEventListener('click', (e) => {
+        e.preventDefault();
         let val = Number(input.value) || defaultAmount;
         input.value = val + baseStep;
+        presetChips.forEach(c => c.classList.remove('active'));
       });
     }
 
     if (btnDown && input) {
-      btnDown.addEventListener('click', () => {
+      btnDown.addEventListener('click', (e) => {
+        e.preventDefault();
         let val = Number(input.value) || defaultAmount;
         if (val > baseStep) {
           input.value = val - baseStep;
         }
+        presetChips.forEach(c => c.classList.remove('active'));
       });
     }
 
     if (btnAdd) {
-      btnAdd.addEventListener('click', () => {
+      btnAdd.addEventListener('click', (e) => {
+        e.preventDefault();
         const amt = input ? Number(input.value) || defaultAmount : defaultAmount;
         addToCart({
           id: cardId,
           title: cardTitle,
           amount: amt,
           category: cardCategory,
+          image: cardImg,
           qty: 1
         });
       });
     }
 
     if (btnDonateNow) {
-      btnDonateNow.addEventListener('click', () => {
+      btnDonateNow.addEventListener('click', (e) => {
+        e.preventDefault();
         const amt = input ? Number(input.value) || defaultAmount : defaultAmount;
         addToCart({
           id: cardId,
           title: cardTitle,
           amount: amt,
           category: cardCategory,
+          image: cardImg,
           qty: 1
         });
         window.location.href = 'checkout.html';
@@ -365,27 +407,44 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 7. Mobile Navigation Drawer
-  const mobileToggle = document.querySelector('.mobile-nav-toggle');
+  // 7. Mobile Navigation Drawer (Bulletproof Event Listeners)
+  const mobileToggles = document.querySelectorAll('.mobile-nav-toggle');
   const mobileDrawer = document.querySelector('.mobile-nav-drawer');
-  const mobileClose = document.querySelector('.mobile-drawer-close');
+  const mobileCloses = document.querySelectorAll('.mobile-drawer-close');
 
-  if (mobileToggle && mobileDrawer) {
-    mobileToggle.addEventListener('click', () => {
-      mobileDrawer.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    });
-
-    const closeNavDrawer = () => {
-      mobileDrawer.classList.remove('active');
-      document.body.style.overflow = '';
-    };
-
-    if (mobileClose) mobileClose.addEventListener('click', closeNavDrawer);
-    mobileDrawer.addEventListener('click', (e) => {
-      if (e.target === mobileDrawer) closeNavDrawer();
+  if (mobileToggles.length > 0) {
+    mobileToggles.forEach(toggle => {
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.openMobileNav();
+      });
     });
   }
+
+  if (mobileCloses.length > 0) {
+    mobileCloses.forEach(closeBtn => {
+      closeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.closeMobileNav();
+      });
+    });
+  }
+
+  if (mobileDrawer) {
+    mobileDrawer.addEventListener('click', (e) => {
+      if (e.target === mobileDrawer) {
+        window.closeMobileNav();
+      }
+    });
+  }
+
+  // Keyboard accessibility: ESC key closes open drawers
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      window.closeMobileNav();
+      closeCartDrawer();
+    }
+  });
 
   // 8. Complex Floor Tabs
   const floorButtons = document.querySelectorAll('.floor-btn');

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100" width="300" height="100">
+  <!-- Iconic Save the Children Emblem -->
+  <g transform="translate(14, 14)">
+    <circle cx="36" cy="36" r="34" fill="#DA291C"/>
+    <!-- Child with raised arms silhouette -->
+    <circle cx="36" cy="24" r="7" fill="#FFFFFF"/>
+    <path d="M22 35 C28 32 44 32 50 35 C46 44 42 56 36 56 C30 56 26 44 22 35 Z" fill="#FFFFFF"/>
+  </g>
+  <!-- Typography -->
+  <text x="96" y="44" font-family="'Cairo', Arial, sans-serif" font-weight="900" font-size="20" fill="#DA291C">إنقاذ الطفولة</text>
+  <text x="96" y="70" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="14.5" fill="#111827" letter-spacing="-0.5">Save the Children</text>
+</svg>
