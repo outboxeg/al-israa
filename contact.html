@@ -127,37 +127,100 @@
     </div>
   </section>
 
-  <!-- Contact Information Cards -->
-  <section class="section-padding" style="padding-top: 40px; padding-bottom: 40px; background-color: var(--bg-secondary);">
+  <!-- Contact Information & Damanhour Google Map Section -->
+  <section class="section-padding" style="padding-top: 40px; padding-bottom: 50px; background-color: var(--bg-secondary);">
     <div class="container">
-      <div class="features-grid">
-        <div class="feature-card" style="text-align: center; align-items: center;">
-          <div class="feature-icon-box">📍</div>
-          <h3 class="feature-card-title">مقر المجمع والجمعية</h3>
-          <p class="feature-card-text">
-            مجمع الإسراء التنموي الخيري (5 طوابق)، دمنهور، محافظة البحيرة، جمهورية مصر العربية.
-          </p>
+      
+      <div class="contact-map-grid">
+        
+        <!-- Right Column: Contact & Legal Stack -->
+        <div class="contact-cards-stack">
+          
+          <!-- Card 1: Main Headquarters -->
+          <div class="contact-info-card">
+            <div class="contact-info-icon">📍</div>
+            <div class="contact-info-content">
+              <h4 id="contactAddressTitle">مقر الجمعية والمجمع الخيري التنموي</h4>
+              <p id="contactAddressDesc">
+                دمنهور، محافظة البحيرة - شارع مدرسة ناصر الفكرية، خلف معهد أورام دمنهور القومي. مبنى مجمع الإسراء التنموي (5 طوابق).
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 2: Phone & Hotlines -->
+          <div class="contact-info-card">
+            <div class="contact-info-icon">📞</div>
+            <div class="contact-info-content">
+              <h4>الاتصال المباشر وخدمة الأهالي</h4>
+              <p>
+                <strong>هاتف المجمع:</strong> <a href="tel:0453318920" style="color:var(--brand-green); font-weight:800; text-decoration:none;">045-3318920</a> - <a href="tel:01026410313" style="color:var(--brand-green); font-weight:800; text-decoration:none;">01026410313</a><br>
+                <strong>استقبال دار ضيافة الأورام:</strong> متاح 24 ساعة لاستقبال المرضى ومرافقيهم من قرى ومراكز البحيرة.
+              </p>
+              <div style="display:flex; gap:10px; margin-top:8px; flex-wrap:wrap;">
+                <a href="tel:01026410313" class="btn-primary" style="padding:6px 14px; font-size:0.82rem; text-decoration:none;">
+                  اتصال هاتفي 📞
+                </a>
+                <a href="https://wa.me/201026410313" target="_blank" rel="noopener noreferrer" class="btn-orange" style="padding:6px 14px; font-size:0.82rem; text-decoration:none;">
+                  محادثة واتساب 💬
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Legal & Registration Data -->
+          <div class="contact-info-card">
+            <div class="contact-info-icon">⚖️</div>
+            <div class="contact-info-content">
+              <h4>البيانات القانونية والصفة الرسمية</h4>
+              <p>
+                <strong>قيد رسمي بوزارة التضامن:</strong> برقم 1124 لسنة 2006.<br>
+                <strong>صفة النفع العام:</strong> قرار رئيس مجلس الوزراء والوزارة رقم 646 لسنة 2024.<br>
+                <strong>رئيس مجلس الإدارة:</strong> أ. فاطمة عبد المجيد راضي.
+              </p>
+            </div>
+          </div>
+
         </div>
 
-        <div class="feature-card" style="text-align: center; align-items: center;">
-          <div class="feature-icon-box">📞</div>
-          <h3 class="feature-card-title">الاتصال المباشر</h3>
-          <p class="feature-card-text">
-            <strong>هاتف المجمع:</strong> 045-3312345<br>
-            <strong>استقبال دار الضيافة:</strong> متاح 24 ساعة لاستقبال الحالات الطارئة.
-          </p>
+        <!-- Left Column: Interactive Damanhour Google Map -->
+        <div class="contact-map-container">
+          <div>
+            <div class="contact-map-header">
+              <div class="contact-map-title">
+                <span>🗺️</span>
+                <span>خريطة الوصول لمقر مجمع الإسراء بدمنهور</span>
+              </div>
+              <span class="contact-map-badge">معهد دمنهور للأورام 🏥</span>
+            </div>
+            
+            <div class="contact-map-frame-wrap">
+              <iframe 
+                id="contactGoogleMapFrame"
+                class="contact-google-map-iframe" 
+                src="https://maps.google.com/maps?q=%D8%AF%D9%85%D9%86%D9%87%D9%88%D8%B1%20%D9%85%D8%B9%D9%87%D8%AF%20%D8%A7%D9%84%D8%A3%D9%88%D8%B1%D8%A7%D9%85&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                title="موقع جمعية الإسراء بدمنهور على خرائط Google"
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+            </div>
+          </div>
+
+          <div style="margin-top: 14px;">
+            <a 
+              id="contactGpsDirectionBtn"
+              href="https://www.google.com/maps/search/?api=1&query=%D8%AF%D9%85%D9%86%D9%87%D9%88%D8%B1%20%D9%85%D8%B9%D9%87%D8%AF%20%D8%A7%D9%84%D8%A3%D9%88%D8%B1%D8%A7%D9%85" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="btn-primary" 
+              style="display:flex; align-items:center; justify-content:center; gap:8px; padding:12px 20px; font-size:0.95rem; text-decoration:none; width:100%; box-sizing:border-box;">
+              <span>فتح الاتجاهات المباشرة في خرائط Google (GPS) ↗</span>
+            </a>
+          </div>
         </div>
 
-        <div class="feature-card" style="text-align: center; align-items: center;">
-          <div class="feature-icon-box">⚖️</div>
-          <h3 class="feature-card-title">البيانات القانونية</h3>
-          <p class="feature-card-text">
-            <strong>قيد رسمي:</strong> 1124 لسنة 2006<br>
-            <strong>نفع عام:</strong> قرار وزاري رقم 646 لسنة 2024<br>
-            <strong>الإدارة:</strong> أ. فاطمة عبد المجيد راضي
-          </p>
-        </div>
       </div>
+
     </div>
   </section>
 

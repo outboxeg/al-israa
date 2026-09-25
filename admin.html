@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>لوحة التحكم والإدارة (CMS) | جمعية الإسراء الخيرية بدمنهور</title>
+  <title>لوحة التحكم والإدارة بالصفحات (Page-by-Page CMS) | جمعية الإسراء بدمنهور</title>
   <meta name="robots" content="noindex, nofollow">
   <link rel="icon" href="logo.png" type="image/png">
   
@@ -16,8 +16,8 @@
   
   <style>
     :root {
-      --admin-sidebar-w: 260px;
-      --admin-bg: #F4F6F8;
+      --admin-sidebar-w: 270px;
+      --admin-bg: #F4F6F9;
       --admin-card: #FFFFFF;
       --admin-border: #E2E8F0;
     }
@@ -45,16 +45,16 @@
     }
     .admin-login-box {
       background: #FFFFFF;
-      border-radius: 16px;
-      padding: 36px 32px;
+      border-radius: 18px;
+      padding: 38px 34px;
       width: 90%;
-      max-width: 420px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+      max-width: 430px;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.25);
       text-align: center;
     }
     .admin-login-logo {
-      width: 80px;
-      height: 80px;
+      width: 84px;
+      height: 84px;
       border-radius: 50%;
       object-fit: cover;
       margin: 0 auto 16px;
@@ -80,7 +80,7 @@
       overflow-y: auto;
     }
     .admin-sidebar-header {
-      padding: 24px 20px;
+      padding: 22px 18px;
       border-bottom: 1px solid rgba(255,255,255,0.08);
       display: flex;
       align-items: center;
@@ -93,25 +93,33 @@
       background: #FFFFFF;
       padding: 2px;
     }
+    .sidebar-section-title {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #64748B;
+      padding: 14px 18px 6px;
+      margin: 0;
+    }
     .admin-nav-list {
       list-style: none;
-      padding: 16px 10px;
+      padding: 8px 10px;
       margin: 0;
       display: flex;
       flex-direction: column;
-      gap: 6px;
-      flex: 1;
+      gap: 4px;
     }
     .admin-nav-item button {
       width: 100%;
       display: flex;
       align-items: center;
       gap: 12px;
-      padding: 12px 16px;
+      padding: 10px 14px;
       background: transparent;
       border: none;
       color: #94A3B8;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-weight: 700;
       border-radius: 10px;
       cursor: pointer;
@@ -131,141 +139,151 @@
     .admin-nav-footer {
       padding: 16px;
       border-top: 1px solid rgba(255,255,255,0.08);
+      margin-top: auto;
     }
     
+    /* Main Content Area */
     .admin-main {
       flex: 1;
       margin-right: var(--admin-sidebar-w);
-      padding: 30px;
+      padding: 28px 32px;
       background-color: var(--admin-bg);
       min-height: 100vh;
+      box-sizing: border-box;
     }
     .admin-header-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
       background: #FFFFFF;
-      padding: 18px 24px;
+      padding: 16px 24px;
       border-radius: 14px;
       border: 1px solid var(--admin-border);
       box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      flex-wrap: wrap;
+      gap: 14px;
     }
     
-    /* Stats Cards */
-    .admin-stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 18px;
-      margin-bottom: 30px;
-    }
-    .admin-stat-card {
+    /* Accordion Section Cards (User-Friendly UX) */
+    .admin-accordion {
       background: #FFFFFF;
-      padding: 22px;
       border-radius: 14px;
       border: 1px solid var(--admin-border);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      margin-bottom: 18px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .admin-accordion.open {
+      border-color: var(--brand-green);
+      box-shadow: 0 4px 14px rgba(47,110,58,0.08);
+    }
+    .admin-accordion-header {
+      padding: 18px 22px;
+      background: #FFFFFF;
       display: flex;
       align-items: center;
-      gap: 16px;
+      justify-content: space-between;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.2s;
     }
-    .admin-stat-icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 12px;
+    .admin-accordion-header:hover {
+      background: #F8FAFC;
+    }
+    .admin-accordion-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .admin-accordion-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: #F1F5F9;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.6rem;
-      background: #F1F5F9;
+      font-size: 1.3rem;
     }
-    .admin-stat-val {
-      font-size: 1.5rem;
-      font-weight: 900;
+    .admin-accordion-title {
+      font-size: 1.05rem;
+      font-weight: 800;
       color: #0F172A;
-      line-height: 1.2;
+      margin: 0;
     }
-    .admin-stat-lbl {
-      font-size: 0.85rem;
+    .admin-accordion-subtitle {
+      font-size: 0.8rem;
       color: #64748B;
-      font-weight: 700;
+      margin-top: 2px;
     }
-    
-    /* Tab Panes */
-    .admin-tab-pane {
+    .admin-accordion-chevron {
+      font-size: 0.9rem;
+      color: #64748B;
+      transition: transform 0.3s ease;
+    }
+    .admin-accordion.open .admin-accordion-chevron {
+      transform: rotate(180deg);
+      color: var(--brand-green);
+    }
+    .admin-accordion-body {
       display: none;
+      padding: 22px;
+      border-top: 1px solid var(--admin-border);
+      background: #FAFAFC;
     }
-    .admin-tab-pane.active {
+    .admin-accordion.open .admin-accordion-body {
       display: block;
       animation: fadeIn 0.25s ease;
     }
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
+      from { opacity: 0; transform: translateY(-4px); }
       to { opacity: 1; transform: translateY(0); }
     }
     
-    /* Content Cards */
-    .admin-card {
-      background: #FFFFFF;
-      border-radius: 14px;
-      border: 1px solid var(--admin-border);
-      padding: 24px;
-      margin-bottom: 24px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-    }
-    .admin-card-title {
-      font-size: 1.2rem;
-      font-weight: 800;
-      margin-bottom: 18px;
-      color: #0F172A;
+    /* Section Action Bar */
+    .section-action-bar {
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
+      padding-top: 18px;
+      margin-top: 20px;
+      border-top: 1px solid var(--admin-border);
+      flex-wrap: wrap;
+      gap: 10px;
     }
     
-    /* Campaigns Table & Grid */
-    .admin-table-wrap {
-      overflow-x: auto;
+    /* Dynamic Item Card (for list items like News, Partners, Floors, Campaigns) */
+    .dynamic-item-card {
+      background: #FFFFFF;
+      border: 1px solid var(--admin-border);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 14px;
+      position: relative;
+      transition: all 0.2s ease;
     }
-    .admin-table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: right;
+    .dynamic-item-card:hover {
+      border-color: #94A3B8;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.03);
     }
-    .admin-table th {
-      background: #F8FAFC;
-      padding: 12px 16px;
-      font-size: 0.85rem;
-      font-weight: 800;
-      color: #475569;
-      border-bottom: 2px solid var(--admin-border);
-    }
-    .admin-table td {
-      padding: 14px 16px;
-      border-bottom: 1px solid var(--admin-border);
-      font-size: 0.9rem;
-      vertical-align: middle;
-    }
-    .admin-table tr:hover {
-      background: #F8FAFC;
-    }
-    
-    /* Campaign Image Thumbnail */
-    .table-thumb {
-      width: 50px;
-      height: 42px;
-      border-radius: 8px;
-      object-fit: cover;
-      border: 1px solid #CBD5E1;
+    .dynamic-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed var(--admin-border);
     }
     
     /* Forms & Inputs */
     .admin-form-group {
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
     .admin-form-group label {
       display: block;
-      font-size: 0.88rem;
+      font-size: 0.86rem;
       font-weight: 800;
       color: #334155;
       margin-bottom: 6px;
@@ -276,7 +294,7 @@
       border: 1px solid #CBD5E1;
       border-radius: 8px;
       font-family: 'Cairo', sans-serif;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       background: #FFFFFF;
       transition: border-color 0.2s;
       box-sizing: border-box;
@@ -296,14 +314,19 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 16px;
     }
+    .admin-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
     
     /* Image Upload Box */
     .image-uploader-box {
       border: 2px dashed #CBD5E1;
       border-radius: 12px;
-      padding: 18px;
+      padding: 14px;
       text-align: center;
-      background: #F8FAFC;
+      background: #FFFFFF;
       cursor: pointer;
       transition: all 0.2s ease;
       position: relative;
@@ -313,16 +336,16 @@
       background: #F0FDF4;
     }
     .image-preview-slot {
-      max-height: 160px;
+      max-height: 120px;
+      max-width: 100%;
       border-radius: 8px;
       object-fit: contain;
-      margin-top: 10px;
-      display: none;
+      margin-top: 8px;
       border: 1px solid #E2E8F0;
       background: #FFFFFF;
     }
     
-    /* Badges in Admin */
+    /* Badges */
     .badge-admin {
       display: inline-block;
       padding: 4px 10px;
@@ -336,29 +359,15 @@
     .badge-admin.red { background: #FEE2E2; color: #991B1B; }
     
     /* Action Buttons */
-    .btn-sm-edit {
-      background: #F1F5F9;
-      color: #0F172A;
-      border: 1px solid #CBD5E1;
-      padding: 6px 12px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 700;
-      font-size: 0.82rem;
-      font-family: 'Cairo', sans-serif;
-    }
-    .btn-sm-edit:hover {
-      background: #E2E8F0;
-    }
     .btn-sm-del {
       background: #FEE2E2;
       color: #991B1B;
       border: 1px solid #FECACA;
-      padding: 6px 12px;
+      padding: 5px 12px;
       border-radius: 6px;
       cursor: pointer;
       font-weight: 700;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-family: 'Cairo', sans-serif;
     }
     .btn-sm-del:hover {
@@ -366,43 +375,13 @@
       color: #7F1D1D;
     }
     
-    /* Modal Styling */
-    .admin-modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(15, 23, 42, 0.7);
-      backdrop-filter: blur(4px);
+    /* Tab Panes */
+    .admin-page-pane {
       display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 2000;
-      padding: 20px;
-      box-sizing: border-box;
     }
-    .admin-modal.active {
-      display: flex;
-    }
-    .admin-modal-content {
-      background: #FFFFFF;
-      border-radius: 16px;
-      width: 100%;
-      max-width: 680px;
-      max-height: 90vh;
-      overflow-y: auto;
-      padding: 28px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
-      position: relative;
-    }
-    .admin-modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-      border-bottom: 1px solid var(--admin-border);
-      padding-bottom: 14px;
+    .admin-page-pane.active {
+      display: block;
+      animation: fadeIn 0.25s ease;
     }
     
     /* Toast Notification */
@@ -431,20 +410,13 @@
       to { transform: translateY(0); opacity: 1; }
     }
     
-    @media (max-width: 900px) {
-      .admin-sidebar {
-        width: 70px;
-      }
-      .admin-sidebar-header span, .admin-nav-item button span, .admin-nav-footer {
+    @media (max-width: 992px) {
+      .admin-sidebar { width: 70px; }
+      .admin-sidebar-header span, .admin-nav-item button span:last-child, .admin-nav-footer, .sidebar-section-title {
         display: none;
       }
-      .admin-main {
-        margin-right: 70px;
-        padding: 16px;
-      }
-      .admin-grid-2, .admin-grid-3 {
-        grid-template-columns: 1fr;
-      }
+      .admin-main { margin-right: 70px; padding: 16px; }
+      .admin-grid-2, .admin-grid-3, .admin-grid-4 { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -457,7 +429,7 @@
     <div class="admin-login-box">
       <img src="logo.png" alt="جمعية الإسراء بدمنهور" class="admin-login-logo">
       <h2 style="font-size:1.35rem; font-weight:900; margin-bottom:6px; color:#0F172A;">لوحة إدارة جمعية الإسراء</h2>
-      <p style="font-size:0.88rem; color:#64748B; margin-bottom:22px;">التحكم الكامل في المتجر، المحتوى، الحملات، والأسعار</p>
+      <p style="font-size:0.85rem; color:#64748B; margin-bottom:20px;">نظام التحكم الكامل المبوب بالصفحات (Page-by-Page CMS)</p>
       
       <form id="adminLoginForm">
         <div class="admin-form-group" style="text-align:right;">
@@ -483,53 +455,86 @@
   </div>
 
   <!-- ==========================================================================
-       Admin Main Application Layout
+       Admin App Layout
        ========================================================================== -->
   <div class="admin-layout">
     
-    <!-- Sidebar Navigation -->
+    <!-- Sidebar Navigation (Organized by Website Pages) -->
     <aside class="admin-sidebar">
       <div class="admin-sidebar-header">
         <img src="logo.png" alt="لوجو الجمعية">
         <div>
           <div style="font-size:0.95rem; font-weight:900; color:#FFFFFF;">جمعية الإسراء</div>
-          <div style="font-size:0.75rem; color:#94A3B8;">لوحة التحكم CMS v2.0</div>
+          <div style="font-size:0.75rem; color:#94A3B8;">لوحة التحكم بالصفحات v3.0</div>
         </div>
       </div>
       
+      <p class="sidebar-section-title">📊 لوحة المؤشرات</p>
       <ul class="admin-nav-list">
         <li class="admin-nav-item active">
-          <button type="button" data-tab-target="tab-overview">
+          <button type="button" data-page-target="page-overview">
             <span>📊</span>
             <span>نظرة عامة وإحصائيات</span>
           </button>
         </li>
+      </ul>
+
+      <p class="sidebar-section-title">📄 صفحات الموقع (7 صفحات)</p>
+      <ul class="admin-nav-list">
         <li class="admin-nav-item">
-          <button type="button" data-tab-target="tab-campaigns">
+          <button type="button" data-page-target="page-home">
+            <span>🏠</span>
+            <span>1. الصفحة الرئيسية</span>
+          </button>
+        </li>
+        <li class="admin-nav-item">
+          <button type="button" data-page-target="page-store">
             <span>🛒</span>
-            <span>إدارة حملات المتجر والأسعار</span>
+            <span>2. متجر التبرعات</span>
           </button>
         </li>
         <li class="admin-nav-item">
-          <button type="button" data-tab-target="tab-content">
-            <span>📝</span>
-            <span>محتوى الموقع والحسابات</span>
+          <button type="button" data-page-target="page-complex">
+            <span>🏥</span>
+            <span>3. مجمع الإسراء التنموي</span>
           </button>
         </li>
         <li class="admin-nav-item">
-          <button type="button" data-tab-target="tab-inbox">
+          <button type="button" data-page-target="page-hostel">
+            <span>🛏️</span>
+            <span>4. دار ضيافة الأورام</span>
+          </button>
+        </li>
+        <li class="admin-nav-item">
+          <button type="button" data-page-target="page-projects">
+            <span>💼</span>
+            <span>5. المشروعات والتمكين</span>
+          </button>
+        </li>
+        <li class="admin-nav-item">
+          <button type="button" data-page-target="page-checkout">
+            <span>💳</span>
+            <span>6. إتمام التبرع والحسابات</span>
+          </button>
+        </li>
+        <li class="admin-nav-item">
+          <button type="button" data-page-target="page-contact">
+            <span>📍</span>
+            <span>7. تواصل معنا وخريطة المقر</span>
+          </button>
+        </li>
+      </ul>
+
+      <p class="sidebar-section-title">⚙️ الإدارة والربط</p>
+      <ul class="admin-nav-list">
+        <li class="admin-nav-item">
+          <button type="button" data-page-target="page-inbox">
             <span>📥</span>
             <span>صندوق الطلبات الواردة</span>
           </button>
         </li>
         <li class="admin-nav-item">
-          <button type="button" data-tab-target="tab-partners">
-            <span>🤝</span>
-            <span>شركاء النجاح والرعاة</span>
-          </button>
-        </li>
-        <li class="admin-nav-item">
-          <button type="button" data-tab-target="tab-backup">
+          <button type="button" data-page-target="page-backup">
             <span>☁️</span>
             <span>النسخ الاحتياطي والربط</span>
           </button>
@@ -555,24 +560,24 @@
           <h1 id="pageTitleHeading" style="font-size:1.35rem; font-weight:900; margin:0 0 4px; color:#0F172A;">
             نظرة عامة وإحصائيات المنصة
           </h1>
-          <p style="font-size:0.85rem; color:#64748B; margin:0;">
-            إدارة مباشرة وفورية لجميع بيانات الموقع بدون الحاجة لأي خادم وسيط.
+          <p id="pageSubtitleDesc" style="font-size:0.85rem; color:#64748B; margin:0;">
+            إدارة مباشرة وفورية لكافة عناصر الموقع مقسمة حسب الصفحات مع أزرار حفظ مستقلة لكل قسم.
           </p>
         </div>
         <div style="display:flex; gap:10px; align-items:center;">
-          <a href="store.html" target="_blank" class="btn-orange" style="padding:8px 18px; font-size:0.88rem;">
-            🛒 متجر التبرعات
+          <a id="pageLivePreviewLink" href="index.html" target="_blank" class="btn-outline" style="padding:8px 16px; font-size:0.88rem;">
+            معاينة هذه الصفحة ↗
           </a>
-          <button id="quickSaveAllBtn" class="btn-primary" style="padding:8px 18px; font-size:0.88rem;">
-            حفظ التعديلات 💾
+          <button id="globalSaveBtn" class="btn-primary" style="padding:8px 18px; font-size:0.88rem;">
+            حفظ كافة الصفحات 💾
           </button>
         </div>
       </div>
 
       <!-- ====================================================================
-           TAB 1: Overview & Metrics
+           PAGE 0: Overview & Statistics
            ==================================================================== -->
-      <div id="tab-overview" class="admin-tab-pane active">
+      <div id="page-overview" class="admin-page-pane active">
         <div class="admin-stats-grid">
           <div class="admin-stat-card">
             <div class="admin-stat-icon" style="background:#DCFCE7; color:#166534;">📦</div>
@@ -592,7 +597,7 @@
             <div class="admin-stat-icon" style="background:#DBEAFE; color:#1E40AF;">💰</div>
             <div>
               <div id="statTotalCollected" class="admin-stat-val">409,500 ج.م</div>
-              <div class="admin-stat-lbl">المبالغ المجمعة فعلياً</div>
+              <div class="admin-stat-lbl">المبالغ المجمعة</div>
             </div>
           </div>
           <div class="admin-stat-card">
@@ -604,171 +609,751 @@
           </div>
         </div>
 
-        <div class="admin-card">
-          <div class="admin-card-title">
-            <span>🚀 إجراءات سريعة</span>
+        <div class="admin-accordion open">
+          <div class="admin-accordion-header" onclick="toggleAccordion(this)">
+            <div class="admin-accordion-title-wrap">
+              <div class="admin-accordion-icon">⚡</div>
+              <div>
+                <h3 class="admin-accordion-title">خريطة صفحات الموقع وإجراءات سريعة</h3>
+                <div class="admin-accordion-subtitle">تصفح الصفحات الـ 7 وتحكم في كل عنصر على حدة</div>
+              </div>
+            </div>
+            <span class="admin-accordion-chevron">▼</span>
           </div>
-          <div style="display:flex; gap:12px; flex-wrap:wrap;">
-            <button class="btn-primary" onclick="openAddCampaignModal()" style="font-size:0.9rem; padding:10px 18px;">
-              + إضافة حملة تبرع جديدة
-            </button>
-            <button class="btn-outline" onclick="switchAdminTab('tab-content')" style="font-size:0.9rem; padding:10px 18px;">
-              ✏️ تعديل أرقام فودافون كاش والحسابات
-            </button>
-            <button class="btn-outline" onclick="exportDataJSON()" style="font-size:0.9rem; padding:10px 18px;">
-              📥 تحميل نسخة احتياطية كاملة (JSON)
-            </button>
-          </div>
-        </div>
-
-        <div class="admin-card">
-          <div class="admin-card-title">
-            <span>ℹ️ نبذة عن معمارية التحكم المباشر (Static CMS Engine)</span>
-          </div>
-          <p style="font-size:0.9rem; line-height:1.7; color:#475569; margin:0;">
-            تعتمد المنصة على معمارية العميل السريعة (Client-Side Storage) المتوافقة تماماً مع خوادم GitHub Pages ونظام الملفات المسطحة.
-            أي تعديل تقوم به على أسعار الحملات، الصور، أو النصوص يتم حفظه محلياً في متصفحك ويُحدّث واجهة الموقع فوراً.
-            يمكنك أيضاً تصدير ملف النسخة الاحتياطية ومشاركته أو رفعه في أي وقت لضمان مطابقة التعديلات عبر كل الأجهزة.
-          </p>
-        </div>
-      </div>
-
-      <!-- ====================================================================
-           TAB 2: Donation Campaigns CRUD & Pricing
-           ==================================================================== -->
-      <div id="tab-campaigns" class="admin-tab-pane">
-        <div class="admin-card">
-          <div class="admin-card-title">
-            <span>قائمة حملات وأسهم التبرع النشطة بالمتجر</span>
-            <button class="btn-primary" onclick="openAddCampaignModal()" style="font-size:0.85rem; padding:8px 16px;">
-              + إضافة حملة جديدة
-            </button>
-          </div>
-          
-          <div class="admin-table-wrap">
-            <table class="admin-table">
-              <thead>
-                <tr>
-                  <th style="width:60px;">الصورة</th>
-                  <th>عنوان الحملة</th>
-                  <th>التصنيف</th>
-                  <th>سعر السهم</th>
-                  <th>المستهدف</th>
-                  <th>تم جمع</th>
-                  <th>نسبة الإنجاز</th>
-                  <th style="text-align:center;">إجراءات</th>
-                </tr>
-              </thead>
-              <tbody id="campaignsTableBody">
-                <!-- Injected dynamically via admin.js -->
-              </tbody>
-            </table>
+          <div class="admin-accordion-body">
+            <div class="admin-grid-3">
+              <button class="btn-outline" onclick="switchAdminPage('page-home')" style="padding:14px; text-align:right;">
+                <strong>🏠 1. الصفحة الرئيسية</strong>
+                <div style="font-size:0.8rem; color:#64748B;">الهيرو، الإحصائيات، الأخبار، والشركاء</div>
+              </button>
+              <button class="btn-outline" onclick="switchAdminPage('page-store')" style="padding:14px; text-align:right;">
+                <strong>🛒 2. متجر التبرعات</strong>
+                <div style="font-size:0.8rem; color:#64748B;">الحملات، الأسعار، والمبالغ المستهدفة</div>
+              </button>
+              <button class="btn-outline" onclick="switchAdminPage('page-complex')" style="padding:14px; text-align:right;">
+                <strong>🏥 3. مجمع الإسراء التنموي</strong>
+                <div style="font-size:0.8rem; color:#64748B;">أقسام وخدمات الطوابق الخمسة</div>
+              </button>
+              <button class="btn-outline" onclick="switchAdminPage('page-hostel')" style="padding:14px; text-align:right;">
+                <strong>🛏️ 4. دار ضيافة الأورام</strong>
+                <div style="font-size:0.8rem; color:#64748B;">معايير الاستقبال وشروط القبول المجاني</div>
+              </button>
+              <button class="btn-outline" onclick="switchAdminPage('page-projects')" style="padding:14px; text-align:right;">
+                <strong>💼 5. المشروعات والتمكين</strong>
+                <div style="font-size:0.8rem; color:#64748B;">أرزاق، النول، المشاغل، والمدارس الخضراء</div>
+              </button>
+              <button class="btn-outline" onclick="switchAdminPage('page-checkout')" style="padding:14px; text-align:right;">
+                <strong>💳 6. إتمام التبرع والحسابات</strong>
+                <div style="font-size:0.8rem; color:#64748B;">فودافون كاش، إنستاباي، والبنوك</div>
+              </button>
+              <button class="btn-outline" onclick="switchAdminPage('page-contact')" style="padding:14px; text-align:right;">
+                <strong>📍 7. تواصل معنا وخريطة المقر</strong>
+                <div style="font-size:0.8rem; color:#64748B;">خريطة Google Map لدمنهور والهواتف</div>
+              </button>
+              <button class="btn-outline" onclick="switchAdminPage('page-inbox')" style="padding:14px; text-align:right;">
+                <strong>📥 صندوق الطلبات الواردة</strong>
+                <div style="font-size:0.8rem; color:#64748B;">استعراض الحجوزات وتصدير Excel</div>
+              </button>
+              <button class="btn-outline" onclick="switchAdminPage('page-backup')" style="padding:14px; text-align:right;">
+                <strong>☁️ النسخ الاحتياطي والربط</strong>
+                <div style="font-size:0.8rem; color:#64748B;">تصدير واستيراد JSON وربط Webhook</div>
+              </button>
+            </div>
           </div>
         </div>
       </div>
 
       <!-- ====================================================================
-           TAB 3: Global Site Content & Settings
+           PAGE 1: Home Page (index.html)
            ==================================================================== -->
-      <div id="tab-content" class="admin-tab-pane">
+      <div id="page-home" class="admin-page-pane">
         
-        <!-- Hero Section Controls -->
-        <div class="admin-card">
-          <div class="admin-card-title">
-            <span>🎯 نصوص قسم الهيرو (الصفحة الرئيسية)</span>
+        <!-- Section 1.1: Hero Section -->
+        <div class="admin-accordion open">
+          <div class="admin-accordion-header" onclick="toggleAccordion(this)">
+            <div class="admin-accordion-title-wrap">
+              <div class="admin-accordion-icon">🎯</div>
+              <div>
+                <h3 class="admin-accordion-title">قسم الهيرو الرئيسي (Hero Section)</h3>
+                <div class="admin-accordion-subtitle">العنوان الرئيسي، الشارة الترويجية، الوصف، وصورة الهيرو</div>
+              </div>
+            </div>
+            <span class="admin-accordion-chevron">▼</span>
           </div>
-          <div class="admin-form-group">
-            <label>شارة الهيرو الترويجية (Hero Badge)</label>
-            <input type="text" id="settingHeroBadge" class="admin-input">
-          </div>
-          <div class="admin-form-group">
-            <label>العنوان الرئيسي الأول (H1 Headline)</label>
-            <input type="text" id="settingHeroTitle" class="admin-input">
-          </div>
-          <div class="admin-form-group">
-            <label>الفقرة التوضيحية (Hero Subtitle / Description)</label>
-            <textarea id="settingHeroDesc" rows="3" class="admin-textarea"></textarea>
-          </div>
-        </div>
-
-        <!-- Bank & Payment Details -->
-        <div class="admin-card">
-          <div class="admin-card-title">
-            <span>💳 بيانات الحسابات البنكية والمحافظ الإلكترونية (Checkout)</span>
-          </div>
-          <div class="admin-grid-2">
+          <div class="admin-accordion-body">
             <div class="admin-form-group">
-              <label>رقم فودافون كاش / المحافظ الإلكترونية</label>
-              <input type="text" id="settingVodafoneCash" class="admin-input" placeholder="010XXXXXXXX">
+              <label>الشارة الترويجية (Hero Badge)</label>
+              <input type="text" id="homeHeroBadge" class="admin-input">
             </div>
             <div class="admin-form-group">
-              <label>معرف إنستاباي (InstaPay Address / IPA)</label>
-              <input type="text" id="settingInstaPay" class="admin-input" placeholder="example@instapay">
-            </div>
-          </div>
-          <div class="admin-grid-2">
-            <div class="admin-form-group">
-              <label>بيانات حساب بنك مصر (الفرع ورقم الحساب)</label>
-              <input type="text" id="settingBankMisr" class="admin-input" placeholder="حساب رقم ...">
+              <label>العنوان الرئيسي (H1 Headline)</label>
+              <input type="text" id="homeHeroTitle" class="admin-input">
             </div>
             <div class="admin-form-group">
-              <label>بيانات حساب البنك الأهلي المصري</label>
-              <input type="text" id="settingBankNBE" class="admin-input" placeholder="حساب رقم ...">
+              <label>الفقرة الوصفية (Hero Description)</label>
+              <textarea id="homeHeroDesc" rows="3" class="admin-textarea"></textarea>
+            </div>
+            <div class="admin-grid-2">
+              <div class="admin-form-group">
+                <label>نص زر التبرع الرئيسي (Primary CTA)</label>
+                <input type="text" id="homeHeroCta1" class="admin-input" placeholder="تبرع الآن للمشروعات 🧡">
+              </div>
+              <div class="admin-form-group">
+                <label>نص زر دار الضيافة الفرعي (Secondary CTA)</label>
+                <input type="text" id="homeHeroCta2" class="admin-input" placeholder="حجز دار ضيافة الأورام">
+              </div>
+            </div>
+            <div class="section-action-bar">
+              <span style="font-size:0.82rem; color:#64748B;">ينعكس فوراً على ترويسة الصفحة الرئيسية</span>
+              <button type="button" class="btn-primary" onclick="saveHomeHero()">حفظ قسم الهيرو 💾</button>
             </div>
           </div>
         </div>
 
-        <!-- Official Contact Details -->
-        <div class="admin-card">
-          <div class="admin-card-title">
-            <span>📞 بيانات الاتصال الرسمية والعناوين</span>
+        <!-- Section 1.2: Impact Stats Counters -->
+        <div class="admin-accordion">
+          <div class="admin-accordion-header" onclick="toggleAccordion(this)">
+            <div class="admin-accordion-title-wrap">
+              <div class="admin-accordion-icon">📊</div>
+              <div>
+                <h3 class="admin-accordion-title">قسم إحصائيات الأثر بالأرقام (Impact Counters)</h3>
+                <div class="admin-accordion-subtitle">أرقام الأسر المكفولة، الوجبات، الأسرة، والمدارس</div>
+              </div>
+            </div>
+            <span class="admin-accordion-chevron">▼</span>
           </div>
-          <div class="admin-grid-3">
-            <div class="admin-form-group">
-              <label>رقم الهاتف المباشر</label>
-              <input type="text" id="settingPhone" class="admin-input" placeholder="045-3333333">
+          <div class="admin-accordion-body">
+            <div class="admin-grid-4">
+              <div class="admin-form-group">
+                <label>المؤشر الأول: الرقم والوصف</label>
+                <input type="text" id="homeStat1Val" class="admin-input" placeholder="+3,500">
+                <input type="text" id="homeStat1Lbl" class="admin-input" style="margin-top:6px;" placeholder="أسرة أولى بالرعاية">
+              </div>
+              <div class="admin-form-group">
+                <label>المؤشر الثاني: الرقم والوصف</label>
+                <input type="text" id="homeStat2Val" class="admin-input" placeholder="+48,000">
+                <input type="text" id="homeStat2Lbl" class="admin-input" style="margin-top:6px;" placeholder="وجبة علاجية للأورام">
+              </div>
+              <div class="admin-form-group">
+                <label>المؤشر الثالث: الرقم والوصف</label>
+                <input type="text" id="homeStat3Val" class="admin-input" placeholder="24 سرير">
+                <input type="text" id="homeStat3Lbl" class="admin-input" style="margin-top:6px;" placeholder="بدار ضيافة الأورام">
+              </div>
+              <div class="admin-form-group">
+                <label>المؤشر الرابع: الرقم والوصف</label>
+                <input type="text" id="homeStat4Val" class="admin-input" placeholder="26 مدرسة">
+                <input type="text" id="homeStat4Lbl" class="admin-input" style="margin-top:6px;" placeholder="خضراء ذكية Outbox">
+              </div>
             </div>
-            <div class="admin-form-group">
-              <label>رقم الواتساب</label>
-              <input type="text" id="settingWhatsapp" class="admin-input" placeholder="010XXXXXXXX">
+            <div class="section-action-bar">
+              <span style="font-size:0.82rem; color:#64748B;">يظهر في الشريط الإحصائي أسفل الهيرو</span>
+              <button type="button" class="btn-primary" onclick="saveHomeStats()">حفظ قسم الإحصائيات 💾</button>
             </div>
-            <div class="admin-form-group">
-              <label>البريد الإلكتروني</label>
-              <input type="email" id="settingEmail" class="admin-input" placeholder="info@al-israa.org">
-            </div>
-          </div>
-          <div class="admin-form-group">
-            <label>العنوان التفصيلي ومقر الجمعية</label>
-            <input type="text" id="settingAddress" class="admin-input" placeholder="دمنهور - محافظة البحيرة - بجوار معهد الأورام">
           </div>
         </div>
 
-        <!-- Admin Credentials Setting -->
-        <div class="admin-card">
-          <div class="admin-card-title">
-            <span>🔒 إعدادات أمان لوحة التحكم</span>
+        <!-- Section 1.3: Outbox Green Smart Schools Showcase -->
+        <div class="admin-accordion">
+          <div class="admin-accordion-header" onclick="toggleAccordion(this)">
+            <div class="admin-accordion-title-wrap">
+              <div class="admin-accordion-icon">📦</div>
+              <div>
+                <h3 class="admin-accordion-title">قسم مبادرة المدارس الخضراء الذكية (Outbox)</h3>
+                <div class="admin-accordion-subtitle">العنوان، الوصف، مؤشرات التدوير والأثر البيئي بالبحيرة</div>
+              </div>
+            </div>
+            <span class="admin-accordion-chevron">▼</span>
           </div>
-          <div class="admin-grid-2">
+          <div class="admin-accordion-body">
             <div class="admin-form-group">
-              <label>اسم مستخدم الإدارة الجديد</label>
-              <input type="text" id="settingAdminUser" class="admin-input">
+              <label>عنوان المبادرة</label>
+              <input type="text" id="homeOutboxTitle" class="admin-input">
             </div>
             <div class="admin-form-group">
-              <label>كلمة المرور الجديدة</label>
-              <input type="text" id="settingAdminPass" class="admin-input">
+              <label>الوصف والشراكة مع مديرية التعليم</label>
+              <textarea id="homeOutboxDesc" rows="3" class="admin-textarea"></textarea>
+            </div>
+            <div class="admin-grid-4">
+              <div class="admin-form-group">
+                <label>مؤشر المدارس</label>
+                <input type="text" id="homeOutboxKpi1" class="admin-input" placeholder="26 مدرسة">
+              </div>
+              <div class="admin-form-group">
+                <label>مؤشر الورق والكرتون</label>
+                <input type="text" id="homeOutboxKpi2" class="admin-input" placeholder="180 طناً">
+              </div>
+              <div class="admin-form-group">
+                <label>مؤشر العوائد الاقتصادية</label>
+                <input type="text" id="homeOutboxKpi3" class="admin-input" placeholder="510,000 ج.م">
+              </div>
+              <div class="admin-form-group">
+                <label>مؤشر حماية الأشجار</label>
+                <input type="text" id="homeOutboxKpi4" class="admin-input" placeholder="3,060 شجرة">
+              </div>
+            </div>
+            <div class="section-action-bar">
+              <span style="font-size:0.82rem; color:#64748B;">يعكس إنجازات الجمعية بالمبادرة الوطنية للمشروعات الخضراء الذكية</span>
+              <button type="button" class="btn-primary" onclick="saveHomeOutbox()">حفظ قسم Outbox 💾</button>
             </div>
           </div>
-          <button type="button" class="btn-primary" onclick="saveSettingsFromForm()" style="padding:10px 24px;">
-            حفظ كافة النصوص والإعدادات 💾
-          </button>
+        </div>
+
+        <!-- Section 1.4: News & Impact Stories -->
+        <div class="admin-accordion">
+          <div class="admin-accordion-header" onclick="toggleAccordion(this)">
+            <div class="admin-accordion-title-wrap">
+              <div class="admin-accordion-icon">📰</div>
+              <div>
+                <h3 class="admin-accordion-title">قسم الأخبار وقصص الأثر (إضافة / تعديل / حذف)</h3>
+                <div class="admin-accordion-subtitle">إدارة بطاقات الأخبار الحالية وإمكانية نشر أخبار وتقارير جديدة</div>
+              </div>
+            </div>
+            <span class="admin-accordion-chevron">▼</span>
+          </div>
+          <div class="admin-accordion-body">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+              <span style="font-weight:800; font-size:0.95rem; color:#0F172A;">بطاقات الأخبار المنشورة بالرئيسية:</span>
+              <button type="button" class="btn-primary" onclick="addNewNewsCard()" style="font-size:0.85rem; padding:6px 14px;">
+                + إضافة خبر جديد
+              </button>
+            </div>
+            
+            <div id="homeNewsCardsContainer">
+              <!-- Rendered dynamically via admin.js -->
+            </div>
+
+            <div class="section-action-bar">
+              <span style="font-size:0.82rem; color:#64748B;">يتم تحديث قسم الأخبار في index.html تلقائياً</span>
+              <button type="button" class="btn-primary" onclick="saveHomeNews()">حفظ قسم الأخبار 💾</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 1.5: Success Partners & Logos -->
+        <div class="admin-accordion">
+          <div class="admin-accordion-header" onclick="toggleAccordion(this)">
+            <div class="admin-accordion-title-wrap">
+              <div class="admin-accordion-icon">🤝</div>
+              <div>
+                <h3 class="admin-accordion-title">قسم شركاء النجاح والرعاة (إضافة / تعديل / حذف)</h3>
+                <div class="admin-accordion-subtitle">الشعارات الرسمية للوزارات والهيئات الداعمة لمشروعات الجمعية</div>
+              </div>
+            </div>
+            <span class="admin-accordion-chevron">▼</span>
+          </div>
+          <div class="admin-accordion-body">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+              <span style="font-weight:800; font-size:0.95rem; color:#0F172A;">الجهات الشريكة المنشورة:</span>
+              <button type="button" class="btn-primary" onclick="addNewPartnerCard()" style="font-size:0.85rem; padding:6px 14px;">
+                + إضافة جهة شريكة جديدة
+              </button>
+            </div>
+            
+            <div id="homePartnersContainer">
+              <!-- Rendered dynamically via admin.js -->
+            </div>
+
+            <div class="section-action-bar">
+              <span style="font-size:0.82rem; color:#64748B;">يتم تحديث شبكة الشركاء في index.html تلقائياً</span>
+              <button type="button" class="btn-primary" onclick="saveHomePartners()">حفظ قسم الشركاء 💾</button>
+            </div>
+          </div>
         </div>
 
       </div>
 
       <!-- ====================================================================
-           TAB 4: Inbox & Booking Submissions
+           PAGE 2: Donation Store Page (store.html)
            ==================================================================== -->
-      <div id="tab-inbox" class="admin-tab-pane">
+      <div id="page-store" class="admin-page-pane">
+        
+        <!-- Section 2.1: Store Header Banner -->
+        <div class="admin-accordion open">
+          <div class="admin-accordion-header" onclick="toggleAccordion(this)">
+            <div class="admin-accordion-title-wrap">
+              <div class="admin-accordion-icon">🛒</div>
+              <div>
+                <h3 class="admin-accordion-title">ترويسة متجر التبرعات والتعريف</h3>
+                <div class="admin-accordion-subtitle">شارة المتجر، العنوان، والفقرة التعريفية بمشروعات التبرع</div>
+              </div>
+            </div>
+            <span class="admin-accordion-chevron">▼</span>
+          </div>
+          <div class="admin-accordion-body">
+            <div class="admin-form-group">
+              <label>شارة المتجر (Store Badge)</label>
+              <input type="text" id="storeHeroBadge" class="admin-input">
+            </div>
+            <div class="admin-form-group">
+              <label>عنوان المتجر (Store Title)</label>
+              <input type="text" id="storeHeroTitle" class="admin-input">
+            </div>
+            <div class="admin-form-group">
+              <label>وصف المتجر وإرشادات المساهمة</label>
+              <textarea id="storeHeroDesc" rows="3" class="admin-textarea"></textarea>
+            </div>
+            <div class="section-action-bar">
+              <span style="font-size:0.82rem; color:#64748B;">يظهر في أعلى صفحة store.html</span>
+              <button type="button" class="btn-primary" onclick="saveStoreHeader()">حفظ ترويسة المتجر 💾</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2.2: Donation Campaigns Catalog -->
+        <div class="admin-accordion open">
+          <div class="admin-accordion-header" onclick="toggleAccordion(this)">
+            <div class="admin-accordion-title-wrap">
+              <div class="admin-accordion-icon">💳</div>
+              <div>
+                <h3 class="admin-accordion-title">حملات وأسهم التبرع بالمتجر (إضافة / تعديل / حذف)</h3>
+                <div class="admin-accordion-subtitle">تعديل الأسعار، المستهدفات، نسب الإنجاز، ورفع الصور</div>
+              </div>
+            </div>
+            <span class="admin-accordion-chevron">▼</span>
+          </div>
+          <div class="admin-accordion-body">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+              <span style="font-weight:800; font-size:0.95rem; color:#0F172A;">قائمة حملات وأسهم التبرع النشطة:</span>
+              <button type="button" class="btn-primary" onclick="openAddCampaignModal()" style="font-size:0.85rem; padding:6px 14px;">
+                + إضافة حملة تبرع جديدة
+              </button>
+            </div>
+
+            <div id="storeCampaignsListContainer">
+              <!-- Rendered dynamically via admin.js -->
+            </div>
+
+            <div class="section-action-bar">
+              <span style="font-size:0.82rem; color:#64748B;">يتم تحديث المتجر وسلة التبرعات فوراً</span>
+              <button type="button" class="btn-primary" onclick="saveStoreCampaignsList()">حفظ كافة الحملات 💾</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ====================================================================
+           PAGE 3: Complex Page (complex.html)
+           ==================================================================== -->
+      <div id="page-complex" class="admin-page-pane">
+        
+        <!-- Section 3.1: Complex Intro -->
+        <div class="admin-accordion open">
+          <div class="admin-accordion-header" onclick="toggleAccordion(this)">
+            <div class="admin-accordion-title-wrap">
+              <div class="admin-accordion-icon">🏥</div>
+              <div>
+                <h3 class="admin-accordion-title">مقدمة مجمع الإسراء التنموي الطبي</h3>
+                <div class="admin-accordion-subtitle">العنوان الرئيسي، مواصفات المبنى (5 طوابق)، والرسالة الطبية</div>
+              </div>
+            </div>
+            <span class="admin-accordion-chevron">▼</span>
+          </div>
+          <div class="admin-accordion-body">
+            <div class="admin-form-group">
+              <label>عنوان مجمع الإسراء</label>
+              <input type="text" id="complexTitle" class="admin-input">
+            </div>
+            <div class="admin-form-group">
+              <label>الوصف والموقع بدمنهور</label>
+              <textarea id="complexDesc" rows="3" class="admin-textarea"></textarea>
+            </div>
+            <div class="admin-grid-3">
+              <div class="admin-form-group">
+                <label>مساحة المجمع</label>
+                <input type="text" id="complexArea" class="admin-input" placeholder="مبنى متكامل من 5 طوابق">
+              </div>
+              <div class="admin-form-group">
+                <label>عدد العيادات التخصصية</label>
+                <input type="text" id="complexClinicsCount" class="admin-input" placeholder="8 عيادات ومعمل وصيدلية">
+              </div>
+              <div class="admin-form-group">
+                <label>محطة الطاقة النظيفة</label>
+                <input type="text" id="complexSolarPower" class="admin-input" placeholder="محطة طاقة شمسية بالسطح">
+              </div>
+            </div>
+            <div class="section-action-bar">
+              <button type="button" class="btn-primary" onclick="saveComplexIntro()">حفظ مقدمة المجمع 💾</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 3.2: Floors Details (5 Floors CRUD) -->
+        <div class="admin-accordion">
+          <div class="admin-accordion-header" onclick="toggleAccordion(this)">
+            <div class="admin-accordion-title-wrap">
+              <div class="admin-accordion-icon">🏢</div>
+              <div>
+                <h3 class="admin-accordion-title">أقسام وخدمات الطوابق الخمسة (إضافة / تعديل / حذف)</h3>
+                <div class="admin-accordion-subtitle">تفاصيل الدور الأرضي، الأول، الثاني، الثالث، والسطح</div>
+              </div>
+            </div>
+            <span class="admin-accordion-chevron">▼</span>
+          </div>
+          <div class="admin-accordion-body">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+              <span style="font-weight:800; font-size:0.95rem; color:#0F172A;">أقسام الطوابق المسجلة:</span>
+              <button type="button" class="btn-primary" onclick="addNewFloorCard()" style="font-size:0.85rem; padding:6px 14px;">
+                + إضافة طابق / قسم جديد
+              </button>
+            </div>
+
+            <div id="complexFloorsContainer">
+              <!-- Rendered dynamically via admin.js -->
+            </div>
+
+            <div class="section-action-bar">
+              <button type="button" class="btn-primary" onclick="saveComplexFloors()">حفظ أقسام الطوابق 💾</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ====================================================================
+           PAGE 4: Hostel Page (hostel.html)
+           ==================================================================== -->
+      <div id="page-hostel" class="admin-page-pane">
+        
+        <div class="admin-accordion open">
+          <div class="admin-accordion-header" onclick="toggleAccordion(this)">
+            <div class="admin-accordion-title-wrap">
+              <div class="admin-accordion-icon">🛏️</div>
+              <div>
+                <h3 class="admin-accordion-title">مقدمة دار ضيافة مرضى الأورام المجانية</h3>
+                <div class="admin-accordion-subtitle">الرسالة، عدد الأسرة، وخدمة مرضى معهد أورام دمنهور ومرافقيهم</div>
+              </div>
+            </div>
+            <span class="admin-accordion-chevron">▼</span>
+          </div>
+          <div class="admin-accordion-body">
+            <div class="admin-form-group">
+              <label>عنوان دار الضيافة</label>
+              <input type="text" id="hostelTitle" class="admin-input">
+            </div>
+            <div class="admin-form-group">
+              <label>الوصف والخدمات المجانية الشاملة</label>
+              <textarea id="hostelDesc" rows="3" class="admin-textarea"></textarea>
+            </div>
+            <div class="admin-grid-3">
+              <div class="admin-form-group">
+                <label>الطاقة الاستيعابية للأسرة</label>
+                <input type="text" id="hostelBedsCount" class="admin-input" placeholder="24 سريراً مجهزاً بالكامل">
+              </div>
+              <div class="admin-form-group">
+                <label>تكلفة الإقامة للمريض ومرافقه</label>
+                <input type="text" id="hostelCostLabel" class="admin-input" placeholder="مجانية 100% بدون أي رسوم">
+              </div>
+              <div class="admin-form-group">
+                <label>مواعيد الاستقبال</label>
+                <input type="text" id="hostelHours" class="admin-input" placeholder="متاح 24 ساعة طوال أيام الأسبوع">
+              </div>
+            </div>
+            <div class="section-action-bar">
+              <button type="button" class="btn-primary" onclick="saveHostelIntro()">حفظ مقدمة دار الضيافة 💾</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-accordion">
+          <div class="admin-accordion-header" onclick="toggleAccordion(this)">
+            <div class="admin-accordion-title-wrap">
+              <div class="admin-accordion-icon">📋</div>
+              <div>
+                <h3 class="admin-accordion-title">شروط ومعايير الاستقبال المجاني</h3>
+                <div class="admin-accordion-subtitle">الأوراق المطلوبة وتسهيل إجراءات النزلاء ومرافقيهم</div>
+              </div>
+            </div>
+            <span class="admin-accordion-chevron">▼</span>
+          </div>
+          <div class="admin-accordion-body">
+            <div class="admin-form-group">
+              <label>شروط ومعايير الاستقبال (مكتوبة نقطة بكل سطر)</label>
+              <textarea id="hostelCriteriaText" rows="6" class="admin-textarea" placeholder="1. بطاقة علاج أو تقرير طبي من معهد أورام دمنهور&#10;2. بطاقة الرقم القومي للمريض والمرافق&#10;3. أن يكون المريض قادماً من قرى ومراكز محافظة البحيرة أو المحافظات المجاورة"></textarea>
+            </div>
+            <div class="section-action-bar">
+              <button type="button" class="btn-primary" onclick="saveHostelCriteria()">حفظ معايير الاستقبال 💾</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ====================================================================
+           PAGE 5: Projects & Empowerment Page (projects.html)
+           ==================================================================== -->
+      <div id="page-projects" class="admin-page-pane">
+        
+        <div class="admin-accordion open">
+          <div class="admin-accordion-header" onclick="toggleAccordion(this)">
+            <div class="admin-accordion-title-wrap">
+              <div class="admin-accordion-icon">💼</div>
+              <div>
+                <h3 class="admin-accordion-title">مقدمة مشروعات التمكين الاقتصادي والإنتاج</h3>
+                <div class="admin-accordion-subtitle">رؤية الجمعية في تحويل الأسر من الاحتياج إلى الإنتاج المستقل</div>
+              </div>
+            </div>
+            <span class="admin-accordion-chevron">▼</span>
+          </div>
+          <div class="admin-accordion-body">
+            <div class="admin-form-group">
+              <label>عنوان صفحة المشروعات</label>
+              <input type="text" id="projectsMainTitle" class="admin-input">
+            </div>
+            <div class="admin-form-group">
+              <label>الوصف العام للمشروعات التنموية</label>
+              <textarea id="projectsMainDesc" rows="3" class="admin-textarea"></textarea>
+            </div>
+            <div class="section-action-bar">
+              <button type="button" class="btn-primary" onclick="saveProjectsIntro()">حفظ مقدمة المشروعات 💾</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-accordion">
+          <div class="admin-accordion-header" onclick="toggleAccordion(this)">
+            <div class="admin-accordion-title-wrap">
+              <div class="admin-accordion-icon">🛺</div>
+              <div>
+                <h3 class="admin-accordion-title">مشروع أرزاق لتروسيكلات الطعام المتنقلة</h3>
+                <div class="admin-accordion-subtitle">تصنيع التروسيكلات بمدرسة دمنهور الزخرفية وتشغيل الشباب</div>
+              </div>
+            </div>
+            <span class="admin-accordion-chevron">▼</span>
+          </div>
+          <div class="admin-accordion-body">
+            <div class="admin-form-group">
+              <label>عنوان مشروع أرزاق</label>
+              <input type="text" id="projectsArzaqTitle" class="admin-input">
+            </div>
+            <div class="admin-form-group">
+              <label>وصف المشروع ومخرجاته</label>
+              <textarea id="projectsArzaqDesc" rows="3" class="admin-textarea"></textarea>
+            </div>
+            <div class="admin-grid-2">
+              <div class="admin-form-group">
+                <label>الجهة المصنعة الشريكة</label>
+                <input type="text" id="projectsArzaqPartner" class="admin-input" placeholder="مدرسة دمنهور الثانوية الزخرفية">
+              </div>
+              <div class="admin-form-group">
+                <label>الفئة المستهدفة</label>
+                <input type="text" id="projectsArzaqTarget" class="admin-input" placeholder="الشباب ومعيلو الأسر بالبحيرة">
+              </div>
+            </div>
+            <div class="section-action-bar">
+              <button type="button" class="btn-primary" onclick="saveProjectsArzaq()">حفظ مشروع أرزاق 💾</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-accordion">
+          <div class="admin-accordion-header" onclick="toggleAccordion(this)">
+            <div class="admin-accordion-title-wrap">
+              <div class="admin-accordion-icon">🧵</div>
+              <div>
+                <h3 class="admin-accordion-title">مشاغل النول والسجاد اليدوي والخياطة</h3>
+                <div class="admin-accordion-subtitle">تمكين السيدات المعيلات والأرامل والمطلقات بحرف يدوية تراثية</div>
+              </div>
+            </div>
+            <span class="admin-accordion-chevron">▼</span>
+          </div>
+          <div class="admin-accordion-body">
+            <div class="admin-form-group">
+              <label>عنوان مشاغل النول والخياطة</label>
+              <input type="text" id="projectsLoomTitle" class="admin-input">
+            </div>
+            <div class="admin-form-group">
+              <label>تفاصيل التدريب والإنتاج</label>
+              <textarea id="projectsLoomDesc" rows="3" class="admin-textarea"></textarea>
+            </div>
+            <div class="section-action-bar">
+              <button type="button" class="btn-primary" onclick="saveProjectsLoom()">حفظ مشاغل النول 💾</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ====================================================================
+           PAGE 6: Checkout & Accounts Page (checkout.html)
+           ==================================================================== -->
+      <div id="page-checkout" class="admin-page-pane">
+        
+        <div class="admin-accordion open">
+          <div class="admin-accordion-header" onclick="toggleAccordion(this)">
+            <div class="admin-accordion-title-wrap">
+              <div class="admin-accordion-icon">📱</div>
+              <div>
+                <h3 class="admin-accordion-title">المحافظ الإلكترونية وإنستاباي (Vodafone Cash & InstaPay)</h3>
+                <div class="admin-accordion-subtitle">أرقام التحويل الفوري والمحافظ المعتمدة للتبرع السريع</div>
+              </div>
+            </div>
+            <span class="admin-accordion-chevron">▼</span>
+          </div>
+          <div class="admin-accordion-body">
+            <div class="admin-grid-2">
+              <div class="admin-form-group">
+                <label>رقم فودافون كاش / المحافظ الإلكترونية *</label>
+                <input type="text" id="checkoutVodafoneCash" class="admin-input" placeholder="01026410313">
+              </div>
+              <div class="admin-form-group">
+                <label>معرف إنستاباي (InstaPay Address / IPA) *</label>
+                <input type="text" id="checkoutInstaPay" class="admin-input" placeholder="israa.charity@instapay">
+              </div>
+            </div>
+            <div class="admin-form-group">
+              <label>إرشادات التحويل بالمحافظ</label>
+              <input type="text" id="checkoutWalletNotes" class="admin-input" placeholder="يرجى إرسال لقطة شاشة لإيصال التحويل عبر واتساب أو تسجيلها بالنموذج">
+            </div>
+            <div class="section-action-bar">
+              <span style="font-size:0.82rem; color:#64748B;">يتم تحديثها فوراً في صفحة الدفع والفوتر</span>
+              <button type="button" class="btn-primary" onclick="saveCheckoutWallets()">حفظ المحافظ وإنستاباي 💾</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-accordion open">
+          <div class="admin-accordion-header" onclick="toggleAccordion(this)">
+            <div class="admin-accordion-title-wrap">
+              <div class="admin-accordion-icon">🏦</div>
+              <div>
+                <h3 class="admin-accordion-title">الحسابات البنكية الرسمية للجمعية (إضافة / تعديل / حذف)</h3>
+                <div class="admin-accordion-subtitle">حسابات بنك مصر والبنك الأهلي المصري وأي حسابات بنكية إضافية</div>
+              </div>
+            </div>
+            <span class="admin-accordion-chevron">▼</span>
+          </div>
+          <div class="admin-accordion-body">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+              <span style="font-weight:800; font-size:0.95rem; color:#0F172A;">الحسابات البنكية المعتمدة:</span>
+              <button type="button" class="btn-primary" onclick="addNewBankAccountCard()" style="font-size:0.85rem; padding:6px 14px;">
+                + إضافة حساب بنكي جديد
+              </button>
+            </div>
+
+            <div id="checkoutBankAccountsContainer">
+              <!-- Rendered dynamically via admin.js -->
+            </div>
+
+            <div class="section-action-bar">
+              <span style="font-size:0.82rem; color:#64748B;">تظهر في تبويب التحويل البنكي بصفحة الدفع</span>
+              <button type="button" class="btn-primary" onclick="saveCheckoutBankAccounts()">حفظ الحسابات البنكية 💾</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ====================================================================
+           PAGE 7: Contact & Location Page (contact.html)
+           ==================================================================== -->
+      <div id="page-contact" class="admin-page-pane">
+        
+        <div class="admin-accordion open">
+          <div class="admin-accordion-header" onclick="toggleAccordion(this)">
+            <div class="admin-accordion-title-wrap">
+              <div class="admin-accordion-icon">📍</div>
+              <div>
+                <h3 class="admin-accordion-title">بيانات المقر الجغرافي وخريطة Google Map لدمنهور</h3>
+                <div class="admin-accordion-subtitle">عنوان المقر، كود خريطة جوجل دمنهور، ورابط الـ GPS المباشر</div>
+              </div>
+            </div>
+            <span class="admin-accordion-chevron">▼</span>
+          </div>
+          <div class="admin-accordion-body">
+            <div class="admin-form-group">
+              <label>عنوان المقر التفصيلي</label>
+              <input type="text" id="contactLocationAddress" class="admin-input" placeholder="دمنهور، محافظة البحيرة - شارع مدرسة ناصر الفكرية، خلف معهد أورام دمنهور القومي">
+            </div>
+            <div class="admin-form-group">
+              <label>رابط تضمين خريطة Google Map (Embed URL)</label>
+              <input type="text" id="contactMapEmbedUrl" class="admin-input" placeholder="https://maps.google.com/maps?q=...">
+            </div>
+            <div class="admin-form-group">
+              <label>رابط زر الاتجاهات المباشر (GPS Directions Link)</label>
+              <input type="text" id="contactMapGpsUrl" class="admin-input" placeholder="https://www.google.com/maps/search/?api=1&query=...">
+            </div>
+            <div class="section-action-bar">
+              <span style="font-size:0.82rem; color:#64748B;">يتحكم في إطار خريطة دمنهور التفاعلية بصفحة contact.html</span>
+              <button type="button" class="btn-primary" onclick="saveContactMapLocation()">حفظ بيانات المقر والخريطة 💾</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-accordion open">
+          <div class="admin-accordion-header" onclick="toggleAccordion(this)">
+            <div class="admin-accordion-title-wrap">
+              <div class="admin-accordion-icon">📞</div>
+              <div>
+                <h3 class="admin-accordion-title">أرقام الهواتف والواتساب وساعات العمل</h3>
+                <div class="admin-accordion-subtitle">خطوط الاتصال المباشرة ومواعيد استقبال النزلاء بالدار</div>
+              </div>
+            </div>
+            <span class="admin-accordion-chevron">▼</span>
+          </div>
+          <div class="admin-accordion-body">
+            <div class="admin-grid-3">
+              <div class="admin-form-group">
+                <label>رقم هاتف المجمع</label>
+                <input type="text" id="contactPhonePrimary" class="admin-input" placeholder="045-3318920">
+              </div>
+              <div class="admin-form-group">
+                <label>رقم الموبايل / واتساب</label>
+                <input type="text" id="contactPhoneMobile" class="admin-input" placeholder="01026410313">
+              </div>
+              <div class="admin-form-group">
+                <label>البريد الإلكتروني الرسمي</label>
+                <input type="email" id="contactEmailOfficial" class="admin-input" placeholder="al_israa_ngo@yahoo.com">
+              </div>
+            </div>
+            <div class="admin-form-group">
+              <label>مواعيد الاستقبال وطوارئ دار الضيافة</label>
+              <input type="text" id="contactWorkingHours" class="admin-input" placeholder="استقبال دار الضيافة متاح 24 ساعة لاستقبال الحالات الطارئة">
+            </div>
+            <div class="section-action-bar">
+              <button type="button" class="btn-primary" onclick="saveContactPhones()">حفظ أرقام الاتصال 💾</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-accordion">
+          <div class="admin-accordion-header" onclick="toggleAccordion(this)">
+            <div class="admin-accordion-title-wrap">
+              <div class="admin-accordion-icon">⚖️</div>
+              <div>
+                <h3 class="admin-accordion-title">البيانات القانونية والقيد الوزاري</h3>
+                <div class="admin-accordion-subtitle">رقم القيد، قرار صفة النفع العام، ومجلس الإدارة</div>
+              </div>
+            </div>
+            <span class="admin-accordion-chevron">▼</span>
+          </div>
+          <div class="admin-accordion-body">
+            <div class="admin-grid-3">
+              <div class="admin-form-group">
+                <label>رقم القيد الرسمي بوزارة التضامن</label>
+                <input type="text" id="contactLegalRegistration" class="admin-input" placeholder="1124 لسنة 2006">
+              </div>
+              <div class="admin-form-group">
+                <label>قرار صفة النفع العام</label>
+                <input type="text" id="contactLegalPublicBenefit" class="admin-input" placeholder="قرار وزاري رقم 646 لسنة 2024">
+              </div>
+              <div class="admin-form-group">
+                <label>رئيس مجلس الإدارة</label>
+                <input type="text" id="contactLegalPresident" class="admin-input" placeholder="أ. فاطمة عبد المجيد راضي">
+              </div>
+            </div>
+            <div class="section-action-bar">
+              <button type="button" class="btn-primary" onclick="saveContactLegal()">حفظ البيانات القانونية 💾</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ====================================================================
+           PAGE 8: Inbox & Submissions (inbox)
+           ==================================================================== -->
+      <div id="page-inbox" class="admin-page-pane">
         <div class="admin-card">
           <div class="admin-card-title">
             <span>صندوق طلبات دار الضيافة والاستفسارات الواردة</span>
@@ -804,42 +1389,9 @@
       </div>
 
       <!-- ====================================================================
-           TAB 5: Partners Manager
+           PAGE 9: Backup & Cloud Webhook Sync
            ==================================================================== -->
-      <div id="tab-partners" class="admin-tab-pane">
-        <div class="admin-card">
-          <div class="admin-card-title">
-            <span>شركاء النجاح والرعاة الرسميون</span>
-            <button class="btn-primary" onclick="openAddPartnerModal()" style="font-size:0.85rem; padding:8px 16px;">
-              + إضافة جهة شريكة
-            </button>
-          </div>
-          <p style="font-size:0.88rem; color:#64748B; margin-bottom:16px;">
-            جميع الشعارات الحالية مستخرجة مباشرة من المواقع الرسمية المعتمدة للوزارات والمنظمات بدون أي ارتجال.
-          </p>
-          
-          <div class="admin-table-wrap">
-            <table class="admin-table">
-              <thead>
-                <tr>
-                  <th style="width:70px;">الشعار الرسمي</th>
-                  <th>اسم الجهة الشريكة</th>
-                  <th>الملف المحلي</th>
-                  <th style="text-align:center;">إجراءات</th>
-                </tr>
-              </thead>
-              <tbody id="partnersTableBody">
-                <!-- Injected dynamically via admin.js -->
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <!-- ====================================================================
-           TAB 6: Cloud Sync & Backup Engine
-           ==================================================================== -->
-      <div id="tab-backup" class="admin-tab-pane">
+      <div id="page-backup" class="admin-page-pane">
         
         <!-- Google Sheets Webhook -->
         <div class="admin-card">
@@ -866,10 +1418,10 @@
         <!-- Full Site Backup & Restore -->
         <div class="admin-card">
           <div class="admin-card-title">
-            <span>💾 النسخ الاحتياطي ونقل البيانات (JSON Backup)</span>
+            <span>💾 النسخ الاحتياطي الشامل لكافة صفحات الموقع (JSON Backup)</span>
           </div>
           <p style="font-size:0.9rem; color:#475569; line-height:1.6;">
-            قم بتصدير ملف النسخة الاحتياطية الذي يحتوي على كافة الحملات، الأسعار، الصور بصيغة Base64، والنصوص. يمكنك استيراده في أي وقت لاستعادة الموقع بنقرة زر واحدة.
+            قم بتصدير ملف النسخة الاحتياطية الذي يحتوي على كافة الصفحات الـ 7، الحملات، الأسعار، الأخبار، الصور بصيغة Base64، والنصوص. يمكنك استيراده في أي وقت لاستعادة الموقع بنقرة زر واحدة.
           </p>
           <div style="display:flex; gap:14px; flex-wrap:wrap; margin-top:16px;">
             <button class="btn-primary" onclick="exportDataJSON()" style="padding:10px 22px;">
@@ -885,13 +1437,33 @@
           </div>
         </div>
 
+        <!-- Security Credentials Setting -->
+        <div class="admin-card">
+          <div class="admin-card-title">
+            <span>🔒 تعديل بيانات دخول لوحة التحكم</span>
+          </div>
+          <div class="admin-grid-2">
+            <div class="admin-form-group">
+              <label>اسم مستخدم الإدارة الجديد</label>
+              <input type="text" id="settingAdminUser" class="admin-input">
+            </div>
+            <div class="admin-form-group">
+              <label>كلمة المرور الجديدة</label>
+              <input type="text" id="settingAdminPass" class="admin-input">
+            </div>
+          </div>
+          <button type="button" class="btn-primary" onclick="saveAdminCredentials()" style="padding:10px 24px;">
+            حفظ بيانات الدخول الجديدة 💾
+          </button>
+        </div>
+
       </div>
 
     </main>
   </div>
 
   <!-- ==========================================================================
-       Campaign Edit / Add Modal
+       Campaign Edit / Add Modal (Store Page)
        ========================================================================== -->
   <div id="campaignModal" class="admin-modal">
     <div class="admin-modal-content">
@@ -966,14 +1538,14 @@
         <div class="admin-form-group">
           <label>صورة الحملة (رفع مباشر من جهازك أو إدخال مسار / رابط)</label>
           <div class="image-uploader-box" onclick="document.getElementById('modalImageFileInput').click()">
-            <div style="font-size:1.8rem; margin-bottom:6px;">📸</div>
-            <div style="font-weight:700; font-size:0.9rem; color:#0F172A;">انقر لرفع صورة من جهازك</div>
-            <div style="font-size:0.8rem; color:#64748B;">يدعم PNG, JPG, WebP (يتم ضغط الصورة تلقائياً للحفاظ على المساحة)</div>
-            <input type="file" id="modalImageFileInput" accept="image/*" style="display:none;" onchange="handleImageFileUpload(event)">
-            <img id="modalImagePreview" class="image-preview-slot" alt="معاينة الصورة">
+            <div style="font-size:1.6rem; margin-bottom:4px;">📸</div>
+            <div style="font-weight:700; font-size:0.88rem; color:#0F172A;">انقر لرفع صورة من جهازك</div>
+            <div style="font-size:0.78rem; color:#64748B;">يدعم PNG, JPG, WebP (يتم ضغط الصورة تلقائياً لتناسب المساحة)</div>
+            <input type="file" id="modalImageFileInput" accept="image/*" style="display:none;" onchange="handleImageFileUpload(event, 'modalImagePreview', 'modalCampaignImageUrl')">
+            <img id="modalImagePreview" class="image-preview-slot" alt="معاينة الصورة" style="display:none;">
           </div>
           <div style="margin-top:8px;">
-            <input type="text" id="modalCampaignImageUrl" class="admin-input" placeholder="أو أدخل مسار الصورة مثلاً hostel.jpg أو رابط مباشر">
+            <input type="text" id="modalCampaignImageUrl" class="admin-input" placeholder="مسار الصورة مثلاً hostel.jpg أو رابط مباشر">
           </div>
         </div>
 

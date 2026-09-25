@@ -1,132 +1,23 @@
 /**
  * جمعية الإسراء الخيرية لتنمية المجتمع بدمنهور
- * Comprehensive Donation Store, Cart, Dynamic CMS Sync & Interactive Engine
+ * Comprehensive Donation Store, Cart, Page-by-Page Dynamic CMS Sync & Interactive Engine
  * Powered by NGOhub
  */
 
 // Storage Keys
 const CART_STORAGE_KEY = 'al_israa_donation_cart';
-const CMS_CAMPAIGNS_KEY = 'al_israa_cms_campaigns';
-const CMS_SETTINGS_KEY = 'al_israa_cms_settings';
-const CMS_PARTNERS_KEY = 'al_israa_cms_partners';
+const PAGES_DATA_KEY = 'al_israa_cms_pages_data';
 const CMS_INBOX_KEY = 'al_israa_cms_inbox';
 const CMS_WEBHOOK_KEY = 'al_israa_cms_webhook';
 
-// Default Seed Campaigns
-const DEFAULT_CAMPAIGNS = [
-  {
-    id: "store_hostel_patient",
-    title: "كفالة استضافة مريض أورام بدار ضيافة الإسراء",
-    category: "health",
-    tag: "#رعاية_مرضى_الأورام",
-    badge: "حالة عاجلة ⚠️",
-    badgeColor: "orange",
-    unitPrice: 500,
-    targetAmount: 50000,
-    collectedAmount: 37500,
-    presets: [250, 500, 1000],
-    image: "hostel.jpg",
-    desc: "إقامة كاملة وسرير مجهز ورعاية كريمة لمريض أورام ومرافقه من قرى ومراكز البحيرة طوال فترة تلقي العلاج بمعهد دمنهور للأورام."
-  },
-  {
-    id: "store_oncology_meals",
-    title: "وجبات علاجية طازجة لمرضى معهد الأورام",
-    category: "health",
-    tag: "#المطبخ_الخيري_للأورام",
-    badge: "إطعام ورعاية",
-    badgeColor: "green",
-    unitPrice: 100,
-    targetAmount: 30000,
-    collectedAmount: 21000,
-    presets: [50, 100, 250],
-    image: "kitchen.jpg",
-    desc: "توفير وجبات غذائية صحية ومتوازنة مطبوخة يومياً بمطبخ الجمعية لمرضى السرطان ومرافقيهم أثناء جلسات الكيماوي والإشعاعي."
-  },
-  {
-    id: "store_arzaq_tricycle",
-    title: "تمويل تروسيكل طعام مجهز (مشروع أرزاق)",
-    category: "empowerment",
-    tag: "#مشروع_أرزاق_دمنهور",
-    badge: "تمكين اقتصادي 💼",
-    badgeColor: "orange",
-    unitPrice: 1000,
-    targetAmount: 90000,
-    collectedAmount: 63000,
-    presets: [500, 1000, 2500],
-    image: "arzaq.jpg",
-    desc: "تصنيع وتجهيز عربات وتروسيكلات طعام بأيدي طلاب مدرسة دمنهور الزخرفية وتسليمها لمعيلي الأسر والشباب لفتح باب رزق كريم ومستدام."
-  },
-  {
-    id: "store_carpet_loom",
-    title: "سهم مشغل النول والسجاد اليدوي للسيدات المعيلات",
-    category: "empowerment",
-    tag: "#نول_وسجاد_البحيرة",
-    badge: "صناعة وحرفة",
-    badgeColor: "blue",
-    unitPrice: 300,
-    targetAmount: 40000,
-    collectedAmount: 28000,
-    presets: [150, 300, 600],
-    image: "loom.jpg",
-    desc: "تدريب وتوفير خامات الصوف والحرير والنول اليدوي للسيدات الريفيات لإنتاج سجاد وكليم تراثي عالي الجودة وتحقيق دخل عائلي مستقل."
-  },
-  {
-    id: "store_sewing_workshop",
-    title: "ماكينة خياطة وتدريب مهني للأرامل والمطلقات",
-    category: "empowerment",
-    tag: "#مشاغل_الإسراء_الإنتاجية",
-    badge: "حياة كريمة",
-    badgeColor: "green",
-    unitPrice: 400,
-    targetAmount: 45000,
-    collectedAmount: 31500,
-    presets: [200, 400, 800],
-    image: "sewing.jpg",
-    desc: "شراء ماكينة خياطة وتفصيل حديثة وتسليمها للأم المعيلة مع دورة تدريبية مكثفة لتأسيس مشغلها المنزلي وتوفير الكفاية لأطفالها."
-  },
-  {
-    id: "store_clinic_share",
-    title: "سهم عيادات مجمع الإسراء التخصصية والأدوية",
-    category: "health",
-    tag: "#مجمع_الإسراء_التنموي",
-    badge: "صحة وعلاج ⚠️",
-    badgeColor: "orange",
-    unitPrice: 250,
-    targetAmount: 80000,
-    collectedAmount: 56000,
-    presets: [150, 250, 500],
-    image: "complex.jpg",
-    desc: "كفالة الكشف التخصصي والتحاليل وصرف الأدوية الشهرية للأسر الأكثر احتياجاً وكبار السن بالمجمع الطبي المكون من 5 طوابق."
-  },
-  {
-    id: "store_school_class",
-    title: "كفالة تعليمية وتغذية لأطفال الفصول المجتمعية",
-    category: "green",
-    tag: "#مكافحة_التسرب_المدرسي",
-    badge: "تعليم وبناء إنسان",
-    badgeColor: "blue",
-    unitPrice: 350,
-    targetAmount: 40000,
-    collectedAmount: 28000,
-    presets: [150, 350, 700],
-    image: "school.jpg",
-    desc: "كفالة المصاريف، الحقيبة المدرسية، والوجبة اليومية لتلاميذ الفصول المجتمعية بقرى دمنهور لإعادتهم لمسار التعليم الكريم."
-  },
-  {
-    id: "store_solar_ongoing",
-    title: "سهم الصدقة الجارية بمجمع الإسراء الطبي",
-    category: "ongoing",
-    tag: "#صدقة_جارية_تنموية",
-    badge: "صدقة جارية ممتدة",
-    badgeColor: "green",
-    unitPrice: 1000,
-    targetAmount: 150000,
-    collectedAmount: 112500,
-    presets: [500, 1000, 2500],
-    image: "solar.jpg",
-    desc: "مساهمة ممتدة في البنية التحتية، محطة الطاقة الشمسية، والأجهزة الطبية بالمجمع الخيري ليبقى أثر صدقتك في كل مريض ومتعلم."
-  }
-];
+// Global Data Accessor
+function getGlobalPagesData() {
+  try {
+    const raw = localStorage.getItem(PAGES_DATA_KEY);
+    if (raw) return JSON.parse(raw);
+  } catch (e) {}
+  return null;
+}
 
 // Cart State Management via LocalStorage
 function getCart() {
@@ -333,55 +224,160 @@ window.closeMobileNav = function() {
   }
 };
 
-// Dynamic CMS Data Helpers
-function getCmsCampaignsData() {
-  try {
-    const raw = localStorage.getItem(CMS_CAMPAIGNS_KEY);
-    if (raw) return JSON.parse(raw);
-    localStorage.setItem(CMS_CAMPAIGNS_KEY, JSON.stringify(DEFAULT_CAMPAIGNS));
-    return DEFAULT_CAMPAIGNS;
-  } catch (e) {
-    return DEFAULT_CAMPAIGNS;
+// ============================================================================
+// DYNAMIC PAGE-BY-PAGE HYDRATION ENGINE
+// ============================================================================
+function hydratePageByPageContent() {
+  const pagesData = getGlobalPagesData();
+  if (!pagesData) return;
+
+  const currentPath = window.location.pathname;
+
+  // --- 1. HOME PAGE (index.html) ---
+  if (pagesData.home && (!currentPath.includes('.html') || currentPath.endsWith('index.html') || currentPath.endsWith('/'))) {
+    // Hero
+    const heroBadge = document.querySelector('.hero-badge-pill span');
+    const heroTitle = document.querySelector('.hero-heading');
+    const heroDesc = document.querySelector('.hero-description');
+    if (heroBadge && pagesData.home.hero.badge) heroBadge.textContent = pagesData.home.hero.badge;
+    if (heroTitle && pagesData.home.hero.title) heroTitle.textContent = pagesData.home.hero.title;
+    if (heroDesc && pagesData.home.hero.desc) heroDesc.textContent = pagesData.home.hero.desc;
+
+    // Outbox Green Schools Showcase
+    const outboxTitle = document.querySelector('.outbox-title');
+    const outboxDesc = document.querySelector('.outbox-desc');
+    const outboxKpis = document.querySelectorAll('.outbox-kpi-card .outbox-kpi-num');
+    if (outboxTitle && pagesData.home.outbox.title) outboxTitle.textContent = pagesData.home.outbox.title;
+    if (outboxDesc && pagesData.home.outbox.desc) outboxDesc.textContent = pagesData.home.outbox.desc;
+    if (outboxKpis.length >= 4 && pagesData.home.outbox.kpis && pagesData.home.outbox.kpis.length >= 4) {
+      pagesData.home.outbox.kpis.forEach((val, idx) => {
+        if (outboxKpis[idx]) outboxKpis[idx].textContent = val;
+      });
+    }
+
+    // Dynamic News Cards
+    const newsGrid = document.querySelector('.news-cards-grid');
+    if (newsGrid && pagesData.home.news && pagesData.home.news.length > 0) {
+      let newsHtml = '';
+      pagesData.home.news.forEach(item => {
+        newsHtml += `
+          <article class="news-card">
+            <div class="news-card-img">
+              <img src="${item.image || 'complex.jpg'}" alt="${item.title}" onerror="this.src='complex.jpg'">
+              <span class="news-card-date">${item.date || 'سبتمبر 2026'}</span>
+            </div>
+            <div class="news-card-body">
+              <span class="news-tag">${item.tag || 'أخبار الجمعية'}</span>
+              <h3 class="news-title">${item.title}</h3>
+              <p class="news-excerpt">${item.desc}</p>
+              <a href="${item.link || 'projects.html'}" class="news-link">اقرأ التفاصيل الكاملة ←</a>
+            </div>
+          </article>
+        `;
+      });
+      newsGrid.innerHTML = newsHtml;
+    }
+
+    // Dynamic Partners Grid
+    const partnersGrid = document.querySelector('.partners-grid');
+    if (partnersGrid && pagesData.home.partners && pagesData.home.partners.length > 0) {
+      let partnersHtml = '';
+      pagesData.home.partners.forEach(p => {
+        partnersHtml += `
+          <div class="partner-card">
+            <div class="partner-logo-box">
+              <img src="${p.image}" alt="${p.name}" class="partner-logo-img" onerror="this.src='logo.png'">
+            </div>
+            <div class="partner-name">${p.name}</div>
+          </div>
+        `;
+      });
+      partnersGrid.innerHTML = partnersHtml;
+    }
   }
-}
 
-function getCmsSettingsData() {
-  try {
-    const raw = localStorage.getItem(CMS_SETTINGS_KEY);
-    return raw ? JSON.parse(raw) : null;
-  } catch (e) {
-    return null;
-  }
-}
-
-// Hydrate Public Pages with CMS Content & Settings
-function hydrateCmsContent() {
-  const settings = getCmsSettingsData();
-  if (!settings) return;
-
-  // Hero Section
-  const heroBadge = document.querySelector('.hero-badge-pill span');
-  const heroTitle = document.querySelector('.hero-heading');
-  const heroDesc = document.querySelector('.hero-description');
-
-  if (heroBadge && settings.heroBadge) heroBadge.textContent = settings.heroBadge;
-  if (heroTitle && settings.heroTitle && !window.location.pathname.includes('store.html')) {
-    heroTitle.textContent = settings.heroTitle;
-  }
-  if (heroDesc && settings.heroDesc && !window.location.pathname.includes('store.html')) {
-    heroDesc.textContent = settings.heroDesc;
+  // --- 2. STORE PAGE (store.html) ---
+  if (pagesData.store && currentPath.includes('store.html')) {
+    const storeBadge = document.querySelector('.hero-badge-pill span');
+    const storeTitle = document.querySelector('.hero-heading');
+    const storeDesc = document.querySelector('.hero-description');
+    if (storeBadge && pagesData.store.header.badge) storeBadge.textContent = pagesData.store.header.badge;
+    if (storeTitle && pagesData.store.header.title) storeTitle.textContent = pagesData.store.header.title;
+    if (storeDesc && pagesData.store.header.desc) storeDesc.textContent = pagesData.store.header.desc;
   }
 
-  // Vodafone Cash & InstaPay in Checkout or contact
-  const vfNumbers = document.querySelectorAll('.vodafone-num-val');
-  vfNumbers.forEach(elem => {
-    if (settings.vodafoneCash) elem.textContent = settings.vodafoneCash;
-  });
+  // --- 3. COMPLEX PAGE (complex.html) ---
+  if (pagesData.complex && currentPath.includes('complex.html')) {
+    const compTitle = document.querySelector('.hero-heading');
+    const compDesc = document.querySelector('.hero-description');
+    if (compTitle && pagesData.complex.intro.title) compTitle.textContent = pagesData.complex.intro.title;
+    if (compDesc && pagesData.complex.intro.desc) compDesc.textContent = pagesData.complex.intro.desc;
+  }
 
-  const ipAddresses = document.querySelectorAll('.instapay-addr-val');
-  ipAddresses.forEach(elem => {
-    if (settings.instaPay) elem.textContent = settings.instaPay;
-  });
+  // --- 4. HOSTEL PAGE (hostel.html) ---
+  if (pagesData.hostel && currentPath.includes('hostel.html')) {
+    const hostelTitle = document.querySelector('.hero-heading');
+    const hostelDesc = document.querySelector('.hero-description');
+    if (hostelTitle && pagesData.hostel.intro.title) hostelTitle.textContent = pagesData.hostel.intro.title;
+    if (hostelDesc && pagesData.hostel.intro.desc) hostelDesc.textContent = pagesData.hostel.intro.desc;
+  }
+
+  // --- 5. PROJECTS PAGE (projects.html) ---
+  if (pagesData.projects && currentPath.includes('projects.html')) {
+    const projTitle = document.querySelector('.hero-heading');
+    const projDesc = document.querySelector('.hero-description');
+    if (projTitle && pagesData.projects.intro.title) projTitle.textContent = pagesData.projects.intro.title;
+    if (projDesc && pagesData.projects.intro.desc) projDesc.textContent = pagesData.projects.intro.desc;
+  }
+
+  // --- 6. CHECKOUT PAGE (checkout.html) ---
+  if (pagesData.checkout && currentPath.includes('checkout.html')) {
+    const vfNumbers = document.querySelectorAll('.vodafone-num-val');
+    vfNumbers.forEach(elem => {
+      if (pagesData.checkout.wallets.vodafoneCash) elem.textContent = pagesData.checkout.wallets.vodafoneCash;
+    });
+
+    const ipAddresses = document.querySelectorAll('.instapay-addr-val');
+    ipAddresses.forEach(elem => {
+      if (pagesData.checkout.wallets.instaPay) elem.textContent = pagesData.checkout.wallets.instaPay;
+    });
+
+    // Bank Accounts List in Checkout
+    const bankListWrap = document.querySelector('.checkout-bank-details');
+    if (bankListWrap && pagesData.checkout.bankAccounts && pagesData.checkout.bankAccounts.length > 0) {
+      let bankHtml = '';
+      pagesData.checkout.bankAccounts.forEach(acc => {
+        bankHtml += `
+          <div style="background:#FFFFFF; border:1px solid var(--border-color); border-radius:12px; padding:16px; margin-bottom:12px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <strong style="color:var(--text-main); font-size:1.05rem;">🏦 ${acc.bankName} (${acc.branch})</strong>
+              <button type="button" class="btn-outline" style="padding:4px 10px; font-size:0.78rem;" onclick="copyToClipboard('${acc.accountNumber}', this)">نسخ الرقم 📋</button>
+            </div>
+            <div style="font-size:0.95rem; color:var(--brand-green); font-weight:800;">رقم الحساب: ${acc.accountNumber}</div>
+            ${acc.iban ? `<div style="font-size:0.8rem; color:var(--text-muted); margin-top:4px;">IBAN: <code>${acc.iban}</code></div>` : ''}
+          </div>
+        `;
+      });
+      bankListWrap.innerHTML = bankHtml;
+    }
+  }
+
+  // --- 7. CONTACT PAGE & GOOGLE MAPS (contact.html) ---
+  if (pagesData.contact && currentPath.includes('contact.html')) {
+    const addressElem = document.getElementById('contactAddressDesc');
+    const mapFrame = document.getElementById('contactGoogleMapFrame');
+    const gpsBtn = document.getElementById('contactGpsDirectionBtn');
+
+    if (addressElem && pagesData.contact.location.address) {
+      addressElem.textContent = pagesData.contact.location.address;
+    }
+    if (mapFrame && pagesData.contact.location.mapEmbedUrl) {
+      mapFrame.src = pagesData.contact.location.mapEmbedUrl;
+    }
+    if (gpsBtn && pagesData.contact.location.gpsUrl) {
+      gpsBtn.href = pagesData.contact.location.gpsUrl;
+    }
+  }
 }
 
 // Dynamic Rendering of Campaign Cards in Store & Index Pages
@@ -389,16 +385,17 @@ function renderDynamicCampaignCards() {
   const grid = document.querySelector('.campaigns-cards-grid');
   if (!grid) return;
 
-  const campaigns = getCmsCampaignsData();
-  let html = '';
+  const pagesData = getGlobalPagesData();
+  const campaigns = (pagesData && pagesData.store && pagesData.store.campaigns) || [];
+  if (campaigns.length === 0) return;
 
+  let html = '';
   campaigns.forEach(c => {
     const target = Number(c.targetAmount) || 1;
     const collected = Number(c.collectedAmount) || 0;
     const remaining = Math.max(0, target - collected);
     const pct = Math.min(100, Math.round((collected / target) * 100));
 
-    // Preset buttons
     const presets = Array.isArray(c.presets) && c.presets.length > 0 
       ? c.presets 
       : [Math.round(c.unitPrice * 0.5), c.unitPrice, c.unitPrice * 2];
@@ -604,8 +601,8 @@ document.addEventListener('DOMContentLoaded', () => {
   updateCartBadges();
   renderCartDrawer();
 
-  // 2. Hydrate Dynamic CMS Data
-  hydrateCmsContent();
+  // 2. Hydrate Dynamic Page-by-Page CMS Data
+  hydratePageByPageContent();
   renderDynamicCampaignCards();
 
   // 3. Cart Drawer Triggers
