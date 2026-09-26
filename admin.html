@@ -405,11 +405,107 @@
       display: flex;
       animation: toastIn 0.3s ease;
     }
-    @keyframes toastIn {
-      from { transform: translateY(20px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
+    /* Admin Modal Dialog (Campaign & Edit Modals) */
+    .admin-modal {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(15, 23, 42, 0.72);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      z-index: 999999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      box-sizing: border-box;
+      overflow-y: auto;
+      opacity: 0;
+      transition: opacity 0.25s ease;
     }
-    
+    .admin-modal.active {
+      display: flex !important;
+      opacity: 1;
+    }
+    .admin-modal-content {
+      background: #FFFFFF;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 680px;
+      max-height: 90vh;
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(0, 0, 0, 0.06);
+      border: 1px solid var(--admin-border);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      margin: auto;
+      animation: modalScaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes modalScaleUp {
+      0% { transform: scale(0.94) translateY(12px); opacity: 0; }
+      100% { transform: scale(1) translateY(0); opacity: 1; }
+    }
+    .admin-modal-header {
+      padding: 18px 24px;
+      background: #F8FAFC;
+      border-bottom: 1px solid var(--admin-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+    .admin-modal-header h3 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #0F172A;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .admin-modal-close {
+      background: #F1F5F9;
+      border: 1px solid var(--admin-border);
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      font-size: 1.1rem;
+      color: #64748B;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+      line-height: 1;
+    }
+    .admin-modal-close:hover {
+      background: #FEE2E2;
+      border-color: #FECACA;
+      color: #DC2626;
+      transform: rotate(90deg);
+    }
+    .admin-modal-body {
+      padding: 24px 26px;
+      overflow-y: auto;
+      flex-grow: 1;
+      max-height: calc(90vh - 140px);
+    }
+    .admin-modal-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      padding: 16px 26px;
+      border-top: 1px solid var(--admin-border);
+      background: #F8FAFC;
+      flex-shrink: 0;
+    }
+
     @media (max-width: 992px) {
       .admin-sidebar { width: 70px; }
       .admin-sidebar-header span, .admin-nav-item button span:last-child, .admin-nav-footer, .sidebar-section-title {
@@ -1855,13 +1951,14 @@
   <div id="campaignModal" class="admin-modal">
     <div class="admin-modal-content">
       <div class="admin-modal-header">
-        <h3 id="campaignModalHeading" style="margin:0; font-size:1.25rem; font-weight:800;">
-          إضافة حملة تبرع جديدة
+        <h3 id="campaignModalHeading">
+          <span>🏷️</span>
+          <span>إضافة حملة تبرع جديدة</span>
         </h3>
-        <button type="button" onclick="closeCampaignModal()" style="background:none; border:none; font-size:1.4rem; cursor:pointer;">✕</button>
+        <button type="button" class="admin-modal-close" onclick="closeCampaignModal()" title="إغلاق النافذة">✕</button>
       </div>
       
-      <form id="campaignForm">
+      <form id="campaignForm" class="admin-modal-body">
         <input type="hidden" id="modalCampaignId">
         
         <div class="admin-form-group">
@@ -1941,9 +2038,9 @@
           <textarea id="modalCampaignDesc" rows="3" class="admin-textarea" required placeholder="اشرح بالتفصيل أين تذهب هذه المساهمة وما هو الأثر المتحقق منها..."></textarea>
         </div>
 
-        <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:20px;">
-          <button type="button" class="btn-outline" onclick="closeCampaignModal()">إلغاء</button>
-          <button type="submit" class="btn-primary" style="padding:10px 24px;">حفظ الحملة 💾</button>
+        <div class="admin-modal-footer">
+          <button type="button" class="btn-outline" onclick="closeCampaignModal()" style="padding:10px 20px;">إلغاء التعديل</button>
+          <button type="submit" class="btn-primary" style="padding:10px 26px;">حفظ بيانات الحملة 💾</button>
         </div>
       </form>
     </div>

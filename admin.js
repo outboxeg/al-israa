@@ -1598,7 +1598,7 @@ function saveStoreCampaignsList() {
 
 // Campaign Modal
 function openAddCampaignModal() {
-  document.getElementById('campaignModalHeading').textContent = 'إضافة حملة تبرع جديدة';
+  document.getElementById('campaignModalHeading').innerHTML = '<span>🏷️</span><span>إضافة حملة تبرع جديدة</span>';
   document.getElementById('modalCampaignId').value = '';
   document.getElementById('modalCampaignTitle').value = '';
   document.getElementById('modalCampaignCategory').value = 'health';
@@ -1615,6 +1615,7 @@ function openAddCampaignModal() {
   const preview = document.getElementById('modalImagePreview');
   if (preview) { preview.src = ''; preview.style.display = 'none'; }
   document.getElementById('campaignModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
 }
 
 function openEditCampaignModal(id) {
@@ -1622,7 +1623,7 @@ function openEditCampaignModal(id) {
   const c = d.store.campaigns.find(item => item.id === id);
   if (!c) return;
 
-  document.getElementById('campaignModalHeading').textContent = `تعديل حملة: ${c.title}`;
+  document.getElementById('campaignModalHeading').innerHTML = `<span>✏️</span><span>تعديل حملة: ${c.title}</span>`;
   document.getElementById('modalCampaignId').value = c.id;
   document.getElementById('modalCampaignTitle').value = c.title || '';
   document.getElementById('modalCampaignCategory').value = c.category || 'health';
@@ -1642,11 +1643,28 @@ function openEditCampaignModal(id) {
     preview.style.display = 'block';
   }
   document.getElementById('campaignModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
 }
 
 function closeCampaignModal() {
-  document.getElementById('campaignModal').classList.remove('active');
+  const m = document.getElementById('campaignModal');
+  if (m) m.classList.remove('active');
+  document.body.style.overflow = '';
 }
+
+// Modal Backdrop Click & Escape Key Listeners
+document.addEventListener('click', (e) => {
+  const m = document.getElementById('campaignModal');
+  if (m && e.target === m) {
+    closeCampaignModal();
+  }
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeCampaignModal();
+  }
+});
+
 
 function deleteCampaign(id) {
   if (!confirm('هل تريد حذف هذه الحملة من المتجر؟')) return;
