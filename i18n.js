@@ -19,6 +19,13 @@ const TRANSLATIONS = {
     'topbar.location': 'دمنهور - محافظة البحيرة - مشهرة برقم 1124 لسنة 2006',
     'topbar.hours': 'مواعيد الاستقبال: يومياً 9:00 ص - 9:00 م',
     'topbar.phone': '01026410313',
+    'topbar.badge': '💼 مشروعات التمكين الاقتصادي والاستدامة الخضراء بالبحيرة',
+    'topbar.projectsBadge': '💼 مشروعات التمكين الاقتصادي والاستدامة الخضراء بالبحيرة',
+    'topbar.checkoutBadge': '🔒 بيانات التحويل المباشر - جمعية الإسراء الخيرية لتنمية المجتمع بدمنهور',
+    'topbar.contactBadge': '📍 مجمع الإسراء التنموي الطبي - دمنهور، محافظة البحيرة',
+    'topbar.bankLink': '💳 الحسابات البنكية والمحافظ',
+    'topbar.phoneLink': '📞 هاتف الجمعية: 045-3312345',
+    'topbar.projectsPhone': '📞 هاتف المشروعات: 045-3312345',
 
     // Main Navigation
     'nav.home': 'الرئيسية',
@@ -217,6 +224,13 @@ const TRANSLATIONS = {
     'topbar.location': 'Damanhour, Beheira - Registered NGO No. 1124 (2006)',
     'topbar.hours': 'Hours: Daily 9:00 AM - 9:00 PM',
     'topbar.phone': '01026410313',
+    'topbar.badge': '💼 Economic Empowerment & Green Sustainability in Beheira',
+    'topbar.projectsBadge': '💼 Economic Empowerment & Green Sustainability in Beheira',
+    'topbar.checkoutBadge': '🔒 Official Bank Accounts & Transfer - Al-Israa Charity Damanhour',
+    'topbar.contactBadge': '📍 Al-Israa Development Medical Complex - Damanhour, Beheira',
+    'topbar.bankLink': '💳 Bank Accounts & Wallets',
+    'topbar.phoneLink': '📞 Tel: 045-3312345',
+    'topbar.projectsPhone': '📞 Projects Tel: 045-3312345',
 
     // Main Navigation
     'nav.home': 'Home',
@@ -414,7 +428,7 @@ function getCurrentLanguage() {
 /**
  * Get translation for key
  */
-function t(key, fallback = '') {
+function t(key, fallback = null) {
   const lang = getCurrentLanguage();
   if (TRANSLATIONS[lang] && TRANSLATIONS[lang][key] !== undefined) {
     return TRANSLATIONS[lang][key];
@@ -422,7 +436,7 @@ function t(key, fallback = '') {
   if (TRANSLATIONS['ar'] && TRANSLATIONS['ar'][key] !== undefined) {
     return TRANSLATIONS['ar'][key];
   }
-  return fallback || key;
+  return fallback;
 }
 
 /**
@@ -458,7 +472,7 @@ function applyLanguage(lang) {
   elements.forEach(el => {
     const key = el.getAttribute('data-i18n');
     const val = t(key);
-    if (val) {
+    if (val !== null && val !== undefined) {
       el.textContent = val;
     }
   });
@@ -468,7 +482,7 @@ function applyLanguage(lang) {
   htmlElements.forEach(el => {
     const key = el.getAttribute('data-i18n-html');
     const val = t(key);
-    if (val) {
+    if (val !== null && val !== undefined) {
       el.innerHTML = val;
     }
   });

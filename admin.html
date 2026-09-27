@@ -531,12 +531,12 @@
       <form id="adminLoginForm">
         <div class="admin-form-group" style="text-align:right;">
           <label for="adminUsername" data-i18n="admin.username">اسم المستخدم</label>
-          <input type="text" id="adminUsername" class="admin-input" placeholder="اسم المستخدم" value="admin" required>
+          <input type="text" id="adminUsername" class="admin-input" placeholder="اسم المستخدم" value="" autocomplete="off" required>
         </div>
         <div class="admin-form-group" style="text-align:right;">
           <label for="adminPassword" data-i18n="admin.password">كلمة المرور السرية</label>
           <div class="password-input-wrap">
-            <input type="password" id="adminPassword" class="admin-input" placeholder="أدخل كلمة المرور" value="israa2026" required autofocus>
+            <input type="password" id="adminPassword" class="admin-input" placeholder="أدخل كلمة المرور" value="" autocomplete="off" required autofocus>
             <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility()" title="إظهار / إخفاء كلمة المرور">👁️</button>
           </div>
         </div>
@@ -549,14 +549,11 @@
       </form>
       
       <div class="login-cred-box">
-        <div style="font-weight:800; color:#0F172A; margin-bottom:4px;">🔑 بيانات الدخول الافتراضية:</div>
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
-          <div>
-            اسم المستخدم: <code>admin</code>
-            <span style="margin: 0 6px;">|</span>
-            كلمة المرور: <code>israa2026</code>
-          </div>
-          <button type="button" onclick="autoFillCredentials()" style="background:#DCFCE7; color:#166534; border:1px solid #BBF7D0; padding:3px 8px; border-radius:6px; font-size:0.75rem; font-weight:800; cursor:pointer;">ملء تلقائي ✅</button>
+        <div style="font-weight:800; color:#0F172A; margin-bottom:4px;">🔑 بيانات الدخول المعتمدة:</div>
+        <div style="font-size:0.85rem; color:#475569;">
+          اسم المستخدم: <code>admin</code>
+          <span style="margin: 0 8px;">|</span>
+          كلمة المرور: <code>israa2026</code>
         </div>
       </div>
     </div>

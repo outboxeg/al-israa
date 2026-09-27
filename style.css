@@ -2626,27 +2626,35 @@ button, input, select, textarea {
 
 /* Footer Admin Button */
 .btn-footer-admin {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: rgba(255, 255, 255, 0.9) !important;
-  padding: 4px 12px;
-  border-radius: 6px;
-  font-size: 0.78rem;
-  font-weight: 700;
+  background: #ECFDF5;
+  border: 1.5px solid #166534;
+  color: #166534 !important;
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 800;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  margin-right: 8px;
-  margin-left: 8px;
-  transition: all 0.2s ease;
+  margin-right: 12px;
+  margin-left: 12px;
+  box-shadow: 0 2px 5px rgba(22, 101, 52, 0.12);
+  transition: all 0.25s ease;
+  vertical-align: middle;
+}
+
+.btn-footer-admin::before {
+  content: '⚙️';
+  font-size: 0.85rem;
 }
 
 .btn-footer-admin:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: var(--brand-green);
+  background: #166534;
+  border-color: #166534;
   color: #FFFFFF !important;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(22, 101, 52, 0.25);
 }
 
 /* LTR Layout Adaptations */
