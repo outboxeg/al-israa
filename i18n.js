@@ -540,6 +540,11 @@ document.addEventListener('DOMContentLoaded', () => {
  * High-Fidelity Comprehensive DOM Phrase Dictionary
  * Covers 100% of all static & dynamic phrases across all pages and CMS
  */
+
+/**
+ * High-Fidelity Comprehensive DOM Phrase Dictionary
+ * Covers 100% of all static & dynamic phrases across all pages and CMS
+ */
 const DOM_TRANSLATIONS = {
   "جمعية الإسراء الخيرية": "Al-Israa Charity Association",
   "لتنمية المجتمع بدمنهور": "For Community Development in Damanhour",
@@ -1443,7 +1448,11 @@ const DOM_TRANSLATIONS = {
   "3:42 د": "3:42m",
   "مستمر": "Ongoing",
   "إجراء": "Action",
-  "موقع جمعية الإسراء بدمنهور على خرائط Google": "Al-Israa Charity Location in Damanhour on Google Maps"
+  "موقع جمعية الإسراء بدمنهور على خرائط Google": "Al-Israa Charity Location in Damanhour on Google Maps",
+  "الرجوع إلى الموقع الرئيسي 🌐": "Return to Main Website 🌐",
+  "الرجوع إلى الموقع الرئيسي": "Return to Main Website",
+  "الرجوع للموقع الرئيسي": "Return to Main Website",
+  "إغلاق والعودة للموقع": "Close & Return to Website"
 };
 
 const SORTED_DOM_KEYS = Object.keys(DOM_TRANSLATIONS).sort((a, b) => b.length - a.length);
