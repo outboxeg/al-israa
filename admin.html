@@ -13,6 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="style.css">
+  <script src="i18n.js"></script>
   
   <style>
     :root {
@@ -529,23 +530,34 @@
       
       <form id="adminLoginForm">
         <div class="admin-form-group" style="text-align:right;">
-          <label for="adminUsername">اسم المستخدم</label>
+          <label for="adminUsername" data-i18n="admin.username">اسم المستخدم</label>
           <input type="text" id="adminUsername" class="admin-input" placeholder="اسم المستخدم" value="admin" required>
         </div>
         <div class="admin-form-group" style="text-align:right;">
-          <label for="adminPassword">كلمة المرور السرية</label>
-          <input type="password" id="adminPassword" class="admin-input" placeholder="أدخل كلمة المرور" required autofocus>
+          <label for="adminPassword" data-i18n="admin.password">كلمة المرور السرية</label>
+          <div class="password-input-wrap">
+            <input type="password" id="adminPassword" class="admin-input" placeholder="أدخل كلمة المرور" value="israa2026" required autofocus>
+            <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility()" title="إظهار / إخفاء كلمة المرور">👁️</button>
+          </div>
         </div>
         <div id="loginErrorMsg" style="color:#DC2626; font-size:0.85rem; font-weight:700; margin-bottom:14px; display:none;">
           ⚠️ كلمة المرور أو اسم المستخدم غير صحيح!
         </div>
-        <button type="submit" class="btn-primary" style="width:100%; padding:12px; font-size:1rem; border-radius:8px;">
+        <button type="submit" class="btn-primary" style="width:100%; padding:12px; font-size:1rem; border-radius:8px;" data-i18n="admin.loginBtn">
           دخول إلى لوحة التحكم 🔐
         </button>
       </form>
       
-      <div style="margin-top:18px; font-size:0.8rem; color:#94A3B8;">
-        افتراضياً: اسم المستخدم <code>admin</code> وكلمة المرور <code>israa2026</code>
+      <div class="login-cred-box">
+        <div style="font-weight:800; color:#0F172A; margin-bottom:4px;">🔑 بيانات الدخول الافتراضية:</div>
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+          <div>
+            اسم المستخدم: <code>admin</code>
+            <span style="margin: 0 6px;">|</span>
+            كلمة المرور: <code>israa2026</code>
+          </div>
+          <button type="button" onclick="autoFillCredentials()" style="background:#DCFCE7; color:#166534; border:1px solid #BBF7D0; padding:3px 8px; border-radius:6px; font-size:0.75rem; font-weight:800; cursor:pointer;">ملء تلقائي ✅</button>
+        </div>
       </div>
     </div>
   </div>
@@ -647,24 +659,34 @@
       </div>
     </aside>
 
+    <!-- Mobile Drawer Backdrop Overlay -->
+    <div id="adminSidebarBackdrop" class="admin-sidebar-backdrop" onclick="closeAdminMobileNav()"></div>
+
     <!-- Main Content Area -->
     <main class="admin-main">
       
       <!-- Top Bar -->
       <div class="admin-header-bar">
-        <div>
-          <h1 id="pageTitleHeading" style="font-size:1.35rem; font-weight:900; margin:0 0 4px; color:#0F172A;">
-            نظرة عامة وإحصائيات المنصة
-          </h1>
-          <p id="pageSubtitleDesc" style="font-size:0.85rem; color:#64748B; margin:0;">
-            إدارة مباشرة وفورية لكافة عناصر الموقع مقسمة حسب الصفحات مع أزرار حفظ مستقلة لكل قسم.
-          </p>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <button id="adminMobileToggleBtn" class="admin-mobile-toggle" onclick="toggleAdminMobileNav()" aria-label="فتح القائمة الجانبية" title="القائمة الرئيسية">☰</button>
+          <div>
+            <h1 id="pageTitleHeading" style="font-size:1.35rem; font-weight:900; margin:0 0 4px; color:#0F172A;" data-i18n="admin.overviewTitle">
+              نظرة عامة وإحصائيات المنصة
+            </h1>
+            <p id="pageSubtitleDesc" style="font-size:0.85rem; color:#64748B; margin:0;" data-i18n="admin.overviewDesc">
+              إدارة مباشرة وفورية لكافة عناصر الموقع مقسمة حسب الصفحات مع أزرار حفظ مستقلة لكل قسم.
+            </p>
+          </div>
         </div>
-        <div style="display:flex; gap:10px; align-items:center;">
-          <a id="pageLivePreviewLink" href="index.html" target="_blank" class="btn-outline" style="padding:8px 16px; font-size:0.88rem;">
+        <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+          <button class="lang-switcher-btn admin-lang-btn" onclick="toggleLanguage()" aria-label="تبديل اللغة / Switch Language" title="Switch Language / تغيير اللغة">
+            <span class="lang-icon">🌐</span>
+            <span class="lang-label">English</span>
+          </button>
+          <a id="pageLivePreviewLink" href="index.html" target="_blank" class="btn-outline" style="padding:8px 16px; font-size:0.88rem;" data-i18n="admin.previewBtn">
             معاينة هذه الصفحة ↗
           </a>
-          <button id="globalSaveBtn" class="btn-primary" style="padding:8px 18px; font-size:0.88rem;">
+          <button id="globalSaveBtn" class="btn-primary" style="padding:8px 18px; font-size:0.88rem;" data-i18n="admin.saveAllBtn">
             حفظ كافة الصفحات 💾
           </button>
         </div>

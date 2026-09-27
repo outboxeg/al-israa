@@ -435,8 +435,38 @@ function toggleAccordion(headerElem) {
   }
 }
 
-// Page Tab Switching
+// Mobile Drawer Controls
+function toggleAdminMobileNav() {
+  const sb = document.querySelector('.admin-sidebar');
+  const bd = document.getElementById('adminSidebarBackdrop');
+  if (sb) sb.classList.toggle('mobile-open');
+  if (bd) bd.classList.toggle('active');
+}
+
+function closeAdminMobileNav() {
+  const sb = document.querySelector('.admin-sidebar');
+  const bd = document.getElementById('adminSidebarBackdrop');
+  if (sb) sb.classList.remove('mobile-open');
+  if (bd) bd.classList.remove('active');
+}
+
+// Password Visibility & Auto-fill Helpers
+function togglePasswordVisibility() {
+  const pwd = document.getElementById('adminPassword');
+  if (!pwd) return;
+  pwd.type = pwd.type === 'password' ? 'text' : 'password';
+}
+
+function autoFillCredentials() {
+  const u = document.getElementById('adminUsername');
+  const p = document.getElementById('adminPassword');
+  if (u) u.value = 'admin';
+  if (p) p.value = 'israa2026';
+  showAdminToast('تم ملء بيانات الدخول الافتراضية بنجاح 🔑');
+}
+
 function switchAdminPage(targetPageId) {
+  closeAdminMobileNav();
   const navItems = document.querySelectorAll('.admin-nav-item');
   const pagePanes = document.querySelectorAll('.admin-page-pane');
   const heading = document.getElementById('pageTitleHeading');
@@ -460,7 +490,9 @@ function switchAdminPage(targetPageId) {
     }
   });
 
-  const pageMeta = {
+  const isEn = typeof getCurrentLanguage === 'function' && getCurrentLanguage() === 'en';
+
+  const pageMetaAr = {
     'page-overview': { title: 'نظرة عامة ومؤشرات المنصة', desc: 'إحصائيات سريعة وخريطة لكافة صفحات الموقع وعناصرها.', url: 'index.html' },
     'page-home': { title: 'إدارة الصفحة الرئيسية (index.html)', desc: 'تحكم كامل في الهيرو، الأرقام، المدارس الخضراء، الأخبار، والشركاء.', url: 'index.html' },
     'page-store': { title: 'إدارة متجر التبرعات (store.html)', desc: 'تحكم كامل في ترويسة المتجر وحملات وأسهم التبرع والأسعار.', url: 'store.html' },
@@ -473,10 +505,25 @@ function switchAdminPage(targetPageId) {
     'page-backup': { title: 'النسخ الاحتياطي والربط السحابي', desc: 'تصدير واستعادة ملف JSON الشامل، وربط Google Sheets Webhook.', url: 'index.html' }
   };
 
-  if (pageMeta[targetPageId]) {
-    if (heading) heading.textContent = pageMeta[targetPageId].title;
-    if (subtitle) subtitle.textContent = pageMeta[targetPageId].desc;
-    if (previewLink) previewLink.href = pageMeta[targetPageId].url;
+  const pageMetaEn = {
+    'page-overview': { title: 'Platform Overview & Executive Analytics', desc: 'Real-time performance metrics, visitor traffic analysis, and full website content map.', url: 'index.html' },
+    'page-home': { title: 'Home Page Management (index.html)', desc: 'Control hero section, stats, green schools, news, and partners.', url: 'index.html' },
+    'page-store': { title: 'Donation Store Management (store.html)', desc: 'Control store header, donation campaigns, shares, and targets.', url: 'store.html' },
+    'page-complex': { title: 'Al-Israa Complex Management (complex.html)', desc: 'Control complex intro and the 5 specialized floor details.', url: 'complex.html' },
+    'page-hostel': { title: 'Oncology Hostel Management (hostel.html)', desc: 'Control hostel services, bed capacity, and admission criteria.', url: 'hostel.html' },
+    'page-projects': { title: 'Projects & Empowerment Management (projects.html)', desc: 'Control Arzaq initiative, handloom workshops, and green hubs.', url: 'projects.html' },
+    'page-checkout': { title: 'Checkout & Official Accounts (checkout.html)', desc: 'Control mobile cash wallets, InstaPay, and official bank accounts.', url: 'checkout.html' },
+    'page-contact': { title: 'Contact & Damanhour Map (contact.html)', desc: 'Control Google Map, telephone numbers, and legal registration.', url: 'contact.html' },
+    'page-inbox': { title: 'Incoming Inquiries & Assistance Requests', desc: 'Review and manage oncology hostel and training submissions.', url: 'contact.html' },
+    'page-backup': { title: 'JSON Backup & Cloud Webhook Integration', desc: 'Export and restore full site data, and connect Google Sheets.', url: 'index.html' }
+  };
+
+  const currentMeta = isEn ? pageMetaEn : pageMetaAr;
+
+  if (currentMeta[targetPageId]) {
+    if (heading) heading.textContent = currentMeta[targetPageId].title;
+    if (subtitle) subtitle.textContent = currentMeta[targetPageId].desc;
+    if (previewLink) previewLink.href = currentMeta[targetPageId].url;
   }
 
   if (targetPageId === 'page-overview') {

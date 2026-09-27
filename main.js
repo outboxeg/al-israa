@@ -254,20 +254,23 @@ function renderCartDrawer() {
   const totalAmountElem = document.querySelector('.cart-total-amount');
   if (!drawerBody) return;
 
+  const isEn = window.i18n && window.i18n.currentLang === 'en';
   const cart = getCart();
   const total = getCartTotal();
 
   if (totalAmountElem) {
-    totalAmountElem.textContent = `${total.toLocaleString('ar-EG')} ج.م`;
+    totalAmountElem.textContent = isEn 
+      ? `${total.toLocaleString('en-US')} EGP` 
+      : `${total.toLocaleString('ar-EG')} ج.م`;
   }
 
   if (cart.length === 0) {
     drawerBody.innerHTML = `
       <div class="cart-empty-state">
         <div class="cart-empty-icon">🛒</div>
-        <h4 style="font-size:1.2rem; font-weight:800; margin-bottom:8px;">سلة التبرعات فارغة</h4>
-        <p style="font-size:0.95rem; margin-bottom:20px;">اختر ما يناسبك من حملات التبرع للمساهمة في رعاية مرضى الأورام والأسر والتعليم.</p>
-        <a href="store.html" class="btn-primary" style="padding:10px 22px; font-size:0.95rem;">تصفح متجر التبرعات</a>
+        <h4 style="font-size:1.2rem; font-weight:800; margin-bottom:8px;">${isEn ? 'Your Donation Cart is Empty' : 'سلة التبرعات فارغة'}</h4>
+        <p style="font-size:0.95rem; margin-bottom:20px;">${isEn ? 'Choose from our donation campaigns to support oncology patients, families, and education.' : 'اختر ما يناسبك من حملات التبرع للمساهمة في رعاية مرضى الأورام والأسر والتعليم.'}</p>
+        <a href="store.html" class="btn-primary" style="padding:10px 22px; font-size:0.95rem;">${isEn ? 'Browse Donation Store' : 'تصفح متجر التبرعات'}</a>
       </div>
     `;
     return;
@@ -275,18 +278,23 @@ function renderCartDrawer() {
 
   let html = '<div class="cart-items-list">';
   cart.forEach(item => {
+    const itemTotal = item.amount * item.qty;
+    const priceText = isEn 
+      ? `${itemTotal.toLocaleString('en-US')} EGP (${item.amount} EGP × ${item.qty})` 
+      : `${itemTotal.toLocaleString('ar-EG')} ج.م (${item.amount} ج.م × ${item.qty})`;
+
     html += `
       <div class="cart-item-card" data-id="${item.id}">
         <div class="cart-item-info">
           <div class="cart-item-title">${item.title}</div>
-          <div class="cart-item-price">${(item.amount * item.qty).toLocaleString('ar-EG')} ج.م (${item.amount} ج.م × ${item.qty})</div>
+          <div class="cart-item-price">${priceText}</div>
         </div>
         <div class="cart-item-stepper">
           <button class="cart-stepper-btn" onclick="updateCartItemQty('${item.id}', -1)">-</button>
           <span class="cart-stepper-val">${item.qty}</span>
           <button class="cart-stepper-btn" onclick="updateCartItemQty('${item.id}', 1)">+</button>
         </div>
-        <button class="cart-item-remove-btn" onclick="removeCartItem('${item.id}')" title="حذف">✕</button>
+        <button class="cart-item-remove-btn" onclick="removeCartItem('${item.id}')" title="${isEn ? 'Remove' : 'حذف'}">✕</button>
       </div>
     `;
   });
@@ -331,10 +339,11 @@ function showToast(message) {
 
 // Copy to Clipboard Utility
 window.copyToClipboard = function(text, btnElem) {
+  const isEn = window.i18n && window.i18n.currentLang === 'en';
   navigator.clipboard.writeText(text).then(() => {
     if (btnElem) {
       const origText = btnElem.innerHTML;
-      btnElem.innerHTML = '✓ تم النسخ!';
+      btnElem.innerHTML = isEn ? '✓ Copied!' : '✓ تم النسخ!';
       btnElem.style.backgroundColor = 'var(--brand-green)';
       btnElem.style.color = '#FFFFFF';
       setTimeout(() => {
@@ -344,7 +353,7 @@ window.copyToClipboard = function(text, btnElem) {
       }, 2000);
     }
   }).catch(() => {
-    prompt('انسخ الرقم يدوياً:', text);
+    prompt(isEn ? 'Copy number manually:' : 'انسخ الرقم يدوياً:', text);
   });
 };
 
@@ -644,6 +653,7 @@ function renderDynamicCampaignCards() {
   const grid = document.querySelector('.campaigns-cards-grid');
   if (!grid) return;
 
+  const isEn = window.i18n && window.i18n.currentLang === 'en';
   const pagesData = getGlobalPagesData();
   const campaigns = (pagesData && pagesData.store && pagesData.store.campaigns) || [];
   if (campaigns.length === 0) return;
@@ -662,37 +672,42 @@ function renderDynamicCampaignCards() {
     let presetsHtml = '';
     presets.forEach((amt, idx) => {
       const isDefault = Number(amt) === Number(c.unitPrice) || (idx === 1);
-      presetsHtml += `<button type="button" class="amount-preset-chip ${isDefault ? 'active' : ''}" data-amt="${amt}">${amt} ج</button>`;
+      const amtLabel = isEn ? `${amt} EGP` : `${amt} ج`;
+      presetsHtml += `<button type="button" class="amount-preset-chip ${isDefault ? 'active' : ''}" data-amt="${amt}">${amtLabel}</button>`;
     });
+
+    const targetFormatted = isEn ? `${target.toLocaleString('en-US')} EGP` : `${target.toLocaleString('ar-EG')} ج.م`;
+    const collectedFormatted = isEn ? `${collected.toLocaleString('en-US')} EGP` : `${collected.toLocaleString('ar-EG')} ج.م`;
+    const remainingFormatted = isEn ? `${remaining.toLocaleString('en-US')} EGP` : `${remaining.toLocaleString('ar-EG')} ج.م`;
 
     html += `
       <div class="campaign-card" data-id="${c.id}" data-tab-type="${c.category}">
         <div class="campaign-card-poster">
           <img src="${c.image || 'school.jpg'}" alt="${c.title}" onerror="this.src='school.jpg'">
-          <span class="campaign-card-badge ${c.badgeColor || 'orange'}">${c.badge || 'سهم تبرع'}</span>
+          <span class="campaign-card-badge ${c.badgeColor || 'orange'}">${c.badge || (isEn ? 'Donation Share' : 'سهم تبرع')}</span>
         </div>
         <div class="campaign-card-body">
-          <span class="campaign-category-tag">${c.tag || '#جمعية_الإسراء_الخيرية'}</span>
+          <span class="campaign-category-tag">${c.tag || (isEn ? '#Al_Israa_Charity' : '#جمعية_الإسراء_الخيرية')}</span>
           <h3 class="campaign-item-title">${c.title}</h3>
           <p class="campaign-item-desc">${c.desc}</p>
           
           <div class="campaign-metrics-box">
             <div class="metrics-target-row">
               <div class="metric-target-item">
-                <span class="metric-target-label">المستهدف:</span>
-                <span class="metric-target-value">${target.toLocaleString('ar-EG')} ج.م</span>
+                <span class="metric-target-label">${isEn ? 'Target:' : 'المستهدف:'}</span>
+                <span class="metric-target-value">${targetFormatted}</span>
               </div>
-              <div class="metric-target-item" style="text-align: left;">
-                <span class="metric-target-label">تم جمع:</span>
-                <span class="metric-collected-value">${collected.toLocaleString('ar-EG')} ج.م</span>
+              <div class="metric-target-item" style="text-align: ${isEn ? 'right' : 'left'};">
+                <span class="metric-target-label">${isEn ? 'Raised:' : 'تم جمع:'}</span>
+                <span class="metric-collected-value">${collectedFormatted}</span>
               </div>
             </div>
             <div class="campaign-progress-bar-wrap">
               <div class="campaign-progress-bar-fill ${pct >= 70 ? 'orange' : ''}" style="width: ${pct}%;"></div>
             </div>
             <div class="metrics-sub-row">
-              <span>المتبقي: <strong class="remaining-amount-tag">${remaining.toLocaleString('ar-EG')} ج.م</strong></span>
-              <span class="badge-pct">${pct}% منجز</span>
+              <span>${isEn ? 'Remaining:' : 'المتبقي:'} <strong class="remaining-amount-tag">${remainingFormatted}</strong></span>
+              <span class="badge-pct">${pct}% ${isEn ? 'completed' : 'منجز'}</span>
             </div>
           </div>
 
@@ -704,17 +719,17 @@ function renderDynamicCampaignCards() {
             <div class="amount-stepper-box">
               <input type="text" class="amount-stepper-input" value="${c.unitPrice}" readonly>
               <div class="stepper-arrows">
-                <button type="button" class="stepper-btn stepper-up" aria-label="زيادة">+</button>
-                <button type="button" class="stepper-btn stepper-down" aria-label="نقصان">-</button>
+                <button type="button" class="stepper-btn stepper-up" aria-label="${isEn ? 'Increase' : 'زيادة'}">+</button>
+                <button type="button" class="stepper-btn stepper-down" aria-label="${isEn ? 'Decrease' : 'نقصان'}">-</button>
               </div>
             </div>
             <button type="button" class="btn-add-cart">
-              <span>🛒 أضف للسلة</span>
+              <span>${isEn ? '🛒 Add to Cart' : '🛒 أضف للسلة'}</span>
             </button>
           </div>
           
           <button type="button" class="btn-donate-now-orange">
-            <span>تبرع الآن 🧡</span>
+            <span>${isEn ? 'Donate Now 🧡' : 'تبرع الآن 🧡'}</span>
           </button>
         </div>
       </div>
@@ -884,34 +899,43 @@ document.addEventListener('DOMContentLoaded', () => {
   if (drawerOverlay) drawerOverlay.addEventListener('click', closeCartDrawer);
 
   // 4. Checkout Page Execution & Summary
-  const checkoutItemsContainer = document.querySelector('.checkout-items-summary');
-  const checkoutTotalElem = document.querySelector('.checkout-total-val');
-  if (checkoutItemsContainer) {
+  function renderCheckoutSummary() {
+    const checkoutItemsContainer = document.querySelector('.checkout-items-summary');
+    const checkoutTotalElem = document.querySelector('.checkout-total-val');
+    if (!checkoutItemsContainer) return;
+
+    const isEn = window.i18n && window.i18n.currentLang === 'en';
     const cart = getCart();
     const total = getCartTotal();
 
     if (checkoutTotalElem) {
-      checkoutTotalElem.textContent = `${total.toLocaleString('ar-EG')} ج.م`;
+      checkoutTotalElem.textContent = isEn 
+        ? `${total.toLocaleString('en-US')} EGP` 
+        : `${total.toLocaleString('ar-EG')} ج.م`;
     }
 
     if (cart.length === 0) {
       checkoutItemsContainer.innerHTML = `
         <div style="text-align:center; padding:30px; color:var(--text-muted);">
-          <p style="font-size:1.05rem; margin-bottom:14px;">لم تقم باختيار أي حملة تبرع بعد.</p>
-          <a href="store.html" class="btn-primary" style="padding:8px 18px;">اختر من حملات التبرع</a>
+          <p style="font-size:1.05rem; margin-bottom:14px;">${isEn ? 'You have not selected any donation campaigns yet.' : 'لم تقم باختيار أي حملة تبرع بعد.'}</p>
+          <a href="store.html" class="btn-primary" style="padding:8px 18px;">${isEn ? 'Browse Donation Campaigns' : 'اختر من حملات التبرع'}</a>
         </div>
       `;
     } else {
       let html = '<ul style="display:flex; flex-direction:column; gap:12px;">';
       cart.forEach(item => {
+        const itemTotal = item.amount * item.qty;
+        const unitText = isEn ? `${item.amount} EGP × ${item.qty}` : `${item.amount} ج.م × ${item.qty}`;
+        const totalText = isEn ? `${itemTotal.toLocaleString('en-US')} EGP` : `${itemTotal.toLocaleString('ar-EG')} ج.م`;
+
         html += `
           <li style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-color); padding-bottom:8px;">
             <div>
               <strong style="color:var(--text-main); font-size:1rem;">${item.title}</strong>
-              <div style="font-size:0.85rem; color:var(--text-light);">${item.amount} ج.م × ${item.qty}</div>
+              <div style="font-size:0.85rem; color:var(--text-light);">${unitText}</div>
             </div>
             <span style="font-weight:800; color:var(--accent-orange); font-size:1.1rem;">
-              ${(item.amount * item.qty).toLocaleString('ar-EG')} ج.م
+              ${totalText}
             </span>
           </li>
         `;
@@ -919,6 +943,11 @@ document.addEventListener('DOMContentLoaded', () => {
       html += '</ul>';
       checkoutItemsContainer.innerHTML = html;
     }
+  }
+
+  const checkoutItemsContainer = document.querySelector('.checkout-items-summary');
+  if (checkoutItemsContainer) {
+    renderCheckoutSummary();
 
     const checkoutForm = document.querySelector('.checkout-confirm-form');
     if (checkoutForm) {
@@ -1115,4 +1144,13 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // 10. Language Change Global Listener
+  window.addEventListener('languageChanged', () => {
+    renderCartDrawer();
+    renderDynamicCampaignCards();
+    if (typeof renderCheckoutSummary === 'function') {
+      renderCheckoutSummary();
+    }
+  });
 });

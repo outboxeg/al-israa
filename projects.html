@@ -7,6 +7,7 @@
   <meta name="description" content="استعرض مشروعات جمعية الإسراء التنموية: مشروع برة الصندوق Outbox للمدارس الخضراء، عربات أرزاق، مشاغل النول والسجاد، ومدارس التعليم المجتمعي.">
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="logo.png">
+  <script src="i18n.js"></script>
 </head>
 <body>
 
@@ -14,11 +15,11 @@
   <div class="top-bar">
     <div class="container top-bar-inner">
       <div class="top-bar-badge">
-        <span>💼 مشروعات التمكين الاقتصادي والاستدامة الخضراء بالبحيرة</span>
+        <span data-i18n="topbar.badge">💼 مشروعات التمكين الاقتصادي والاستدامة الخضراء بالبحيرة</span>
       </div>
       <div class="top-bar-links">
-        <a href="checkout.html" class="top-bar-link" style="color:#FEF08A; font-weight:800;">💳 الحسابات البنكية والمحافظ</a>
-        <a href="tel:+20453312345" class="top-bar-link">📞 هاتف المشروعات: 045-3312345</a>
+        <a href="checkout.html" class="top-bar-link" style="color:#FEF08A; font-weight:800;" data-i18n="topbar.bankLink">💳 الحسابات البنكية والمحافظ</a>
+        <a href="tel:+20453312345" class="top-bar-link" data-i18n="topbar.phoneLink">📞 هاتف المشروعات: 045-3312345</a>
       </div>
     </div>
   </div>
@@ -29,29 +30,35 @@
       <a href="index.html" class="brand-identity">
         <img src="logo.png" alt="شعار جمعية الإسراء الخيرية" class="brand-logo-img">
         <div class="brand-names">
-          <span class="brand-title">جمعية الإسراء الخيرية</span>
-          <span class="brand-subtitle">لتنمية المجتمع بدمنهور</span>
+          <span class="brand-title" data-i18n="brand.title">جمعية الإسراء الخيرية</span>
+          <span class="brand-subtitle" data-i18n="brand.subtitle">لتنمية المجتمع بدمنهور</span>
         </div>
       </a>
 
       <nav class="main-navigation">
         <ul class="nav-links-list">
-          <li><a href="index.html" class="nav-item-link">الرئيسية</a></li>
-          <li><a href="store.html" class="nav-item-link">متجر التبرعات 🛒</a></li>
-          <li><a href="complex.html" class="nav-item-link">مجمع الإسراء</a></li>
-          <li><a href="hostel.html" class="nav-item-link">دار ضيافة الأورام</a></li>
-          <li><a href="projects.html" class="nav-item-link active">المشروعات والتمكين</a></li>
-          <li><a href="contact.html" class="nav-item-link">تواصل معنا</a></li>
+          <li><a href="index.html" class="nav-item-link" data-i18n="nav.home">الرئيسية</a></li>
+          <li><a href="store.html" class="nav-item-link" data-i18n="nav.store">متجر التبرعات 🛒</a></li>
+          <li><a href="complex.html" class="nav-item-link" data-i18n="nav.complex">مجمع الإسراء</a></li>
+          <li><a href="hostel.html" class="nav-item-link" data-i18n="nav.hostel">دار ضيافة الأورام</a></li>
+          <li><a href="projects.html" class="nav-item-link active" data-i18n="nav.projects">المشروعات والتمكين</a></li>
+          <li><a href="contact.html" class="nav-item-link" data-i18n="nav.contact">تواصل معنا</a></li>
         </ul>
 
         <div class="nav-actions-group">
+          <!-- Language Switcher Button -->
+          <button class="lang-switcher-btn" onclick="toggleLanguage()" aria-label="تبديل اللغة / Switch Language" title="Switch Language / تغيير اللغة">
+            <span class="lang-icon">🌐</span>
+            <span class="lang-label">English</span>
+          </button>
+
           <!-- Cart Trigger Button -->
           <button class="cart-trigger-btn" aria-label="عرض سلة التبرعات">
-            <span>🛒 السلة</span>
+            <span data-i18n="nav.cart">🛒 السلة</span>
             <span class="cart-badge-count">0</span>
           </button>
           <a href="store.html" class="header-donate-btn">
-            <span>دعم المشروعات 🧡</span>
+            <span data-i18n="nav.donateNow">دعم المشروعات 🧡</span>
           </a>
           <button class="mobile-nav-toggle" onclick="openMobileNav()" aria-label="فتح القائمة الرئيسية">☰</button>
         </div>
@@ -65,22 +72,28 @@
       <div class="mobile-drawer-header">
         <div class="brand-identity">
           <img src="logo.png" alt="جمعية الإسراء" style="width: 40px; height: 40px; object-fit: contain;">
-          <span style="font-weight: 800; font-size: 1.05rem; color: var(--text-main);">جمعية الإسراء</span>
+          <span style="font-weight: 800; font-size: 1.05rem; color: var(--text-main);" data-i18n="brand.short">جمعية الإسراء</span>
         </div>
-        <button class="mobile-drawer-close" onclick="closeMobileNav()" aria-label="إغلاق القائمة">✕</button>
+        <div style="display:flex; align-items:center; gap:8px;">
+          <button class="lang-switcher-btn" onclick="toggleLanguage()" aria-label="Switch Language">
+            <span class="lang-icon">🌐</span>
+            <span class="lang-label">English</span>
+          </button>
+          <button class="mobile-drawer-close" onclick="closeMobileNav()" aria-label="إغلاق القائمة">✕</button>
+        </div>
       </div>
       <div class="mobile-drawer-links">
-        <a href="index.html">الرئيسية</a>
-        <a href="store.html">متجر التبرعات 🛒</a>
-        <a href="complex.html">مجمع الإسراء التنموي</a>
-        <a href="hostel.html">دار ضيافة الأورام</a>
-        <a href="projects.html" class="active">مشروعات التمكين و Outbox</a>
-        <a href="checkout.html">الحسابات البنكية والمحافظ</a>
-        <a href="contact.html">تواصل معنا والتدريب</a>
+        <a href="index.html" data-i18n="nav.home">الرئيسية</a>
+        <a href="store.html" data-i18n="nav.store">متجر التبرعات 🛒</a>
+        <a href="complex.html" data-i18n="nav.complex">مجمع الإسراء التنموي</a>
+        <a href="hostel.html" data-i18n="nav.hostel">دار ضيافة الأورام</a>
+        <a href="projects.html" class="active" data-i18n="nav.projects">مشروعات التمكين و Outbox</a>
+        <a href="checkout.html" data-i18n="topbar.bankLink">الحسابات البنكية والمحافظ</a>
+        <a href="contact.html" data-i18n="nav.contact">تواصل معنا والتدريب</a>
       </div>
       <div class="mobile-drawer-footer">
-        <a href="store.html" class="btn-orange" style="width:100%; text-align:center;">تبرع للمشروعات 🧡</a>
-        <a href="hostel.html" class="btn-outline" style="width:100%; text-align:center;">حجز دار الضيافة</a>
+        <a href="store.html" class="btn-orange" style="width:100%; text-align:center;" data-i18n="nav.donateNow">تبرع للمشروعات 🧡</a>
+        <a href="hostel.html" class="btn-outline" style="width:100%; text-align:center;" data-i18n="nav.hostel">حجز دار الضيافة</a>
       </div>
     </div>
   </div>
@@ -326,8 +339,8 @@
       <div class="container">
         <div class="powered-by-inner">
           <p class="copyright-text">
-            جميع الحقوق محفوظة © 2026 جمعية الإسراء الخيرية لتنمية المجتمع بدمنهور - مشهرة برقم 1124 لسنة 2006 - ذات نفع عام
-            <a href="admin.html" style="color:rgba(255,255,255,0.45); text-decoration:none; margin-right:10px; font-size:0.8rem;" title="لوحة التحكم CMS">🔐 لوحة الإدارة</a>
+            <span data-i18n="footer.copyright">جميع الحقوق محفوظة © 2026 جمعية الإسراء الخيرية لتنمية المجتمع بدمنهور - مشهرة برقم 1124 لسنة 2006</span>
+            <a href="admin.html" class="btn-footer-admin" title="لوحة التحكم CMS" data-i18n="footer.adminBtn">لوحة التحكم</a>
           </p>
           <a href="https://ngohub.org" target="_blank" rel="noopener noreferrer" class="ngohub-badge-link" title="منصة NGOHub لدعم وإدارة المنظمات غير الحكومية">
             <img src="ngohub-logo.png" alt="شعار NGOHub" class="ngohub-logo-img">
