@@ -3,7 +3,7 @@
 **مؤسسة أهلية ذات نفع عام (قرار وزيرة التضامن رقم 646 لسنة 2024 - مقيدة برقم 1124 لسنة 2006)**
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-15803D?style=for-the-badge&logo=github)](https://outboxeg.github.io/al-israa/)
-[![Powered by](https://img.shields.io/badge/Powered%20by-NGOhub-15803D?style=for-the-badge)](https://ngohub.org)
+[![Powered by](https://img.shields.io/badge/Powered%20by-NGOhub-15803D?style=for-the-badge)](https://ngo-hub.com)
 [![Status](https://img.shields.io/badge/Public%20Benefit-Law%20646%2F2024-gold?style=for-the-badge)](https://outboxeg.github.io/al-israa/)
 
 ---
