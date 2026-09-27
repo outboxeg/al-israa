@@ -270,7 +270,8 @@ button, input, select, textarea {
 .nav-actions-group {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
+  flex-shrink: 0;
 }
 
 /* Cart Trigger Button */
@@ -279,16 +280,22 @@ button, input, select, textarea {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 7px;
   background-color: var(--brand-green-subtle);
   color: var(--brand-green);
   border: 1.5px solid rgba(21, 128, 61, 0.25);
-  padding: 8px 16px;
+  height: 40px;
+  padding: 0 14px;
   border-radius: var(--radius-full);
+  font-family: 'Cairo', sans-serif;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 0.88rem;
   cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  line-height: 1;
   transition: var(--transition-normal);
+  box-sizing: border-box;
 }
 
 .cart-trigger-btn:hover {
@@ -301,34 +308,45 @@ button, input, select, textarea {
 .cart-badge-count {
   background-color: var(--accent-orange);
   color: #FFFFFF;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 900;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  border-radius: 10px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0 2px 5px rgba(234, 88, 12, 0.4);
+  line-height: 1;
 }
 
+/* Direct Donate CTA Button */
 .header-donate-btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  gap: 6px;
   background: linear-gradient(135deg, var(--accent-orange) 0%, #D9480F 100%);
   color: #FFFFFF !important;
-  padding: 10px 22px;
+  height: 40px;
+  padding: 0 18px;
   border-radius: var(--radius-full);
+  font-family: 'Cairo', sans-serif;
   font-weight: 800;
-  font-size: 0.95rem;
-  box-shadow: 0 4px 14px rgba(234, 88, 12, 0.3);
+  font-size: 0.88rem;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  line-height: 1;
+  box-sizing: border-box;
+  box-shadow: 0 3px 12px rgba(234, 88, 12, 0.28);
   transition: var(--transition-normal);
 }
 
 .header-donate-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(234, 88, 12, 0.4);
+  box-shadow: 0 5px 18px rgba(234, 88, 12, 0.4);
 }
 
 .mobile-nav-toggle {
@@ -339,6 +357,7 @@ button, input, select, textarea {
   color: var(--text-main);
   cursor: pointer;
   padding: 6px;
+  line-height: 1;
 }
 
 /* ==========================================================================
@@ -1841,6 +1860,21 @@ button, input, select, textarea {
 .ngohub-name { color: var(--brand-green); font-weight: 900; }
 
 /* Responsive Adjustments */
+@media (max-width: 1200px) {
+  .main-navigation { gap: 14px; }
+  .nav-links-list { gap: 10px; }
+  .nav-item-link { font-size: 0.88rem; padding: 6px 2px; }
+  .nav-actions-group { gap: 8px; }
+  .header-donate-btn { padding: 0 14px; font-size: 0.84rem; }
+  .cart-trigger-btn { padding: 0 11px; font-size: 0.84rem; }
+  .lang-switcher-btn { padding: 0 10px; font-size: 0.82rem; }
+}
+
+@media (max-width: 1024px) {
+  .nav-links-list { display: none !important; }
+  .mobile-nav-toggle { display: block !important; }
+}
+
 @media (max-width: 1100px) {
   .campaigns-cards-grid { grid-template-columns: repeat(2, 1fr); }
   .partners-grid { grid-template-columns: repeat(3, 1fr); }
@@ -1856,6 +1890,10 @@ button, input, select, textarea {
 @media (max-width: 768px) {
   .nav-links-list { display: none; }
   .mobile-nav-toggle { display: block; }
+  .nav-actions-group { gap: 6px; }
+  .header-donate-btn { padding: 0 12px; font-size: 0.82rem; }
+  .cart-trigger-btn { padding: 0 9px; font-size: 0.82rem; }
+  .lang-switcher-btn { padding: 0 8px; font-size: 0.8rem; }
   .campaigns-cards-grid { grid-template-columns: 1fr; }
   .partners-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .partner-card { padding: 14px 10px; min-height: 110px; }
@@ -1874,6 +1912,13 @@ button, input, select, textarea {
 }
 
 @media (max-width: 480px) {
+  .brand-subtitle { display: none; }
+  .brand-title { font-size: 1.05rem; }
+  .brand-logo-img { width: 42px; height: 42px; }
+  .nav-container { height: 68px; }
+  .cart-trigger-btn span[data-i18n] { display: none; }
+  .cart-trigger-btn { padding: 0 9px; gap: 4px; }
+  .header-donate-btn { padding: 0 11px; font-size: 0.8rem; }
   .partners-grid { grid-template-columns: 1fr 1fr; }
   .hero-heading { font-size: 1.8rem; }
   .hero-badge-pill span { font-size: 0.82rem; }
@@ -2594,16 +2639,22 @@ button, input, select, textarea {
 .lang-switcher-btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
   background: #FFFFFF;
   border: 1.5px solid var(--border-color);
   color: var(--text-main);
-  padding: 6px 14px;
+  height: 40px;
+  padding: 0 13px;
   border-radius: var(--radius-full);
   font-family: 'Cairo', sans-serif;
   font-size: 0.85rem;
   font-weight: 700;
   cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  line-height: 1;
+  box-sizing: border-box;
   transition: all 0.2s ease;
   box-shadow: 0 1px 3px rgba(0,0,0,0.04);
 }

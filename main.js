@@ -300,6 +300,9 @@ function renderCartDrawer() {
   });
   html += '</div>';
   drawerBody.innerHTML = html;
+  if (isEn && typeof translateFullDom === 'function') {
+    translateFullDom('en');
+  }
 }
 
 function openCartDrawer() {
@@ -738,6 +741,9 @@ function renderDynamicCampaignCards() {
 
   grid.innerHTML = html;
   attachCampaignCardEvents();
+  if (isEn && typeof translateFullDom === 'function') {
+    translateFullDom('en');
+  }
 }
 
 // Attach Event Listeners to Steppers & Presets on Cards
@@ -1146,11 +1152,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // 10. Language Change Global Listener
-  window.addEventListener('languageChanged', () => {
+  window.addEventListener('languageChanged', (e) => {
+    const lang = (e && e.detail && e.detail.lang) || (window.i18n ? window.i18n.currentLang : 'ar');
     renderCartDrawer();
     renderDynamicCampaignCards();
     if (typeof renderCheckoutSummary === 'function') {
       renderCheckoutSummary();
+    }
+    if (typeof translateFullDom === 'function' && lang === 'en') {
+      translateFullDom('en');
     }
   });
 });

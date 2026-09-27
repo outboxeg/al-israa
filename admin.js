@@ -531,6 +531,10 @@ function switchAdminPage(targetPageId) {
       refreshVisitorAnalyticsUI();
     }, 50);
   }
+
+  if (typeof translateFullDom === 'function') {
+    translateFullDom(isEn ? 'en' : 'ar');
+  }
 }
 
 // Client-Side Image Resizer & Base64 Converter
@@ -2404,4 +2408,15 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   updateOverviewStats();
+
+  // Language Change Global Listener for CMS
+  window.addEventListener('languageChanged', (e) => {
+    const lang = (e && e.detail && e.detail.lang) || (window.i18n ? window.i18n.currentLang : 'ar');
+    const activeBtn = document.querySelector('.admin-nav-item.active button');
+    const activePage = activeBtn ? activeBtn.getAttribute('data-page-target') : 'page-overview';
+    switchAdminPage(activePage);
+    if (typeof translateFullDom === 'function') {
+      translateFullDom(lang);
+    }
+  });
 });
