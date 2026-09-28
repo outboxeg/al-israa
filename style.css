@@ -2936,3 +2936,117 @@ button, input, select, textarea {
 
 
 
+
+
+/* Mobile layout refinements: keep every public page within the viewport. */
+.contact-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 40px;
+  align-items: start;
+}
+
+@media (max-width: 992px) {
+  .hero-grid,
+  .outbox-grid,
+  .checkout-grid,
+  .floor-navigator-container,
+  .contact-map-grid,
+  .contact-form-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hero-grid > *,
+  .outbox-grid > *,
+  .checkout-grid > *,
+  .floor-navigator-container > *,
+  .contact-map-grid > *,
+  .contact-form-grid > * {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .container { padding-inline: 16px; }
+  .section-padding { padding-block: 50px; }
+
+  .top-bar-inner { flex-direction: column; justify-content: center; gap: 6px; }
+  .top-bar-badge,
+  .top-bar-links {
+    max-width: 100%;
+    min-width: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+  .top-bar-links { gap: 4px 14px; }
+  .top-bar-link { min-width: 0; }
+
+  .nav-container,
+  .brand-identity,
+  .brand-names,
+  .main-navigation { min-width: 0; }
+  .brand-identity { gap: 8px; }
+  .nav-container { gap: 8px; }
+  .nav-actions-group { gap: 5px; }
+
+  .hero-section { padding-block: 46px 66px; }
+  .hero-grid { gap: 34px; }
+  .hero-media-wrapper { min-width: 0; }
+  .hero-floating-stat { right: 8px; left: 8px; bottom: -20px; padding: 12px 14px; }
+  .hero-actions-group { gap: 10px; }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+  }
+  .stats-grid > * { min-width: 0; }
+  .stats-grid .kpi-val { font-size: clamp(1.35rem, 5vw, 2rem) !important; overflow-wrap: anywhere; }
+
+  .campaign-tabs-header,
+  .campaign-tabs-nav { min-width: 0; }
+  .campaign-tabs-nav { max-width: 100%; }
+  .payment-detail-box { flex-wrap: wrap; gap: 10px; }
+  .payment-detail-box > div { min-width: 0; }
+  .payment-detail-text { overflow-wrap: anywhere; word-break: break-word; }
+  .form-card { padding: 24px 18px; }
+  .floor-content-display { padding: 24px 18px; }
+}
+
+@media (max-width: 480px) {
+  .top-bar { font-size: 0.72rem; line-height: 1.4; }
+  .top-bar-badge { gap: 3px 7px; padding: 5px 8px; }
+  .top-bar-links { gap: 3px 10px; }
+  .nav-container { height: 64px; }
+  .brand-title { font-size: 0.92rem; }
+  .brand-logo-img { width: 38px; height: 38px; flex-shrink: 0; }
+  .site-header .cart-trigger-btn { display: none; }
+  .site-header .lang-switcher-btn { padding-inline: 7px; font-size: 0.72rem; }
+  .site-header .lang-switcher-btn .lang-icon { font-size: 0.85rem; }
+  .header-donate-btn { height: 36px; padding-inline: 9px; font-size: 0.72rem; }
+  .mobile-nav-toggle { padding: 3px; font-size: 1.4rem; }
+
+  .hero-heading { font-size: clamp(1.65rem, 7vw, 1.9rem); }
+  .hero-description { font-size: 1rem; }
+  .hero-actions-group > a { width: 100%; text-align: center; padding-inline: 12px; }
+  .hero-image-card img { height: 235px; }
+  .hero-floating-stat { gap: 10px; }
+  .hero-floating-stat .stat-icon-circle { width: 40px; height: 40px; flex-shrink: 0; }
+
+  .stats-strip { padding-block: 28px !important; }
+  .stats-grid .kpi-card { padding: 10px 5px !important; }
+  .stats-grid .kpi-card > div:not(.kpi-val) { overflow-wrap: anywhere; }
+  .campaign-tab-btn { white-space: nowrap; font-size: 0.95rem; padding: 10px 12px; }
+  .payment-method-card { padding: 18px 14px; }
+  .payment-detail-box { padding: 12px; }
+  .payment-detail-text { font-size: 0.95rem; }
+  .form-card { padding: 22px 16px; }
+  .floor-content-display { padding: 20px 14px; }
+}
+
+@media (max-width: 360px) {
+  .container { padding-inline: 12px; }
+  .site-header .lang-switcher-btn .lang-label { display: none; }
+  .brand-title { font-size: 0.82rem; }
+  .header-donate-btn { padding-inline: 7px; }
+}
