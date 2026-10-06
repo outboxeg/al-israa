@@ -30,6 +30,7 @@ const TRANSLATIONS = {
     // Main Navigation
     'nav.home': 'الرئيسية',
     'nav.about': 'عن الجمعية',
+    'nav.facilitiesGroup': 'الصروح والمشروعات',
     'nav.news': 'آخر الأخبار',
     'nav.store': 'متجر التبرعات 🛒',
     'nav.complex': 'مجمع الإسراء',
@@ -68,10 +69,19 @@ const TRANSLATIONS = {
     'outbox.kpi3': 'طالب مستفيد من الورش',
     'outbox.kpi4': 'خفض في البصمة الكربونية',
 
-    // News Section - Home
+    // News Section & Page
     'news.title': 'أحدث الأخبار والفعاليات الميدانية',
     'news.subtitle': 'تغطيات مصورة لأنشطة جمعية الإسراء وقوافلها التنموية في محافظة البحيرة',
     'news.readMore': 'قراءة المزيد ←',
+    'news.heroBadge': '📰 المركز الإعلامي والتغطيات الميدانية الحية',
+    'news.heroTitle': 'آخر الأخبار والأنشطة الميدانية',
+    'news.heroDesc': 'تابعوا نبض العمل التنموي والإنساني لجمعية الإسراء الخيرية بدمنهور أولاً بأول، وتعرفوا على أثر كفالاتكم ومبادراتكم المشتركة في خدمة أهالينا بالبحيرة.',
+
+    // About Page
+    'about.heroBadge': '🏛️ جمعية الإسراء الخيرية لتنمية المجتمع بدمنهور',
+    'about.heroTitle': 'مسيرة عطاء وتنمية مستدامة ترعى الإنسان وتبني المجتمع منذ 2006',
+    'about.heroDesc': 'مؤسسة أهلية مصرية رائدة حائزة على صفة النفع العام بقرار وزاري (646 لسنة 2024). ندير صرحاً تنموياً متكاملاً من 5 طوابق، ودار ضيافة مجانية لمرضى الأورام، ونقود مبادرات نوعية في التمكين الاقتصادي والتعليم والبيئة بمحافظة البحيرة.',
+    'about.kickerLegal': 'الهوية المؤسسية والوضع القانوني',
 
     // Partners Section - Home
     'partners.title': 'شركاء النجاح والتنمية المستدامة',
@@ -172,6 +182,7 @@ const TRANSLATIONS = {
     'footer.aboutDesc': 'جمعية خيرية أهلية مشهرة برقم 1124 لسنة 2006 بمديرية التضامن الاجتماعي بالبحيرة، تهدف إلى تقديم خدمات الرعاية الصحية المتكاملة لمرضى الأورام، والتمكين الاقتصادي والمبادرات الخضراء.',
     'footer.quickLinks': 'روابط سريعة',
     'footer.contactInfo': 'بيانات التواصل',
+    'footer.contactBranches': 'عناوين ومقرات الجمعية والتحويل',
     'footer.adminBtn': 'لوحة التحكم',
     'footer.copyright': 'جميع الحقوق محفوظة © 2026 جمعية الإسراء الخيرية لتنمية المجتمع بدمنهور - مشهرة برقم 1124 لسنة 2006 - ذات نفع عام',
 
@@ -237,6 +248,7 @@ const TRANSLATIONS = {
     // Main Navigation
     'nav.home': 'Home',
     'nav.about': 'About Us',
+    'nav.facilitiesGroup': 'Facilities & Projects',
     'nav.news': 'Latest News',
     'nav.store': 'Donation Store 🛒',
     'nav.complex': 'Al-Israa Complex',
@@ -275,10 +287,19 @@ const TRANSLATIONS = {
     'outbox.kpi3': 'Students in Green Workshops',
     'outbox.kpi4': 'Carbon Footprint Reduction',
 
-    // News Section - Home
+    // News Section & Page
     'news.title': 'Latest News & Field Activities',
     'news.subtitle': 'Photo reports and updates from Al-Israa humanitarian caravans and community development events in Beheira',
     'news.readMore': 'Read More →',
+    'news.heroBadge': '📰 Media Center & Live Field Coverage',
+    'news.heroTitle': 'Latest News & Field Activities',
+    'news.heroDesc': 'Follow the humanitarian and development initiatives of Al-Israa Charity Association in Damanhour first-hand, and see the impact of your sponsorships across Beheira.',
+
+    // About Page
+    'about.heroBadge': '🏛️ Al-Israa Charity Association for Community Development in Damanhour',
+    'about.heroTitle': 'A Journey of Giving and Sustainable Development Caring for People Since 2006',
+    'about.heroDesc': 'A leading Egyptian NGO recognized with Public Benefit status (Ministerial Decree 646/2024). Operating a 5-floor community complex, a free oncology patient guest house, and sustainable economic empowerment projects.',
+    'about.kickerLegal': 'Institutional Identity & Legal Standing',
 
     // Partners Section - Home
     'partners.title': 'Partners in Sustainable Development',
@@ -379,6 +400,7 @@ const TRANSLATIONS = {
     'footer.aboutDesc': 'A registered non-profit organization (No. 1124 of 2006, Beheira Directorate of Social Solidarity) dedicated to providing free integrated oncology care, sustainable economic empowerment, and green initiatives.',
     'footer.quickLinks': 'Quick Links',
     'footer.contactInfo': 'Contact Info',
+    'footer.contactBranches': 'Association Branches & Donation Accounts',
     'footer.adminBtn': 'Control Panel',
     'footer.copyright': 'All Rights Reserved © 2026 Al-Israa Charity Association for Community Development in Damanhour - Registered No. 1124 (2006) - Public Benefit',
 
@@ -1202,7 +1224,7 @@ const DOM_TRANSLATIONS = {
   "صندوق طلبات دار الضيافة والاستفسارات الواردة": "Inbox: Hostel Requests & Inbound Inquiries",
   "تحميل ملف النسخة الاحتياطية (Export JSON) 📥": "Download Backup File (Export JSON) 📥",
   "قسم مبادرة المدارس الخضراء الذكية (Outbox)": "Smart Green Schools Initiative Section (Outbox)",
-  "مسار الصورة مثلاً hostel.jpg أو رابط مباشر": "Image path e.g. hostel.jpg or direct URL",
+  "مسار الصورة مثلاً images/hostel.jpg أو رابط مباشر": "Image path e.g. images/hostel.jpg or direct URL",
   "مثال: كفالة مريض أورام بدار ضيافة الإسراء": "Example: Oncology Patient Sponsorship at Al-Israa Hostel",
   "رابط الويب هوك (Apps Script Webhook URL)": "Apps Script Webhook URL",
   "معرف إنستاباي (InstaPay Address / IPA) *": "InstaPay Address (IPA) *",

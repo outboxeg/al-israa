@@ -38,7 +38,7 @@ const DEFAULT_PAGES_DATA = {
         date: "24 سبتمبر 2026",
         tag: "شراكات رسمية",
         desc: "لقاء رسمي لبحث دعم تروسيكلات أرزاق ومشاغل النول والسجاد، والتنسيق لدعم ورعاية مرضى معهد أورام دمنهور.",
-        image: "governor.jpg",
+        image: "images/governor.jpg",
         link: "projects.html"
       },
       {
@@ -47,7 +47,7 @@ const DEFAULT_PAGES_DATA = {
         date: "18 سبتمبر 2026",
         tag: "التعليم والطفولة",
         desc: "بالشراكة مع هيئة إنقاذ الطفولة وUSAID، احتفت الجمعية بتسليم الأدوات المدرسية والوجبات للأطفال المتفوقين في قرى دمنهور.",
-        image: "school.jpg",
+        image: "images/school.jpg",
         link: "projects.html"
       },
       {
@@ -56,18 +56,18 @@ const DEFAULT_PAGES_DATA = {
         date: "10 سبتمبر 2026",
         tag: "مشروع أرزاق",
         desc: "تم تسليم عربات مجهزة بالكامل لعدد من الشباب والمعيلين بالبحيرة لبدء أنشطتهم وتوفير دخل شهري كريم ومستدام.",
-        image: "arzaq.jpg",
+        image: "images/arzaq.jpg",
         link: "projects.html"
       }
     ],
     partners: [
-      { id: "p1", name: "وزارة التضامن الاجتماعي", image: "partner-tadamun.png" },
-      { id: "p2", name: "وزارة التربية والتعليم والتعليم الفني", image: "partner-education.png" },
-      { id: "p3", name: "أمانة المراكز المتخصصة (معهد أورام دمنهور)", image: "partner-oncology.png" },
-      { id: "p4", name: "هيئة إنقاذ الطفولة الدولية (Save the Children)", image: "partner-save-children.svg" },
-      { id: "p5", name: "المبادرة الوطنية للمشروعات الخضراء الذكية", image: "partner-sgg.png" },
-      { id: "p6", name: "مؤسسة Outbox (المدارس الخضراء الذكية)", image: "logo-outbox.png" },
-      { id: "p7", name: "منصة NGOhub الرقمية", image: "ngohub-logo.png" }
+      { id: "p1", name: "وزارة التضامن الاجتماعي", image: "images/partner-tadamun.png" },
+      { id: "p2", name: "وزارة التربية والتعليم والتعليم الفني", image: "images/partner-education.png" },
+      { id: "p3", name: "أمانة المراكز المتخصصة (معهد أورام دمنهور)", image: "images/partner-oncology.png" },
+      { id: "p4", name: "هيئة إنقاذ الطفولة الدولية (Save the Children)", image: "images/partner-save-children.svg" },
+      { id: "p5", name: "المبادرة الوطنية للمشروعات الخضراء الذكية", image: "images/partner-sgg.png" },
+      { id: "p6", name: "مؤسسة Outbox (المدارس الخضراء الذكية)", image: "images/logo-outbox.png" },
+      { id: "p7", name: "منصة NGOhub الرقمية", image: "ngohub-images/logo.png" }
     ],
     customBlocks: [
       {
@@ -76,7 +76,7 @@ const DEFAULT_PAGES_DATA = {
         title: "صيدلية مجمع الإسراء للأدوية المجانية",
         badge: "خدمة طبية مستمرة",
         text: "توفر صيدلية المجمع العلاج الشهري المجاني للأسر الأولى بالرعاية ومرضى الأورام والأمراض المزمنة بدمنهور والبحيرة بإشراف صيادلة متطوعين.",
-        image: "complex.jpg",
+        image: "images/complex.jpg",
         btnText: "تعرف على خدمات الصيدلية",
         btnLink: "complex.html"
       }
@@ -100,7 +100,7 @@ const DEFAULT_PAGES_DATA = {
         targetAmount: 50000,
         collectedAmount: 37500,
         presets: [250, 500, 1000],
-        image: "hostel.jpg",
+        image: "images/hostel.jpg",
         desc: "إقامة كاملة وسرير مجهز ورعاية كريمة لمريض أورام ومرافقه من قرى ومراكز البحيرة طوال فترة تلقي العلاج بمعهد دمنهور للأورام."
       },
       {
@@ -114,7 +114,7 @@ const DEFAULT_PAGES_DATA = {
         targetAmount: 30000,
         collectedAmount: 21000,
         presets: [50, 100, 250],
-        image: "kitchen.jpg",
+        image: "images/kitchen.jpg",
         desc: "توفير وجبات غذائية صحية ومتوازنة مطبوخة يومياً بمطبخ الجمعية لمرضى السرطان ومرافقيهم أثناء جلسات الكيماوي والإشعاعي."
       },
       {
@@ -128,7 +128,7 @@ const DEFAULT_PAGES_DATA = {
         targetAmount: 90000,
         collectedAmount: 63000,
         presets: [500, 1000, 2500],
-        image: "arzaq.jpg",
+        image: "images/arzaq.jpg",
         desc: "تصنيع وتجهيز عربات وتروسيكلات طعام بأيدي طلاب مدرسة دمنهور الزخرفية وتسليمها لمعيلي الأسر والشباب لفتح باب رزق كريم ومستدام."
       },
       {
@@ -142,7 +142,7 @@ const DEFAULT_PAGES_DATA = {
         targetAmount: 40000,
         collectedAmount: 28000,
         presets: [150, 300, 600],
-        image: "loom.jpg",
+        image: "images/loom.jpg",
         desc: "تدريب وتوفير خامات الصوف والحرير والنول اليدوي للسيدات الريفيات لإنتاج سجاد وكليم تراثي عالي الجودة وتحقيق دخل عائلي مستقل."
       },
       {
@@ -156,7 +156,7 @@ const DEFAULT_PAGES_DATA = {
         targetAmount: 45000,
         collectedAmount: 31500,
         presets: [200, 400, 800],
-        image: "sewing.jpg",
+        image: "images/sewing.jpg",
         desc: "شراء ماكينة خياطة وتفصيل حديثة وتسليمها للأم المعيلة مع دورة تدريبية مكثفة لتأسيس مشغلها المنزلي وتوفير الكفاية لأطفالها."
       },
       {
@@ -170,7 +170,7 @@ const DEFAULT_PAGES_DATA = {
         targetAmount: 80000,
         collectedAmount: 56000,
         presets: [150, 250, 500],
-        image: "complex.jpg",
+        image: "images/complex.jpg",
         desc: "كفالة الكشف التخصصي والتحاليل وصرف الأدوية الشهرية للأسر الأكثر احتياجاً وكبار السن بالمجمع الطبي المكون من 5 طوابق."
       },
       {
@@ -184,7 +184,7 @@ const DEFAULT_PAGES_DATA = {
         targetAmount: 40000,
         collectedAmount: 28000,
         presets: [150, 350, 700],
-        image: "school.jpg",
+        image: "images/school.jpg",
         desc: "كفالة المصاريف، الحقيبة المدرسية، والوجبة اليومية لتلاميذ الفصول المجتمعية بقرى دمنهور لإعادتهم لمسار التعليم الكريم."
       },
       {
@@ -198,7 +198,7 @@ const DEFAULT_PAGES_DATA = {
         targetAmount: 150000,
         collectedAmount: 112500,
         presets: [500, 1000, 2500],
-        image: "solar.jpg",
+        image: "images/solar.jpg",
         desc: "مساهمة ممتدة في البنية التحتية، محطة الطاقة الشمسية، والأجهزة الطبية بالمجمع الخيري ليبقى أثر صدقتك في كل مريض ومتعلم."
       }
     ],
@@ -226,35 +226,35 @@ const DEFAULT_PAGES_DATA = {
         number: "الدور الأرضي",
         title: "الاستقبال ومطبخ الإطعام الخيري والصيدلية المجانية",
         desc: "مخصص لاستقبال المترددين، ويضم المطبخ الخيري الذي ينتج آلاف الوجبات العلاجية الساخنة لمرضى معهد الأورام، وصيدلية الجمعية الخيرية.",
-        image: "kitchen.jpg"
+        image: "images/kitchen.jpg"
       },
       {
         id: "floor_1",
         number: "الدور الأول",
         title: "العيادات التخصصية ومعمل التحاليل الطبية",
         desc: "يضم عيادات: الباطنة، الأورام، الأطفال، الأسنان، العظام، ومعملاً متكاملاً لإجراء التحاليل الدورية للأسر الأولى بالرعاية.",
-        image: "complex.jpg"
+        image: "images/complex.jpg"
       },
       {
         id: "floor_2",
         number: "الدور الثاني",
         title: "دار ضيافة مرضى الأورام ومرافقيهم",
         desc: "24 سريراً فندقياً مجهزاً بالكامل لاستضافة مرضى السرطان القادمين من مراكز وقرى البحيرة مجاناً طوال فترات تلقي العلاج.",
-        image: "hostel.jpg"
+        image: "images/hostel.jpg"
       },
       {
         id: "floor_3",
         number: "الدور الثالث",
         title: "مشاغل التمكين والتدريب الحرفي (النول والخياطة)",
         desc: "ورش ومشاغل النول اليدوي والسجاد والكليم، وقاعات التدريب المهني وتفصيل الملابس لتمكين الأرامل والمطلقات والسيدات المعيلات.",
-        image: "loom.jpg"
+        image: "images/loom.jpg"
       },
       {
         id: "floor_4",
         number: "السطح والروف",
         title: "محطة الطاقة الشمسية النظيفة وغرف التحكم",
         desc: "محطة كهروضوئية متطورة تولد الطاقة النظيفة لكامل مبنى المجمع لتقليل الانبعاثات وتحقيق الاستدامة البيئية وترشيد استهلاك الكهرباء.",
-        image: "solar.jpg"
+        image: "images/solar.jpg"
       }
     ],
     customBlocks: [
@@ -313,7 +313,7 @@ const DEFAULT_PAGES_DATA = {
         title: "معرض منتجات السجاد اليدوي والمشاغل",
         badge: "صنع بأيدي أمهات البحيرة",
         text: "يمكنكم اقتناء منتجات النول والسجاد اليدوي والمفروشات لدعم استمرارية دخل السيدات المعيلات وتوسيع المشاغل.",
-        image: "loom.jpg",
+        image: "images/loom.jpg",
         btnText: "طلب شراء أو دعم المشغل",
         btnLink: "contact.html"
       }
@@ -1247,9 +1247,9 @@ function renderPageCustomBlocks(pageKey) {
             <div style="font-size:1.4rem; margin-bottom:2px;">📸</div>
             <div style="font-size:0.85rem; font-weight:700;">انقر لرفع صورة جديدة من جهازك</div>
             <input type="file" id="imgUpload_${block.id}" accept="image/*" style="display:none;" onchange="handleImageFileUpload(event, 'imgPreview_${block.id}', 'imgInput_${block.id}')">
-            <img id="imgPreview_${block.id}" class="image-preview-slot" src="${block.image || 'complex.jpg'}" alt="معاينة">
+            <img id="imgPreview_${block.id}" class="image-preview-slot" src="${block.image || 'images/complex.jpg'}" alt="معاينة">
           </div>
-          <input type="text" id="imgInput_${block.id}" class="admin-input block-field-image" value="${block.image || ''}" style="margin-top:8px;" placeholder="مسار الصورة مثلاً complex.jpg أو رابط">
+          <input type="text" id="imgInput_${block.id}" class="admin-input block-field-image" value="${block.image || ''}" style="margin-top:8px;" placeholder="مسار الصورة مثلاً images/complex.jpg أو رابط">
         </div>
       `;
     } else if (block.type === 'card') {
@@ -1271,7 +1271,7 @@ function renderPageCustomBlocks(pageKey) {
         <div class="admin-grid-3">
           <div class="admin-form-group">
             <label>مسار / رابط صورة البطاقة</label>
-            <input type="text" class="admin-input block-field-image" value="${block.image || ''}" placeholder="complex.jpg">
+            <input type="text" class="admin-input block-field-image" value="${block.image || ''}" placeholder="images/complex.jpg">
           </div>
           <div class="admin-form-group">
             <label>نص الزر</label>
@@ -1323,7 +1323,7 @@ function renderPageCustomBlocks(pageKey) {
         <div class="admin-grid-2">
           <div class="admin-form-group">
             <label>صورة الخبر (مسار أو رابط)</label>
-            <input type="text" class="admin-input block-field-image" value="${block.image || 'complex.jpg'}">
+            <input type="text" class="admin-input block-field-image" value="${block.image || 'images/complex.jpg'}">
           </div>
           <div class="admin-form-group">
             <label>رابط قراءة التفاصيل</label>
@@ -1384,14 +1384,14 @@ function addNewBlockToPage(pageKey, blockType) {
       break;
     case 'image':
       newBlock.title = 'صورة جديدة';
-      newBlock.image = 'complex.jpg';
+      newBlock.image = 'images/complex.jpg';
       newBlock.caption = 'تعليق توضيحي للصورة';
       break;
     case 'card':
       newBlock.title = 'بطاقة خدمة جديدة';
       newBlock.text = 'شرح تفصيلي لما تقدمه هذه الخدمة أو المشروع...';
       newBlock.badge = 'جديد ✨';
-      newBlock.image = 'complex.jpg';
+      newBlock.image = 'images/complex.jpg';
       newBlock.btnText = 'معرفة المزيد';
       newBlock.btnLink = 'complex.html';
       break;
@@ -1405,7 +1405,7 @@ function addNewBlockToPage(pageKey, blockType) {
       newBlock.date = 'سبتمبر 2026';
       newBlock.tag = '#أخبار_الإسراء';
       newBlock.text = 'تفاصيل الخبر أو الفعالية التنموية المنفذة...';
-      newBlock.image = 'complex.jpg';
+      newBlock.image = 'images/complex.jpg';
       newBlock.btnLink = 'projects.html';
       break;
     case 'section':
@@ -1642,7 +1642,7 @@ function renderHomeNewsCards() {
         </div>
         <div class="admin-grid-2">
           <div class="admin-form-group">
-            <label>مسار الصورة (مثلاً governor.jpg أو رابط أو رفع صورة)</label>
+            <label>مسار الصورة (مثلاً images/governor.jpg أو رابط أو رفع صورة)</label>
             <input type="text" class="admin-input news-input-img" id="newsImgInput_${idx}" value="${item.image || ''}">
           </div>
           <div class="admin-form-group" style="display:flex; align-items:flex-end;">
@@ -1668,7 +1668,7 @@ function addNewNewsCard() {
     date: new Date().toLocaleDateString('ar-EG'),
     tag: 'أخبار الجمعية',
     desc: 'تفاصيل الخبر الجديد والأنشطة الميدانية المنفذة...',
-    image: 'complex.jpg',
+    image: 'images/complex.jpg',
     link: 'projects.html'
   });
   savePagesData(d, 'تمت إضافة خبر جديد');
@@ -1695,7 +1695,7 @@ function saveHomeNews() {
       date: card.querySelector('.news-input-date').value.trim(),
       tag: card.querySelector('.news-input-tag').value.trim(),
       desc: card.querySelector('.news-input-desc').value.trim(),
-      image: card.querySelector('.news-input-img').value.trim() || 'complex.jpg',
+      image: card.querySelector('.news-input-img').value.trim() || 'images/complex.jpg',
       link: 'projects.html'
     });
   });
@@ -1716,7 +1716,7 @@ function renderHomePartners() {
       <div class="dynamic-item-card" data-idx="${idx}">
         <div class="dynamic-item-header">
           <div style="display:flex; align-items:center; gap:10px;">
-            <img src="${p.image}" alt="${p.name}" style="height:36px; max-width:80px; object-fit:contain; background:#FFFFFF; border:1px solid #CBD5E1; border-radius:6px; padding:2px;" onerror="this.src='logo.png'">
+            <img src="${p.image}" alt="${p.name}" style="height:36px; max-width:80px; object-fit:contain; background:#FFFFFF; border:1px solid #CBD5E1; border-radius:6px; padding:2px;" onerror="this.src='images/logo.png'">
             <strong>${p.name}</strong>
           </div>
           <button type="button" class="btn-sm-del" onclick="deletePartnerCard(${idx})">حذف 🗑️</button>
@@ -1727,7 +1727,7 @@ function renderHomePartners() {
             <input type="text" class="admin-input partner-input-name" value="${p.name || ''}">
           </div>
           <div class="admin-form-group">
-            <label>مسار الصورة / الشعار (مثلاً partner-tadamun.png)</label>
+            <label>مسار الصورة / الشعار (مثلاً images/partner-tadamun.png)</label>
             <input type="text" class="admin-input partner-input-img" id="partnerImgInput_${idx}" value="${p.image || ''}">
           </div>
         </div>
@@ -1743,7 +1743,7 @@ function addNewPartnerCard() {
   d.home.partners.push({
     id: 'partner_' + Date.now(),
     name: 'جهة شريكة جديدة',
-    image: 'logo.png'
+    image: 'images/logo.png'
   });
   savePagesData(d, 'تمت إضافة جهة شريكة');
   renderHomePartners();
@@ -1766,7 +1766,7 @@ function saveHomePartners() {
     updatedPartners.push({
       id: 'partner_' + Math.random().toString(36).substring(7),
       name: card.querySelector('.partner-input-name').value.trim(),
-      image: card.querySelector('.partner-input-img').value.trim() || 'logo.png'
+      image: card.querySelector('.partner-input-img').value.trim() || 'images/logo.png'
     });
   });
 
@@ -1809,7 +1809,7 @@ function renderStoreCampaignsList() {
       <div class="dynamic-item-card">
         <div class="dynamic-item-header">
           <div style="display:flex; align-items:center; gap:12px;">
-            <img src="${c.image || 'school.jpg'}" alt="${c.title}" style="width:48px; height:40px; border-radius:6px; object-fit:cover; border:1px solid #CBD5E1;" onerror="this.src='school.jpg'">
+            <img src="${c.image || 'images/school.jpg'}" alt="${c.title}" style="width:48px; height:40px; border-radius:6px; object-fit:cover; border:1px solid #CBD5E1;" onerror="this.src='images/school.jpg'">
             <div>
               <strong style="color:#0F172A; font-size:1rem;">${c.title}</strong>
               <div style="font-size:0.75rem; color:#64748B;">سعر السهم: ${Number(c.unitPrice).toLocaleString('ar-EG')} ج.م | إنجاز: ${pct}%</div>
@@ -1994,7 +1994,7 @@ function addNewFloorCard() {
     number: 'طابق جديد',
     title: 'خدمات وأقسام إضافية بالمجمع',
     desc: 'تفاصيل الخدمات والأقسام الجديدة...',
-    image: 'complex.jpg'
+    image: 'images/complex.jpg'
   });
   savePagesData(d, 'تمت إضافة قسم طابق جديد');
   renderComplexFloors();
@@ -2019,7 +2019,7 @@ function saveComplexFloors() {
       number: card.querySelector('.floor-input-num').value.trim(),
       title: card.querySelector('.floor-input-title').value.trim(),
       desc: card.querySelector('.floor-input-desc').value.trim(),
-      image: card.querySelector('.floor-input-img').value.trim() || 'complex.jpg'
+      image: card.querySelector('.floor-input-img').value.trim() || 'images/complex.jpg'
     });
   });
 
@@ -2675,7 +2675,7 @@ function loadNewsPage() {
 
   let html = '';
   articles.forEach(art => {
-    const images = (Array.isArray(art.images) && art.images.length > 0) ? art.images : [art.image || 'complex.jpg'];
+    const images = (Array.isArray(art.images) && art.images.length > 0) ? art.images : [art.image || 'images/complex.jpg'];
     html += `
       <div class="dynamic-item-card" style="display:flex; justify-content:space-between; align-items:center; gap:16px;">
         <div style="display:flex; gap:14px; align-items:center;">
@@ -2716,7 +2716,7 @@ function addNewNewsArticle() {
   const d = getPagesData();
   if (!Array.isArray(d.news)) d.news = [];
 
-  const images = temporaryNewsImages.length > 0 ? [...temporaryNewsImages] : ['complex.jpg'];
+  const images = temporaryNewsImages.length > 0 ? [...temporaryNewsImages] : ['images/complex.jpg'];
   const newArticle = {
     id: 'news_' + Date.now(),
     title,
@@ -3125,7 +3125,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const presetsRaw = document.getElementById('modalCampaignPresets').value;
       const presets = presetsRaw.split(',').map(s => Number(s.trim())).filter(n => !isNaN(n) && n > 0);
 
-      const image = document.getElementById('modalCampaignImageUrl').value.trim() || 'school.jpg';
+      const image = document.getElementById('modalCampaignImageUrl').value.trim() || 'images/school.jpg';
       const desc = document.getElementById('modalCampaignDesc').value.trim();
       const extDescElem = document.getElementById('modalCampaignExtendedDesc');
       const extendedDesc = extDescElem ? extDescElem.value.trim() : '';

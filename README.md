@@ -46,10 +46,10 @@ al-israa/
 │   └── CMS_UPLOADS.md        # دليل هندسي مفصل لدورة رفع وأرشفة وسائط الـ CMS
 │
 ├── 🖼️ الأصول والوسائط الثابتة (Static Media & Brand Assets):
-│   ├── logo.png              # شعار جمعية الإسراء المعتمد
-│   ├── logo-outbox.png       # شعار مؤسسة برة الصندوق (المدارس الخضراء الذكية)
-│   ├── ngohub-logo.png       # شعار منصة NGOhub
-│   ├── complex.jpg, hostel.jpg, arzaq.jpg, school.jpg ... (صور الصروح والمشروعات)
+│   ├── images/logo.png              # شعار جمعية الإسراء المعتمد
+│   ├── images/logo-outbox.png       # شعار مؤسسة برة الصندوق (المدارس الخضراء الذكية)
+│   ├── ngohub-images/logo.png       # شعار منصة NGOhub
+│   ├── images/complex.jpg, images/hostel.jpg, images/arzaq.jpg, images/school.jpg ... (صور الصروح والمشروعات)
 │   └── partner-*.png / .svg  # شعارات الوزارات والجهات الشريكة
 │
 └── 📋 ملفات التكوين والتوثيق (Config & Documentation):

@@ -6,7 +6,7 @@
   <title>جمعية الإسراء الخيرية لتنمية المجتمع بدمنهور | المنصة الرسمية ومتجر التبرعات</title>
   <meta name="description" content="الموقع الرسمي ومتجر التبرعات لجمعية الإسراء الخيرية بدمنهور - ذات نفع عام بقرار 646 لسنة 2024. رعاية مجانية لمرضى الأورام، كفالات تعليمية، تمكين اقتصادي، ومشروع برة الصندوق Outbox.">
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="icon" type="image/png" href="images/logo.png">
   <script src="i18n.js"></script>
 </head>
 <body>
@@ -31,7 +31,7 @@
   <header class="site-header">
     <div class="container nav-container">
       <a href="index.html" class="brand-identity">
-        <img src="logo.png" alt="شعار جمعية الإسراء الخيرية" class="brand-logo-img">
+        <img src="images/logo.png" alt="شعار جمعية الإسراء الخيرية" class="brand-logo-img">
         <div class="brand-names">
           <span class="brand-title" data-i18n="brand.title">جمعية الإسراء الخيرية</span>
           <span class="brand-subtitle" data-i18n="brand.subtitle">لتنمية المجتمع بدمنهور</span>
@@ -42,9 +42,14 @@
         <ul class="nav-links-list">
           <li><a href="index.html" class="nav-item-link active" data-i18n="nav.home">الرئيسية</a></li>
           <li><a href="about.html" class="nav-item-link" data-i18n="nav.about">عن الجمعية</a></li>
-          <li><a href="complex.html" class="nav-item-link" data-i18n="nav.complex">مجمع الإسراء</a></li>
-          <li><a href="hostel.html" class="nav-item-link" data-i18n="nav.hostel">دار ضيافة الأورام</a></li>
-          <li><a href="projects.html" class="nav-item-link" data-i18n="nav.projects">مشروعاتنا</a></li>
+          <li class="nav-dropdown-item">
+            <a href="javascript:void(0)" class="dropdown-toggle" data-i18n="nav.facilitiesGroup">الصروح والمشروعات <span class="dropdown-arrow">▾</span></a>
+            <ul class="nav-dropdown-menu">
+              <li><a href="complex.html" data-i18n="nav.complex">مجمع الإسراء</a></li>
+              <li><a href="hostel.html" data-i18n="nav.hostel">دار ضيافة الأورام</a></li>
+              <li><a href="projects.html" data-i18n="nav.projects">مشروعاتنا</a></li>
+            </ul>
+          </li>
           <li><a href="news.html" class="nav-item-link" data-i18n="nav.news">آخر الأخبار</a></li>
           <li><a href="store.html" class="nav-item-link" data-i18n="nav.store">متجر التبرعات 🛒</a></li>
           <li><a href="contact.html" class="nav-item-link" data-i18n="nav.contact">تواصل معنا</a></li>
@@ -79,7 +84,7 @@
     <div class="mobile-drawer-content">
       <div class="mobile-drawer-header">
         <div class="brand-identity">
-          <img src="logo.png" alt="جمعية الإسراء" style="width: 40px; height: 40px; object-fit: contain;">
+          <img src="images/logo.png" alt="جمعية الإسراء" style="width: 40px; height: 40px; object-fit: contain;">
           <span style="font-weight: 800; font-size: 1.05rem; color: var(--text-main);" data-i18n="brand.short">جمعية الإسراء</span>
         </div>
         <div style="display:flex; align-items:center; gap:8px;">
@@ -164,7 +169,7 @@
       </div>
       <div class="hero-media-wrapper">
         <div class="hero-image-card">
-          <img src="complex.jpg" alt="مجمع جمعية الإسراء الخيري بدمنهور">
+          <img src="images/complex.jpg" alt="مجمع جمعية الإسراء الخيري بدمنهور">
         </div>
         <div class="hero-floating-stat">
           <div class="stat-icon-circle">🎗️</div>
@@ -227,7 +232,7 @@
         <!-- Card 1: دار ضيافة مرضى الأورام -->
         <div class="campaign-card" data-id="hostel_patient" data-tab-type="urgent">
           <div class="campaign-card-poster">
-            <img src="hostel.jpg" alt="دار ضيافة مرضى الأورام بدمنهور">
+            <img src="images/hostel.jpg" alt="دار ضيافة مرضى الأورام بدمنهور">
             <span class="campaign-card-badge urgent">حالة عاجلة ⚠️</span>
           </div>
           <div class="campaign-card-body">
@@ -277,13 +282,16 @@
             <button type="button" class="btn-donate-now-orange">
               <span>تبرع الآن 🧡</span>
             </button>
+                      <button type="button" class="btn-quick-details" onclick="openCampaignModal('hostel_patient')" style="background:#F8FAFC; border:1px solid #CBD5E1; color:#334155; border-radius:8px; padding:7px 12px; margin-top:8px; font-size:0.85rem; font-weight:700; width:100%; cursor:pointer; font-family:inherit; transition:all 0.2s ease;">
+              🔍 عرض التفاصيل والصور الإضافية
+            </button>
           </div>
         </div>
 
         <!-- Card 2: وجبات غذائية علاجية لمرضى الأورام -->
         <div class="campaign-card" data-id="oncology_meals" data-tab-type="humanitarian">
           <div class="campaign-card-poster">
-            <img src="kitchen.jpg" alt="وجبات مطبخ الإسراء الخيري لمرضى الأورام">
+            <img src="images/kitchen.jpg" alt="وجبات مطبخ الإسراء الخيري لمرضى الأورام">
             <span class="campaign-card-badge green">إطعام ورعاية</span>
           </div>
           <div class="campaign-card-body">
@@ -333,13 +341,16 @@
             <button type="button" class="btn-donate-now-orange">
               <span>تبرع الآن 🧡</span>
             </button>
+                      <button type="button" class="btn-quick-details" onclick="openCampaignModal('oncology_meals')" style="background:#F8FAFC; border:1px solid #CBD5E1; color:#334155; border-radius:8px; padding:7px 12px; margin-top:8px; font-size:0.85rem; font-weight:700; width:100%; cursor:pointer; font-family:inherit; transition:all 0.2s ease;">
+              🔍 عرض التفاصيل والصور الإضافية
+            </button>
           </div>
         </div>
 
         <!-- Card 3: سهم تروسيكل وعربة أرزاق -->
         <div class="campaign-card" data-id="arzaq_trike" data-tab-type="humanitarian">
           <div class="campaign-card-poster">
-            <img src="arzaq.jpg" alt="تروسيكل مشروع أرزاق للتمكين الاقتصادي">
+            <img src="images/arzaq.jpg" alt="تروسيكل مشروع أرزاق للتمكين الاقتصادي">
             <span class="campaign-card-badge blue">تمكين اقتصادي</span>
           </div>
           <div class="campaign-card-body">
@@ -389,13 +400,16 @@
             <button type="button" class="btn-donate-now-orange">
               <span>تبرع الآن 🧡</span>
             </button>
+                      <button type="button" class="btn-quick-details" onclick="openCampaignModal('arzaq_trike')" style="background:#F8FAFC; border:1px solid #CBD5E1; color:#334155; border-radius:8px; padding:7px 12px; margin-top:8px; font-size:0.85rem; font-weight:700; width:100%; cursor:pointer; font-family:inherit; transition:all 0.2s ease;">
+              🔍 عرض التفاصيل والصور الإضافية
+            </button>
           </div>
         </div>
 
         <!-- Card 4: برة الصندوق Outbox -->
         <div class="campaign-card" data-id="outbox_green" data-tab-type="all">
           <div class="campaign-card-poster">
-            <img src="trees.jpg" alt="المدرسة الخضراء الذكية برة الصندوق">
+            <img src="images/trees.jpg" alt="المدرسة الخضراء الذكية برة الصندوق">
             <span class="campaign-card-badge green">استدامة وبيئة</span>
           </div>
           <div class="campaign-card-body">
@@ -445,13 +459,16 @@
             <button type="button" class="btn-donate-now-orange">
               <span>تبرع الآن 🧡</span>
             </button>
+                      <button type="button" class="btn-quick-details" onclick="openCampaignModal('outbox_green')" style="background:#F8FAFC; border:1px solid #CBD5E1; color:#334155; border-radius:8px; padding:7px 12px; margin-top:8px; font-size:0.85rem; font-weight:700; width:100%; cursor:pointer; font-family:inherit; transition:all 0.2s ease;">
+              🔍 عرض التفاصيل والصور الإضافية
+            </button>
           </div>
         </div>
 
         <!-- Card 5: عيادات مجمع الإسراء التخصصية -->
         <div class="campaign-card" data-id="clinic_medicine" data-tab-type="urgent">
           <div class="campaign-card-poster">
-            <img src="complex.jpg" alt="مجمع الإسراء الطبي التنموي بدمنهور">
+            <img src="images/complex.jpg" alt="مجمع الإسراء الطبي التنموي بدمنهور">
             <span class="campaign-card-badge urgent">صحة وعلاج ⚠️</span>
           </div>
           <div class="campaign-card-body">
@@ -501,13 +518,16 @@
             <button type="button" class="btn-donate-now-orange">
               <span>تبرع الآن 🧡</span>
             </button>
+                      <button type="button" class="btn-quick-details" onclick="openCampaignModal('clinic_medicine')" style="background:#F8FAFC; border:1px solid #CBD5E1; color:#334155; border-radius:8px; padding:7px 12px; margin-top:8px; font-size:0.85rem; font-weight:700; width:100%; cursor:pointer; font-family:inherit; transition:all 0.2s ease;">
+              🔍 عرض التفاصيل والصور الإضافية
+            </button>
           </div>
         </div>
 
         <!-- Card 6: نول وسجاد يدوي -->
         <div class="campaign-card" data-id="loom_carpet" data-tab-type="humanitarian">
           <div class="campaign-card-poster">
-            <img src="loom.jpg" alt="ورشة النول والسجاد اليدوي بجمعية الإسراء">
+            <img src="images/loom.jpg" alt="ورشة النول والسجاد اليدوي بجمعية الإسراء">
             <span class="campaign-card-badge blue">تمكين المرأة</span>
           </div>
           <div class="campaign-card-body">
@@ -557,13 +577,16 @@
             <button type="button" class="btn-donate-now-orange">
               <span>تبرع الآن 🧡</span>
             </button>
+                      <button type="button" class="btn-quick-details" onclick="openCampaignModal('loom_carpet')" style="background:#F8FAFC; border:1px solid #CBD5E1; color:#334155; border-radius:8px; padding:7px 12px; margin-top:8px; font-size:0.85rem; font-weight:700; width:100%; cursor:pointer; font-family:inherit; transition:all 0.2s ease;">
+              🔍 عرض التفاصيل والصور الإضافية
+            </button>
           </div>
         </div>
 
         <!-- Card 7: فصول التعليم المجتمعي -->
         <div class="campaign-card" data-id="community_education" data-tab-type="all">
           <div class="campaign-card-poster">
-            <img src="school.jpg" alt="فصول التعليم المجتمعي ومكافحة التسرب">
+            <img src="images/school.jpg" alt="فصول التعليم المجتمعي ومكافحة التسرب">
             <span class="campaign-card-badge blue">تعليم وبناء إنسان</span>
           </div>
           <div class="campaign-card-body">
@@ -613,13 +636,16 @@
             <button type="button" class="btn-donate-now-orange">
               <span>تبرع الآن 🧡</span>
             </button>
+                      <button type="button" class="btn-quick-details" onclick="openCampaignModal('community_education')" style="background:#F8FAFC; border:1px solid #CBD5E1; color:#334155; border-radius:8px; padding:7px 12px; margin-top:8px; font-size:0.85rem; font-weight:700; width:100%; cursor:pointer; font-family:inherit; transition:all 0.2s ease;">
+              🔍 عرض التفاصيل والصور الإضافية
+            </button>
           </div>
         </div>
 
         <!-- Card 8: الصدقة الجارية في مجمع الإسراء الطبي -->
         <div class="campaign-card" data-id="ongoing_charity" data-tab-type="all">
           <div class="campaign-card-poster">
-            <img src="solar.jpg" alt="الصدقة الجارية في مجمع الإسراء التنموي">
+            <img src="images/solar.jpg" alt="الصدقة الجارية في مجمع الإسراء التنموي">
             <span class="campaign-card-badge green">صدقة جارية ممتدة</span>
           </div>
           <div class="campaign-card-body">
@@ -668,6 +694,9 @@
             
             <button type="button" class="btn-donate-now-orange">
               <span>تبرع الآن 🧡</span>
+            </button>
+                      <button type="button" class="btn-quick-details" onclick="openCampaignModal('ongoing_charity')" style="background:#F8FAFC; border:1px solid #CBD5E1; color:#334155; border-radius:8px; padding:7px 12px; margin-top:8px; font-size:0.85rem; font-weight:700; width:100%; cursor:pointer; font-family:inherit; transition:all 0.2s ease;">
+              🔍 عرض التفاصيل والصور الإضافية
             </button>
           </div>
         </div>
@@ -732,7 +761,7 @@
 
       <div>
         <div style="border-radius:var(--radius-xl); overflow:hidden; border:4px solid rgba(255,255,255,0.25); box-shadow:var(--shadow-xl);">
-          <img src="trees.jpg" alt="مشروع برة الصندوق وتشجير مستشفى الصدر بدمنهور" style="width:100%; height:400px; object-fit:cover;">
+          <img src="images/trees.jpg" alt="مشروع برة الصندوق وتشجير مستشفى الصدر بدمنهور" style="width:100%; height:400px; object-fit:cover;">
         </div>
       </div>
     </div>
@@ -762,7 +791,7 @@
         <!-- News 1 -->
         <article class="news-card">
           <div class="news-card-img">
-            <img src="governor.jpg" alt="تكريم محافظة البحيرة لمشروعات الإسراء">
+            <img src="images/governor.jpg" alt="تكريم محافظة البحيرة لمشروعات الإسراء">
             <span class="news-card-date">24 سبتمبر 2026</span>
           </div>
           <div class="news-card-body">
@@ -776,7 +805,7 @@
         <!-- News 2 -->
         <article class="news-card">
           <div class="news-card-img">
-            <img src="school.jpg" alt="احتفالية التعليم المجتمعي">
+            <img src="images/school.jpg" alt="احتفالية التعليم المجتمعي">
             <span class="news-card-date">18 سبتمبر 2026</span>
           </div>
           <div class="news-card-body">
@@ -790,7 +819,7 @@
         <!-- News 3 -->
         <article class="news-card">
           <div class="news-card-img">
-            <img src="arzaq.jpg" alt="تسليم عربات أرزاق للشباب">
+            <img src="images/arzaq.jpg" alt="تسليم عربات أرزاق للشباب">
             <span class="news-card-date">10 سبتمبر 2026</span>
           </div>
           <div class="news-card-body">
@@ -818,43 +847,43 @@
       <div class="partners-grid">
         <div class="partner-card">
           <div class="partner-logo-box">
-            <img src="partner-tadamun.png" alt="وزارة التضامن الاجتماعي" class="partner-logo-img">
+            <img src="images/partner-tadamun.png" alt="وزارة التضامن الاجتماعي" class="partner-logo-img">
           </div>
           <div class="partner-name">وزارة التضامن الاجتماعي</div>
         </div>
         <div class="partner-card">
           <div class="partner-logo-box">
-            <img src="partner-education.png" alt="وزارة التربية والتعليم والتعليم الفني" class="partner-logo-img">
+            <img src="images/partner-education.png" alt="وزارة التربية والتعليم والتعليم الفني" class="partner-logo-img">
           </div>
           <div class="partner-name">وزارة التربية والتعليم والتعليم الفني</div>
         </div>
         <div class="partner-card">
           <div class="partner-logo-box">
-            <img src="partner-oncology.png" alt="أمانة المراكز الطبية المتخصصة - معهد دمنهور للأورام" class="partner-logo-img">
+            <img src="images/partner-oncology.png" alt="أمانة المراكز الطبية المتخصصة - معهد دمنهور للأورام" class="partner-logo-img">
           </div>
           <div class="partner-name">أمانة المراكز المتخصصة (معهد أورام دمنهور)</div>
         </div>
         <div class="partner-card">
           <div class="partner-logo-box">
-            <img src="partner-save-children.svg" alt="هيئة إنقاذ الطفولة الدولية" class="partner-logo-img">
+            <img src="images/partner-save-children.svg" alt="هيئة إنقاذ الطفولة الدولية" class="partner-logo-img">
           </div>
           <div class="partner-name">هيئة إنقاذ الطفولة (Save the Children)</div>
         </div>
         <div class="partner-card">
           <div class="partner-logo-box">
-            <img src="partner-sgg.png" alt="المبادرة الوطنية للمشروعات الخضراء الذكية" class="partner-logo-img">
+            <img src="images/partner-sgg.png" alt="المبادرة الوطنية للمشروعات الخضراء الذكية" class="partner-logo-img">
           </div>
           <div class="partner-name">المبادرة الوطنية للمشروعات الخضراء الذكية</div>
         </div>
         <div class="partner-card">
           <div class="partner-logo-box">
-            <img src="logo-outbox.png" alt="مؤسسة Outbox برة الصندوق" class="partner-logo-img">
+            <img src="images/logo-outbox.png" alt="مؤسسة Outbox برة الصندوق" class="partner-logo-img">
           </div>
           <div class="partner-name">مؤسسة Outbox (المدارس الخضراء)</div>
         </div>
         <div class="partner-card">
           <div class="partner-logo-box">
-            <img src="ngohub-logo.png" alt="منصة NGOhub الرقمية" class="partner-logo-img">
+            <img src="ngohub-images/logo.png" alt="منصة NGOhub الرقمية" class="partner-logo-img">
           </div>
           <div class="partner-name">منصة NGOhub الرقمية</div>
         </div>
@@ -867,7 +896,7 @@
     <div class="container footer-grid">
       <div>
         <div class="brand-identity" style="margin-bottom: 16px;">
-          <img src="logo.png" alt="جمعية الإسراء الخيرية" class="brand-logo-img">
+          <img src="images/logo.png" alt="جمعية الإسراء الخيرية" class="brand-logo-img">
           <div class="brand-names">
             <span class="brand-title">جمعية الإسراء الخيرية</span>
             <span class="brand-subtitle">لتنمية المجتمع بدمنهور</span>
@@ -958,13 +987,74 @@
             <a href="admin.html" class="btn-footer-admin" title="لوحة التحكم CMS" data-i18n="footer.adminBtn">لوحة التحكم</a>
           </p>
           <a href="https://ngo-hub.com" target="_blank" rel="noopener noreferrer" class="ngohub-badge-link" title="منصة NGOHub لدعم وإدارة المنظمات غير الحكومية">
-            <img src="ngohub-logo.png" alt="شعار NGOHub" class="ngohub-logo-img">
+            <img src="ngohub-images/logo.png" alt="شعار NGOHub" class="ngohub-logo-img">
             <span class="ngohub-powered-text">Powered by <span class="ngohub-name">NGOhub</span></span>
           </a>
         </div>
       </div>
     </div>
   </footer>
+
+  <!-- Interactive Campaign Details Modal (Expanded View & Gallery) -->
+  <div class="campaign-modal-overlay" id="campaignDetailsModal" onclick="if(event.target===this)closeCampaignModal()" style="display:none;">
+    <div class="campaign-modal-box">
+      <button class="modal-close-btn" onclick="closeCampaignModal()" aria-label="إغلاق النافذة">✕</button>
+      
+      <div class="campaign-modal-header-meta">
+        <span class="campaign-modal-badge" id="modalCampaignBadge">حالة عاجلة ⚠️</span>
+        <span class="campaign-modal-tag" id="modalCampaignTag">#كفالة_مرضى_الأورام</span>
+      </div>
+
+      <h2 class="campaign-modal-title" id="modalCampaignTitle">عنوان حملة التبرع</h2>
+
+      <!-- Image Showcase & Thumbnails Gallery -->
+      <div class="campaign-modal-gallery">
+        <div class="modal-gallery-main" style="max-height:360px; overflow:hidden; border-radius:12px; margin:14px 0 10px;">
+          <img src="images/hostel.jpg" alt="صورة الحملة" id="modalCampaignMainImg" style="width:100%; height:100%; max-height:340px; object-fit:cover; border-radius:12px;">
+        </div>
+        <div class="modal-gallery-thumbs" id="modalCampaignThumbs" style="display:flex; gap:8px; overflow-x:auto; padding-bottom:6px;"></div>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="campaign-modal-progress" style="margin-top:16px;">
+        <div style="display:flex; justify-content:space-between; font-size:0.92rem; margin-bottom:6px;">
+          <span style="font-weight:700; color:var(--text-main);" id="modalCampaignCollected">المجموع: 0 ج.م</span>
+          <span style="color:var(--text-muted);" id="modalCampaignTarget">الهدف: 0 ج.م</span>
+        </div>
+        <div style="background:#E2E8F0; height:8px; border-radius:10px; overflow:hidden;">
+          <div id="modalCampaignProgressBar" style="background:linear-gradient(90deg, #F97316, #2E6038); height:100%; width:50%;"></div>
+        </div>
+      </div>
+
+      <!-- Description & Impact Breakdown -->
+      <div class="campaign-modal-desc-box" style="margin-top:16px; line-height:1.7; color:#334155;">
+        <h4 style="font-size:1.05rem; font-weight:800; color:#1E293B; margin-bottom:6px;">أثر مساهمتك ومواصفات السهم:</h4>
+        <p id="modalCampaignDesc" style="margin:0; font-size:0.95rem;"></p>
+        <div id="modalCampaignExtendedDesc" style="margin-top:10px; font-size:0.92rem; color:#475569; background:#F8FAFC; padding:12px; border-radius:10px; border-right:3px solid var(--brand-green);"></div>
+      </div>
+
+      <!-- Donation Action Form in Modal -->
+      <div class="campaign-modal-action-box" style="margin-top:20px; padding-top:16px; border-top:1px solid #E2E8F0;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:14px;">
+          <div>
+            <span style="font-size:0.85rem; color:#64748B;">قيمة السهم المقترحة:</span>
+            <strong style="display:block; font-size:1.35rem; color:var(--brand-green);" id="modalCampaignPrice">500 ج.م</strong>
+          </div>
+          <div class="modal-presets-group" id="modalCampaignPresets" style="display:flex; gap:6px;"></div>
+        </div>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <button type="button" class="btn-orange" id="modalAddToCartBtn" style="flex:1; min-width:160px; padding:11px;" onclick="modalAddCurrentToCart()">
+            إضافة السهم للسلة 🛒
+          </button>
+          <button type="button" class="btn-primary" id="modalDonateDirectBtn" style="flex:1; min-width:160px; padding:11px;" onclick="modalDonateDirectly()">
+            تبرع مباشر وسريع ⚡
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
 
   <!-- Floating WhatsApp Button -->
   <a href="https://wa.me/201000000000?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AD%D9%85%D9%84%D8%A7%D8%AA%20%D8%A7%D9%84%D8%AA%D8%A8%D8%B1%D8%B9%20%D9%88%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%20%D8%AC%D9%85%D8%B9%D9%8A%D8%A9%20%D8%A7%D9%84%D8%A5%D8%B3%D8%B1%D8%A7%D8%A1" class="whatsapp-float-btn" target="_blank" aria-label="تواصل مباشر عبر واتساب" title="تواصل عبر واتساب">

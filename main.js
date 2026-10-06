@@ -190,7 +190,7 @@ function addToCart(item) {
       amount: Number(item.amount) || 100,
       qty: item.qty || 1,
       category: item.category || 'عام',
-      image: item.image || 'school.jpg'
+      image: item.image || 'images/school.jpg'
     });
   }
   saveCart(cart);
@@ -416,7 +416,7 @@ function hydratePageByPageContent() {
         newsHtml += `
           <article class="news-card">
             <div class="news-card-img">
-              <img src="${item.image || 'complex.jpg'}" alt="${item.title}" onerror="this.src='complex.jpg'">
+              <img src="${item.image || 'images/complex.jpg'}" alt="${item.title}" onerror="this.src='images/complex.jpg'">
               <span class="news-card-date">${item.date || 'سبتمبر 2026'}</span>
             </div>
             <div class="news-card-body">
@@ -439,7 +439,7 @@ function hydratePageByPageContent() {
         partnersHtml += `
           <div class="partner-card">
             <div class="partner-logo-box">
-              <img src="${p.image}" alt="${p.name}" class="partner-logo-img" onerror="this.src='logo.png'">
+              <img src="${p.image}" alt="${p.name}" class="partner-logo-img" onerror="this.src='images/logo.png'">
             </div>
             <div class="partner-name">${p.name}</div>
           </div>
@@ -541,6 +541,16 @@ function hydratePageByPageContent() {
     if (title && pagesData.about.hero && pagesData.about.hero.title) title.textContent = pagesData.about.hero.title;
     if (desc && pagesData.about.hero && pagesData.about.hero.desc) desc.textContent = pagesData.about.hero.desc;
   }
+
+  // --- 9. NEWS PAGE (news.html) ---
+  if (pagesData.news && currentPath.includes('news.html')) {
+    const badge = document.getElementById('newsHeroBadge') || document.querySelector('.hero-badge-pill span');
+    const title = document.getElementById('newsHeroTitle') || document.querySelector('.hero-heading');
+    const desc = document.getElementById('newsHeroDesc') || document.querySelector('.hero-description');
+    if (badge && pagesData.news.hero && pagesData.news.hero.badge) badge.textContent = pagesData.news.hero.badge;
+    if (title && pagesData.news.hero && pagesData.news.hero.title) title.textContent = pagesData.news.hero.title;
+    if (desc && pagesData.news.hero && pagesData.news.hero.desc) desc.textContent = pagesData.news.hero.desc;
+  }
 }
 
 // ============================================================================
@@ -588,7 +598,7 @@ function renderCustomPageBlocks() {
       case 'image':
         html += `
           <figure class="wp-rendered-image">
-            <img src="${block.image || 'complex.jpg'}" alt="${block.title || 'صورة'}" onerror="this.src='complex.jpg'">
+            <img src="${block.image || 'images/complex.jpg'}" alt="${block.title || 'صورة'}" onerror="this.src='images/complex.jpg'">
             ${(block.caption || block.title) ? `
               <figcaption class="wp-rendered-image-caption">
                 <strong>${block.title || ''}</strong>
@@ -604,7 +614,7 @@ function renderCustomPageBlocks() {
           <div class="wp-rendered-card">
             ${block.image ? `
               <div class="wp-card-media">
-                <img src="${block.image}" alt="${block.title || ''}" onerror="this.src='complex.jpg'">
+                <img src="${block.image}" alt="${block.title || ''}" onerror="this.src='images/complex.jpg'">
               </div>
             ` : ''}
             <div class="wp-card-info">
@@ -633,7 +643,7 @@ function renderCustomPageBlocks() {
         html += `
           <article class="news-card" style="margin-bottom:24px;">
             <div class="news-card-img">
-              <img src="${block.image || 'complex.jpg'}" alt="${block.title || ''}" onerror="this.src='complex.jpg'">
+              <img src="${block.image || 'images/complex.jpg'}" alt="${block.title || ''}" onerror="this.src='images/complex.jpg'">
               <span class="news-card-date">${block.date || 'سبتمبر 2026'}</span>
             </div>
             <div class="news-card-body">
@@ -667,6 +677,67 @@ function renderCustomPageBlocks() {
 let currentModalCampaign = null;
 let modalSelectedAmount = 0;
 
+function ensureCampaignModalInDOM() {
+  let modal = document.getElementById('campaignDetailsModal');
+  if (!modal) {
+    const div = document.createElement('div');
+    div.id = 'campaignDetailsModal';
+    div.className = 'campaign-modal-overlay';
+    div.style.display = 'none';
+    div.onclick = function(e) { if (e.target === div) closeCampaignModal(); };
+    div.innerHTML = `
+      <div class="campaign-modal-box">
+        <button class="modal-close-btn" onclick="closeCampaignModal()" aria-label="إغلاق النافذة">✕</button>
+        <div class="campaign-modal-header-meta">
+          <span class="campaign-modal-badge" id="modalCampaignBadge">حالة عاجلة ⚠️</span>
+          <span class="campaign-modal-tag" id="modalCampaignTag">#كفالة_مرضى_الأورام</span>
+        </div>
+        <h2 class="campaign-modal-title" id="modalCampaignTitle">عنوان حملة التبرع</h2>
+        <div class="campaign-modal-gallery">
+          <div class="modal-gallery-main" style="max-height:360px; overflow:hidden; border-radius:12px; margin:14px 0 10px;">
+            <img src="images/hostel.jpg" alt="صورة الحملة" id="modalCampaignMainImg" style="width:100%; height:100%; max-height:340px; object-fit:cover; border-radius:12px;">
+          </div>
+          <div class="modal-gallery-thumbs" id="modalCampaignThumbs" style="display:flex; gap:8px; overflow-x:auto; padding-bottom:6px;"></div>
+        </div>
+        <div class="campaign-modal-progress" style="margin-top:16px;">
+          <div style="display:flex; justify-content:space-between; font-size:0.92rem; margin-bottom:6px;">
+            <span style="font-weight:700; color:var(--text-main);" id="modalCampaignCollected">المجموع: 0 ج.م</span>
+            <span style="color:var(--text-muted);" id="modalCampaignTarget">الهدف: 0 ج.م</span>
+          </div>
+          <div style="background:#E2E8F0; height:8px; border-radius:10px; overflow:hidden;">
+            <div id="modalCampaignProgressBar" style="background:linear-gradient(90deg, #F97316, #2E6038); height:100%; width:50%;"></div>
+          </div>
+        </div>
+        <div class="campaign-modal-desc-box" style="margin-top:16px; line-height:1.7; color:#334155;">
+          <h4 style="font-size:1.05rem; font-weight:800; color:#1E293B; margin-bottom:6px;">أثر مساهمتك ومواصفات السهم:</h4>
+          <p id="modalCampaignDesc" style="margin:0; font-size:0.95rem;"></p>
+          <div id="modalCampaignExtendedDesc" style="margin-top:10px; font-size:0.92rem; color:#475569; background:#F8FAFC; padding:12px; border-radius:10px; border-right:3px solid var(--brand-green);"></div>
+        </div>
+        <div class="campaign-modal-action-box" style="margin-top:20px; padding-top:16px; border-top:1px solid #E2E8F0;">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:14px;">
+            <div>
+              <span style="font-size:0.85rem; color:#64748B;">قيمة السهم المقترحة:</span>
+              <strong style="display:block; font-size:1.35rem; color:var(--brand-green);" id="modalCampaignPrice">500 ج.م</strong>
+            </div>
+            <div class="modal-presets-group" id="modalCampaignPresets" style="display:flex; gap:6px;"></div>
+          </div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <button type="button" class="btn-orange" id="modalAddToCartBtn" style="flex:1; min-width:160px; padding:11px;" onclick="modalAddCurrentToCart()">
+              إضافة السهم للسلة 🛒
+            </button>
+            <button type="button" class="btn-primary" id="modalDonateDirectBtn" style="flex:1; min-width:160px; padding:11px;" onclick="modalDonateDirectly()">
+              تبرع مباشر وسريع ⚡
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(div);
+    modal = div;
+  }
+  return modal;
+}
+
 window.openCampaignModal = function(id) {
   const pagesData = getGlobalPagesData();
   const campaigns = (pagesData && pagesData.store && pagesData.store.campaigns) || [];
@@ -679,7 +750,7 @@ window.openCampaignModal = function(id) {
       const cardTitle = card.querySelector('.campaign-item-title') ? card.querySelector('.campaign-item-title').textContent.trim() : 'حملة تبرع';
       const cardBadge = card.querySelector('.campaign-card-badge') ? card.querySelector('.campaign-card-badge').textContent.trim() : 'سهم تبرع';
       const cardTag = card.querySelector('.campaign-category-tag') ? card.querySelector('.campaign-category-tag').textContent.trim() : '#جمعية_الإسراء';
-      const cardImg = card.querySelector('.campaign-card-poster img') ? card.querySelector('.campaign-card-poster img').getAttribute('src') : 'school.jpg';
+      const cardImg = card.querySelector('.campaign-card-poster img') ? card.querySelector('.campaign-card-poster img').getAttribute('src') : 'images/school.jpg';
       const cardDesc = card.querySelector('.campaign-item-desc') ? card.querySelector('.campaign-item-desc').textContent.trim() : '';
       const input = card.querySelector('.amount-stepper-input');
       const unitVal = input ? Number(input.value) || 100 : 100;
@@ -702,7 +773,7 @@ window.openCampaignModal = function(id) {
   if (!c) return;
 
   currentModalCampaign = c;
-  const modal = document.getElementById('campaignDetailsModal');
+  const modal = ensureCampaignModalInDOM();
   if (!modal) return;
 
   const isEn = window.i18n && window.i18n.currentLang === 'en';
@@ -724,7 +795,7 @@ window.openCampaignModal = function(id) {
   if (tagElem) tagElem.textContent = c.tag || '#جمعية_الإسراء_الخيرية';
   if (titleElem) titleElem.textContent = c.title;
 
-  const images = (Array.isArray(c.images) && c.images.length > 0) ? c.images : [c.image || 'school.jpg'];
+  const images = (Array.isArray(c.images) && c.images.length > 0) ? c.images : [c.image || 'images/school.jpg'];
   if (mainImgElem) {
     mainImgElem.src = images[0];
     mainImgElem.alt = c.title;
@@ -836,7 +907,7 @@ window.modalAddCurrentToCart = function() {
     title: currentModalCampaign.title,
     amount: amt,
     category: currentModalCampaign.category || 'عام',
-    image: (Array.isArray(currentModalCampaign.images) && currentModalCampaign.images[0]) || currentModalCampaign.image || 'school.jpg',
+    image: (Array.isArray(currentModalCampaign.images) && currentModalCampaign.images[0]) || currentModalCampaign.image || 'images/school.jpg',
     qty: 1
   });
   closeCampaignModal();
@@ -851,7 +922,7 @@ window.modalDonateDirectly = function() {
     title: currentModalCampaign.title,
     amount: amt,
     category: currentModalCampaign.category || 'عام',
-    image: (Array.isArray(currentModalCampaign.images) && currentModalCampaign.images[0]) || currentModalCampaign.image || 'school.jpg',
+    image: (Array.isArray(currentModalCampaign.images) && currentModalCampaign.images[0]) || currentModalCampaign.image || 'images/school.jpg',
     qty: 1
   });
   closeCampaignModal();
@@ -893,7 +964,7 @@ function renderDynamicCampaignCards() {
     html += `
       <div class="campaign-card" data-id="${c.id}" data-tab-type="${c.category}">
         <div class="campaign-card-poster" onclick="openCampaignModal('${c.id}')" style="cursor:pointer;" title="اضغط لعرض تفاصيل الحملة والصور">
-          <img src="${c.image || 'school.jpg'}" alt="${c.title}" onerror="this.src='school.jpg'">
+          <img src="${c.image || 'images/school.jpg'}" alt="${c.title}" onerror="this.src='images/school.jpg'">
           <span class="campaign-card-badge ${c.badgeColor || 'orange'}">${c.badge || (isEn ? 'Donation Share' : 'سهم تبرع')}</span>
         </div>
         <div class="campaign-card-body">
@@ -972,7 +1043,7 @@ function attachCampaignCardEvents() {
     const cardId = card.getAttribute('data-id') || Math.random().toString(36).substring(7);
     const cardTitle = card.querySelector('.campaign-item-title') ? card.querySelector('.campaign-item-title').textContent.trim() : 'تبرع عام';
     const cardCategory = card.querySelector('.campaign-category-tag') ? card.querySelector('.campaign-category-tag').textContent.trim() : 'عام';
-    const cardImg = card.querySelector('.campaign-card-poster img') ? card.querySelector('.campaign-card-poster img').getAttribute('src') : 'hostel.jpg';
+    const cardImg = card.querySelector('.campaign-card-poster img') ? card.querySelector('.campaign-card-poster img').getAttribute('src') : 'images/hostel.jpg';
     const defaultAmount = input ? Number(input.value) || 100 : 100;
     const baseStep = defaultAmount >= 500 ? 100 : (defaultAmount >= 100 ? 50 : 25);
 
@@ -1149,13 +1220,13 @@ window.renderNewsFeed = function() {
 
   let html = '';
   filtered.forEach((art, idx) => {
-    const images = Array.isArray(art.images) && art.images.length > 0 ? art.images : [art.image || 'complex.jpg'];
+    const images = Array.isArray(art.images) && art.images.length > 0 ? art.images : [art.image || 'images/complex.jpg'];
     const imgCountBadge = images.length > 1 ? `<span class="news-gallery-count-badge">📷 ${images.length} صور</span>` : '';
 
     html += `
       <article class="news-card ${idx === 0 ? 'news-card-featured' : ''}" data-id="${art.id}">
         <div class="news-card-img-wrap" onclick="openArticleModal('${art.id}')" style="cursor:pointer; position:relative;">
-          <img src="${images[0]}" alt="${art.title}" onerror="this.src='complex.jpg'">
+          <img src="${images[0]}" alt="${art.title}" onerror="this.src='images/complex.jpg'">
           <span class="news-date-badge">${art.date || '2026'}</span>
           ${imgCountBadge}
         </div>
@@ -1209,7 +1280,7 @@ window.openArticleModal = function(id) {
   if (dateElem) dateElem.textContent = art.date || '2026';
   if (titleElem) titleElem.textContent = art.title;
 
-  const images = Array.isArray(art.images) && art.images.length > 0 ? art.images : [art.image || 'complex.jpg'];
+  const images = Array.isArray(art.images) && art.images.length > 0 ? art.images : [art.image || 'images/complex.jpg'];
   if (mainImg) {
     mainImg.src = images[0];
     mainImg.alt = art.title;
@@ -1311,20 +1382,22 @@ function hydrateGlobalFooterAndBranches() {
     ? pagesData.branches
     : defaultBranches;
 
+  const isEn = window.i18n && window.i18n.currentLang === 'en';
+
   const branchesContainer = document.getElementById('footerBranchesContainer');
   if (branchesContainer) {
     let branchesHtml = '';
     branches.forEach(b => {
       branchesHtml += `
-        <div class="footer-branch-card" style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:12px 14px; margin-bottom:10px;">
-          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:4px;">
-            <strong style="color:#FFFFFF; font-size:0.92rem; display:flex; align-items:center; gap:6px;">
+        <div class="footer-branch-card">
+          <div class="branch-card-header">
+            <strong class="branch-card-title">
               <span>🏢</span> <span>${b.name}</span>
             </strong>
-            ${b.isMain ? '<span style="background:var(--brand-green); color:#FFFFFF; font-size:0.72rem; padding:2px 8px; border-radius:10px; font-weight:700;">المقر الرئيسي</span>' : ''}
+            ${b.isMain ? `<span class="branch-card-badge">${isEn ? 'Headquarters' : 'المقر الرئيسي'}</span>` : ''}
           </div>
-          <p style="color:#CBD5E1; font-size:0.83rem; margin:0 0 6px; line-height:1.5;">📍 ${b.address}</p>
-          <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.78rem; color:#94A3B8;">
+          <p class="branch-card-address">📍 ${b.address}</p>
+          <div class="branch-card-meta">
             <span>📞 ${b.phone || '01026410313'}</span>
             ${b.workHours ? `<span>⏰ ${b.workHours}</span>` : ''}
           </div>

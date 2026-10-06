@@ -194,6 +194,8 @@ button, input, select, textarea {
   display: flex;
   align-items: center;
   gap: 14px;
+  flex-shrink: 0;
+  min-width: max-content;
 }
 
 .brand-logo-img {
@@ -201,6 +203,7 @@ button, input, select, textarea {
   height: 54px;
   object-fit: contain;
   transition: transform var(--transition-spring);
+  flex-shrink: 0;
 }
 
 .brand-identity:hover .brand-logo-img {
@@ -210,6 +213,7 @@ button, input, select, textarea {
 .brand-names {
   display: flex;
   flex-direction: column;
+  white-space: nowrap;
 }
 
 .brand-title {
@@ -218,12 +222,14 @@ button, input, select, textarea {
   color: var(--text-main);
   line-height: 1.2;
   letter-spacing: -0.3px;
+  white-space: nowrap;
 }
 
 .brand-subtitle {
   font-size: 0.8rem;
   color: var(--brand-green);
   font-weight: 700;
+  white-space: nowrap;
 }
 
 .main-navigation {
@@ -264,6 +270,117 @@ button, input, select, textarea {
   height: 3px;
   background-color: var(--brand-green);
   border-radius: var(--radius-full);
+}
+
+/* Navigation Dropdown Menu */
+.nav-dropdown-item {
+  position: relative;
+  display: inline-block;
+}
+
+.nav-dropdown-item .dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--text-muted);
+  font-size: 0.98rem;
+  padding: 8px 4px;
+  transition: color var(--transition-fast);
+  background: none;
+  border: none;
+  font-family: inherit;
+  text-decoration: none;
+}
+
+.nav-dropdown-item:hover .dropdown-toggle,
+.nav-dropdown-item.active .dropdown-toggle {
+  color: var(--brand-green);
+}
+
+.nav-dropdown-item.active .dropdown-toggle::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--brand-green);
+  border-radius: var(--radius-full);
+}
+
+.nav-dropdown-item .dropdown-arrow {
+  font-size: 0.72rem;
+  transition: transform 0.2s ease;
+  display: inline-block;
+}
+
+.nav-dropdown-item:hover .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  min-width: 210px;
+  background: #FFFFFF;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+  padding: 8px 0;
+  list-style: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: all 0.2s ease;
+  z-index: 120;
+}
+
+[dir="ltr"] .nav-dropdown-menu {
+  right: auto;
+  left: 0;
+}
+
+.nav-dropdown-item:hover .nav-dropdown-menu,
+.nav-dropdown-item:focus-within .nav-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.nav-dropdown-menu li {
+  width: 100%;
+  display: block;
+}
+
+.nav-dropdown-menu a {
+  display: block;
+  padding: 10px 18px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-main);
+  white-space: nowrap;
+  transition: all 0.15s ease;
+  text-decoration: none;
+}
+
+.nav-dropdown-menu a:hover {
+  background-color: var(--brand-green-subtle);
+  color: var(--brand-green);
+  padding-right: 22px;
+}
+
+[dir="ltr"] .nav-dropdown-menu a:hover {
+  padding-right: 18px;
+  padding-left: 22px;
+}
+
+.nav-dropdown-menu a.active {
+  color: var(--brand-green);
+  font-weight: 800;
+  background-color: var(--brand-green-subtle);
 }
 
 /* Nav Actions Group */
@@ -1826,6 +1943,65 @@ button, input, select, textarea {
 .footer-links-list a:hover { color: var(--brand-green); padding-right: 4px; }
 .footer-contact-item { display: flex; align-items: flex-start; gap: 10px; color: var(--text-muted); font-size: 0.95rem; margin-bottom: 12px; }
 
+/* Footer Branches Cards (High Contrast & Clean Theme) */
+.footer-branch-card {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+  transition: all 0.2s ease;
+}
+
+.footer-branch-card:hover {
+  border-color: var(--brand-green);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+  transform: translateY(-1px);
+}
+
+.branch-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.branch-card-title {
+  color: #0F172A;
+  font-size: 0.94rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.branch-card-badge {
+  background: #DCFCE7;
+  color: #166534;
+  border: 1px solid #BBF7D0;
+  font-size: 0.72rem;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+.branch-card-address {
+  color: #334155;
+  font-size: 0.85rem;
+  margin: 0 0 6px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.branch-card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.80rem;
+  color: #475569;
+  font-weight: 600;
+}
+
 .powered-by-strip {
   background-color: var(--bg-secondary);
   border-top: 1px solid var(--border-color);
@@ -1863,7 +2039,7 @@ button, input, select, textarea {
 @media (max-width: 1200px) {
   .main-navigation { gap: 14px; }
   .nav-links-list { gap: 10px; }
-  .nav-item-link { font-size: 0.88rem; padding: 6px 2px; }
+  .nav-item-link, .nav-dropdown-item .dropdown-toggle { font-size: 0.88rem; padding: 6px 2px; }
   .nav-actions-group { gap: 8px; }
   .header-donate-btn { padding: 0 14px; font-size: 0.84rem; }
   .cart-trigger-btn { padding: 0 11px; font-size: 0.84rem; }
