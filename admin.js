@@ -2330,6 +2330,7 @@ function exportInboxCSV() {
 
 // --- PAGE 9: BACKUP & WEBHOOK ---
 function loadBackupPage() {
+  renderCmsUploadsArchiveList();
   const d = getPagesData();
   const webhookInput = document.getElementById('settingWebhookUrl');
   if (webhookInput) {
@@ -2936,6 +2937,156 @@ function renderCampaignGalleryPreviews() {
 function removeCampaignGalleryImage(idx) {
   temporaryCampaignGalleryImages.splice(idx, 1);
   renderCampaignGalleryPreviews();
+}
+
+
+// ============================================================================
+// CMS UPLOADS ARCHIVE & EXPORT ENGINE (cms_uploads.json)
+// ============================================================================
+const CMS_UPLOADS_KEY = 'al_israa_cms_uploads';
+
+function recordUploadedFile(fileInfo) {
+  try {
+    const raw = localStorage.getItem(CMS_UPLOADS_KEY);
+    const uploads = raw ? JSON.parse(raw) : [];
+    const entry = {
+      id: 'upl_' + Date.now() + '_' + Math.random().toString(36).substring(7),
+      name: fileInfo.name || 'image_' + Date.now() + '.jpg',
+      category: fileInfo.category || 'general',
+      title: fileInfo.title || '',
+      data: fileInfo.data || '',
+      sizeBytes: fileInfo.data ? Math.round(fileInfo.data.length * 0.75) : 0,
+      uploadedAt: new Date().toISOString(),
+      displayDate: new Date().toLocaleString('ar-EG')
+    };
+    uploads.unshift(entry);
+    if (uploads.length > 200) uploads.length = 200;
+    localStorage.setItem(CMS_UPLOADS_KEY, JSON.stringify(uploads));
+    renderCmsUploadsArchiveList();
+  } catch (e) {}
+}
+
+function getAllUploadedFilesList() {
+  const d = getPagesData();
+  const raw = localStorage.getItem(CMS_UPLOADS_KEY);
+  let uploads = raw ? JSON.parse(raw) : [];
+
+  // Also collect any Base64 images in news and campaigns
+  const existingDatas = new Set(uploads.map(u => u.data));
+
+  if (Array.isArray(d.news)) {
+    d.news.forEach(art => {
+      const imgs = Array.isArray(art.images) ? art.images : [art.image];
+      imgs.forEach((img, idx) => {
+        if (img && img.startsWith('data:image') && !existingDatas.has(img)) {
+          uploads.push({
+            id: 'upl_news_' + (art.id || idx),
+            name: `news_img_${idx + 1}.jpg`,
+            category: 'news',
+            title: art.title || 'صورة خبر',
+            data: img,
+            sizeBytes: Math.round(img.length * 0.75),
+            uploadedAt: new Date().toISOString(),
+            displayDate: art.date || '2026'
+          });
+          existingDatas.add(img);
+        }
+      });
+    });
+  }
+
+  if (d.store && Array.isArray(d.store.campaigns)) {
+    d.store.campaigns.forEach(c => {
+      const imgs = Array.isArray(c.images) ? c.images : [c.image];
+      imgs.forEach((img, idx) => {
+        if (img && img.startsWith('data:image') && !existingDatas.has(img)) {
+          uploads.push({
+            id: 'upl_camp_' + (c.id || idx),
+            name: `camp_img_${idx + 1}.jpg`,
+            category: 'campaigns',
+            title: c.title || 'صورة حملة',
+            data: img,
+            sizeBytes: Math.round(img.length * 0.75),
+            uploadedAt: new Date().toISOString(),
+            displayDate: '2026'
+          });
+          existingDatas.add(img);
+        }
+      });
+    });
+  }
+
+  return uploads;
+}
+
+function renderCmsUploadsArchiveList() {
+  const container = document.getElementById('adminUploadsArchiveContainer');
+  if (!container) return;
+
+  const uploads = getAllUploadedFilesList();
+  if (uploads.length === 0) {
+    container.innerHTML = `
+      <div style="background:#F8FAFC; border:1px dashed #CBD5E1; border-radius:10px; padding:20px; text-align:center; color:#64748B;">
+        <span style="font-size:1.6rem; display:block; margin-bottom:4px;">🖼️</span>
+        <p style="margin:0; font-size:0.92rem;">لا توجد ملفات أو صور مرفوعة حالياً من لوحة التحكم.</p>
+        <span style="font-size:0.78rem;">عند رفع أي صور في الأخبار أو الحملات، ستظهر في هذا الأرشيف تلقائياً.</span>
+      </div>
+    `;
+    return;
+  }
+
+  let html = `
+    <div style="margin-bottom:10px; font-weight:700; color:#334155; font-size:0.9rem;">
+      إجمالي الملفات والصور المؤرشفة: <span class="badge-admin green">${uploads.length} ملف</span>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(130px, 1fr)); gap:12px; max-height:360px; overflow-y:auto; padding:4px;">
+  `;
+
+  uploads.forEach(u => {
+    const sizeKb = Math.round(u.sizeBytes / 1024);
+    html += `
+      <div style="background:#FFFFFF; border:1px solid #CBD5E1; border-radius:8px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,0.05); text-align:center; padding:8px;">
+        <div style="width:100%; height:80px; border-radius:6px; overflow:hidden; margin-bottom:6px; background:#F1F5F9;">
+          <img src="${u.data}" alt="${u.title}" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div style="font-size:0.75rem; font-weight:700; color:#0F172A; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="${u.title || u.name}">
+          ${u.title || u.name}
+        </div>
+        <div style="font-size:0.7rem; color:#64748B; margin-top:2px;">
+          <span>${sizeKb} KB</span> • <span>${u.category}</span>
+        </div>
+      </div>
+    `;
+  });
+
+  html += '</div>';
+  container.innerHTML = html;
+}
+
+function downloadCmsUploadsJson() {
+  const uploads = getAllUploadedFilesList();
+  const manifest = {
+    title: "أرشيف وسجلات الملفات المرفوعة من لوحة التحكم - جمعية الإسراء الخيرية بدمنهور",
+    association: "جمعية الإسراء الخيرية لتنمية المجتمع بدمنهور",
+    registration: "مشهرة برقم 1124 لسنة 2006 - صفة نفع عام بقرار وزاري 646 لسنة 2024",
+    exported_at: new Date().toISOString(),
+    total_files: uploads.length,
+    storage_architecture: "Base64 Client-Side LocalStorage + Static Assets Sync",
+    files: uploads
+  };
+
+  const jsonStr = JSON.stringify(manifest, null, 2);
+  const blob = new Blob([jsonStr], { type: 'application/json;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'cms_uploads.json';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  showAdminToast('تم تحميل ملف cms_uploads.json بنجاح 📥');
+  logCmsAction('تصدير ملف الأرشيف cms_uploads.json');
 }
 
 // Initialize on DOM Ready

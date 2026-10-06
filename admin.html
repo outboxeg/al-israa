@@ -2422,6 +2422,26 @@
           </div>
         </div>
 
+
+        <!-- Uploaded Files & Media Archive Card -->
+        <div class="admin-card">
+          <div class="admin-card-title">
+            <span>📁 أرشيف الملفات والصور المرفوعة من لوحة التحكم (cms_uploads.json)</span>
+          </div>
+          <p style="font-size:0.9rem; color:#475569; line-height:1.6;">
+            يحتوي هذا القسم على حزمة وسجل كافة الصور والملفات التي تم رفعها عبر لوحة التحكم للأخبار، والحملات، وبلوكات الصفحات. يمكنك استعراض الملفات أو تحميل ملف الأرشيف <code>cms_uploads.json</code> بنقرة زر لحفظه بالـ Repository.
+          </p>
+          <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:14px;">
+            <button type="button" class="btn-primary" onclick="downloadCmsUploadsJson()" style="padding:10px 22px;">
+              📥 تحميل ملف الأرشيف المحدث (cms_uploads.json)
+            </button>
+            <button type="button" class="btn-outline" onclick="renderCmsUploadsArchiveList()" style="padding:10px 20px;">
+              🔄 تحديث قائمة الملفات المرفوعة
+            </button>
+          </div>
+          <div id="adminUploadsArchiveContainer" style="margin-top:16px;"></div>
+        </div>
+
         <!-- Full Site Backup & Restore -->
         <div class="admin-card">
           <div class="admin-card-title">
