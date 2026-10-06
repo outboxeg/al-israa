@@ -149,7 +149,7 @@ function getVisitorAnalytics() {
       { type: 'visit', text: 'زيارة لصفحة دار ضيافة الأورام من دمنهور', time: 'منذ دقيقتين', icon: '🛏️' },
       { type: 'cart', text: 'إضافة سهم كفالة مريض أورام إلى السلة (500 ج.م)', time: 'منذ 5 دقائق', icon: '🛒' },
       { type: 'visit', text: 'تصفح مشروعات أرزاق والتمكين الاقتصادي', time: 'منذ 9 دقائق', icon: '💼' },
-      { type: 'checkout', text: 'فتح صفحة إتمام التبرع والتحويل البنكي', time: 'منذ 14 دقيقة', icon: '💳' },
+      { type: 'checkout', text: 'فتح صفحة إتمام التبرع (فودافون كاش وإنستاباي)', time: 'منذ 14 دقيقة', icon: '📱' },
       { type: 'visit', text: 'زيارة الصفحة الرئيسية عبر بحث Google دمنهور', time: 'منذ 18 دقيقة', icon: '🔍' }
     ]
   };
@@ -578,32 +578,17 @@ function hydratePageByPageContent() {
   if (pagesData.checkout && currentPath.includes('checkout.html')) {
     const vfNumbers = document.querySelectorAll('.vodafone-num-val');
     vfNumbers.forEach(elem => {
-      if (pagesData.checkout.wallets.vodafoneCash) elem.textContent = pagesData.checkout.wallets.vodafoneCash;
+      if (pagesData.checkout.wallets && pagesData.checkout.wallets.vodafoneCash) {
+        elem.textContent = pagesData.checkout.wallets.vodafoneCash;
+      }
     });
 
     const ipAddresses = document.querySelectorAll('.instapay-addr-val');
     ipAddresses.forEach(elem => {
-      if (pagesData.checkout.wallets.instaPay) elem.textContent = pagesData.checkout.wallets.instaPay;
+      if (pagesData.checkout.wallets && pagesData.checkout.wallets.instaPay) {
+        elem.textContent = pagesData.checkout.wallets.instaPay;
+      }
     });
-
-    // Bank Accounts List in Checkout
-    const bankListWrap = document.querySelector('.checkout-bank-details');
-    if (bankListWrap && pagesData.checkout.bankAccounts && pagesData.checkout.bankAccounts.length > 0) {
-      let bankHtml = '';
-      pagesData.checkout.bankAccounts.forEach(acc => {
-        bankHtml += `
-          <div style="background:#FFFFFF; border:1px solid var(--border-color); border-radius:12px; padding:16px; margin-bottom:12px;">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-              <strong style="color:var(--text-main); font-size:1.05rem;">🏦 ${acc.bankName} (${acc.branch})</strong>
-              <button type="button" class="btn-outline" style="padding:4px 10px; font-size:0.78rem;" onclick="copyToClipboard('${acc.accountNumber}', this)">نسخ الرقم 📋</button>
-            </div>
-            <div style="font-size:0.95rem; color:var(--brand-green); font-weight:800;">رقم الحساب: ${acc.accountNumber}</div>
-            ${acc.iban ? `<div style="font-size:0.8rem; color:var(--text-muted); margin-top:4px;">IBAN: <code>${acc.iban}</code></div>` : ''}
-          </div>
-        `;
-      });
-      bankListWrap.innerHTML = bankHtml;
-    }
   }
 
   // --- 7. CONTACT PAGE & GOOGLE MAPS (contact.html) ---
@@ -668,11 +653,15 @@ function renderCustomPageBlocks() {
 
   if (blocks.length === 0) {
     container.style.display = 'none';
+    const parentSec = container.closest('.wp-custom-blocks-section');
+    if (parentSec) parentSec.style.display = 'none';
     container.innerHTML = '';
     return;
   }
 
   container.style.display = 'block';
+  const parentSec = container.closest('.wp-custom-blocks-section');
+  if (parentSec) parentSec.style.display = 'block';
   let html = '';
 
   blocks.forEach(block => {
@@ -713,7 +702,7 @@ function renderCustomPageBlocks() {
               <h3 class="wp-card-title">${block.title || ''}</h3>
               <p class="wp-card-desc">${(block.text || '').replace(/\n/g, '<br>')}</p>
               ${block.btnText && block.btnLink ? `
-                <a href="${block.btnLink}" class="btn-primary" style="padding:7px 18px; font-size:0.9rem; display:inline-block;">${block.btnText}</a>
+                <a href="${block.btnLink}" class="btn-primary" style="padding:9px 24px; font-size:0.95rem; display:inline-block; border-radius:var(--radius-md);">${block.btnText}</a>
               ` : ''}
             </div>
           </div>

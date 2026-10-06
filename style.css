@@ -2586,8 +2586,15 @@ button, input, select, textarea {
 /* ==========================================================================
    Frontend WordPress Rendered Blocks
    ========================================================================== */
+.wp-custom-blocks-section {
+  padding: 36px 0;
+  background: #F8FAFC;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
 .wp-custom-blocks-wrapper {
-  margin: 30px 0;
+  margin: 0 auto;
+  width: 100%;
 }
 .wp-custom-blocks-wrapper:empty {
   display: none !important;
@@ -2604,6 +2611,7 @@ button, input, select, textarea {
   line-height: 1.8;
   font-size: 1.05rem;
   color: var(--text-main);
+  box-sizing: border-box;
 }
 .wp-rendered-text.highlight {
   border-right: 5px solid var(--brand-green);
@@ -2629,6 +2637,7 @@ button, input, select, textarea {
   box-shadow: var(--shadow-md);
   border: 1px solid var(--border-color);
   background: #FFFFFF;
+  box-sizing: border-box;
 }
 .wp-rendered-image img {
   width: 100%;
@@ -2648,47 +2657,63 @@ button, input, select, textarea {
 /* Rendered Content Card Block */
 .wp-rendered-card {
   background: #FFFFFF;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
   border: 1px solid var(--border-color);
-  padding: 26px;
-  margin-bottom: 24px;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.03);
+  border-right: 6px solid var(--brand-green);
+  padding: 28px 36px;
+  margin: 0 auto 24px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.04);
   display: flex;
-  gap: 20px;
+  gap: 32px;
   align-items: center;
-  transition: all 0.25s ease;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+[dir="ltr"] .wp-rendered-card {
+  border-right: 1px solid var(--border-color);
+  border-left: 6px solid var(--brand-green);
 }
 .wp-rendered-card:hover {
   transform: translateY(-3px);
   border-color: var(--brand-green);
-  box-shadow: 0 8px 24px rgba(47,110,58,0.08);
+  box-shadow: 0 12px 32px rgba(47,110,58,0.1);
 }
 .wp-card-media {
-  width: 140px;
-  height: 140px;
-  border-radius: 12px;
+  width: 220px;
+  height: 160px;
+  border-radius: var(--radius-lg);
   overflow: hidden;
   flex-shrink: 0;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
 }
 .wp-card-media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.wp-rendered-card:hover .wp-card-media img {
+  transform: scale(1.05);
 }
 .wp-card-info {
   flex-grow: 1;
+  min-width: 0;
 }
 .wp-card-title {
-  font-size: 1.25rem;
+  font-size: 1.4rem;
   font-weight: 800;
-  margin: 0 0 6px;
+  margin: 0 0 8px;
   color: var(--text-main);
+  line-height: 1.35;
 }
 .wp-card-desc {
-  font-size: 0.95rem;
+  font-size: 1.02rem;
   color: var(--text-muted);
-  line-height: 1.6;
-  margin: 0 0 14px;
+  line-height: 1.7;
+  margin: 0 0 16px;
 }
 
 /* Rendered Heading Block */
@@ -2722,11 +2747,16 @@ button, input, select, textarea {
 @media (max-width: 768px) {
   .wp-rendered-card {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
+    padding: 20px;
+    gap: 18px;
   }
   .wp-card-media {
     width: 100%;
-    height: 180px;
+    height: 190px;
+  }
+  .wp-card-title {
+    font-size: 1.25rem;
   }
 }
 

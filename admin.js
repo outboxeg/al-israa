@@ -86,7 +86,7 @@ const DEFAULT_PAGES_DATA = {
     header: {
       badge: "🛒 متجر الخير والصدقة الجارية بدمنهور",
       title: "اختر ما تجود به نفسك.. وكن شريكاً في صناعة الأثر",
-      desc: "جميع أسهم وحملات التبرع أدناه معتمدة وموجهة لخدمة المستحقين الأولى بالرعاية، مرضى الأورام، والتعليم المجتمعي بمحافظة البحيرة. يمكنك إضافة أكثر من بند لسلتك ثم إتمام التحويل عبر البنك أو فودافون كاش أو إنستاباي."
+      desc: "جميع أسهم وحملات التبرع أدناه معتمدة وموجهة لخدمة المستحقين الأولى بالرعاية، مرضى الأورام، والتعليم المجتمعي بمحافظة البحيرة. يمكنك إضافة أكثر من بند لسلتك ثم إتمام التحويل عبر فودافون كاش أو إنستاباي."
     },
     campaigns: [
       {
@@ -324,23 +324,7 @@ const DEFAULT_PAGES_DATA = {
       vodafoneCash: "01026410313",
       instaPay: "israa.charity@instapay",
       notes: "يرجى الاحتفاظ برقم العملية أو لقطة الشاشة لتأكيد التبرع وإرسال الإيصال الرسمي."
-    },
-    bankAccounts: [
-      {
-        id: "bank_1",
-        bankName: "بنك مصر",
-        accountNumber: "15400100009876",
-        branch: "فرع دمنهور",
-        iban: "EG1200020154000100009876001"
-      },
-      {
-        id: "bank_2",
-        bankName: "البنك الأهلي المصري",
-        accountNumber: "0102345678912",
-        branch: "فرع دمنهور",
-        iban: "EG5400030010002345678912002"
-      }
-    ]
+    }
   },
   contact: {
     location: {
@@ -750,7 +734,7 @@ function switchAdminPage(targetPageId) {
     'page-complex': { title: 'إدارة مجمع الإسراء التنموي (complex.html)', desc: 'تحكم في مقدمة المجمع وتفاصيل وأقسام الطوابق الخمسة.', url: 'complex.html' },
     'page-hostel': { title: 'إدارة دار ضيافة الأورام (hostel.html)', desc: 'تحكم في خدمات الدار، السعة الاستيعابية، وشروط القبول المجاني.', url: 'hostel.html' },
     'page-projects': { title: 'إدارة المشروعات والتمكين (projects.html)', desc: 'تحكم في مشروع أرزاق، مشاغل النول، وفصول التعليم المجتمعي.', url: 'projects.html' },
-    'page-checkout': { title: 'إدارة إتمام التبرع والحسابات (checkout.html)', desc: 'تحكم في محافظ الكاش، إنستاباي، والحسابات البنكية الرسمية.', url: 'checkout.html' },
+    'page-checkout': { title: 'إدارة إتمام التبرع (فودافون كاش وإنستاباي)', desc: 'تحكم في محافظ الكاش، ومعرف إنستاباي لصفحة الدفع.', url: 'checkout.html' },
     'page-contact': { title: 'إدارة تواصل معنا والمقر (contact.html)', desc: 'تحكم في خريطة Google Map لدمنهور، الهواتف، والبيانات القانونية.', url: 'contact.html' },
     'page-about': { title: 'إدارة صفحة عن الجمعية (about.html)', desc: 'تحكم في الهوية الرسمية، الإشهار 2006، قرار النفع العام، ومجلس الإدارة.', url: 'about.html' },
     'page-news': { title: 'إدارة آخر الأخبار والتغطيات (news.html)', desc: 'نشر الأخبار والمقالات وتحديد الـ Tag والمكان والتاريخ ورفع الصور المتعددة.', url: 'news.html' },
@@ -894,7 +878,7 @@ function getVisitorAnalytics() {
       { type: 'visit', text: 'زيارة لصفحة دار ضيافة الأورام من دمنهور', time: 'منذ دقيقتين', icon: '🛏️' },
       { type: 'cart', text: 'إضافة سهم كفالة مريض أورام إلى السلة (500 ج.م)', time: 'منذ 5 دقائق', icon: '🛒' },
       { type: 'visit', text: 'تصفح مشروعات أرزاق والتمكين الاقتصادي', time: 'منذ 9 دقائق', icon: '💼' },
-      { type: 'checkout', text: 'فتح صفحة إتمام التبرع والتحويل البنكي', time: 'منذ 14 دقيقة', icon: '💳' },
+      { type: 'checkout', text: 'فتح صفحة إتمام التبرع (فودافون كاش وإنستاباي)', time: 'منذ 14 دقيقة', icon: '📱' },
       { type: 'visit', text: 'زيارة الصفحة الرئيسية عبر بحث Google دمنهور', time: 'منذ 18 دقيقة', icon: '🔍' }
     ]
   };
@@ -2192,10 +2176,9 @@ function saveProjectsLoom() {
 // --- PAGE 6: CHECKOUT ---
 function loadCheckoutPage() {
   const d = getPagesData().checkout || DEFAULT_PAGES_DATA.checkout;
-  document.getElementById('checkoutVodafoneCash').value = d.wallets.vodafoneCash || '';
-  document.getElementById('checkoutInstaPay').value = d.wallets.instaPay || '';
-  document.getElementById('checkoutWalletNotes').value = d.wallets.notes || '';
-  renderCheckoutBankAccounts();
+  document.getElementById('checkoutVodafoneCash').value = (d.wallets && d.wallets.vodafoneCash) || '';
+  document.getElementById('checkoutInstaPay').value = (d.wallets && d.wallets.instaPay) || '';
+  document.getElementById('checkoutWalletNotes').value = (d.wallets && d.wallets.notes) || '';
 }
 
 function saveCheckoutWallets() {
@@ -2543,7 +2526,6 @@ function saveAllPages() {
   saveProjectsArzaq();
   saveProjectsLoom();
   saveCheckoutWallets();
-  saveCheckoutBankAccounts();
   saveContactMapLocation();
   saveContactPhones();
   saveContactLegal();
