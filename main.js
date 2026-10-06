@@ -120,38 +120,26 @@ function getVisitorAnalytics() {
     if (raw) return JSON.parse(raw);
   } catch (e) {}
 
-  // High-fidelity baseline seed data
+  // Zero baseline for fresh visitor analytics
   const baseData = {
-    totalVisits: 14842,
-    uniqueVisitors: 6430,
-    activeNow: 14,
-    deviceStats: { mobile: 68, desktop: 26, tablet: 6 },
-    sources: { direct: 42, social: 38, search: 15, referral: 5 },
+    totalVisits: 0,
+    uniqueVisitors: 0,
+    activeNow: 0,
+    deviceStats: { mobile: 0, desktop: 0, tablet: 0 },
+    sources: { direct: 0, social: 0, search: 0, referral: 0 },
     pageViews: {
-      'index.html': 6240,
-      'store.html': 3820,
-      'complex.html': 1490,
-      'hostel.html': 1380,
-      'projects.html': 980,
-      'checkout.html': 620,
-      'contact.html': 312
+      'index.html': 0,
+      'about.html': 0,
+      'store.html': 0,
+      'complex.html': 0,
+      'hostel.html': 0,
+      'projects.html': 0,
+      'news.html': 0,
+      'checkout.html': 0,
+      'contact.html': 0
     },
-    dailyHistory: [
-      { date: '2026-09-20', dayName: 'الأحد', visits: 1840, uniques: 820 },
-      { date: '2026-09-21', dayName: 'الإثنين', visits: 2120, uniques: 940 },
-      { date: '2026-09-22', dayName: 'الثلاثاء', visits: 1980, uniques: 890 },
-      { date: '2026-09-23', dayName: 'الأربعاء', visits: 2450, uniques: 1090 },
-      { date: '2026-09-24', dayName: 'الخميس', visits: 2790, uniques: 1240 },
-      { date: '2026-09-25', dayName: 'الجمعة', visits: 2210, uniques: 990 },
-      { date: '2026-09-26', dayName: 'السبت', visits: 1452, uniques: 650 }
-    ],
-    recentActivity: [
-      { type: 'visit', text: 'زيارة لصفحة دار ضيافة الأورام من دمنهور', time: 'منذ دقيقتين', icon: '🛏️' },
-      { type: 'cart', text: 'إضافة سهم كفالة مريض أورام إلى السلة (500 ج.م)', time: 'منذ 5 دقائق', icon: '🛒' },
-      { type: 'visit', text: 'تصفح مشروعات أرزاق والتمكين الاقتصادي', time: 'منذ 9 دقائق', icon: '💼' },
-      { type: 'checkout', text: 'فتح صفحة إتمام التبرع (فودافون كاش وإنستاباي)', time: 'منذ 14 دقيقة', icon: '📱' },
-      { type: 'visit', text: 'زيارة الصفحة الرئيسية عبر بحث Google دمنهور', time: 'منذ 18 دقيقة', icon: '🔍' }
-    ]
+    dailyHistory: [],
+    recentActivity: []
   };
   try {
     localStorage.setItem(VISITOR_STATS_KEY, JSON.stringify(baseData));

@@ -851,36 +851,24 @@ function getVisitorAnalytics() {
   } catch (e) {}
 
   const baseData = {
-    totalVisits: 14842,
-    uniqueVisitors: 6430,
-    activeNow: 14,
-    deviceStats: { mobile: 68, desktop: 26, tablet: 6 },
-    sources: { direct: 42, social: 38, search: 15, referral: 5 },
+    totalVisits: 0,
+    uniqueVisitors: 0,
+    activeNow: 0,
+    deviceStats: { mobile: 0, desktop: 0, tablet: 0 },
+    sources: { direct: 0, social: 0, search: 0, referral: 0 },
     pageViews: {
-      'index.html': 6240,
-      'store.html': 3820,
-      'complex.html': 1490,
-      'hostel.html': 1380,
-      'projects.html': 980,
-      'checkout.html': 620,
-      'contact.html': 312
+      'index.html': 0,
+      'about.html': 0,
+      'store.html': 0,
+      'complex.html': 0,
+      'hostel.html': 0,
+      'projects.html': 0,
+      'news.html': 0,
+      'checkout.html': 0,
+      'contact.html': 0
     },
-    dailyHistory: [
-      { date: '2026-09-20', dayName: 'الأحد', visits: 1840, uniques: 820 },
-      { date: '2026-09-21', dayName: 'الإثنين', visits: 2120, uniques: 940 },
-      { date: '2026-09-22', dayName: 'الثلاثاء', visits: 1980, uniques: 890 },
-      { date: '2026-09-23', dayName: 'الأربعاء', visits: 2450, uniques: 1090 },
-      { date: '2026-09-24', dayName: 'الخميس', visits: 2790, uniques: 1240 },
-      { date: '2026-09-25', dayName: 'الجمعة', visits: 2210, uniques: 990 },
-      { date: '2026-09-26', dayName: 'السبت', visits: 1452, uniques: 650 }
-    ],
-    recentActivity: [
-      { type: 'visit', text: 'زيارة لصفحة دار ضيافة الأورام من دمنهور', time: 'منذ دقيقتين', icon: '🛏️' },
-      { type: 'cart', text: 'إضافة سهم كفالة مريض أورام إلى السلة (500 ج.م)', time: 'منذ 5 دقائق', icon: '🛒' },
-      { type: 'visit', text: 'تصفح مشروعات أرزاق والتمكين الاقتصادي', time: 'منذ 9 دقائق', icon: '💼' },
-      { type: 'checkout', text: 'فتح صفحة إتمام التبرع (فودافون كاش وإنستاباي)', time: 'منذ 14 دقيقة', icon: '📱' },
-      { type: 'visit', text: 'زيارة الصفحة الرئيسية عبر بحث Google دمنهور', time: 'منذ 18 دقيقة', icon: '🔍' }
-    ]
+    dailyHistory: [],
+    recentActivity: []
   };
   try {
     localStorage.setItem(VISITOR_STATS_KEY, JSON.stringify(baseData));
@@ -919,34 +907,34 @@ function renderVisitorChart() {
   let points = [];
   if (currentChartPeriod === '7days') {
     points = (analytics.dailyHistory && analytics.dailyHistory.length > 0)
-      ? analytics.dailyHistory.map(d => ({ label: d.dayName, val1: d.visits, val2: d.uniques }))
+      ? analytics.dailyHistory.map(d => ({ label: d.dayName, val1: d.visits || 0, val2: d.uniques || 0 }))
       : [
-          { label: 'الأحد', val1: 1840, val2: 820 },
-          { label: 'الإثنين', val1: 2120, val2: 940 },
-          { label: 'الثلاثاء', val1: 1980, val2: 890 },
-          { label: 'الأربعاء', val1: 2450, val2: 1090 },
-          { label: 'الخميس', val1: 2790, val2: 1240 },
-          { label: 'الجمعة', val1: 2210, val2: 990 },
-          { label: 'السبت', val1: 1452, val2: 650 }
+          { label: 'الأحد', val1: 0, val2: 0 },
+          { label: 'الإثنين', val1: 0, val2: 0 },
+          { label: 'الثلاثاء', val1: 0, val2: 0 },
+          { label: 'الأربعاء', val1: 0, val2: 0 },
+          { label: 'الخميس', val1: 0, val2: 0 },
+          { label: 'الجمعة', val1: 0, val2: 0 },
+          { label: 'السبت', val1: 0, val2: 0 }
         ];
   } else if (currentChartPeriod === 'today') {
     points = [
-      { label: '03:00 ص', val1: 42, val2: 18 },
-      { label: '06:00 ص', val1: 110, val2: 45 },
-      { label: '09:00 ص', val1: 320, val2: 140 },
-      { label: '12:00 م', val1: 490, val2: 210 },
-      { label: '03:00 م', val1: 440, val2: 195 },
-      { label: '06:00 م', val1: 580, val2: 260 },
-      { label: '09:00 م', val1: 670, val2: 310 },
-      { label: 'الآن', val1: 340, val2: 155 }
+      { label: '03:00 ص', val1: 0, val2: 0 },
+      { label: '06:00 ص', val1: 0, val2: 0 },
+      { label: '09:00 ص', val1: 0, val2: 0 },
+      { label: '12:00 م', val1: 0, val2: 0 },
+      { label: '03:00 م', val1: 0, val2: 0 },
+      { label: '06:00 م', val1: 0, val2: 0 },
+      { label: '09:00 م', val1: 0, val2: 0 },
+      { label: 'الآن', val1: 0, val2: 0 }
     ];
   } else {
     points = [
-      { label: 'الأسبوع 1', val1: 12800, val2: 5400 },
-      { label: 'الأسبوع 2', val1: 14200, val2: 6100 },
-      { label: 'الأسبوع 3', val1: 15600, val2: 6800 },
-      { label: 'الأسبوع 4', val1: 17100, val2: 7400 },
-      { label: 'هذا الأسبوع', val1: 14842, val2: 6430 }
+      { label: 'الأسبوع 1', val1: 0, val2: 0 },
+      { label: 'الأسبوع 2', val1: 0, val2: 0 },
+      { label: 'الأسبوع 3', val1: 0, val2: 0 },
+      { label: 'الأسبوع 4', val1: 0, val2: 0 },
+      { label: 'هذا الأسبوع', val1: 0, val2: 0 }
     ];
   }
 
@@ -1218,11 +1206,30 @@ function exportAnalyticsCSV() {
 }
 
 function resetVisitorAnalytics() {
-  if (!confirm('هل أنت متأكد من رغبتك في تصفير وإعادة ضبط إحصائيات الزوار إلى الحالة الافتراضية؟')) return;
-  localStorage.removeItem(VISITOR_STATS_KEY);
-  getVisitorAnalytics();
+  if (!confirm('هل أنت متأكد من رغبتك في تصفير جميع الإحصائيات في لوحة التحكم؟')) return;
+  const zeroData = {
+    totalVisits: 0,
+    uniqueVisitors: 0,
+    activeNow: 0,
+    deviceStats: { mobile: 0, desktop: 0, tablet: 0 },
+    sources: { direct: 0, social: 0, search: 0, referral: 0 },
+    pageViews: {
+      'index.html': 0,
+      'about.html': 0,
+      'store.html': 0,
+      'complex.html': 0,
+      'hostel.html': 0,
+      'projects.html': 0,
+      'news.html': 0,
+      'checkout.html': 0,
+      'contact.html': 0
+    },
+    dailyHistory: [],
+    recentActivity: []
+  };
+  localStorage.setItem(VISITOR_STATS_KEY, JSON.stringify(zeroData));
   refreshVisitorAnalyticsUI();
-  showAdminToast('تمت إعادة ضبط إحصائيات الزوار بنجاح 🔄');
+  showAdminToast('تم تصفير جميع الإحصائيات بنجاح 🔄');
 }
 
 function updateOverviewStats() {
