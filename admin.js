@@ -67,7 +67,7 @@ const DEFAULT_PAGES_DATA = {
       { id: "p4", name: "هيئة إنقاذ الطفولة الدولية (Save the Children)", image: "images/partner-save-children.svg" },
       { id: "p5", name: "المبادرة الوطنية للمشروعات الخضراء الذكية", image: "images/partner-sgg.png" },
       { id: "p6", name: "مؤسسة Outbox (المدارس الخضراء الذكية)", image: "images/logo-outbox.png" },
-      { id: "p7", name: "منصة NGOhub الرقمية", image: "ngohub-images/logo.png" }
+      { id: "p7", name: "منصة NGOhub الرقمية", image: "images/ngohub-logo.png" }
     ],
     customBlocks: [
       {
@@ -437,6 +437,90 @@ const DEFAULT_PAGES_DATA = {
   }
 };
 
+// ============================================================================
+// ROBUST MEDIA RESOLVER & MIGRATION ENGINE
+// ============================================================================
+function resolveMediaUrl(url, defaultImg = 'images/complex.jpg') {
+  if (!url || typeof url !== 'string' || !url.trim()) return defaultImg;
+  url = url.trim();
+  if (url.includes('ngohub-images/logo.png')) return 'images/ngohub-logo.png';
+  if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:') || url.startsWith('images/') || url.startsWith('uploads/') || url.startsWith('/')) {
+    return url;
+  }
+  return 'images/' + url;
+}
+
+function getCampaignFallbackImage(cid) {
+  const map = {
+    'hostel_patient': 'images/hostel.jpg',
+    'store_hostel_patient': 'images/hostel.jpg',
+    'oncology_meals': 'images/kitchen.jpg',
+    'store_oncology_meals': 'images/kitchen.jpg',
+    'arzaq_trike': 'images/arzaq.jpg',
+    'store_arzaq_tricycle': 'images/arzaq.jpg',
+    'loom_carpet': 'images/loom.jpg',
+    'store_carpet_loom': 'images/loom.jpg',
+    'store_sewing_workshop': 'images/sewing.jpg',
+    'clinic_medicine': 'images/complex.jpg',
+    'store_clinic_share': 'images/complex.jpg',
+    'store_school_class': 'images/school.jpg',
+    'community_education': 'images/school.jpg',
+    'outbox_green': 'images/trees.jpg',
+    'store_outbox_green': 'images/trees.jpg',
+    'ongoing_charity': 'images/solar.jpg',
+    'store_ongoing_charity': 'images/solar.jpg'
+  };
+  return map[cid] || 'images/complex.jpg';
+}
+
+function migrateMediaPaths(obj) {
+  if (!obj || typeof obj !== 'object') return obj;
+  for (let key in obj) {
+    if (typeof obj[key] === 'string') {
+      let val = obj[key].trim();
+      if (val.includes('ngohub-images/logo.png')) {
+        obj[key] = val.replace(/ngohub-images\/logo\.png/g, 'images/ngohub-logo.png');
+      } else if (
+        /\.(jpg|jpeg|png|svg|webp)$/i.test(val) &&
+        !val.startsWith('http://') &&
+        !val.startsWith('https://') &&
+        !val.startsWith('data:') &&
+        !val.startsWith('images/') &&
+        !val.startsWith('uploads/') &&
+        !val.startsWith('/')
+      ) {
+        obj[key] = 'images/' + val;
+      }
+    } else if (Array.isArray(obj[key])) {
+      obj[key] = obj[key].map(item => {
+        if (typeof item === 'string') {
+          let val = item.trim();
+          if (val.includes('ngohub-images/logo.png')) {
+            return val.replace(/ngohub-images\/logo\.png/g, 'images/ngohub-logo.png');
+          } else if (
+            /\.(jpg|jpeg|png|svg|webp)$/i.test(val) &&
+            !val.startsWith('http://') &&
+            !val.startsWith('https://') &&
+            !val.startsWith('data:') &&
+            !val.startsWith('images/') &&
+            !val.startsWith('uploads/') &&
+            !val.startsWith('/')
+          ) {
+            return 'images/' + val;
+          }
+          return item;
+        } else if (typeof item === 'object') {
+          return migrateMediaPaths(item);
+        }
+        return item;
+      });
+    } else if (typeof obj[key] === 'object') {
+      migrateMediaPaths(obj[key]);
+    }
+  }
+  return obj;
+}
+
 // Data Layer Helper
 function getPagesData() {
   let data = null;
@@ -447,6 +531,10 @@ function getPagesData() {
       data = JSON.parse(JSON.stringify(DEFAULT_PAGES_DATA));
     } else {
       data = JSON.parse(raw);
+      migrateMediaPaths(data);
+      try {
+        localStorage.setItem(PAGES_DATA_KEY, JSON.stringify(data));
+      } catch (err) {}
     }
   } catch (e) {
     data = JSON.parse(JSON.stringify(DEFAULT_PAGES_DATA));

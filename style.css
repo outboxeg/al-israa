@@ -1935,6 +1935,39 @@ button, input, select, textarea {
   gap: 40px;
   margin-bottom: 50px;
 }
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.footer-logo-img {
+  width: 54px;
+  height: 54px;
+  max-width: 54px;
+  max-height: 54px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.footer-title {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--text-main);
+  line-height: 1.2;
+  margin: 0;
+}
+.footer-subtitle {
+  font-size: 0.8rem;
+  color: var(--brand-green);
+  font-weight: 700;
+  margin: 0;
+}
+.footer-text {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  margin-bottom: 18px;
+}
 .footer-brand-title { font-size: 1.3rem; font-weight: 800; margin-bottom: 12px; }
 .footer-bio { color: var(--text-muted); font-size: 0.95rem; line-height: 1.8; margin-bottom: 20px; }
 .footer-col-title { font-size: 1.1rem; font-weight: 800; margin-bottom: 20px; color: var(--brand-green); }
