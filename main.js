@@ -102,6 +102,21 @@ function getGlobalPagesData() {
     if (raw) {
       const data = JSON.parse(raw);
       migrateMediaPaths(data);
+      
+      // Auto-sanitize legacy mock campaign donations to 0
+      if (data.store && Array.isArray(data.store.campaigns)) {
+        let legacyDetected = false;
+        data.store.campaigns.forEach(c => {
+          if ([37500, 21000, 63000, 28000, 31500, 56000, 112500].includes(Number(c.collectedAmount))) {
+            c.collectedAmount = 0;
+            legacyDetected = true;
+          }
+        });
+        if (legacyDetected) {
+          try { localStorage.setItem(PAGES_DATA_KEY, JSON.stringify(data)); } catch(e){}
+        }
+      }
+
       try {
         localStorage.setItem(PAGES_DATA_KEY, JSON.stringify(data));
       } catch (err) {}
@@ -117,7 +132,14 @@ function getGlobalPagesData() {
 function getVisitorAnalytics() {
   try {
     const raw = localStorage.getItem(VISITOR_STATS_KEY);
-    if (raw) return JSON.parse(raw);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (Number(parsed.totalVisits) >= 5000 || Number(parsed.uniqueVisitors) >= 2000) {
+        localStorage.removeItem(VISITOR_STATS_KEY);
+      } else {
+        return parsed;
+      }
+    }
   } catch (e) {}
 
   // Zero baseline for fresh visitor analytics
@@ -165,8 +187,8 @@ function trackPageView() {
     data.uniqueVisitors = (Number(data.uniqueVisitors) || 0) + 1;
   }
 
-  // Active visitors pulse: natural fluctuation between 9 and 19
-  data.activeNow = Math.floor(Math.random() * 11) + 9;
+  // Active visitors indicator
+  data.activeNow = 1;
 
   // Track page views
   if (!data.pageViews) data.pageViews = {};

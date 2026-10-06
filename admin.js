@@ -98,7 +98,7 @@ const DEFAULT_PAGES_DATA = {
         badgeColor: "orange",
         unitPrice: 500,
         targetAmount: 50000,
-        collectedAmount: 37500,
+        collectedAmount: 0,
         presets: [250, 500, 1000],
         image: "images/hostel.jpg",
         desc: "إقامة كاملة وسرير مجهز ورعاية كريمة لمريض أورام ومرافقه من قرى ومراكز البحيرة طوال فترة تلقي العلاج بمعهد دمنهور للأورام."
@@ -112,7 +112,7 @@ const DEFAULT_PAGES_DATA = {
         badgeColor: "green",
         unitPrice: 100,
         targetAmount: 30000,
-        collectedAmount: 21000,
+        collectedAmount: 0,
         presets: [50, 100, 250],
         image: "images/kitchen.jpg",
         desc: "توفير وجبات غذائية صحية ومتوازنة مطبوخة يومياً بمطبخ الجمعية لمرضى السرطان ومرافقيهم أثناء جلسات الكيماوي والإشعاعي."
@@ -126,7 +126,7 @@ const DEFAULT_PAGES_DATA = {
         badgeColor: "orange",
         unitPrice: 1000,
         targetAmount: 90000,
-        collectedAmount: 63000,
+        collectedAmount: 0,
         presets: [500, 1000, 2500],
         image: "images/arzaq.jpg",
         desc: "تصنيع وتجهيز عربات وتروسيكلات طعام بأيدي طلاب مدرسة دمنهور الزخرفية وتسليمها لمعيلي الأسر والشباب لفتح باب رزق كريم ومستدام."
@@ -140,7 +140,7 @@ const DEFAULT_PAGES_DATA = {
         badgeColor: "blue",
         unitPrice: 300,
         targetAmount: 40000,
-        collectedAmount: 28000,
+        collectedAmount: 0,
         presets: [150, 300, 600],
         image: "images/loom.jpg",
         desc: "تدريب وتوفير خامات الصوف والحرير والنول اليدوي للسيدات الريفيات لإنتاج سجاد وكليم تراثي عالي الجودة وتحقيق دخل عائلي مستقل."
@@ -154,7 +154,7 @@ const DEFAULT_PAGES_DATA = {
         badgeColor: "green",
         unitPrice: 400,
         targetAmount: 45000,
-        collectedAmount: 31500,
+        collectedAmount: 0,
         presets: [200, 400, 800],
         image: "images/sewing.jpg",
         desc: "شراء ماكينة خياطة وتفصيل حديثة وتسليمها للأم المعيلة مع دورة تدريبية مكثفة لتأسيس مشغلها المنزلي وتوفير الكفاية لأطفالها."
@@ -168,7 +168,7 @@ const DEFAULT_PAGES_DATA = {
         badgeColor: "orange",
         unitPrice: 250,
         targetAmount: 80000,
-        collectedAmount: 56000,
+        collectedAmount: 0,
         presets: [150, 250, 500],
         image: "images/complex.jpg",
         desc: "كفالة الكشف التخصصي والتحاليل وصرف الأدوية الشهرية للأسر الأكثر احتياجاً وكبار السن بالمجمع الطبي المكون من 5 طوابق."
@@ -182,7 +182,7 @@ const DEFAULT_PAGES_DATA = {
         badgeColor: "blue",
         unitPrice: 350,
         targetAmount: 40000,
-        collectedAmount: 28000,
+        collectedAmount: 0,
         presets: [150, 350, 700],
         image: "images/school.jpg",
         desc: "كفالة المصاريف، الحقيبة المدرسية، والوجبة اليومية لتلاميذ الفصول المجتمعية بقرى دمنهور لإعادتهم لمسار التعليم الكريم."
@@ -196,7 +196,7 @@ const DEFAULT_PAGES_DATA = {
         badgeColor: "green",
         unitPrice: 1000,
         targetAmount: 150000,
-        collectedAmount: 112500,
+        collectedAmount: 0,
         presets: [500, 1000, 2500],
         image: "images/solar.jpg",
         desc: "مساهمة ممتدة في البنية التحتية، محطة الطاقة الشمسية، والأجهزة الطبية بالمجمع الخيري ليبقى أثر صدقتك في كل مريض ومتعلم."
@@ -516,9 +516,20 @@ function getPagesData() {
     } else {
       data = JSON.parse(raw);
       migrateMediaPaths(data);
-      try {
-        localStorage.setItem(PAGES_DATA_KEY, JSON.stringify(data));
-      } catch (err) {}
+      
+      // Auto-sanitize legacy mock campaign donations to 0
+      if (data.store && Array.isArray(data.store.campaigns)) {
+        let legacyDetected = false;
+        data.store.campaigns.forEach(c => {
+          if ([37500, 21000, 63000, 28000, 31500, 56000, 112500].includes(Number(c.collectedAmount))) {
+            c.collectedAmount = 0;
+            legacyDetected = true;
+          }
+        });
+        if (legacyDetected) {
+          try { localStorage.setItem(PAGES_DATA_KEY, JSON.stringify(data)); } catch(e){}
+        }
+      }
     }
   } catch (e) {
     data = JSON.parse(JSON.stringify(DEFAULT_PAGES_DATA));
@@ -847,7 +858,14 @@ let currentChartPeriod = '7days';
 function getVisitorAnalytics() {
   try {
     const raw = localStorage.getItem(VISITOR_STATS_KEY);
-    if (raw) return JSON.parse(raw);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (Number(parsed.totalVisits) >= 5000 || Number(parsed.uniqueVisitors) >= 2000) {
+        localStorage.removeItem(VISITOR_STATS_KEY);
+      } else {
+        return parsed;
+      }
+    }
   } catch (e) {}
 
   const baseData = {
