@@ -29,6 +29,8 @@ const TRANSLATIONS = {
 
     // Main Navigation
     'nav.home': 'الرئيسية',
+    'nav.about': 'عن الجمعية',
+    'nav.news': 'آخر الأخبار',
     'nav.store': 'متجر التبرعات 🛒',
     'nav.complex': 'مجمع الإسراء',
     'nav.hostel': 'دار ضيافة الأورام',
@@ -234,6 +236,8 @@ const TRANSLATIONS = {
 
     // Main Navigation
     'nav.home': 'Home',
+    'nav.about': 'About Us',
+    'nav.news': 'Latest News',
     'nav.store': 'Donation Store 🛒',
     'nav.complex': 'Al-Israa Complex',
     'nav.hostel': 'Oncology Hostel',

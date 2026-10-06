@@ -369,6 +369,67 @@ const DEFAULT_PAGES_DATA = {
       }
     ]
   },
+  about: {
+    hero: {
+      badge: "🏛️ جمعية الإسراء الخيرية لتنمية المجتمع بدمنهور",
+      title: "مسيرة عطاء وتنمية مستدامة ترعى الإنسان وتبني المجتمع منذ 2006",
+      desc: "مؤسسة أهلية مصرية رائدة حائزة على صفة النفع العام بقرار وزاري (646 لسنة 2024). ندير صرحاً تنموياً متكاملاً من 5 طوابق، ودار ضيافة مجانية لمرضى الأورام، ونقود مبادرات نوعية في التمكين الاقتصادي والتعليم والبيئة بمحافظة البحيرة."
+    },
+    foundingYear: "2006",
+    regNumber: "مشهرة برقم 1124 لسنة 2006",
+    decree: "قرار وزاري رقم 646 لسنة 2024",
+    ministry: "مديرية التضامن الاجتماعي بمحافظة البحيرة",
+    legalScope: "محافظة البحيرة وجمهورية مصر العربية - رعاية صحية واجتماعية وتمكين اقتصادي وبيئي.",
+    board: {
+      president: "أ. فاطمة عبد المجيد راضي",
+      role: "رئيس مجلس الإدارة ومبتكرة منظومة المدارس الخضراء Outbox",
+      message: "منذ انطلاقتنا عام 2006، وضعنا كرامة الإنسان ورعاية المستضعفين في صدارة أولوياتنا. نجحنا في تأسيس أول دار ضيافة متخصصة ومجانية لمرضى الأورام بالبحيرة، ومجمع تنموي شامل يخدم الآلاف شهرياً. شراكتنا مع المتبرعين هي الوقود الذي يحول الأمل إلى واقع ملموس كل يوم."
+    },
+    vision: "أن نكون النموذج الأهلي الأكثر ريادة واستدامة في محافظة البحيرة، محققين التمكين الشامل والرعاية الكريمة لكل أسرة مستحقة.",
+    mission: "تقديم خدمات رعاية طبية متكاملة لمرضى الأورام، وتمكين الأسر المستحقة اقتصادياً، وابتكار حلول تعليمية وبيئية ذكية تعزز الاستدامة المجتمعية.",
+    values: [
+      "الكرامة الإنسانية",
+      "الشفافية والأمانة المطلقة",
+      "الاستدامة والابتكار",
+      "التكافل والشراكة المجتمعية"
+    ],
+    customBlocks: []
+  },
+  news: [],
+  branches: [
+    {
+      id: "branch_main",
+      name: "المقر الرئيسي ومجمع الإسراء التنموي",
+      address: "دمنهور، شارع مدرسة ناصر الفكرية، خلف معهد أورام دمنهور القومي",
+      phone: "045-3318920 / 01026410313",
+      workHours: "دار الضيافة 24 ساعة - الإدارة 8ص إلى 4م",
+      isMain: true
+    },
+    {
+      id: "branch_hostel",
+      name: "دار ضيافة مرضى معهد الأورام",
+      address: "دمنهور، بجوار معهد الأورام القومي (طابقان مجهزان)",
+      phone: "01026410313",
+      workHours: "استقبال الحالات على مدار 24 ساعة",
+      isMain: false
+    },
+    {
+      id: "branch_outbox",
+      name: "مركز Outbox والمدارس الخضراء",
+      address: "مجمع دمنهور التعليمي، مديرية التربية والتعليم بالبحيرة",
+      phone: "01026410313",
+      workHours: "أيام الدراسة 8ص إلى 2ظ",
+      isMain: false
+    }
+  ],
+  footer: {
+    aboutText: "مؤسسة أهلية ذات نفع عام (قرار وزاري رقم 646 لسنة 2024)، مشهرة برقم 1124 لسنة 2006. نعمل على خدمة ورعاية مرضى الأورام، والتمكين الاقتصادي للأسر الأولى بالرعاية، وتدوير الورق بالمدارس بالبحيرة.",
+    facebookUrl: "https://www.facebook.com/gam3it.alesraa",
+    phone: "045-3318920",
+    mobile: "01026410313",
+    email: "al_israa_ngo@yahoo.com",
+    rightsText: "© 2026 جمعية الإسراء الخيرية لتنمية المجتمع بدمنهور. جميع الحقوق محفوظة."
+  },
   admin: {
     user: "admin",
     pass: "israa2026",
@@ -391,8 +452,14 @@ function getPagesData() {
     data = JSON.parse(JSON.stringify(DEFAULT_PAGES_DATA));
   }
 
+  // Ensure newly added sections exist
+  if (!data.about) data.about = JSON.parse(JSON.stringify(DEFAULT_PAGES_DATA.about));
+  if (!Array.isArray(data.news)) data.news = [];
+  if (!Array.isArray(data.branches)) data.branches = JSON.parse(JSON.stringify(DEFAULT_PAGES_DATA.branches));
+  if (!data.footer) data.footer = JSON.parse(JSON.stringify(DEFAULT_PAGES_DATA.footer));
+
   // Ensure customBlocks exists on every page
-  ['home', 'store', 'complex', 'hostel', 'projects', 'contact'].forEach(p => {
+  ['home', 'store', 'complex', 'hostel', 'projects', 'contact', 'about'].forEach(p => {
     if (data[p] && !Array.isArray(data[p].customBlocks)) {
       data[p].customBlocks = (DEFAULT_PAGES_DATA[p] && Array.isArray(DEFAULT_PAGES_DATA[p].customBlocks)) 
         ? JSON.parse(JSON.stringify(DEFAULT_PAGES_DATA[p].customBlocks)) 
@@ -403,10 +470,106 @@ function getPagesData() {
   return data;
 }
 
+const CMS_LOG_KEY = 'al_israa_cms_audit_logs';
+
+function logCmsAction(action, details = '') {
+  try {
+    const raw = localStorage.getItem(CMS_LOG_KEY);
+    const logs = raw ? JSON.parse(raw) : [];
+    const timestamp = new Date().toLocaleString('ar-EG', { dateStyle: 'short', timeStyle: 'medium' });
+    const logEntry = {
+      timestamp: timestamp,
+      iso: new Date().toISOString(),
+      action: action,
+      details: details,
+      user: 'admin'
+    };
+    logs.unshift(logEntry);
+    if (logs.length > 500) logs.length = 500;
+    localStorage.setItem(CMS_LOG_KEY, JSON.stringify(logs));
+
+    // Post to Google Sheets webhook if configured
+    const webhookUrl = localStorage.getItem('al_israa_cms_webhook');
+    if (webhookUrl && !webhookUrl.includes('DUMMY')) {
+      fetch(webhookUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ type: 'CMS_AUDIT_LOG', ...logEntry })
+      }).catch(() => {});
+    }
+
+    renderCmsLogTable();
+  } catch (e) {}
+}
+
+function downloadCmsLogFile() {
+  const raw = localStorage.getItem(CMS_LOG_KEY);
+  const logs = raw ? JSON.parse(raw) : [];
+  let logText = `================================================================================\n`;
+  logText += `سجل عمليات وتعديلات لوحة التحكم (CMS Audit Log) - جمعية الإسراء الخيرية بدمنهور\n`;
+  logText += `تاريخ التصدير: ${new Date().toLocaleString('ar-EG')}\n`;
+  logText += `المسؤول: إدارة جمعية الإسراء بدمنهور\n`;
+  logText += `================================================================================\n\n`;
+
+  if (logs.length === 0) {
+    logText += `[${new Date().toLocaleString('ar-EG')}] - النظام: لا توجد سجلات تعديل مسجلة حتى الآن.\n`;
+  } else {
+    logs.forEach(l => {
+      logText += `[${l.timestamp}] [المستخدم: ${l.user}] الإجراء: ${l.action} ${l.details ? `| التفاصيل: ${l.details}` : ''}\n`;
+    });
+  }
+
+  const blob = new Blob([logText], { type: 'text/plain;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'cms_log.txt';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  showAdminToast('تم تحميل ملف cms_log.txt المحدث بنجاح 📥');
+}
+
+function renderCmsLogTable() {
+  const tbody = document.getElementById('adminAuditLogTableBody');
+  if (!tbody) return;
+  const raw = localStorage.getItem(CMS_LOG_KEY);
+  const logs = raw ? JSON.parse(raw) : [];
+
+  if (logs.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; padding:24px; color:#64748B;">لا توجد سجلات تعديل مسجلة حتى الآن.</td></tr>`;
+    return;
+  }
+
+  let html = '';
+  logs.forEach(l => {
+    html += `
+      <tr style="border-bottom:1px solid #F1F5F9;">
+        <td style="padding:10px 14px; font-family:monospace; color:#64748B;">${l.timestamp}</td>
+        <td style="padding:10px 14px;"><span style="background:#E2E8F0; padding:2px 8px; border-radius:6px; font-size:0.8rem; font-weight:700;">${l.user}</span></td>
+        <td style="padding:10px 14px; font-weight:700; color:var(--text-main);">${l.action}</td>
+        <td style="padding:10px 14px; color:#475569; font-size:0.85rem;">${l.details || '-'}</td>
+      </tr>
+    `;
+  });
+  tbody.innerHTML = html;
+}
+
+function clearCmsAuditLogs() {
+  if (confirm('هل أنت متأكد من رغبتك في تفريغ سجل العمليات؟')) {
+    localStorage.removeItem(CMS_LOG_KEY);
+    renderCmsLogTable();
+    showAdminToast('تم تفريغ سجل العمليات بنجاح 🗑️');
+  }
+}
+
 function savePagesData(data, toastMsg = 'تم الحفظ بنجاح 💾') {
   try {
     localStorage.setItem(PAGES_DATA_KEY, JSON.stringify(data));
     showAdminToast(toastMsg);
+    logCmsAction(toastMsg);
     updateOverviewStats();
   } catch (e) {
     alert('تعذر حفظ البيانات: ' + e.message);
@@ -501,21 +664,31 @@ function switchAdminPage(targetPageId) {
     'page-projects': { title: 'إدارة المشروعات والتمكين (projects.html)', desc: 'تحكم في مشروع أرزاق، مشاغل النول، وفصول التعليم المجتمعي.', url: 'projects.html' },
     'page-checkout': { title: 'إدارة إتمام التبرع والحسابات (checkout.html)', desc: 'تحكم في محافظ الكاش، إنستاباي، والحسابات البنكية الرسمية.', url: 'checkout.html' },
     'page-contact': { title: 'إدارة تواصل معنا والمقر (contact.html)', desc: 'تحكم في خريطة Google Map لدمنهور، الهواتف، والبيانات القانونية.', url: 'contact.html' },
+    'page-about': { title: 'إدارة صفحة عن الجمعية (about.html)', desc: 'تحكم في الهوية الرسمية، الإشهار 2006، قرار النفع العام، ومجلس الإدارة.', url: 'about.html' },
+    'page-news': { title: 'إدارة آخر الأخبار والتغطيات (news.html)', desc: 'نشر الأخبار والمقالات وتحديد الـ Tag والمكان والتاريخ ورفع الصور المتعددة.', url: 'news.html' },
+    'page-branches': { title: 'إدارة مقرات وفروع الجمعية المتعددة', desc: 'تحكم في عناوين وأرقام مقرات الجمعية وتحديد المقر الرئيسي ليظهر في كامل الموقع.', url: 'contact.html' },
+    'page-footer': { title: 'إدارة تذييل الموقع وصفحة فيسبوك الرسمية', desc: 'تحديث رابط صفحة فيسبوك المعتمدة وبيانات التواصل ونبذة الفوتر.', url: 'index.html' },
     'page-inbox': { title: 'صندوق الطلبات والاستفسارات الواردة', desc: 'استعراض وفرز طلبات دار الضيافة، التدريب، والتواصل، وتصدير Excel.', url: 'contact.html' },
-    'page-backup': { title: 'النسخ الاحتياطي والربط السحابي', desc: 'تصدير واستعادة ملف JSON الشامل، وربط Google Sheets Webhook.', url: 'index.html' }
+    'page-backup': { title: 'النسخ الاحتياطي والربط السحابي', desc: 'تصدير واستعادة ملف JSON الشامل، وربط Google Sheets Webhook.', url: 'index.html' },
+    'page-log': { title: 'سجل عمليات لوحة التحكم (CMS Audit Log)', desc: 'تتبع ومراقبة كافة التعديلات، وتحميل ملف سجل التعديلات المحدث cms_log.txt فورياً.', url: 'admin.html' }
   };
 
   const pageMetaEn = {
     'page-overview': { title: 'Platform Overview & Executive Analytics', desc: 'Real-time performance metrics, visitor traffic analysis, and full website content map.', url: 'index.html' },
     'page-home': { title: 'Home Page Management (index.html)', desc: 'Control hero section, stats, green schools, news, and partners.', url: 'index.html' },
-    'page-store': { title: 'Donation Store Management (store.html)', desc: 'Control store header, donation campaigns, shares, and targets.', url: 'store.html' },
+    'page-about': { title: 'About Us Management (about.html)', desc: 'Control official identity, 2006 decree, public benefit status, and board leadership.', url: 'about.html' },
+    'page-store': { title: 'Donation Store Management (store.html)', desc: 'Control store header, donation campaigns, shares, targets, and gallery.', url: 'store.html' },
     'page-complex': { title: 'Al-Israa Complex Management (complex.html)', desc: 'Control complex intro and the 5 specialized floor details.', url: 'complex.html' },
     'page-hostel': { title: 'Oncology Hostel Management (hostel.html)', desc: 'Control hostel services, bed capacity, and admission criteria.', url: 'hostel.html' },
     'page-projects': { title: 'Projects & Empowerment Management (projects.html)', desc: 'Control Arzaq initiative, handloom workshops, and green hubs.', url: 'projects.html' },
+    'page-news': { title: 'Latest News & Coverage (news.html)', desc: 'Publish field news, tags, locations, and multi-image uploads.', url: 'news.html' },
     'page-checkout': { title: 'Checkout & Official Accounts (checkout.html)', desc: 'Control mobile cash wallets, InstaPay, and official bank accounts.', url: 'checkout.html' },
     'page-contact': { title: 'Contact & Damanhour Map (contact.html)', desc: 'Control Google Map, telephone numbers, and legal registration.', url: 'contact.html' },
+    'page-branches': { title: 'Multi-Branch & Locations Management', desc: 'Control multiple association branches and set the primary headquarters.', url: 'contact.html' },
+    'page-footer': { title: 'Footer Settings & Official Facebook Page', desc: 'Control official Facebook page link, contact info, and footer bio.', url: 'index.html' },
     'page-inbox': { title: 'Incoming Inquiries & Assistance Requests', desc: 'Review and manage oncology hostel and training submissions.', url: 'contact.html' },
-    'page-backup': { title: 'JSON Backup & Cloud Webhook Integration', desc: 'Export and restore full site data, and connect Google Sheets.', url: 'index.html' }
+    'page-backup': { title: 'JSON Backup & Cloud Webhook Integration', desc: 'Export and restore full site data, and connect Google Sheets.', url: 'index.html' },
+    'page-log': { title: 'CMS Audit Trail (cms_log.txt)', desc: 'Track all changes and export updated cms_log.txt directly.', url: 'admin.html' }
   };
 
   const currentMeta = isEn ? pageMetaEn : pageMetaAr;
@@ -530,6 +703,16 @@ function switchAdminPage(targetPageId) {
     setTimeout(() => {
       refreshVisitorAnalyticsUI();
     }, 50);
+  } else if (targetPageId === 'page-about') {
+    loadAboutPage();
+  } else if (targetPageId === 'page-news') {
+    loadNewsPage();
+  } else if (targetPageId === 'page-branches') {
+    loadBranchesPage();
+  } else if (targetPageId === 'page-footer') {
+    loadFooterPage();
+  } else if (targetPageId === 'page-log') {
+    renderCmsLogTable();
   }
 
   if (typeof translateFullDom === 'function') {
@@ -1662,6 +1845,10 @@ function openAddCampaignModal() {
   document.getElementById('modalCampaignPresets').value = '';
   document.getElementById('modalCampaignImageUrl').value = '';
   document.getElementById('modalCampaignDesc').value = '';
+  const extDescIn = document.getElementById('modalCampaignExtendedDesc');
+  if (extDescIn) extDescIn.value = '';
+  temporaryCampaignGalleryImages = [];
+  renderCampaignGalleryPreviews();
 
   const preview = document.getElementById('modalImagePreview');
   if (preview) { preview.src = ''; preview.style.display = 'none'; }
@@ -1687,6 +1874,10 @@ function openEditCampaignModal(id) {
   document.getElementById('modalCampaignPresets').value = Array.isArray(c.presets) ? c.presets.join(', ') : (c.presets || '');
   document.getElementById('modalCampaignImageUrl').value = c.image || '';
   document.getElementById('modalCampaignDesc').value = c.desc || '';
+  const extDescIn = document.getElementById('modalCampaignExtendedDesc');
+  if (extDescIn) extDescIn.value = c.extendedDesc || '';
+  temporaryCampaignGalleryImages = Array.isArray(c.images) ? [...c.images] : (c.image ? [c.image] : []);
+  renderCampaignGalleryPreviews();
 
   const preview = document.getElementById('modalImagePreview');
   if (preview && c.image) {
@@ -2319,6 +2510,434 @@ function initAuth() {
   }
 }
 
+// ============================================================================
+// ABOUT PAGE CONTROLLER (about.html)
+// ============================================================================
+function loadAboutPage() {
+  const d = getPagesData();
+  const ab = d.about || {};
+  const hero = ab.hero || {};
+  const board = ab.board || {};
+
+  const badgeIn = document.getElementById('aboutHeroBadge');
+  const titleIn = document.getElementById('aboutHeroTitle');
+  const descIn = document.getElementById('aboutHeroDesc');
+  const yearIn = document.getElementById('aboutFoundingYear');
+  const regIn = document.getElementById('aboutRegNumber');
+  const decreeIn = document.getElementById('aboutDecree');
+  const minIn = document.getElementById('aboutMinistry');
+  const scopeIn = document.getElementById('aboutLegalScope');
+  const presIn = document.getElementById('aboutBoardPresident');
+  const roleIn = document.getElementById('aboutBoardRole');
+  const msgIn = document.getElementById('aboutBoardMessage');
+  const visIn = document.getElementById('aboutVisionText');
+  const misIn = document.getElementById('aboutMissionText');
+  const valIn = document.getElementById('aboutValuesText');
+
+  if (badgeIn) badgeIn.value = hero.badge || '';
+  if (titleIn) titleIn.value = hero.title || '';
+  if (descIn) descIn.value = hero.desc || '';
+  if (yearIn) yearIn.value = ab.foundingYear || '2006';
+  if (regIn) regIn.value = ab.regNumber || 'مشهرة برقم 1124 لسنة 2006';
+  if (decreeIn) decreeIn.value = ab.decree || 'قرار وزاري رقم 646 لسنة 2024';
+  if (minIn) minIn.value = ab.ministry || 'مديرية التضامن الاجتماعي بمحافظة البحيرة';
+  if (scopeIn) scopeIn.value = ab.legalScope || '';
+  if (presIn) presIn.value = board.president || 'أ. فاطمة عبد المجيد راضي';
+  if (roleIn) roleIn.value = board.role || '';
+  if (msgIn) msgIn.value = board.message || '';
+  if (visIn) visIn.value = ab.vision || '';
+  if (misIn) misIn.value = ab.mission || '';
+  if (valIn) valIn.value = Array.isArray(ab.values) ? ab.values.join('\n') : '';
+}
+
+function saveAboutPage() {
+  const d = getPagesData();
+  if (!d.about) d.about = {};
+  if (!d.about.hero) d.about.hero = {};
+  if (!d.about.board) d.about.board = {};
+
+  const badgeIn = document.getElementById('aboutHeroBadge');
+  const titleIn = document.getElementById('aboutHeroTitle');
+  const descIn = document.getElementById('aboutHeroDesc');
+  const yearIn = document.getElementById('aboutFoundingYear');
+  const regIn = document.getElementById('aboutRegNumber');
+  const decreeIn = document.getElementById('aboutDecree');
+  const minIn = document.getElementById('aboutMinistry');
+  const scopeIn = document.getElementById('aboutLegalScope');
+  const presIn = document.getElementById('aboutBoardPresident');
+  const roleIn = document.getElementById('aboutBoardRole');
+  const msgIn = document.getElementById('aboutBoardMessage');
+  const visIn = document.getElementById('aboutVisionText');
+  const misIn = document.getElementById('aboutMissionText');
+  const valIn = document.getElementById('aboutValuesText');
+
+  if (badgeIn) d.about.hero.badge = badgeIn.value.trim();
+  if (titleIn) d.about.hero.title = titleIn.value.trim();
+  if (descIn) d.about.hero.desc = descIn.value.trim();
+  if (yearIn) d.about.foundingYear = yearIn.value.trim();
+  if (regIn) d.about.regNumber = regIn.value.trim();
+  if (decreeIn) d.about.decree = decreeIn.value.trim();
+  if (minIn) d.about.ministry = minIn.value.trim();
+  if (scopeIn) d.about.legalScope = scopeIn.value.trim();
+  if (presIn) d.about.board.president = presIn.value.trim();
+  if (roleIn) d.about.board.role = roleIn.value.trim();
+  if (msgIn) d.about.board.message = msgIn.value.trim();
+  if (visIn) d.about.vision = visIn.value.trim();
+  if (misIn) d.about.mission = misIn.value.trim();
+  if (valIn) d.about.values = valIn.value.split('\n').map(s => s.trim()).filter(Boolean);
+
+  savePagesData(d, 'تم حفظ بيانات صفحة عن الجمعية بنجاح 💾');
+}
+
+// ============================================================================
+// NEWS & ARTICLES CONTROLLER (news.html)
+// ============================================================================
+let temporaryNewsImages = [];
+
+function handleNewsImagesUpload(e) {
+  const files = e.target.files;
+  if (!files || files.length === 0) return;
+
+  const previewWrap = document.getElementById('newsUploadedImagesPreviewWrap');
+  Array.from(files).forEach(file => {
+    const reader = new FileReader();
+    reader.onload = function(evt) {
+      const img = new Image();
+      img.onload = function() {
+        const canvas = document.createElement('canvas');
+        const maxDim = 900;
+        let width = img.width;
+        let height = img.height;
+        if (width > maxDim || height > maxDim) {
+          if (width > height) {
+            height = Math.round((height * maxDim) / width);
+            width = maxDim;
+          } else {
+            width = Math.round((width * maxDim) / height);
+            height = maxDim;
+          }
+        }
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, width, height);
+        const dataUrl = canvas.toDataURL('image/jpeg', 0.82);
+        temporaryNewsImages.push(dataUrl);
+        renderNewsUploadedPreviews();
+      };
+      img.src = evt.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+  showAdminToast(`تمت إضافة ${files.length} صورة بنجاح 📸`);
+}
+
+function renderNewsUploadedPreviews() {
+  const wrap = document.getElementById('newsUploadedImagesPreviewWrap');
+  if (!wrap) return;
+  if (temporaryNewsImages.length === 0) {
+    wrap.innerHTML = '';
+    return;
+  }
+  let html = '';
+  temporaryNewsImages.forEach((url, idx) => {
+    html += `
+      <div style="position:relative; width:80px; height:80px; border-radius:8px; overflow:hidden; border:1px solid #CBD5E1;">
+        <img src="${url}" alt="صورة الخبر" style="width:100%; height:100%; object-fit:cover;">
+        <button type="button" onclick="removeNewsUploadedImage(${idx})" style="position:absolute; top:2px; right:2px; background:rgba(239,68,68,0.9); color:#fff; border:none; border-radius:50%; width:20px; height:20px; cursor:pointer; font-size:11px; display:flex; align-items:center; justify-content:center;">✕</button>
+      </div>
+    `;
+  });
+  wrap.innerHTML = html;
+}
+
+function removeNewsUploadedImage(idx) {
+  temporaryNewsImages.splice(idx, 1);
+  renderNewsUploadedPreviews();
+}
+
+function loadNewsPage() {
+  const d = getPagesData();
+  const container = document.getElementById('adminNewsListContainer');
+  if (!container) return;
+
+  const articles = Array.isArray(d.news) ? d.news : [];
+  if (articles.length === 0) {
+    container.innerHTML = `
+      <div style="text-align:center; padding:30px; color:#64748B; background:#FFFFFF; border-radius:12px; border:1px dashed #CBD5E1;">
+        <p style="font-size:1.05rem; margin:0 0 6px;">لا توجد أخبار منشورة حالياً في الموقع 📰</p>
+        <span style="font-size:0.85rem;">استخدم النموذج أعلاه لإضافة ونشر أول خبر مع الصور.</span>
+      </div>
+    `;
+    return;
+  }
+
+  let html = '';
+  articles.forEach(art => {
+    const images = (Array.isArray(art.images) && art.images.length > 0) ? art.images : [art.image || 'complex.jpg'];
+    html += `
+      <div class="dynamic-item-card" style="display:flex; justify-content:space-between; align-items:center; gap:16px;">
+        <div style="display:flex; gap:14px; align-items:center;">
+          <img src="${images[0]}" alt="${art.title}" style="width:70px; height:60px; object-fit:cover; border-radius:8px; border:1px solid #E2E8F0;">
+          <div>
+            <div style="display:flex; gap:8px; align-items:center; margin-bottom:4px;">
+              <span class="badge-admin green">${art.tag || 'أخبار الجمعية'}</span>
+              ${art.location ? `<span style="font-size:0.78rem; color:#64748B;">📍 ${art.location}</span>` : ''}
+              <span style="font-size:0.78rem; color:#94A3B8;">🗓️ ${art.date || ''}</span>
+              ${images.length > 1 ? `<span style="font-size:0.75rem; background:#DBEAFE; color:#1E40AF; padding:1px 6px; border-radius:4px; font-weight:700;">📷 ${images.length} صور</span>` : ''}
+            </div>
+            <strong style="color:#0F172A; font-size:1rem; display:block;">${art.title}</strong>
+            <p style="font-size:0.84rem; color:#64748B; margin:2px 0 0; max-width:650px;">${art.desc || ''}</p>
+          </div>
+        </div>
+        <div>
+          <button type="button" class="btn-sm-del" onclick="deleteNewsArticle('${art.id}')">حذف الخبر 🗑️</button>
+        </div>
+      </div>
+    `;
+  });
+  container.innerHTML = html;
+}
+
+function addNewNewsArticle() {
+  const title = document.getElementById('newsNewTitle').value.trim();
+  const tag = document.getElementById('newsNewTag').value.trim();
+  const location = document.getElementById('newsNewLocation').value.trim();
+  const date = document.getElementById('newsNewDate').value.trim();
+  const desc = document.getElementById('newsNewDesc').value.trim();
+  const content = document.getElementById('newsNewContent').value.trim();
+
+  if (!title || !desc) {
+    alert('يرجى ملء عنوان الخبر والملخص');
+    return;
+  }
+
+  const d = getPagesData();
+  if (!Array.isArray(d.news)) d.news = [];
+
+  const images = temporaryNewsImages.length > 0 ? [...temporaryNewsImages] : ['complex.jpg'];
+  const newArticle = {
+    id: 'news_' + Date.now(),
+    title,
+    tag,
+    location,
+    date,
+    desc,
+    fullContent: content || desc,
+    images: images,
+    image: images[0]
+  };
+
+  d.news.unshift(newArticle);
+  savePagesData(d, 'تم نشر الخبر وإضافته للموقع بنجاح 📰');
+  
+  // Reset form
+  document.getElementById('adminNewArticleForm').reset();
+  temporaryNewsImages = [];
+  renderNewsUploadedPreviews();
+  loadNewsPage();
+}
+
+function deleteNewsArticle(id) {
+  if (confirm('هل أنت متأكد من حذف هذا الخبر نهائياً؟')) {
+    const d = getPagesData();
+    if (Array.isArray(d.news)) {
+      d.news = d.news.filter(a => a.id !== id);
+      savePagesData(d, 'تم حذف الخبر من الموقع 🗑️');
+      loadNewsPage();
+    }
+  }
+}
+
+// ============================================================================
+// CHARITY BRANCHES & ADDRESSES CONTROLLER
+// ============================================================================
+function loadBranchesPage() {
+  const d = getPagesData();
+  const container = document.getElementById('adminBranchesListContainer');
+  if (!container) return;
+
+  const branches = Array.isArray(d.branches) ? d.branches : [];
+  if (branches.length === 0) {
+    container.innerHTML = `<p style="text-align:center; color:#64748B; padding:20px;">لا توجد فروع مسجلة.</p>`;
+    return;
+  }
+
+  let html = '';
+  branches.forEach(b => {
+    html += `
+      <div class="dynamic-item-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <strong style="font-size:1.05rem; color:#0F172A;">🏢 ${b.name}</strong>
+            ${b.isMain ? '<span class="badge-admin green">المقر الرئيسي للجمعية</span>' : ''}
+          </div>
+          <button type="button" class="btn-sm-del" onclick="deleteBranchItem('${b.id}')">حذف الفرع 🗑️</button>
+        </div>
+        <p style="font-size:0.9rem; color:#475569; margin:0 0 6px;">📍 ${b.address}</p>
+        <div style="font-size:0.82rem; color:#64748B; display:flex; gap:16px;">
+          <span>📞 ${b.phone || '-'}</span>
+          <span>⏰ ${b.workHours || '-'}</span>
+        </div>
+      </div>
+    `;
+  });
+  container.innerHTML = html;
+}
+
+function addNewBranchItem() {
+  const name = document.getElementById('branchNewName').value.trim();
+  const address = document.getElementById('branchNewAddress').value.trim();
+  const phone = document.getElementById('branchNewPhone').value.trim();
+  const hours = document.getElementById('branchNewHours').value.trim();
+  const isMain = document.getElementById('branchNewIsMain').checked;
+
+  if (!name || !address) {
+    alert('يرجى إدخال اسم وعنوان الفرع');
+    return;
+  }
+
+  const d = getPagesData();
+  if (!Array.isArray(d.branches)) d.branches = [];
+
+  if (isMain) {
+    d.branches.forEach(b => b.isMain = false);
+  }
+
+  const newBranch = {
+    id: 'branch_' + Date.now(),
+    name,
+    address,
+    phone: phone || '01026410313',
+    workHours: hours || 'يومياً 8ص إلى 4م',
+    isMain: Boolean(isMain)
+  };
+
+  d.branches.push(newBranch);
+  savePagesData(d, 'تمت إضافة الفرع بنجاح 🏢');
+
+  document.getElementById('adminNewBranchForm').reset();
+  loadBranchesPage();
+}
+
+function deleteBranchItem(id) {
+  if (confirm('هل أنت متأكد من حذف هذا الفرع؟')) {
+    const d = getPagesData();
+    if (Array.isArray(d.branches)) {
+      d.branches = d.branches.filter(b => b.id !== id);
+      savePagesData(d, 'تم حذف الفرع 🗑️');
+      loadBranchesPage();
+    }
+  }
+}
+
+// ============================================================================
+// FOOTER & SOCIAL MEDIA CONTROLLER
+// ============================================================================
+function loadFooterPage() {
+  const d = getPagesData();
+  const ft = d.footer || {};
+
+  const aboutIn = document.getElementById('footerSettingAboutText');
+  const fbIn = document.getElementById('footerSettingFacebookUrl');
+  const phoneIn = document.getElementById('footerSettingPhone');
+  const mobIn = document.getElementById('footerSettingMobile');
+  const emailIn = document.getElementById('footerSettingEmail');
+  const rightsIn = document.getElementById('footerSettingRightsText');
+
+  if (aboutIn) aboutIn.value = ft.aboutText || '';
+  if (fbIn) fbIn.value = ft.facebookUrl || 'https://www.facebook.com/gam3it.alesraa';
+  if (phoneIn) phoneIn.value = ft.phone || '045-3318920';
+  if (mobIn) mobIn.value = ft.mobile || '01026410313';
+  if (emailIn) emailIn.value = ft.email || 'al_israa_ngo@yahoo.com';
+  if (rightsIn) rightsIn.value = ft.rightsText || '© 2026 جمعية الإسراء الخيرية لتنمية المجتمع بدمنهور. جميع الحقوق محفوظة.';
+}
+
+function saveFooterSettings() {
+  const d = getPagesData();
+  if (!d.footer) d.footer = {};
+
+  const aboutIn = document.getElementById('footerSettingAboutText');
+  const fbIn = document.getElementById('footerSettingFacebookUrl');
+  const phoneIn = document.getElementById('footerSettingPhone');
+  const mobIn = document.getElementById('footerSettingMobile');
+  const emailIn = document.getElementById('footerSettingEmail');
+  const rightsIn = document.getElementById('footerSettingRightsText');
+
+  if (aboutIn) d.footer.aboutText = aboutIn.value.trim();
+  if (fbIn) d.footer.facebookUrl = fbIn.value.trim();
+  if (phoneIn) d.footer.phone = phoneIn.value.trim();
+  if (mobIn) d.footer.mobile = mobIn.value.trim();
+  if (emailIn) d.footer.email = emailIn.value.trim();
+  if (rightsIn) d.footer.rightsText = rightsIn.value.trim();
+
+  savePagesData(d, 'تم حفظ إعدادات التذييل وفيسبوك بنجاح 🌐');
+}
+
+// Multi-Image Gallery Helper for Campaign Modal
+let temporaryCampaignGalleryImages = [];
+
+function handleCampaignGalleryUpload(e) {
+  const files = e.target.files;
+  if (!files || files.length === 0) return;
+
+  Array.from(files).forEach(file => {
+    const reader = new FileReader();
+    reader.onload = function(evt) {
+      const img = new Image();
+      img.onload = function() {
+        const canvas = document.createElement('canvas');
+        const maxDim = 800;
+        let width = img.width;
+        let height = img.height;
+        if (width > maxDim || height > maxDim) {
+          if (width > height) {
+            height = Math.round((height * maxDim) / width);
+            width = maxDim;
+          } else {
+            width = Math.round((width * maxDim) / height);
+            height = maxDim;
+          }
+        }
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, width, height);
+        const dataUrl = canvas.toDataURL('image/jpeg', 0.82);
+        temporaryCampaignGalleryImages.push(dataUrl);
+        renderCampaignGalleryPreviews();
+      };
+      img.src = evt.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+  showAdminToast(`تمت إضافة ${files.length} صور لمعرض الحملة 🖼️`);
+}
+
+function renderCampaignGalleryPreviews() {
+  const wrap = document.getElementById('modalCampaignGalleryPreviewsWrap');
+  if (!wrap) return;
+  if (temporaryCampaignGalleryImages.length === 0) {
+    wrap.innerHTML = '';
+    return;
+  }
+  let html = '';
+  temporaryCampaignGalleryImages.forEach((url, idx) => {
+    html += `
+      <div style="position:relative; width:64px; height:64px; border-radius:6px; overflow:hidden; border:1px solid #CBD5E1;">
+        <img src="${url}" alt="معرض" style="width:100%; height:100%; object-fit:cover;">
+        <button type="button" onclick="removeCampaignGalleryImage(${idx})" style="position:absolute; top:1px; right:1px; background:rgba(239,68,68,0.9); color:#fff; border:none; border-radius:50%; width:18px; height:18px; cursor:pointer; font-size:10px; display:flex; align-items:center; justify-content:center;">✕</button>
+      </div>
+    `;
+  });
+  wrap.innerHTML = html;
+}
+
+function removeCampaignGalleryImage(idx) {
+  temporaryCampaignGalleryImages.splice(idx, 1);
+  renderCampaignGalleryPreviews();
+}
+
 // Initialize on DOM Ready
 document.addEventListener('DOMContentLoaded', () => {
   checkAuth();
@@ -2357,6 +2976,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const image = document.getElementById('modalCampaignImageUrl').value.trim() || 'school.jpg';
       const desc = document.getElementById('modalCampaignDesc').value.trim();
+      const extDescElem = document.getElementById('modalCampaignExtendedDesc');
+      const extendedDesc = extDescElem ? extDescElem.value.trim() : '';
+      const galleryImages = temporaryCampaignGalleryImages.length > 0 ? [...temporaryCampaignGalleryImages] : [image];
 
       const d = getPagesData();
       if (!d.store.campaigns) d.store.campaigns = [];
@@ -2374,7 +2996,9 @@ document.addEventListener('DOMContentLoaded', () => {
         collectedAmount,
         presets: presets.length > 0 ? presets : [unitPrice / 2, unitPrice, unitPrice * 2],
         image,
-        desc
+        desc,
+        extendedDesc,
+        images: galleryImages
       };
 
       if (existingIdx > -1) {
@@ -2399,6 +3023,11 @@ document.addEventListener('DOMContentLoaded', () => {
   loadContactPage();
   loadInboxPage();
   loadBackupPage();
+  loadAboutPage();
+  loadNewsPage();
+  loadBranchesPage();
+  loadFooterPage();
+  renderCmsLogTable();
   // Window resize handler for traffic chart
   window.addEventListener('resize', () => {
     const overviewPane = document.getElementById('page-overview');

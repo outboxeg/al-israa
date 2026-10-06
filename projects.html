@@ -18,8 +18,9 @@
         <span data-i18n="topbar.projectsBadge">💼 مشروعات التمكين الاقتصادي والاستدامة الخضراء بالبحيرة</span>
       </div>
       <div class="top-bar-links">
-        <a href="checkout.html" class="top-bar-link" style="color:#FEF08A; font-weight:800;" data-i18n="topbar.bankLink">💳 الحسابات البنكية والمحافظ</a>
-        <a href="tel:+20453312345" class="top-bar-link" data-i18n="topbar.projectsPhone">📞 هاتف المشروعات: 045-3312345</a>
+        <a href="https://www.facebook.com/gam3it.alesraa" target="_blank" rel="noopener noreferrer" class="top-bar-link" style="color:#93C5FD; font-weight:700;">📘 صفحة فيسبوك الرسمية</a>
+        <a href="checkout.html" class="top-bar-link" style="color:#FEF08A; font-weight:800;" data-i18n="drawer.checkout">💳 الحسابات البنكية والمحافظ</a>
+        <a href="tel:+20453318920" class="top-bar-link">📞 045-3318920 / 01026410313</a>
       </div>
     </div>
   </div>
@@ -38,10 +39,12 @@
       <nav class="main-navigation">
         <ul class="nav-links-list">
           <li><a href="index.html" class="nav-item-link" data-i18n="nav.home">الرئيسية</a></li>
-          <li><a href="store.html" class="nav-item-link" data-i18n="nav.store">متجر التبرعات 🛒</a></li>
+          <li><a href="about.html" class="nav-item-link" data-i18n="nav.about">عن الجمعية</a></li>
           <li><a href="complex.html" class="nav-item-link" data-i18n="nav.complex">مجمع الإسراء</a></li>
           <li><a href="hostel.html" class="nav-item-link" data-i18n="nav.hostel">دار ضيافة الأورام</a></li>
-          <li><a href="projects.html" class="nav-item-link active" data-i18n="nav.projects">المشروعات والتمكين</a></li>
+          <li><a href="projects.html" class="nav-item-link active" data-i18n="nav.projects">مشروعاتنا</a></li>
+          <li><a href="news.html" class="nav-item-link" data-i18n="nav.news">آخر الأخبار</a></li>
+          <li><a href="store.html" class="nav-item-link" data-i18n="nav.store">متجر التبرعات 🛒</a></li>
           <li><a href="contact.html" class="nav-item-link" data-i18n="nav.contact">تواصل معنا</a></li>
         </ul>
 
@@ -84,10 +87,12 @@
       </div>
       <div class="mobile-drawer-links">
         <a href="index.html" data-i18n="nav.home">الرئيسية</a>
-        <a href="store.html" data-i18n="nav.store">متجر التبرعات 🛒</a>
-        <a href="complex.html" data-i18n="nav.complex">مجمع الإسراء التنموي</a>
+        <a href="about.html" data-i18n="nav.about">عن جمعية الإسراء</a>
+        <a href="complex.html" data-i18n="drawer.complex">مجمع الإسراء التنموي</a>
         <a href="hostel.html" data-i18n="nav.hostel">دار ضيافة الأورام</a>
         <a href="projects.html" class="active" data-i18n="nav.projects">مشروعات التمكين و Outbox</a>
+        <a href="news.html" data-i18n="nav.news">آخر الأخبار والتغطيات</a>
+        <a href="store.html" data-i18n="nav.store">متجر التبرعات 🛒</a>
         <a href="checkout.html" data-i18n="topbar.bankLink">الحسابات البنكية والمحافظ</a>
         <a href="contact.html" data-i18n="nav.contact">تواصل معنا والتدريب</a>
       </div>
@@ -288,6 +293,14 @@
         <p class="footer-bio">
           مؤسسة أهلية ذات نفع عام بمحافظة البحيرة، مسجلة برقم 1124 لسنة 2006. نعمل على خدمة المجتمع، وتوفير الرعاية المجانية لمرضى الأورام، والتمكين المهني للأسر الأولى بالرعاية، والمبادرات البيئية المدرسية الذكية.
         </p>
+        <div class="footer-social-links" style="display:flex; gap:10px; margin-top:14px;">
+          <a href="https://www.facebook.com/gam3it.alesraa" target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; gap:8px; background:#1877F2; color:#FFFFFF; padding:6px 16px; border-radius:20px; text-decoration:none; font-size:0.88rem; font-weight:700;">
+            <span>📘</span> <span>صفحة فيسبوك الرسمية</span>
+          </a>
+          <a href="https://wa.me/201026410313" target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; gap:8px; background:#25D366; color:#FFFFFF; padding:6px 16px; border-radius:20px; text-decoration:none; font-size:0.88rem; font-weight:700;">
+            <span>💬</span> <span>واتساب</span>
+          </a>
+        </div>
       </div>
 
       <div>
@@ -314,27 +327,44 @@
       </div>
 
       <div>
-        <h4 class="footer-col-title">بيانات التواصل والتحويل</h4>
-        <div class="footer-contact-item">
-          <span>📍</span>
-          <span>مجمع الإسراء، دمنهور، محافظة البحيرة، جمهورية مصر العربية</span>
+        <h4 class="footer-col-title" data-i18n="footer.contactBranches">عناوين ومقرات الجمعية والتحويل</h4>
+        <div class="footer-addresses-list" id="footerBranchesContainer">
+          <div class="footer-contact-item">
+            <span>🏢</span>
+            <span><strong>المقر الرئيسي:</strong> حارة موصلي، متفرع من شارع سيدي عمر، دمنهور</span>
+          </div>
+          <div class="footer-contact-item">
+            <span>🏥</span>
+            <span><strong>مجمع الإسراء ودار الضيافة:</strong> خلف معهد أورام دمنهور القومي</span>
+          </div>
+          <div class="footer-contact-item">
+            <span>♻️</span>
+            <span><strong>مشروع برة الصندوق Outbox:</strong> مدرسة دمنهور الزخرفية المعمارية</span>
+          </div>
         </div>
-        <div class="footer-contact-item">
-          <span>💳</span>
-          <span>حساب بنك مصر: 123456789</span>
-        </div>
-        <div class="footer-contact-item">
-          <span>📱</span>
-          <span>فودافون كاش / إنستاباي: 01012345678</span>
-        </div>
-        <div class="footer-contact-item">
-          <span>📞</span>
-          <a href="tel:+20453312345" style="color: inherit;">045-3312345</a>
+
+        <div style="margin-top:14px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.12);">
+          <div class="footer-contact-item">
+            <span>💳</span>
+            <span class="footer-bank-val">حساب بنك مصر: 123456789</span>
+          </div>
+          <div class="footer-contact-item">
+            <span>📱</span>
+            <span class="footer-vodafone-val">فودافون كاش / إنستاباي: 01026410313</span>
+          </div>
+          <div class="footer-contact-item">
+            <span>📞</span>
+            <a href="tel:+20453318920" class="footer-phone-val" style="color: inherit;">045-3318920 / 01026410313</a>
+          </div>
+          <div class="footer-contact-item">
+            <span>🌐</span>
+            <a href="https://www.facebook.com/gam3it.alesraa" target="_blank" rel="noopener noreferrer" style="color:#60A5FA; font-weight:700;">فيسبوك: fb.com/gam3it.alesraa ↗</a>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Powered by NGOHub Strip -->
+    <!-- Powered by NGOHub Strip NGOHub Strip -->
     <div class="powered-by-strip">
       <div class="container">
         <div class="powered-by-inner">

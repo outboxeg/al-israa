@@ -638,7 +638,7 @@
         </li>
       </ul>
 
-      <p class="sidebar-section-title">📄 صفحات الموقع (7 صفحات)</p>
+      <p class="sidebar-section-title">📄 صفحات ومحتوى الموقع</p>
       <ul class="admin-nav-list">
         <li class="admin-nav-item">
           <button type="button" data-page-target="page-home">
@@ -647,44 +647,72 @@
           </button>
         </li>
         <li class="admin-nav-item">
+          <button type="button" data-page-target="page-about">
+            <span>🏛️</span>
+            <span>2. عن جمعية الإسراء</span>
+          </button>
+        </li>
+        <li class="admin-nav-item">
           <button type="button" data-page-target="page-store">
             <span>🛒</span>
-            <span>2. متجر التبرعات</span>
+            <span>3. متجر التبرعات والحملات</span>
           </button>
         </li>
         <li class="admin-nav-item">
           <button type="button" data-page-target="page-complex">
             <span>🏥</span>
-            <span>3. مجمع الإسراء التنموي</span>
+            <span>4. مجمع الإسراء التنموي</span>
           </button>
         </li>
         <li class="admin-nav-item">
           <button type="button" data-page-target="page-hostel">
             <span>🛏️</span>
-            <span>4. دار ضيافة الأورام</span>
+            <span>5. دار ضيافة الأورام</span>
           </button>
         </li>
         <li class="admin-nav-item">
           <button type="button" data-page-target="page-projects">
             <span>💼</span>
-            <span>5. المشروعات والتمكين</span>
+            <span>6. المشروعات والتمكين</span>
+          </button>
+        </li>
+        <li class="admin-nav-item">
+          <button type="button" data-page-target="page-news">
+            <span>📰</span>
+            <span>7. آخر الأخبار والتغطيات</span>
           </button>
         </li>
         <li class="admin-nav-item">
           <button type="button" data-page-target="page-checkout">
             <span>💳</span>
-            <span>6. إتمام التبرع والحسابات</span>
+            <span>8. إتمام التبرع والحسابات</span>
           </button>
         </li>
         <li class="admin-nav-item">
           <button type="button" data-page-target="page-contact">
             <span>📍</span>
-            <span>7. تواصل معنا وخريطة المقر</span>
+            <span>9. تواصل معنا والمقر</span>
           </button>
         </li>
       </ul>
 
-      <p class="sidebar-section-title">⚙️ الإدارة والربط</p>
+      <p class="sidebar-section-title">🏢 الفروع وبيانات التذييل</p>
+      <ul class="admin-nav-list">
+        <li class="admin-nav-item">
+          <button type="button" data-page-target="page-branches">
+            <span>🏢</span>
+            <span>عناوين وفروع الجمعية</span>
+          </button>
+        </li>
+        <li class="admin-nav-item">
+          <button type="button" data-page-target="page-footer">
+            <span>🌐</span>
+            <span>التذييل وصفحة فيسبوك</span>
+          </button>
+        </li>
+      </ul>
+
+      <p class="sidebar-section-title">⚙️ الإدارة ومراقبة النظام</p>
       <ul class="admin-nav-list">
         <li class="admin-nav-item">
           <button type="button" data-page-target="page-inbox">
@@ -696,6 +724,12 @@
           <button type="button" data-page-target="page-backup">
             <span>☁️</span>
             <span>النسخ الاحتياطي والربط</span>
+          </button>
+        </li>
+        <li class="admin-nav-item">
+          <button type="button" data-page-target="page-log">
+            <span>📜</span>
+            <span>سجل العمليات (CMS Log)</span>
           </button>
         </li>
       </ul>
@@ -1251,6 +1285,148 @@
       <!-- ====================================================================
            PAGE 2: Donation Store Page (store.html)
            ==================================================================== -->
+
+      <!-- ====================================================================
+           PAGE: About Us (about.html)
+           ==================================================================== -->
+      <div id="page-about" class="admin-page-pane">
+        
+        <!-- Accordion 1: Hero Banner -->
+        <div class="admin-accordion open">
+          <div class="admin-accordion-header" onclick="toggleAccordion(this)">
+            <div class="admin-accordion-title-wrap">
+              <span class="admin-accordion-icon">🏛️</span>
+              <div>
+                <h3 class="admin-accordion-title">ترويسة وهيرو صفحة عن الجمعية (Hero Section)</h3>
+                <p class="admin-accordion-subtitle">العنوان الرئيسي، البادج، والوصف الشامل للجمعية ورسالتها.</p>
+              </div>
+            </div>
+            <span class="admin-accordion-chevron">▼</span>
+          </div>
+          <div class="admin-accordion-body">
+            <div class="admin-form-group">
+              <label for="aboutHeroBadge">نص الشارة العلوية (Badge)</label>
+              <input type="text" id="aboutHeroBadge" class="admin-input" placeholder="🏛️ جمعية الإسراء الخيرية لتنمية المجتمع بدمنهور">
+            </div>
+            <div class="admin-form-group">
+              <label for="aboutHeroTitle">العنوان الرئيسي في الهيرو (H1)</label>
+              <input type="text" id="aboutHeroTitle" class="admin-input" placeholder="مسيرة عطاء وتنمية مستدامة ترعى الإنسان وتبني المجتمع منذ 2006">
+            </div>
+            <div class="admin-form-group">
+              <label for="aboutHeroDesc">النص التعريفي الشامل في الهيرو</label>
+              <textarea id="aboutHeroDesc" rows="3" class="admin-textarea" placeholder="مؤسسة أهلية مصرية رائدة حائزة على صفة النفع العام بقرار وزاري (646 لسنة 2024)..."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordion 2: Official Foundation & Legal Registration -->
+        <div class="admin-accordion">
+          <div class="admin-accordion-header" onclick="toggleAccordion(this)">
+            <div class="admin-accordion-title-wrap">
+              <span class="admin-accordion-icon">📜</span>
+              <div>
+                <h3 class="admin-accordion-title">بيانات التأسيس والإشهار والنفع العام</h3>
+                <p class="admin-accordion-subtitle">تاريخ التأسيس، رقم القيد، القرار الوزاري لصفة النفع العام، ومظلة العمل.</p>
+              </div>
+            </div>
+            <span class="admin-accordion-chevron">▼</span>
+          </div>
+          <div class="admin-accordion-body">
+            <div class="admin-grid-2">
+              <div class="admin-form-group">
+                <label for="aboutFoundingYear">سنة التأسيس والانطلاق</label>
+                <input type="text" id="aboutFoundingYear" class="admin-input" placeholder="2006">
+              </div>
+              <div class="admin-form-group">
+                <label for="aboutRegNumber">رقم القيد والإشهار بوزارة التضامن</label>
+                <input type="text" id="aboutRegNumber" class="admin-input" placeholder="مشهرة برقم 1124 لسنة 2006">
+              </div>
+            </div>
+            <div class="admin-grid-2">
+              <div class="admin-form-group">
+                <label for="aboutDecree">قرار صفة النفع العام الرسمي</label>
+                <input type="text" id="aboutDecree" class="admin-input" placeholder="قرار وزاري رقم 646 لسنة 2024">
+              </div>
+              <div class="admin-form-group">
+                <label for="aboutMinistry">المظلة الحكومية والإشرافية</label>
+                <input type="text" id="aboutMinistry" class="admin-input" placeholder="مديرية التضامن الاجتماعي بمحافظة البحيرة">
+              </div>
+            </div>
+            <div class="admin-form-group">
+              <label for="aboutLegalScope">النطاق الجغرافي والنوعي للعمل</label>
+              <textarea id="aboutLegalScope" rows="2" class="admin-textarea" placeholder="محافظة البحيرة وجمهورية مصر العربية - رعاية صحية واجتماعية وتمكين اقتصادي وبيئي."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordion 3: Board of Directors & Leadership -->
+        <div class="admin-accordion">
+          <div class="admin-accordion-header" onclick="toggleAccordion(this)">
+            <div class="admin-accordion-title-wrap">
+              <span class="admin-accordion-icon">👥</span>
+              <div>
+                <h3 class="admin-accordion-title">مجلس الإدارة والقيادة التنفيذية</h3>
+                <p class="admin-accordion-subtitle">اسم رئيس مجلس الإدارة، الإنجازات والمبادرات، وكلمة الإدارة للمتبرعين.</p>
+              </div>
+            </div>
+            <span class="admin-accordion-chevron">▼</span>
+          </div>
+          <div class="admin-accordion-body">
+            <div class="admin-grid-2">
+              <div class="admin-form-group">
+                <label for="aboutBoardPresident">رئيس مجلس الإدارة</label>
+                <input type="text" id="aboutBoardPresident" class="admin-input" placeholder="أ. فاطمة عبد المجيد راضي">
+              </div>
+              <div class="admin-form-group">
+                <label for="aboutBoardRole">الصفة والدور التنموي</label>
+                <input type="text" id="aboutBoardRole" class="admin-input" placeholder="رئيس مجلس الإدارة ومبتكرة منظومة المدارس الخضراء Outbox">
+              </div>
+            </div>
+            <div class="admin-form-group">
+              <label for="aboutBoardMessage">رسالة وكلمة رئيس مجلس الإدارة</label>
+              <textarea id="aboutBoardMessage" rows="4" class="admin-textarea" placeholder="كلمة رئيس مجلس الإدارة حول رحلة تأسيس الجمعية وخدمة أهالي البحيرة..."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordion 4: Vision, Mission & Values -->
+        <div class="admin-accordion">
+          <div class="admin-accordion-header" onclick="toggleAccordion(this)">
+            <div class="admin-accordion-title-wrap">
+              <span class="admin-accordion-icon">🎯</span>
+              <div>
+                <h3 class="admin-accordion-title">الرؤية والرسالة والقيم المؤسسية</h3>
+                <p class="admin-accordion-subtitle">الأهداف الاستراتيجية والمعايير الأخلاقية للعمل الخيري.</p>
+              </div>
+            </div>
+            <span class="admin-accordion-chevron">▼</span>
+          </div>
+          <div class="admin-accordion-body">
+            <div class="admin-form-group">
+              <label for="aboutVisionText">رؤية الجمعية (Vision)</label>
+              <textarea id="aboutVisionText" rows="2" class="admin-textarea" placeholder="أن نكون النموذج الأهلي الأكثر ريادة واستدامة في محافظة البحيرة..."></textarea>
+            </div>
+            <div class="admin-form-group">
+              <label for="aboutMissionText">رسالة الجمعية (Mission)</label>
+              <textarea id="aboutMissionText" rows="2" class="admin-textarea" placeholder="تقديم خدمات رعاية طبية متكاملة لمرضى الأورام، وتمكين الأسر المستحقة اقتصادياً..."></textarea>
+            </div>
+            <div class="admin-form-group">
+              <label for="aboutValuesText">القيم الجوهرية (قيم مفصولة بأسطر)</label>
+              <textarea id="aboutValuesText" rows="3" class="admin-textarea" placeholder="الكرامة الإنسانية
+الشفافية والأمانة
+الاستدامة والابتكار
+التكافل المجتمعي"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-action-bar">
+          <button type="button" class="btn-primary" onclick="saveAboutPage()" style="padding:10px 26px;">
+            حفظ تعديلات صفحة عن الجمعية 💾
+          </button>
+        </div>
+      </div>
+
       <div id="page-store" class="admin-page-pane">
         
         <!-- Section 2.1: Store Header Banner -->
@@ -1699,6 +1875,132 @@
       <!-- ====================================================================
            PAGE 6: Checkout & Accounts Page (checkout.html)
            ==================================================================== -->
+
+      <!-- ====================================================================
+           PAGE: Latest News & Articles (news.html)
+           ==================================================================== -->
+      <div id="page-news" class="admin-page-pane">
+        
+        <!-- Accordion 1: News Page Header -->
+        <div class="admin-accordion open">
+          <div class="admin-accordion-header" onclick="toggleAccordion(this)">
+            <div class="admin-accordion-title-wrap">
+              <span class="admin-accordion-icon">📰</span>
+              <div>
+                <h3 class="admin-accordion-title">ترويسة صفحة آخر الأخبار (news.html)</h3>
+                <p class="admin-accordion-subtitle">العنوان والوصف وروابط المتابعة الخارجية.</p>
+              </div>
+            </div>
+            <span class="admin-accordion-chevron">▼</span>
+          </div>
+          <div class="admin-accordion-body">
+            <div class="admin-form-group">
+              <label for="newsHeaderBadge">نص الشارة العلوية (Badge)</label>
+              <input type="text" id="newsHeaderBadge" class="admin-input" placeholder="📰 المركز الإعلامي والتغطيات الميدانية">
+            </div>
+            <div class="admin-form-group">
+              <label for="newsHeaderTitle">العنوان الرئيسي لصفحة الأخبار</label>
+              <input type="text" id="newsHeaderTitle" class="admin-input" placeholder="آخر الأخبار والفعاليات وقوافل الأثر بدمنهور والبحيرة">
+            </div>
+            <div class="admin-form-group">
+              <label for="newsHeaderDesc">الوصف التعريفي للصفحة</label>
+              <textarea id="newsHeaderDesc" rows="2" class="admin-textarea" placeholder="تابعوا هنا أحدث المبادرات، التغطيات المصورة، الشراكات الرسمية، وتقارير مجمع الإسراء التنموي..."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordion 2: Add New Article with Multiple Images Upload -->
+        <div class="admin-accordion open">
+          <div class="admin-accordion-header" onclick="toggleAccordion(this)">
+            <div class="admin-accordion-title-wrap">
+              <span class="admin-accordion-icon">✍️</span>
+              <div>
+                <h3 class="admin-accordion-title">إضافة ونشر خبر أو تغطية جديدة (مع رفع الصور)</h3>
+                <p class="admin-accordion-subtitle">أدخل بيانات الخبر، التصنيف، المكان، التاريخ، وارفع صورة أو عدة صور مباشرة من جهازك.</p>
+              </div>
+            </div>
+            <span class="admin-accordion-chevron">▼</span>
+          </div>
+          <div class="admin-accordion-body">
+            <form id="adminNewArticleForm" onsubmit="event.preventDefault(); addNewNewsArticle();">
+              <div class="admin-form-group">
+                <label for="newsNewTitle">عنوان الخبر أو التغطية *</label>
+                <input type="text" id="newsNewTitle" class="admin-input" required placeholder="مثال: استقبال وفد رسمي وتفقد خدمات دار ضيافة مرضى الأورام">
+              </div>
+
+              <div class="admin-grid-3">
+                <div class="admin-form-group">
+                  <label for="newsNewTag">التصنيف / الـ Tag *</label>
+                  <select id="newsNewTag" class="admin-select" required>
+                    <option value="رعاية مرضى الأورام">رعاية مرضى الأورام 🏥</option>
+                    <option value="التمكين الاقتصادي">التمكين الاقتصادي 💼</option>
+                    <option value="برة الصندوق والبيئة">برة الصندوق والبيئة 🌿</option>
+                    <option value="التعليم والطفولة">التعليم والطفولة 🎒</option>
+                    <option value="شراكات وزيارات رسمية">شراكات وزيارات رسمية 🤝</option>
+                    <option value="عام">أخبار عامة 🌟</option>
+                  </select>
+                </div>
+                <div class="admin-form-group">
+                  <label for="newsNewLocation">المكان / الموقع الجغرافي *</label>
+                  <input type="text" id="newsNewLocation" class="admin-input" required placeholder="مثال: دمنهور - مجمع الإسراء خلف معهد الأورام">
+                </div>
+                <div class="admin-form-group">
+                  <label for="newsNewDate">تاريخ النشر *</label>
+                  <input type="text" id="newsNewDate" class="admin-input" required placeholder="مثال: أكتوبر 2026 أو 2026-10-06">
+                </div>
+              </div>
+
+              <div class="admin-form-group">
+                <label for="newsNewDesc">الملخص القصير للخبر (يظهر في الكارت) *</label>
+                <textarea id="newsNewDesc" rows="2" class="admin-textarea" required placeholder="موجز سريع عن الحدث أو الفعالية لرواد الموقع..."></textarea>
+              </div>
+
+              <div class="admin-form-group">
+                <label for="newsNewContent">التفاصيل الكاملة للخبر (تظهر في النافذة المنبثقة Modal)</label>
+                <textarea id="newsNewContent" rows="5" class="admin-textarea" placeholder="التغطية التفصيلية الكاملة للحدث، أسماء الحضور، الإحصائيات، والقرارات المتخذة..."></textarea>
+              </div>
+
+              <!-- Multiple Images Upload Box -->
+              <div class="admin-form-group">
+                <label>رفع الصور التوثيقية (يمكنك اختيار صورة أو عدة صور من جهازك مباشرة)</label>
+                <div class="image-uploader-box" onclick="document.getElementById('newsNewImagesFileInput').click()">
+                  <div style="font-size:1.8rem; margin-bottom:4px;">📸</div>
+                  <div style="font-weight:700; font-size:0.92rem; color:#0F172A;">انقر لاختيار ورفع الصور من جهازك (مفرد أو متعدد)</div>
+                  <div style="font-size:0.78rem; color:#64748B;">يتم ضغط الصور تلقائياً وتحويلها لتخزين آمن وفوري بدون الحاجة لفتح GitHub نهائياً.</div>
+                  <input type="file" id="newsNewImagesFileInput" accept="image/*" multiple style="display:none;" onchange="handleNewsImagesUpload(event)">
+                </div>
+                <!-- Container for Selected Images Previews -->
+                <div id="newsUploadedImagesPreviewWrap" style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;"></div>
+              </div>
+
+              <button type="submit" class="btn-primary" style="padding:10px 24px;">
+                نشر الخبر وإضافته للموقع فوراً 📰
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Accordion 3: Current Published News List -->
+        <div class="admin-accordion open">
+          <div class="admin-accordion-header" onclick="toggleAccordion(this)">
+            <div class="admin-accordion-title-wrap">
+              <span class="admin-accordion-icon">📋</span>
+              <div>
+                <h3 class="admin-accordion-title">الأخبار والتغطيات المنشورة حالياً بالموقع</h3>
+                <p class="admin-accordion-subtitle">استعراض، معاينة، وحذف الأخبار الحالية من الموقع.</p>
+              </div>
+            </div>
+            <span class="admin-accordion-chevron">▼</span>
+          </div>
+          <div class="admin-accordion-body">
+            <div id="adminNewsListContainer">
+              <!-- Dynamically populated via JS -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+
       <div id="page-checkout" class="admin-page-pane">
         
         <div class="admin-accordion open">
@@ -1909,6 +2211,155 @@
       <!-- ====================================================================
            PAGE 8: Inbox & Submissions (inbox)
            ==================================================================== -->
+
+      <!-- ====================================================================
+           PAGE: Charity Branches & Addresses
+           ==================================================================== -->
+      <div id="page-branches" class="admin-page-pane">
+        
+        <!-- Accordion 1: Current Branches List -->
+        <div class="admin-accordion open">
+          <div class="admin-accordion-header" onclick="toggleAccordion(this)">
+            <div class="admin-accordion-title-wrap">
+              <span class="admin-accordion-icon">🏢</span>
+              <div>
+                <h3 class="admin-accordion-title">فروع وعناوين جمعية الإسراء المعتمدة</h3>
+                <p class="admin-accordion-subtitle">تظهر هذه الفروع في تذييل كافة صفحات الموقع وصفحة تواصل معنا وعن الجمعية.</p>
+              </div>
+            </div>
+            <span class="admin-accordion-chevron">▼</span>
+          </div>
+          <div class="admin-accordion-body">
+            <div id="adminBranchesListContainer">
+              <!-- Dynamically populated via JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordion 2: Add New Branch -->
+        <div class="admin-accordion open">
+          <div class="admin-accordion-header" onclick="toggleAccordion(this)">
+            <div class="admin-accordion-title-wrap">
+              <span class="admin-accordion-icon">➕</span>
+              <div>
+                <h3 class="admin-accordion-title">إضافة مقر أو فرع جديد للجمعية</h3>
+                <p class="admin-accordion-subtitle">أدخل تفاصيل المقر، وساعات العمل، وأرقام التواصل المباشرة.</p>
+              </div>
+            </div>
+            <span class="admin-accordion-chevron">▼</span>
+          </div>
+          <div class="admin-accordion-body">
+            <form id="adminNewBranchForm" onsubmit="event.preventDefault(); addNewBranchItem();">
+              <div class="admin-form-group">
+                <label for="branchNewName">اسم المقر أو الفرع *</label>
+                <input type="text" id="branchNewName" class="admin-input" required placeholder="مثال: المقر الإداري والتنموي الجديد">
+              </div>
+
+              <div class="admin-form-group">
+                <label for="branchNewAddress">العنوان التفصيلي للفرع *</label>
+                <input type="text" id="branchNewAddress" class="admin-input" required placeholder="مثال: دمنهور - شارع ناصر الفكرية، خلف معهد أورام دمنهور القومي">
+              </div>
+
+              <div class="admin-grid-2">
+                <div class="admin-form-group">
+                  <label for="branchNewPhone">أرقام هواتف الفرع</label>
+                  <input type="text" id="branchNewPhone" class="admin-input" placeholder="045-3318920 / 01026410313">
+                </div>
+                <div class="admin-form-group">
+                  <label for="branchNewHours">ساعات العمل والاستقبال</label>
+                  <input type="text" id="branchNewHours" class="admin-input" placeholder="يومياً 8:00 ص إلى 4:00 م (دار الضيافة 24 ساعة)">
+                </div>
+              </div>
+
+              <div class="admin-form-group" style="display:flex; align-items:center; gap:8px;">
+                <input type="checkbox" id="branchNewIsMain" style="width:18px; height:18px; accent-color:var(--brand-green);">
+                <label for="branchNewIsMain" style="margin:0; font-weight:700; cursor:pointer;">تعيين هذا المقر كـ "المقر الرئيسي للجمعية" 🏢</label>
+              </div>
+
+              <button type="submit" class="btn-primary" style="padding:10px 24px;">
+                إضافة الفرع وحفظ البيانات 🏢
+              </button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ====================================================================
+           PAGE: Footer & Official Social Links (Including Facebook)
+           ==================================================================== -->
+      <div id="page-footer" class="admin-page-pane">
+        
+        <!-- Accordion 1: Footer Brand & About Copy -->
+        <div class="admin-accordion open">
+          <div class="admin-accordion-header" onclick="toggleAccordion(this)">
+            <div class="admin-accordion-title-wrap">
+              <span class="admin-accordion-icon">🌐</span>
+              <div>
+                <h3 class="admin-accordion-title">بيانات تذييل الموقع (Footer Settings)</h3>
+                <p class="admin-accordion-subtitle">النص التعريفي المختصر في التذييل لكافة الصفحات.</p>
+              </div>
+            </div>
+            <span class="admin-accordion-chevron">▼</span>
+          </div>
+          <div class="admin-accordion-body">
+            <div class="admin-form-group">
+              <label for="footerSettingAboutText">النص التعريفي بالجمعية في التذييل</label>
+              <textarea id="footerSettingAboutText" rows="3" class="admin-textarea" placeholder="جمعية الإسراء الخيرية لتنمية المجتمع بدمنهور - مشهرة برقم 1124 لسنة 2006 وذات نفع عام بقرار وزاري رقم 646 لسنة 2024..."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordion 2: Official Social Links -->
+        <div class="admin-accordion open">
+          <div class="admin-accordion-header" onclick="toggleAccordion(this)">
+            <div class="admin-accordion-title-wrap">
+              <span class="admin-accordion-icon">📘</span>
+              <div>
+                <h3 class="admin-accordion-title">روابط التواصل الاجتماعي وصفحة فيسبوك الرسمية</h3>
+                <p class="admin-accordion-subtitle">تعديل رابط صفحة فيسبوك وحسابات التواصل الاجتماعي لتحديثها فورياً في كامل الموقع.</p>
+              </div>
+            </div>
+            <span class="admin-accordion-chevron">▼</span>
+          </div>
+          <div class="admin-accordion-body">
+            <div class="admin-form-group">
+              <label for="footerSettingFacebookUrl">رابط صفحة فيسبوك الرسمية (Official Facebook Page URL) *</label>
+              <input type="url" id="footerSettingFacebookUrl" class="admin-input" required placeholder="https://www.facebook.com/gam3it.alesraa">
+              <span style="font-size:0.8rem; color:#64748B; margin-top:4px; display:block;">تحديث هذا الرابط ينعكس فورياً في كل أزرار فيسبوك بالهيدر والفوتر والصفحات.</span>
+            </div>
+
+            <div class="admin-grid-2">
+              <div class="admin-form-group">
+                <label for="footerSettingPhone">رقم الهاتف الأرضي الرسمي</label>
+                <input type="text" id="footerSettingPhone" class="admin-input" placeholder="045-3318920">
+              </div>
+              <div class="admin-form-group">
+                <label for="footerSettingMobile">رقم الهاتف المحمول وواتساب</label>
+                <input type="text" id="footerSettingMobile" class="admin-input" placeholder="01026410313">
+              </div>
+            </div>
+
+            <div class="admin-form-group">
+              <label for="footerSettingEmail">البريد الإلكتروني الرسمي</label>
+              <input type="email" id="footerSettingEmail" class="admin-input" placeholder="al_israa_ngo@yahoo.com">
+            </div>
+
+            <div class="admin-form-group">
+              <label for="footerSettingRightsText">نص حقوق الملكية في أسفل التذييل</label>
+              <input type="text" id="footerSettingRightsText" class="admin-input" placeholder="© 2026 جمعية الإسراء الخيرية لتنمية المجتمع بدمنهور. جميع الحقوق محفوظة.">
+            </div>
+          </div>
+        </div>
+
+        <div class="section-action-bar">
+          <button type="button" class="btn-primary" onclick="saveFooterSettings()" style="padding:10px 26px;">
+            حفظ إعدادات التذييل وفيسبوك 🌐
+          </button>
+        </div>
+
+      </div>
+
       <div id="page-inbox" class="admin-page-pane">
         <div class="admin-card">
           <div class="admin-card-title">
@@ -2015,6 +2466,51 @@
 
       </div>
 
+      <!-- ====================================================================
+           PAGE: CMS Audit Log & Activity Monitor (cms_log.txt)
+           ==================================================================== -->
+      <div id="page-log" class="admin-page-pane">
+        
+        <div class="admin-card">
+          <div class="admin-card-title">
+            <span>📜 سجل عمليات وتعديلات لوحة التحكم (CMS Audit Log)</span>
+          </div>
+          <p style="font-size:0.92rem; color:#475569; line-height:1.7;">
+            يوثق هذا السجل كافة الأنشطة والعمليات التي تجرى عبر لوحة التحكم (إضافة أخبار، رفع صور، تعديل حملات، تحديث فروع، أو تعديل إعدادات التذييل). يتم حفظ السجل محلياً ويتيح لك تحميل ملف نصي رسمي <code>cms_log.txt</code> لمراجعته أو رفعه إلى مستودع الـ GitHub.
+          </p>
+
+          <div style="display:flex; gap:12px; flex-wrap:wrap; margin:16px 0 20px;">
+            <button type="button" class="btn-primary" onclick="downloadCmsLogFile()" style="padding:10px 22px;">
+              📥 تحميل ملف السجل المحدث (cms_log.txt)
+            </button>
+            <button type="button" class="btn-outline" onclick="renderCmsLogTable()" style="padding:10px 20px;">
+              🔄 تحديث عرض السجل
+            </button>
+            <button type="button" class="btn-sm-del" onclick="clearCmsAuditLogs()" style="padding:10px 20px; font-size:0.88rem;">
+              🗑️ تفريغ سجل العمليات
+            </button>
+          </div>
+
+          <!-- Audit Log Table -->
+          <div style="overflow-x:auto; background:#FFFFFF; border-radius:12px; border:1px solid #E2E8F0; margin-top:14px;">
+            <table style="width:100%; border-collapse:collapse; text-align:right; font-size:0.88rem;">
+              <thead>
+                <tr style="background:#F8FAFC; border-bottom:1.5px solid #E2E8F0; color:#475569;">
+                  <th style="padding:12px 14px;">التوقيت</th>
+                  <th style="padding:12px 14px;">المستخدم</th>
+                  <th style="padding:12px 14px;">نوع الإجراء</th>
+                  <th style="padding:12px 14px;">التفاصيل</th>
+                </tr>
+              </thead>
+              <tbody id="adminAuditLogTableBody">
+                <!-- Dynamically populated via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
     </main>
   </div>
 
@@ -2107,8 +2603,24 @@
         </div>
 
         <div class="admin-form-group">
-          <label for="modalCampaignDesc">وصف وأثر الحملة *</label>
-          <textarea id="modalCampaignDesc" rows="3" class="admin-textarea" required placeholder="اشرح بالتفصيل أين تذهب هذه المساهمة وما هو الأثر المتحقق منها..."></textarea>
+          <label for="modalCampaignDesc">وصف وأثر الحملة المختصر *</label>
+          <textarea id="modalCampaignDesc" rows="2" class="admin-textarea" required placeholder="اشرح بالتفصيل أين تذهب هذه المساهمة وما هو الأثر المتحقق منها..."></textarea>
+        </div>
+
+        <div class="admin-form-group">
+          <label for="modalCampaignExtendedDesc">الوصف الموسع ومواصفات السهم والتجهيزات (يظهر عند النقر على الحملة في المتجر)</label>
+          <textarea id="modalCampaignExtendedDesc" rows="4" class="admin-textarea" placeholder="أدخل تفاصيل موسعة عن الأجهزة الطبية، عدد الأسر، تكلفة الوجبات، ومراحل التنفيذ..."></textarea>
+        </div>
+
+        <!-- Multi-Images Gallery for Campaign -->
+        <div class="admin-form-group">
+          <label>معرض صور إضافية للحملة (تظهر في سلايدر النافذة المنبثقة بالمتجر)</label>
+          <div class="image-uploader-box" onclick="document.getElementById('modalCampaignGalleryInput').click()" style="padding:14px;">
+            <div style="font-size:1.4rem;">🖼️</div>
+            <div style="font-weight:700; font-size:0.86rem; color:#0F172A;">انقر لرفع صور إضافية لمعرض الحملة</div>
+            <input type="file" id="modalCampaignGalleryInput" accept="image/*" multiple style="display:none;" onchange="handleCampaignGalleryUpload(event)">
+          </div>
+          <div id="modalCampaignGalleryPreviewsWrap" style="display:flex; gap:8px; flex-wrap:wrap; margin-top:8px;"></div>
         </div>
 
         <div class="admin-modal-footer">

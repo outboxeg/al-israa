@@ -531,6 +531,16 @@ function hydratePageByPageContent() {
       gpsBtn.href = pagesData.contact.location.gpsUrl;
     }
   }
+
+  // --- 8. ABOUT PAGE (about.html) ---
+  if (pagesData.about && currentPath.includes('about.html')) {
+    const badge = document.getElementById('aboutHeroBadge');
+    const title = document.getElementById('aboutHeroTitle');
+    const desc = document.getElementById('aboutHeroDesc');
+    if (badge && pagesData.about.hero && pagesData.about.hero.badge) badge.textContent = pagesData.about.hero.badge;
+    if (title && pagesData.about.hero && pagesData.about.hero.title) title.textContent = pagesData.about.hero.title;
+    if (desc && pagesData.about.hero && pagesData.about.hero.desc) desc.textContent = pagesData.about.hero.desc;
+  }
 }
 
 // ============================================================================
@@ -651,6 +661,203 @@ function renderCustomPageBlocks() {
   container.innerHTML = html;
 }
 
+// ============================================================================
+// STORE CAMPAIGN DETAILS MODAL & MULTI-IMAGE GALLERY ENGINE
+// ============================================================================
+let currentModalCampaign = null;
+let modalSelectedAmount = 0;
+
+window.openCampaignModal = function(id) {
+  const pagesData = getGlobalPagesData();
+  const campaigns = (pagesData && pagesData.store && pagesData.store.campaigns) || [];
+  let c = campaigns.find(item => item.id === id);
+
+  // Fallback: if not found in CMS data, extract from static card in DOM
+  if (!c) {
+    const card = document.querySelector(`.campaign-card[data-id="${id}"]`);
+    if (card) {
+      const cardTitle = card.querySelector('.campaign-item-title') ? card.querySelector('.campaign-item-title').textContent.trim() : 'حملة تبرع';
+      const cardBadge = card.querySelector('.campaign-card-badge') ? card.querySelector('.campaign-card-badge').textContent.trim() : 'سهم تبرع';
+      const cardTag = card.querySelector('.campaign-category-tag') ? card.querySelector('.campaign-category-tag').textContent.trim() : '#جمعية_الإسراء';
+      const cardImg = card.querySelector('.campaign-card-poster img') ? card.querySelector('.campaign-card-poster img').getAttribute('src') : 'school.jpg';
+      const cardDesc = card.querySelector('.campaign-item-desc') ? card.querySelector('.campaign-item-desc').textContent.trim() : '';
+      const input = card.querySelector('.amount-stepper-input');
+      const unitVal = input ? Number(input.value) || 100 : 100;
+      c = {
+        id: id,
+        title: cardTitle,
+        badge: cardBadge,
+        tag: cardTag,
+        image: cardImg,
+        images: [cardImg],
+        desc: cardDesc,
+        unitPrice: unitVal,
+        targetAmount: 50000,
+        collectedAmount: 35000,
+        presets: [Math.round(unitVal * 0.5), unitVal, unitVal * 2]
+      };
+    }
+  }
+
+  if (!c) return;
+
+  currentModalCampaign = c;
+  const modal = document.getElementById('campaignDetailsModal');
+  if (!modal) return;
+
+  const isEn = window.i18n && window.i18n.currentLang === 'en';
+
+  const badgeElem = document.getElementById('modalCampaignBadge');
+  const tagElem = document.getElementById('modalCampaignTag');
+  const titleElem = document.getElementById('modalCampaignTitle');
+  const mainImgElem = document.getElementById('modalCampaignMainImg');
+  const thumbsElem = document.getElementById('modalCampaignThumbs');
+  const collectedElem = document.getElementById('modalCampaignCollected');
+  const targetElem = document.getElementById('modalCampaignTarget');
+  const progressFill = document.getElementById('modalCampaignProgressBar');
+  const descElem = document.getElementById('modalCampaignDesc');
+  const extDescElem = document.getElementById('modalCampaignExtendedDesc');
+  const priceElem = document.getElementById('modalCampaignPrice');
+  const presetsGroup = document.getElementById('modalCampaignPresets');
+
+  if (badgeElem) badgeElem.textContent = c.badge || (isEn ? 'Donation Share' : 'سهم تبرع');
+  if (tagElem) tagElem.textContent = c.tag || '#جمعية_الإسراء_الخيرية';
+  if (titleElem) titleElem.textContent = c.title;
+
+  const images = (Array.isArray(c.images) && c.images.length > 0) ? c.images : [c.image || 'school.jpg'];
+  if (mainImgElem) {
+    mainImgElem.src = images[0];
+    mainImgElem.alt = c.title;
+  }
+
+  if (thumbsElem) {
+    if (images.length > 1) {
+      thumbsElem.style.display = 'flex';
+      let thumbsHtml = '';
+      images.forEach((imgUrl, idx) => {
+        thumbsHtml += `
+          <button type="button" class="modal-thumb-btn ${idx === 0 ? 'active' : ''}" onclick="switchCampaignModalImage(this, '${imgUrl}')" style="border:2.5px solid ${idx === 0 ? 'var(--brand-green)' : 'transparent'}; border-radius:8px; overflow:hidden; padding:0; background:none; cursor:pointer; width:64px; height:64px; flex-shrink:0;">
+            <img src="${imgUrl}" alt="${c.title}" style="width:100%; height:100%; object-fit:cover; display:block;">
+          </button>
+        `;
+      });
+      thumbsElem.innerHTML = thumbsHtml;
+    } else {
+      thumbsElem.style.display = 'none';
+      thumbsElem.innerHTML = '';
+    }
+  }
+
+  const target = Number(c.targetAmount) || 1;
+  const collected = Number(c.collectedAmount) || 0;
+  const pct = Math.min(100, Math.round((collected / target) * 100));
+
+  if (collectedElem) {
+    collectedElem.textContent = isEn ? `Raised: ${collected.toLocaleString('en-US')} EGP` : `المجموع: ${collected.toLocaleString('ar-EG')} ج.م`;
+  }
+  if (targetElem) {
+    targetElem.textContent = isEn ? `Target: ${target.toLocaleString('en-US')} EGP` : `المستهدف: ${target.toLocaleString('ar-EG')} ج.م`;
+  }
+  if (progressFill) {
+    progressFill.style.width = pct + '%';
+  }
+
+  if (descElem) descElem.textContent = c.desc || '';
+  if (extDescElem) {
+    if (c.extendedDesc) {
+      extDescElem.style.display = 'block';
+      extDescElem.innerHTML = `<strong style="display:block; margin-bottom:4px; color:var(--text-main);">📋 تفاصيل المشروع والأثر المستهدف:</strong>${c.extendedDesc.replace(/\n/g, '<br>')}`;
+    } else {
+      extDescElem.style.display = 'block';
+      extDescElem.innerHTML = `
+        <strong style="display:block; margin-bottom:4px; color:var(--text-main);">📋 تفاصيل المشروع والأثر المستهدف:</strong>
+        مساهمتكم في هذه الحملة تغطي التكاليف المباشرة للأسر الأولى بالرعاية ومرضى الأورام بالبحيرة، بإشراف كامل من مجلس إدارة جمعية الإسراء وتحت مظلة وزارة التضامن الاجتماعي.
+      `;
+    }
+  }
+
+  modalSelectedAmount = Number(c.unitPrice) || 100;
+  if (priceElem) {
+    priceElem.textContent = isEn ? `${modalSelectedAmount.toLocaleString('en-US')} EGP` : `${modalSelectedAmount.toLocaleString('ar-EG')} ج.م`;
+  }
+
+  const presets = (Array.isArray(c.presets) && c.presets.length > 0) ? c.presets : [Math.round(modalSelectedAmount * 0.5), modalSelectedAmount, modalSelectedAmount * 2];
+  if (presetsGroup) {
+    let presetsHtml = '';
+    presets.forEach((val, idx) => {
+      const activeClass = (val === modalSelectedAmount || idx === 1) ? 'active' : '';
+      presetsHtml += `<button type="button" class="amount-preset-chip ${activeClass}" onclick="setModalCampaignAmount(${val}, this)">${val} ${isEn ? 'EGP' : 'ج'}</button>`;
+    });
+    presetsGroup.innerHTML = presetsHtml;
+  }
+
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+};
+
+window.closeCampaignModal = function() {
+  const modal = document.getElementById('campaignDetailsModal');
+  if (modal) modal.style.display = 'none';
+  document.body.style.overflow = '';
+};
+
+window.switchCampaignModalImage = function(btnElem, imgUrl) {
+  const mainImgElem = document.getElementById('modalCampaignMainImg');
+  if (mainImgElem) mainImgElem.src = imgUrl;
+  const parent = btnElem.parentElement;
+  if (parent) {
+    parent.querySelectorAll('.modal-thumb-btn').forEach(b => {
+      b.style.borderColor = 'transparent';
+      b.classList.remove('active');
+    });
+  }
+  btnElem.style.borderColor = 'var(--brand-green)';
+  btnElem.classList.add('active');
+};
+
+window.setModalCampaignAmount = function(amt, btn) {
+  modalSelectedAmount = amt;
+  const priceElem = document.getElementById('modalCampaignPrice');
+  const isEn = window.i18n && window.i18n.currentLang === 'en';
+  if (priceElem) {
+    priceElem.textContent = isEn ? `${amt.toLocaleString('en-US')} EGP` : `${amt.toLocaleString('ar-EG')} ج.م`;
+  }
+  if (btn && btn.parentElement) {
+    btn.parentElement.querySelectorAll('.amount-preset-chip').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+};
+
+window.modalAddCurrentToCart = function() {
+  if (!currentModalCampaign) return;
+  const amt = modalSelectedAmount || Number(currentModalCampaign.unitPrice) || 100;
+  addToCart({
+    id: currentModalCampaign.id,
+    title: currentModalCampaign.title,
+    amount: amt,
+    category: currentModalCampaign.category || 'عام',
+    image: (Array.isArray(currentModalCampaign.images) && currentModalCampaign.images[0]) || currentModalCampaign.image || 'school.jpg',
+    qty: 1
+  });
+  closeCampaignModal();
+  openCartDrawer();
+};
+
+window.modalDonateDirectly = function() {
+  if (!currentModalCampaign) return;
+  const amt = modalSelectedAmount || Number(currentModalCampaign.unitPrice) || 100;
+  addToCart({
+    id: currentModalCampaign.id,
+    title: currentModalCampaign.title,
+    amount: amt,
+    category: currentModalCampaign.category || 'عام',
+    image: (Array.isArray(currentModalCampaign.images) && currentModalCampaign.images[0]) || currentModalCampaign.image || 'school.jpg',
+    qty: 1
+  });
+  closeCampaignModal();
+  window.location.href = 'checkout.html';
+};
+
 // Dynamic Rendering of Campaign Cards in Store & Index Pages
 function renderDynamicCampaignCards() {
   const grid = document.querySelector('.campaigns-cards-grid');
@@ -685,13 +892,13 @@ function renderDynamicCampaignCards() {
 
     html += `
       <div class="campaign-card" data-id="${c.id}" data-tab-type="${c.category}">
-        <div class="campaign-card-poster">
+        <div class="campaign-card-poster" onclick="openCampaignModal('${c.id}')" style="cursor:pointer;" title="اضغط لعرض تفاصيل الحملة والصور">
           <img src="${c.image || 'school.jpg'}" alt="${c.title}" onerror="this.src='school.jpg'">
           <span class="campaign-card-badge ${c.badgeColor || 'orange'}">${c.badge || (isEn ? 'Donation Share' : 'سهم تبرع')}</span>
         </div>
         <div class="campaign-card-body">
           <span class="campaign-category-tag">${c.tag || (isEn ? '#Al_Israa_Charity' : '#جمعية_الإسراء_الخيرية')}</span>
-          <h3 class="campaign-item-title">${c.title}</h3>
+          <h3 class="campaign-item-title" onclick="openCampaignModal('${c.id}')" style="cursor:pointer;" title="اضغط للتفاصيل">${c.title}</h3>
           <p class="campaign-item-desc">${c.desc}</p>
           
           <div class="campaign-metrics-box">
@@ -734,6 +941,10 @@ function renderDynamicCampaignCards() {
           <button type="button" class="btn-donate-now-orange">
             <span>${isEn ? 'Donate Now 🧡' : 'تبرع الآن 🧡'}</span>
           </button>
+
+          <button type="button" class="btn-quick-details" onclick="openCampaignModal('${c.id}')" style="background:#F8FAFC; border:1px solid #CBD5E1; color:#334155; border-radius:8px; padding:7px 12px; margin-top:8px; font-size:0.85rem; font-weight:700; width:100%; cursor:pointer; font-family:inherit; transition:all 0.2s ease;">
+            🔍 ${isEn ? 'View Details & Gallery' : 'عرض التفاصيل والصور الإضافية'}
+          </button>
         </div>
       </div>
     `;
@@ -755,6 +966,8 @@ function attachCampaignCardEvents() {
     const btnAdd = card.querySelector('.btn-add-cart');
     const btnDonateNow = card.querySelector('.btn-donate-now-orange');
     const presetChips = card.querySelectorAll('.amount-preset-chip');
+    const poster = card.querySelector('.campaign-card-poster');
+    const title = card.querySelector('.campaign-item-title');
 
     const cardId = card.getAttribute('data-id') || Math.random().toString(36).substring(7);
     const cardTitle = card.querySelector('.campaign-item-title') ? card.querySelector('.campaign-item-title').textContent.trim() : 'تبرع عام';
@@ -762,6 +975,18 @@ function attachCampaignCardEvents() {
     const cardImg = card.querySelector('.campaign-card-poster img') ? card.querySelector('.campaign-card-poster img').getAttribute('src') : 'hostel.jpg';
     const defaultAmount = input ? Number(input.value) || 100 : 100;
     const baseStep = defaultAmount >= 500 ? 100 : (defaultAmount >= 100 ? 50 : 25);
+
+    // Make poster and title trigger modal
+    if (poster && !poster.onclick) {
+      poster.style.cursor = 'pointer';
+      poster.title = 'اضغط لعرض تفاصيل وصور الحملة';
+      poster.onclick = () => openCampaignModal(cardId);
+    }
+    if (title && !title.onclick) {
+      title.style.cursor = 'pointer';
+      title.title = 'اضغط لعرض تفاصيل وصور الحملة';
+      title.onclick = () => openCampaignModal(cardId);
+    }
 
     // Preset Chips Selection
     if (presetChips.length > 0 && input) {
@@ -854,6 +1079,7 @@ function attachCampaignCardEvents() {
   }
 }
 
+
 // Serverless Inbox & Webhook Dispatcher
 function saveSubmissionToInbox(data) {
   try {
@@ -875,6 +1101,253 @@ function saveSubmissionToInbox(data) {
   }
 }
 
+// ============================================================================
+// LATEST NEWS (news.html) FEED & ARTICLE MODAL ENGINE
+// ============================================================================
+let currentNewsArticles = [];
+let currentNewsTagFilter = 'all';
+
+window.renderNewsFeed = function() {
+  const container = document.getElementById('newsFeedContainer');
+  const emptyState = document.getElementById('newsEmptyState');
+  const bentoGrid = document.getElementById('newsBentoGrid');
+  if (!container || !emptyState || !bentoGrid) return;
+
+  const pagesData = getGlobalPagesData();
+  const articles = (pagesData && Array.isArray(pagesData.news)) ? pagesData.news : [];
+  currentNewsArticles = articles;
+
+  if (articles.length === 0) {
+    emptyState.style.display = 'block';
+    bentoGrid.style.display = 'none';
+    bentoGrid.innerHTML = '';
+    return;
+  }
+
+  const searchInput = document.getElementById('newsSearchInput');
+  const query = searchInput ? searchInput.value.trim().toLowerCase() : '';
+
+  const filtered = articles.filter(a => {
+    const matchTag = (currentNewsTagFilter === 'all' || a.category === currentNewsTagFilter || (a.tag && a.tag.toLowerCase().includes(currentNewsTagFilter.toLowerCase())));
+    const matchQuery = !query || 
+      (a.title && a.title.toLowerCase().includes(query)) || 
+      (a.desc && a.desc.toLowerCase().includes(query)) || 
+      (a.location && a.location.toLowerCase().includes(query));
+    return matchTag && matchQuery;
+  });
+
+  if (filtered.length === 0) {
+    emptyState.style.display = 'block';
+    bentoGrid.style.display = 'none';
+    const h2 = emptyState.querySelector('h2');
+    if (h2) h2.textContent = 'لا توجد نتائج مطابقة لبحثك';
+    return;
+  }
+
+  emptyState.style.display = 'none';
+  bentoGrid.style.display = 'grid';
+
+  let html = '';
+  filtered.forEach((art, idx) => {
+    const images = Array.isArray(art.images) && art.images.length > 0 ? art.images : [art.image || 'complex.jpg'];
+    const imgCountBadge = images.length > 1 ? `<span class="news-gallery-count-badge">📷 ${images.length} صور</span>` : '';
+
+    html += `
+      <article class="news-card ${idx === 0 ? 'news-card-featured' : ''}" data-id="${art.id}">
+        <div class="news-card-img-wrap" onclick="openArticleModal('${art.id}')" style="cursor:pointer; position:relative;">
+          <img src="${images[0]}" alt="${art.title}" onerror="this.src='complex.jpg'">
+          <span class="news-date-badge">${art.date || '2026'}</span>
+          ${imgCountBadge}
+        </div>
+        <div class="news-card-body">
+          <div class="news-card-meta">
+            <span class="news-tag-pill">${art.tag || 'أخبار الجمعية'}</span>
+            ${art.location ? `<span class="news-location-meta">📍 ${art.location}</span>` : ''}
+          </div>
+          <h3 class="news-card-title" onclick="openArticleModal('${art.id}')" style="cursor:pointer;">${art.title}</h3>
+          <p class="news-card-desc">${art.desc || ''}</p>
+          <div class="news-card-actions">
+            <button type="button" class="btn-read-more" onclick="openArticleModal('${art.id}')">
+              قراءة التغطية كاملة 📰
+            </button>
+          </div>
+        </div>
+      </article>
+    `;
+  });
+
+  bentoGrid.innerHTML = html;
+};
+
+window.setNewsTagFilter = function(tag, btn) {
+  currentNewsTagFilter = tag;
+  const parent = btn ? btn.parentElement : document.getElementById('newsTagFilters');
+  if (parent) {
+    parent.querySelectorAll('.tag-filter-btn').forEach(b => b.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+  }
+  renderNewsFeed();
+};
+
+window.openArticleModal = function(id) {
+  const art = currentNewsArticles.find(a => a.id === id);
+  if (!art) return;
+
+  const modal = document.getElementById('newsArticleModal');
+  if (!modal) return;
+
+  const tagElem = document.getElementById('modalArticleTag');
+  const locElem = document.getElementById('modalArticleLocation');
+  const dateElem = document.getElementById('modalArticleDate');
+  const titleElem = document.getElementById('modalArticleTitle');
+  const mainImg = document.getElementById('modalArticleMainImage');
+  const thumbs = document.getElementById('modalArticleGalleryThumbs');
+  const bodyElem = document.getElementById('modalArticleContent');
+
+  if (tagElem) tagElem.textContent = art.tag || 'أخبار وتغطيات';
+  if (locElem) locElem.textContent = art.location ? `📍 ${art.location}` : '📍 دمنهور - البحيرة';
+  if (dateElem) dateElem.textContent = art.date || '2026';
+  if (titleElem) titleElem.textContent = art.title;
+
+  const images = Array.isArray(art.images) && art.images.length > 0 ? art.images : [art.image || 'complex.jpg'];
+  if (mainImg) {
+    mainImg.src = images[0];
+    mainImg.alt = art.title;
+  }
+
+  if (thumbs) {
+    if (images.length > 1) {
+      thumbs.style.display = 'flex';
+      let thumbsHtml = '';
+      images.forEach((imgUrl, idx) => {
+        thumbsHtml += `
+          <button type="button" class="modal-thumb-btn ${idx === 0 ? 'active' : ''}" onclick="switchArticleModalImage(this, '${imgUrl}')" style="border:2px solid ${idx === 0 ? 'var(--brand-green)' : 'transparent'}; border-radius:8px; overflow:hidden; padding:0; background:none; cursor:pointer; width:64px; height:64px; flex-shrink:0;">
+            <img src="${imgUrl}" alt="${art.title}" style="width:100%; height:100%; object-fit:cover; display:block;">
+          </button>
+        `;
+      });
+      thumbs.innerHTML = thumbsHtml;
+    } else {
+      thumbs.style.display = 'none';
+      thumbs.innerHTML = '';
+    }
+  }
+
+  if (bodyElem) {
+    const fullText = art.fullContent || art.desc || '';
+    bodyElem.innerHTML = `<div>${fullText.replace(/\n/g, '<br>')}</div>`;
+  }
+
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+};
+
+window.closeArticleModal = function() {
+  const modal = document.getElementById('newsArticleModal');
+  if (modal) modal.style.display = 'none';
+  document.body.style.overflow = '';
+};
+
+window.switchArticleModalImage = function(btnElem, imgUrl) {
+  const mainImgElem = document.getElementById('modalArticleMainImage');
+  if (mainImgElem) mainImgElem.src = imgUrl;
+  const parent = btnElem.parentElement;
+  if (parent) {
+    parent.querySelectorAll('.modal-thumb-btn').forEach(b => {
+      b.style.borderColor = 'transparent';
+      b.classList.remove('active');
+    });
+  }
+  btnElem.style.borderColor = 'var(--brand-green)';
+  btnElem.classList.add('active');
+};
+
+window.shareArticleFacebook = function() {
+  const url = encodeURIComponent(window.location.href);
+  window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+};
+
+window.shareArticleWhatsApp = function() {
+  const title = document.getElementById('modalArticleTitle') ? document.getElementById('modalArticleTitle').textContent : 'خبر من جمعية الإسراء';
+  const url = encodeURIComponent(window.location.href);
+  window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(title + ' - ' + window.location.href)}`, '_blank');
+};
+
+// ============================================================================
+// GLOBAL FOOTER & MULTI-BRANCH HYDRATION ENGINE
+// ============================================================================
+function hydrateGlobalFooterAndBranches() {
+  const pagesData = getGlobalPagesData();
+  
+  // Default branches fallback if not saved in CMS yet
+  const defaultBranches = [
+    {
+      id: "branch_main",
+      name: "المقر الرئيسي ومجمع الإسراء التنموي",
+      address: "دمنهور، شارع مدرسة ناصر الفكرية، خلف معهد أورام دمنهور القومي",
+      phone: "045-3318920 / 01026410313",
+      workHours: "دار الضيافة 24 ساعة - الإدارة 8ص إلى 4م",
+      isMain: true
+    },
+    {
+      id: "branch_hostel",
+      name: "دار ضيافة مرضى معهد الأورام",
+      address: "دمنهور، بجوار معهد الأورام القومي (طابقان مجهزان)",
+      phone: "01026410313",
+      workHours: "استقبال الحالات على مدار 24 ساعة",
+      isMain: false
+    },
+    {
+      id: "branch_outbox",
+      name: "مركز Outbox والمدارس الخضراء",
+      address: "مجمع دمنهور التعليمي، مديرية التربية والتعليم بالبحيرة",
+      phone: "01026410313",
+      workHours: "أيام الدراسة 8ص إلى 2ظ",
+      isMain: false
+    }
+  ];
+
+  const branches = (pagesData && Array.isArray(pagesData.branches) && pagesData.branches.length > 0)
+    ? pagesData.branches
+    : defaultBranches;
+
+  const branchesContainer = document.getElementById('footerBranchesContainer');
+  if (branchesContainer) {
+    let branchesHtml = '';
+    branches.forEach(b => {
+      branchesHtml += `
+        <div class="footer-branch-card" style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:12px 14px; margin-bottom:10px;">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:4px;">
+            <strong style="color:#FFFFFF; font-size:0.92rem; display:flex; align-items:center; gap:6px;">
+              <span>🏢</span> <span>${b.name}</span>
+            </strong>
+            ${b.isMain ? '<span style="background:var(--brand-green); color:#FFFFFF; font-size:0.72rem; padding:2px 8px; border-radius:10px; font-weight:700;">المقر الرئيسي</span>' : ''}
+          </div>
+          <p style="color:#CBD5E1; font-size:0.83rem; margin:0 0 6px; line-height:1.5;">📍 ${b.address}</p>
+          <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.78rem; color:#94A3B8;">
+            <span>📞 ${b.phone || '01026410313'}</span>
+            ${b.workHours ? `<span>⏰ ${b.workHours}</span>` : ''}
+          </div>
+        </div>
+      `;
+    });
+    branchesContainer.innerHTML = branchesHtml;
+  }
+
+  // Hydrate Facebook Links across the page
+  const fbUrl = (pagesData && pagesData.footer && pagesData.footer.facebookUrl) || 'https://www.facebook.com/gam3it.alesraa';
+  document.querySelectorAll('a[href*="facebook.com"]').forEach(link => {
+    link.href = fbUrl;
+  });
+
+  // Hydrate custom footer text
+  if (pagesData && pagesData.footer && pagesData.footer.aboutText) {
+    document.querySelectorAll('.footer-text').forEach(ft => {
+      ft.textContent = pagesData.footer.aboutText;
+    });
+  }
+}
+
 // Main Initialization on DOM Ready
 document.addEventListener('DOMContentLoaded', () => {
   // 0. Visitor Analytics Tracking
@@ -888,6 +1361,10 @@ document.addEventListener('DOMContentLoaded', () => {
   hydratePageByPageContent();
   renderDynamicCampaignCards();
   renderCustomPageBlocks();
+  hydrateGlobalFooterAndBranches();
+  if (document.getElementById('newsFeedContainer')) {
+    renderNewsFeed();
+  }
 
   // 3. Cart Drawer Triggers
   const cartTriggers = document.querySelectorAll('.cart-trigger-btn, .floating-cart-launcher');

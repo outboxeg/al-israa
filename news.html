@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>آخر الأخبار والفعاليات | جمعية الإسراء الخيرية لتنمية المجتمع بدمنهور</title>
+  <meta name="description" content="المركز الإعلامي الرسمي لجمعية الإسراء الخيرية بدمنهور: تغطيات ميدانية، أنشطة رعاية مرضى الأورام، مبادرات التمكين الاقتصادي، ومتابعة المدارس الخضراء.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="logo.png">
+  <script src="i18n.js"></script>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-badge">
+        <span data-i18n="topbar.newsBadge">📰 المركز الإعلامي وتغطيات الأنشطة الميدانية بالبحيرة</span>
+      </div>
+      <div class="top-bar-links">
+        <a href="https://www.facebook.com/gam3it.alesraa" target="_blank" rel="noopener noreferrer" class="top-bar-link" style="color:#93C5FD; font-weight:700;">📘 صفحة فيسبوك الرسمية</a>
+        <a href="checkout.html" class="top-bar-link" style="color:#FEF08A; font-weight:800;" data-i18n="topbar.bankLink">💳 الحسابات البنكية والمحافظ</a>
+        <a href="tel:+20453318920" class="top-bar-link" data-i18n="topbar.phone">📞 هاتف الجمعية: 045-3318920</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Main Navigation Header -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-identity">
+        <img src="logo.png" alt="شعار جمعية الإسراء الخيرية" class="brand-logo-img">
+        <div class="brand-names">
+          <span class="brand-title" data-i18n="brand.title">جمعية الإسراء الخيرية</span>
+          <span class="brand-subtitle" data-i18n="brand.subtitle">لتنمية المجتمع بدمنهور</span>
+        </div>
+      </a>
+
+      <nav class="main-navigation">
+        <ul class="nav-links-list">
+          <li><a href="index.html" class="nav-item-link" data-i18n="nav.home">الرئيسية</a></li>
+          <li><a href="about.html" class="nav-item-link" data-i18n="nav.about">عن الجمعية</a></li>
+          <li><a href="complex.html" class="nav-item-link" data-i18n="nav.complex">مجمع الإسراء</a></li>
+          <li><a href="hostel.html" class="nav-item-link" data-i18n="nav.hostel">دار ضيافة الأورام</a></li>
+          <li><a href="projects.html" class="nav-item-link" data-i18n="nav.projects">مشرواتنا</a></li>
+          <li><a href="news.html" class="nav-item-link active" data-i18n="nav.news">آخر الأخبار</a></li>
+          <li><a href="store.html" class="nav-item-link" data-i18n="nav.store">متجر التبرعات 🛒</a></li>
+          <li><a href="contact.html" class="nav-item-link" data-i18n="nav.contact">تواصل معنا</a></li>
+        </ul>
+
+        <div class="nav-actions-group">
+          <!-- Language Switcher Button -->
+          <button class="lang-switcher-btn" onclick="toggleLanguage()" aria-label="تبديل اللغة / Switch Language" title="Switch Language / تغيير اللغة">
+            <span class="lang-icon">🌐</span>
+            <span class="lang-label">English</span>
+          </button>
+
+          <!-- Cart Trigger Button -->
+          <button class="cart-trigger-btn" aria-label="عرض سلة التبرعات">
+            <span data-i18n="nav.cart">🛒 السلة</span>
+            <span class="cart-badge-count">0</span>
+          </button>
+          <a href="store.html" class="header-donate-btn">
+            <span data-i18n="nav.donateNow">تبرع الآن 🧡</span>
+          </a>
+          <button class="mobile-nav-toggle" onclick="openMobileNav()" aria-label="فتح القائمة الرئيسية">☰</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu (Slide-In) -->
+  <div class="mobile-nav-drawer" onclick="if(event.target===this)closeMobileNav()">
+    <div class="mobile-drawer-content">
+      <div class="mobile-drawer-header">
+        <div class="brand-identity">
+          <img src="logo.png" alt="جمعية الإسراء" style="width: 40px; height: 40px; object-fit: contain;">
+          <span style="font-weight: 800; font-size: 1.05rem; color: var(--text-main);" data-i18n="brand.short">جمعية الإسراء</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px;">
+          <button class="lang-switcher-btn" onclick="toggleLanguage()" aria-label="Switch Language">
+            <span class="lang-icon">🌐</span>
+            <span class="lang-label">English</span>
+          </button>
+          <button class="mobile-drawer-close" onclick="closeMobileNav()" aria-label="إغلاق القائمة">✕</button>
+        </div>
+      </div>
+      <div class="mobile-drawer-links">
+        <a href="index.html" data-i18n="nav.home">الرئيسية</a>
+        <a href="about.html" data-i18n="nav.about">عن جمعية الإسراء</a>
+        <a href="complex.html" data-i18n="nav.complex">مجمع الإسراء التنموي</a>
+        <a href="hostel.html" data-i18n="nav.hostel">دار ضيافة الأورام</a>
+        <a href="projects.html" data-i18n="nav.projects">مشروعات التمكين و Outbox</a>
+        <a href="news.html" class="active" data-i18n="nav.news">آخر الأخبار والتغطيات</a>
+        <a href="store.html" data-i18n="nav.store">متجر التبرعات 🛒</a>
+        <a href="checkout.html" data-i18n="topbar.bankLink">الحسابات البنكية والمحافظ</a>
+        <a href="contact.html" data-i18n="nav.contact">تواصل معنا والتدريب</a>
+      </div>
+      <div class="mobile-drawer-footer">
+        <a href="https://www.facebook.com/gam3it.alesraa" target="_blank" rel="noopener noreferrer" class="btn-primary" style="width:100%; text-align:center; background:#1877F2; margin-bottom:8px;">تابعنا على فيسبوك 📘</a>
+        <a href="store.html" class="btn-orange" style="width:100%; text-align:center;" data-i18n="nav.donateNow">تبرع للمشروعات 🧡</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide-Over Cart Drawer -->
+  <div class="cart-drawer-overlay"></div>
+  <div class="cart-drawer">
+    <div class="cart-drawer-header">
+      <div class="cart-drawer-title">
+        <span data-i18n="cart.title">🛒 سلة التبرعات</span>
+      </div>
+      <button class="cart-drawer-close" aria-label="إغلاق السلة">✕</button>
+    </div>
+    <div class="cart-drawer-body"></div>
+    <div class="cart-drawer-footer">
+      <div class="cart-total-row">
+        <span data-i18n="cart.total">إجمالي التبرع:</span>
+        <span class="cart-total-amount">0 ج.م</span>
+      </div>
+      <a href="checkout.html" class="btn-checkout" data-i18n="cart.checkout">متابعة إتمام التبرع ←</a>
+    </div>
+  </div>
+
+  <!-- News Hero Section -->
+  <section class="page-hero-banner" style="background: linear-gradient(135deg, #1A472A 0%, #2D5A27 100%); color: #FFFFFF; padding: 50px 0 45px; text-align: center;">
+    <div class="container">
+      <div class="hero-badge-pill" style="display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.15); padding:6px 18px; border-radius:30px; font-size:0.9rem; margin-bottom:14px;">
+        <span data-i18n="news.heroBadge">📰 المركز الإعلامي والتغطيات الميدانية الحية</span>
+      </div>
+      <h1 class="hero-heading" style="font-size:2.3rem; margin:0 0 12px; font-weight:900;" data-i18n="news.heroTitle">آخر الأخبار والأنشطة الميدانية</h1>
+      <p class="hero-description" style="max-width:760px; margin:0 auto; font-size:1.05rem; opacity:0.95; line-height:1.6;" data-i18n="news.heroDesc">
+        تابعوا نبض العمل التنموي والإنساني لجمعية الإسراء الخيرية بدمنهور أولاً بأول، وتعرفوا على أثر كفالاتكم ومبادراتكم المشتركة في خدمة أهالينا بالبحيرة.
+      </p>
+    </div>
+  </section>
+
+  <!-- Filter & Search Section -->
+  <section class="news-controls-section" style="padding: 24px 0 10px; background: #F8FAFC; border-bottom: 1px solid #E2E8F0;">
+    <div class="container">
+      <div class="news-filter-wrapper" style="display:flex; flex-wrap:wrap; gap:16px; justify-content:space-between; align-items:center;">
+        
+        <!-- Search Box -->
+        <div class="news-search-box" style="flex:1; min-width:260px; max-width:420px; position:relative;">
+          <input type="text" id="newsSearchInput" placeholder="ابحث في الأخبار والفعاليات..." style="width:100%; padding:10px 14px 10px 38px; border:1px solid #CBD5E1; border-radius:10px; font-family:inherit; font-size:0.92rem;" oninput="filterNewsItems()">
+          <span style="position:absolute; left:12px; top:50%; transform:translateY(-50%); color:#94A3B8;">🔍</span>
+        </div>
+
+        <!-- Filter Tags -->
+        <div class="news-tag-pills" id="newsTagFilters" style="display:flex; flex-wrap:wrap; gap:8px;">
+          <button type="button" class="tag-filter-btn active" data-tag="all" onclick="setNewsTagFilter('all', this)">كافة الأخبار</button>
+          <button type="button" class="tag-filter-btn" data-tag="health" onclick="setNewsTagFilter('health', this)">رعاية الأورام والصحة</button>
+          <button type="button" class="tag-filter-btn" data-tag="empowerment" onclick="setNewsTagFilter('empowerment', this)">التمكين الاقتصادي</button>
+          <button type="button" class="tag-filter-btn" data-tag="environment" onclick="setNewsTagFilter('environment', this)">برة الصندوق والبيئة</button>
+          <button type="button" class="tag-filter-btn" data-tag="education" onclick="setNewsTagFilter('education', this)">التعليم والطفولة</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- News Content Section -->
+  <main class="news-main-section" style="padding: 50px 0 80px; min-height: 480px;">
+    <div class="container">
+      
+      <!-- Container for dynamic news items or empty state -->
+      <div id="newsFeedContainer">
+        
+        <!-- Default Clean Empty State (Shows when no articles exist) -->
+        <div class="news-empty-state" id="newsEmptyState" style="text-align:center; padding:70px 20px; background:#FFFFFF; border-radius:18px; border:2px dashed #E2E8F0; max-width:680px; margin:0 auto;">
+          <div style="font-size:3.5rem; margin-bottom:16px;">📰</div>
+          <h2 style="font-size:1.6rem; color:#1E293B; margin-bottom:10px; font-weight:800;" data-i18n="news.emptyTitle">لا توجد أخبار منشورة حالياً</h2>
+          <p style="font-size:1.02rem; color:#64748B; max-width:520px; margin:0 auto 26px; line-height:1.7;" data-i18n="news.emptyDesc">
+            نقوم حالياً بإعداد وتوثيق أحدث التغطيات المصورة والتقارير الميدانية لأنشطة مجمع الإسراء ومشروعاتنا التنموية.. تابعونا قريباً، أو يمكنكم زيارة صفحتنا الرسمية على فيسبوك لمتابعة البث الحي والصور الميدانية.
+          </p>
+          <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+            <a href="https://www.facebook.com/gam3it.alesraa" target="_blank" rel="noopener noreferrer" class="btn-primary" style="background:#1877F2; border-color:#1877F2; padding:11px 22px; display:inline-flex; align-items:center; gap:8px;">
+              <span>📘</span> <span>متابعة صفحة فيسبوك ↗</span>
+            </a>
+            <a href="store.html" class="btn-orange" style="padding:11px 22px;">
+              دعم مشروعات الخير 🧡
+            </a>
+            <a href="index.html" class="btn-outline" style="padding:11px 22px;">
+              العودة للرئيسية 🏠
+            </a>
+          </div>
+        </div>
+
+        <!-- Dynamic Bento Grid (Populated via JS when articles exist) -->
+        <div class="news-bento-grid" id="newsBentoGrid" style="display:none;"></div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Interactive Article Modal (Single Article Lightbox & Gallery) -->
+  <div class="news-article-modal-overlay" id="newsArticleModal" onclick="if(event.target===this)closeArticleModal()" style="display:none;">
+    <div class="news-article-modal-box">
+      <button class="modal-close-btn" onclick="closeArticleModal()" aria-label="إغلاق النافذة">✕</button>
+      
+      <div class="modal-header-meta">
+        <span class="modal-tag-badge" id="modalArticleTag">تصنيف</span>
+        <span class="modal-location-badge" id="modalArticleLocation">📍 المكان</span>
+        <span class="modal-date-badge" id="modalArticleDate">التاريخ</span>
+      </div>
+
+      <h2 class="modal-article-title" id="modalArticleTitle">عنوان الخبر الرئيسي</h2>
+
+      <!-- Main Featured Image -->
+      <div class="modal-featured-image-wrap">
+        <img src="complex.jpg" alt="صورة الخبر" id="modalArticleMainImage" class="modal-main-img">
+      </div>
+
+      <!-- Multiple Images Gallery Thumbnails (if more than 1 image) -->
+      <div class="modal-gallery-thumbs" id="modalArticleGalleryThumbs" style="display:none;"></div>
+
+      <div class="modal-article-body" id="modalArticleContent">
+        <!-- Full Content populated via JS -->
+      </div>
+
+      <div class="modal-footer-actions">
+        <div class="modal-share-group">
+          <span style="font-size:0.88rem; color:#64748B; font-weight:700;">مشاركة التغطية:</span>
+          <button type="button" class="btn-share-fb" onclick="shareArticleFacebook()">مشاركة على فيسبوك 📘</button>
+          <button type="button" class="btn-share-wa" onclick="shareArticleWhatsApp()">واتساب 💬</button>
+        </div>
+        <button type="button" class="btn-outline" onclick="closeArticleModal()">إغلاق النافذة</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Standard Multi-Branch Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-brand">
+          <img src="logo.png" alt="جمعية الإسراء" class="footer-logo-img">
+          <div>
+            <h3 class="footer-title" data-i18n="brand.title">جمعية الإسراء الخيرية</h3>
+            <p class="footer-subtitle" data-i18n="brand.subtitle">لتنمية المجتمع بدمنهور</p>
+          </div>
+        </div>
+        <p class="footer-text" data-i18n="footer.about">
+          مؤسسة أهلية ذات نفع عام (قرار وزاري رقم 646 لسنة 2024)، مشهرة برقم 1124 لسنة 2006. نعمل على خدمة ورعاية مرضى الأورام، والتمكين الاقتصادي للأسر الأولى بالرعاية، وتدوير الورق بالمدارس بالبحيرة.
+        </p>
+        <div class="footer-social-links" style="display:flex; gap:10px; margin-top:16px;">
+          <a href="https://www.facebook.com/gam3it.alesraa" target="_blank" rel="noopener noreferrer" class="footer-social-pill" style="display:inline-flex; align-items:center; gap:8px; background:#1877F2; color:#FFFFFF; padding:7px 16px; border-radius:20px; text-decoration:none; font-size:0.88rem; font-weight:700;" title="صفحتنا الرسمية على فيسبوك">
+            <span>📘</span> <span>فيسبوك الرسمي</span>
+          </a>
+          <a href="https://wa.me/201026410313" target="_blank" rel="noopener noreferrer" class="footer-social-pill" style="display:inline-flex; align-items:center; gap:8px; background:#25D366; color:#FFFFFF; padding:7px 16px; border-radius:20px; text-decoration:none; font-size:0.88rem; font-weight:700;" title="تواصل عبر واتساب">
+            <span>💬</span> <span>واتساب</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="footer-col-title" data-i18n="footer.quickLinks">روابط سريعة</h4>
+        <ul class="footer-links-list">
+          <li><a href="index.html" data-i18n="nav.home">الرئيسية</a></li>
+          <li><a href="about.html" data-i18n="nav.about">عن جمعية الإسراء</a></li>
+          <li><a href="complex.html" data-i18n="nav.complex">مجمع الإسراء التنموي</a></li>
+          <li><a href="hostel.html" data-i18n="nav.hostel">دار ضيافة الأورام</a></li>
+          <li><a href="projects.html" data-i18n="nav.projects">مشروعاتنا والتمكين</a></li>
+          <li><a href="news.html" data-i18n="nav.news">آخر الأخبار</a></li>
+          <li><a href="store.html" data-i18n="nav.store">متجر التبرعات</a></li>
+          <li><a href="contact.html" data-i18n="nav.contact">تواصل معنا</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-col-title" data-i18n="footer.campaigns">أبرز الحملات الخيرية</h4>
+        <ul class="footer-links-list">
+          <li><a href="store.html">كفالة إقامة مريض أورام بدار الضيافة</a></li>
+          <li><a href="store.html">وجبات علاجية طازجة لمرضى الأورام</a></li>
+          <li><a href="store.html">تمويل تروسيكل طعام (مشروع أرزاق)</a></li>
+          <li><a href="store.html">مشغل النول والسجاد اليدوي للمعيلات</a></li>
+          <li><a href="store.html">ماكينات خياطة للأرامل والمطلقات</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-col-title" data-i18n="footer.contactBranches">عناوين ومقرات الجمعية والتحويل</h4>
+        <div class="footer-addresses-list" id="footerBranchesContainer">
+          <div class="footer-contact-item">
+            <span>🏢</span>
+            <span><strong>المقر الرئيسي:</strong> حارة موصلي، متفرع من شارع سيدي عمر، دمنهور</span>
+          </div>
+          <div class="footer-contact-item">
+            <span>🏥</span>
+            <span><strong>مجمع الإسراء ودار الضيافة:</strong> خلف معهد أورام دمنهور القومي</span>
+          </div>
+          <div class="footer-contact-item">
+            <span>♻️</span>
+            <span><strong>مشروع برة الصندوق Outbox:</strong> مدرسة دمنهور الزخرفية المعمارية</span>
+          </div>
+        </div>
+
+        <div style="margin-top:14px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.12);">
+          <div class="footer-contact-item">
+            <span>💳</span>
+            <span class="footer-bank-val">حساب بنك مصر: 123456789</span>
+          </div>
+          <div class="footer-contact-item">
+            <span>📱</span>
+            <span class="footer-vodafone-val">فودافون كاش / إنستاباي: 01026410313</span>
+          </div>
+          <div class="footer-contact-item">
+            <span>📞</span>
+            <a href="tel:+20453318920" class="footer-phone-val" style="color: inherit;">045-3318920 / 01026410313</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Powered by NGOHub Strip -->
+    <div class="powered-by-strip">
+      <div class="container">
+        <div class="powered-by-inner">
+          <p class="copyright-text">
+            <span data-i18n="footer.copyright">جميع الحقوق محفوظة © 2026 جمعية الإسراء الخيرية لتنمية المجتمع بدمنهور - مشهرة برقم 1124 لسنة 2006 - ذات نفع عام</span>
+            <a href="admin.html" class="btn-footer-admin" title="لوحة التحكم CMS" data-i18n="footer.adminBtn">لوحة التحكم</a>
+          </p>
+          <a href="https://ngo-hub.com" target="_blank" rel="noopener noreferrer" class="ngohub-badge-link" title="منصة NGOHub لدعم وإدارة المنظمات غير الحكومية">
+            <img src="ngohub-logo.png" alt="شعار NGOHub" class="ngohub-logo-img">
+            <span class="ngohub-powered-text">Powered by <span class="ngohub-name">NGOhub</span></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
