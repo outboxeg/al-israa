@@ -26,6 +26,8 @@ const TRANSLATIONS = {
     'topbar.bankLink': '💳 الحسابات البنكية والمحافظ',
     'topbar.phoneLink': '📞 هاتف الجمعية: 045-3312345',
     'topbar.projectsPhone': '📞 هاتف المشروعات: 045-3312345',
+    'topbar.aboutBadge': '🏛️ جمعية أهلية ذات نفع عام بقرار وزاري رقم 646 لسنة 2024',
+    'topbar.newsBadge': '📰 المركز الإعلامي والتغطيات الميدانية لجمعية الإسراء',
 
     // Main Navigation
     'nav.home': 'الرئيسية',
@@ -73,6 +75,8 @@ const TRANSLATIONS = {
     'news.title': 'أحدث الأخبار والفعاليات الميدانية',
     'news.subtitle': 'تغطيات مصورة لأنشطة جمعية الإسراء وقوافلها التنموية في محافظة البحيرة',
     'news.readMore': 'قراءة المزيد ←',
+    'news.emptyTitle': 'لا توجد أخبار منشورة حالياً في هذا القسم',
+    'news.emptyDesc': 'تابعونا قريباً لمعرفة أحدث الأنشطة والفعاليات الميدانية لجمعية الإسراء.',
     'news.heroBadge': '📰 المركز الإعلامي والتغطيات الميدانية الحية',
     'news.heroTitle': 'آخر الأخبار والأنشطة الميدانية',
     'news.heroDesc': 'تابعوا نبض العمل التنموي والإنساني لجمعية الإسراء الخيرية بدمنهور أولاً بأول، وتعرفوا على أثر كفالاتكم ومبادراتكم المشتركة في خدمة أهالينا بالبحيرة.',
@@ -175,6 +179,7 @@ const TRANSLATIONS = {
     'cart.emptyPrompt': 'تصفح المتجر واختر سهماً لتصنع فارقاً اليوم.',
     'cart.total': 'إجمالي التبرع:',
     'cart.checkoutBtn': 'المتابعة لإتمام التبرع 💳',
+    'cart.checkout': 'متابعة إتمام التبرع ←',
     'cart.clear': 'تفريغ السلة',
 
     // Footer
@@ -183,6 +188,8 @@ const TRANSLATIONS = {
     'footer.quickLinks': 'روابط سريعة',
     'footer.contactInfo': 'بيانات التواصل',
     'footer.contactBranches': 'عناوين ومقرات الجمعية والتحويل',
+    'footer.about': 'مؤسسة أهلية ذات نفع عام (قرار وزاري رقم 646 لسنة 2024)، مشهرة برقم 1124 لسنة 2006. نعمل على خدمة ورعاية مرضى الأورام، والتمكين الاقتصادي للأسر الأولى بالرعاية، وتدوير الورق بالمدارس بالبحيرة.',
+    'footer.campaigns': 'حملات التبرع والأسهم',
     'footer.adminBtn': 'لوحة التحكم',
     'footer.copyright': 'جميع الحقوق محفوظة © 2026 جمعية الإسراء الخيرية لتنمية المجتمع بدمنهور - مشهرة برقم 1124 لسنة 2006 - ذات نفع عام',
 
@@ -244,6 +251,8 @@ const TRANSLATIONS = {
     'topbar.bankLink': '💳 Bank Accounts & Wallets',
     'topbar.phoneLink': '📞 Tel: 045-3312345',
     'topbar.projectsPhone': '📞 Projects Tel: 045-3312345',
+    'topbar.aboutBadge': '🏛️ Recognized Public Benefit NGO by Ministerial Decree 646/2024',
+    'topbar.newsBadge': '📰 Media Center & Field Updates of Al-Israa Association',
 
     // Main Navigation
     'nav.home': 'Home',
@@ -291,6 +300,8 @@ const TRANSLATIONS = {
     'news.title': 'Latest News & Field Activities',
     'news.subtitle': 'Photo reports and updates from Al-Israa humanitarian caravans and community development events in Beheira',
     'news.readMore': 'Read More →',
+    'news.emptyTitle': 'No news published in this category yet',
+    'news.emptyDesc': 'Check back soon for the latest activities and field reports from Al-Israa Association.',
     'news.heroBadge': '📰 Media Center & Live Field Coverage',
     'news.heroTitle': 'Latest News & Field Activities',
     'news.heroDesc': 'Follow the humanitarian and development initiatives of Al-Israa Charity Association in Damanhour first-hand, and see the impact of your sponsorships across Beheira.',
@@ -393,6 +404,7 @@ const TRANSLATIONS = {
     'cart.emptyPrompt': 'Browse the store and choose a share to make a lasting impact today.',
     'cart.total': 'Total Donation:',
     'cart.checkoutBtn': 'Proceed to Checkout 💳',
+    'cart.checkout': 'Proceed to Checkout →',
     'cart.clear': 'Clear Cart',
 
     // Footer
@@ -401,6 +413,8 @@ const TRANSLATIONS = {
     'footer.quickLinks': 'Quick Links',
     'footer.contactInfo': 'Contact Info',
     'footer.contactBranches': 'Association Branches & Donation Accounts',
+    'footer.about': 'A registered non-profit organization (Decree 646/2024, No. 1124/2006) dedicated to oncology patient care, economic empowerment, and green school initiatives in Beheira.',
+    'footer.campaigns': 'Donation Campaigns & Shares',
     'footer.adminBtn': 'Control Panel',
     'footer.copyright': 'All Rights Reserved © 2026 Al-Israa Charity Association for Community Development in Damanhour - Registered No. 1124 (2006) - Public Benefit',
 
