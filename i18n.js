@@ -18,7 +18,7 @@ const TRANSLATIONS = {
     // Top Bar
     'topbar.location': 'دمنهور - محافظة البحيرة - مشهرة برقم 1124 لسنة 2006',
     'topbar.hours': 'مواعيد الاستقبال: يومياً 9:00 ص - 9:00 م',
-    'topbar.phone': '01026410313',
+    'topbar.phone': '01014852255',
     'topbar.badge': '💼 مشروعات التمكين الاقتصادي والاستدامة الخضراء بالبحيرة',
     'topbar.projectsBadge': '💼 مشروعات التمكين الاقتصادي والاستدامة الخضراء بالبحيرة',
     'topbar.checkoutBadge': '🔒 بيانات التحويل المباشر - فودافون كاش وإنستاباي - جمعية الإسراء',
@@ -243,7 +243,7 @@ const TRANSLATIONS = {
     // Top Bar
     'topbar.location': 'Damanhour, Beheira - Registered NGO No. 1124 (2006)',
     'topbar.hours': 'Hours: Daily 9:00 AM - 9:00 PM',
-    'topbar.phone': '01026410313',
+    'topbar.phone': '01014852255',
     'topbar.badge': '💼 Economic Empowerment & Green Sustainability in Beheira',
     'topbar.projectsBadge': '💼 Economic Empowerment & Green Sustainability in Beheira',
     'topbar.checkoutBadge': '🔒 Direct Electronic Transfer - Vodafone Cash & InstaPay - Al-Israa Charity',

@@ -321,7 +321,7 @@ const DEFAULT_PAGES_DATA = {
   },
   checkout: {
     wallets: {
-      vodafoneCash: "01026410313",
+      vodafoneCash: "01091109880",
       instaPay: "israa.charity@instapay",
       notes: "يرجى الاحتفاظ برقم العملية أو لقطة الشاشة لتأكيد التبرع وإرسال الإيصال الرسمي."
     }
@@ -334,7 +334,7 @@ const DEFAULT_PAGES_DATA = {
     },
     phones: {
       primary: "045-3318920",
-      mobile: "01026410313",
+      mobile: "01014852255",
       email: "al_israa_ngo@yahoo.com",
       hours: "استقبال دار الضيافة متاح 24 ساعة لاستقبال الحالات الطارئة"
     },
@@ -385,7 +385,7 @@ const DEFAULT_PAGES_DATA = {
       id: "branch_main",
       name: "المقر الرئيسي ومجمع الإسراء التنموي",
       address: "دمنهور، شارع مدرسة ناصر الفكرية، خلف معهد أورام دمنهور القومي",
-      phone: "045-3318920 / 01026410313",
+      phone: "045-3318920 / 01014852255",
       workHours: "دار الضيافة 24 ساعة - الإدارة 8ص إلى 4م",
       isMain: true
     },
@@ -393,7 +393,7 @@ const DEFAULT_PAGES_DATA = {
       id: "branch_hostel",
       name: "دار ضيافة مرضى معهد الأورام",
       address: "دمنهور، بجوار معهد الأورام القومي (طابقان مجهزان)",
-      phone: "01026410313",
+      phone: "01014852255",
       workHours: "استقبال الحالات على مدار 24 ساعة",
       isMain: false
     },
@@ -401,7 +401,7 @@ const DEFAULT_PAGES_DATA = {
       id: "branch_outbox",
       name: "مركز Outbox والمدارس الخضراء",
       address: "مجمع دمنهور التعليمي، مديرية التربية والتعليم بالبحيرة",
-      phone: "01026410313",
+      phone: "01014852255",
       workHours: "أيام الدراسة 8ص إلى 2ظ",
       isMain: false
     }
@@ -410,7 +410,7 @@ const DEFAULT_PAGES_DATA = {
     aboutText: "مؤسسة أهلية ذات نفع عام (قرار وزاري رقم 646 لسنة 2024)، مشهرة برقم 1124 لسنة 2006. نعمل على خدمة ورعاية مرضى الأورام، والتمكين الاقتصادي للأسر الأولى بالرعاية، وتدوير الورق بالمدارس بالبحيرة.",
     facebookUrl: "https://www.facebook.com/gam3it.alesraa",
     phone: "045-3318920",
-    mobile: "01026410313",
+    mobile: "01014852255",
     email: "al_israa_ngo@yahoo.com",
     rightsText: "© 2026 جمعية الإسراء الخيرية لتنمية المجتمع بدمنهور. جميع الحقوق محفوظة."
   },
@@ -2462,7 +2462,7 @@ function testWebhookConnection() {
       date: new Date().toLocaleString('ar-EG'),
       type: "اختبار اتصال لوحة التحكم",
       name: "إدارة جمعية الإسراء",
-      phone: "01026410313",
+      phone: "01014852255",
       service: "اختبار الويب هوك",
       details: "إشارة اختبارية ناجحة من لوحة تحكم CMS المبوبة بالصفحات بدمنهور",
       id: "test_" + Date.now()
@@ -2904,7 +2904,7 @@ function addNewBranchItem() {
     id: 'branch_' + Date.now(),
     name,
     address,
-    phone: phone || '01026410313',
+    phone: phone || '01014852255',
     workHours: hours || 'يومياً 8ص إلى 4م',
     isMain: Boolean(isMain)
   };
@@ -2944,7 +2944,7 @@ function loadFooterPage() {
   if (aboutIn) aboutIn.value = ft.aboutText || '';
   if (fbIn) fbIn.value = ft.facebookUrl || 'https://www.facebook.com/gam3it.alesraa';
   if (phoneIn) phoneIn.value = ft.phone || '045-3318920';
-  if (mobIn) mobIn.value = ft.mobile || '01026410313';
+  if (mobIn) mobIn.value = ft.mobile || '01014852255';
   if (emailIn) emailIn.value = ft.email || 'al_israa_ngo@yahoo.com';
   if (rightsIn) rightsIn.value = ft.rightsText || '© 2026 جمعية الإسراء الخيرية لتنمية المجتمع بدمنهور. جميع الحقوق محفوظة.';
 }

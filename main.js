@@ -1451,7 +1451,7 @@ function hydrateGlobalFooterAndBranches() {
       id: "branch_main",
       name: "المقر الرئيسي ومجمع الإسراء التنموي",
       address: "دمنهور، شارع مدرسة ناصر الفكرية، خلف معهد أورام دمنهور القومي",
-      phone: "045-3318920 / 01026410313",
+      phone: "045-3318920 / 01014852255",
       workHours: "دار الضيافة 24 ساعة - الإدارة 8ص إلى 4م",
       isMain: true
     },
@@ -1459,7 +1459,7 @@ function hydrateGlobalFooterAndBranches() {
       id: "branch_hostel",
       name: "دار ضيافة مرضى معهد الأورام",
       address: "دمنهور، بجوار معهد الأورام القومي (طابقان مجهزان)",
-      phone: "01026410313",
+      phone: "01014852255",
       workHours: "استقبال الحالات على مدار 24 ساعة",
       isMain: false
     },
@@ -1467,7 +1467,7 @@ function hydrateGlobalFooterAndBranches() {
       id: "branch_outbox",
       name: "مركز Outbox والمدارس الخضراء",
       address: "مجمع دمنهور التعليمي، مديرية التربية والتعليم بالبحيرة",
-      phone: "01026410313",
+      phone: "01014852255",
       workHours: "أيام الدراسة 8ص إلى 2ظ",
       isMain: false
     }
@@ -1493,7 +1493,7 @@ function hydrateGlobalFooterAndBranches() {
           </div>
           <p class="branch-card-address">📍 ${b.address}</p>
           <div class="branch-card-meta">
-            <span>📞 ${b.phone || '01026410313'}</span>
+            <span>📞 ${b.phone || '01014852255'}</span>
             ${b.workHours ? `<span>⏰ ${b.workHours}</span>` : ''}
           </div>
         </div>
