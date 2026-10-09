@@ -1,3 +1,26 @@
+// Immediate LocalStorage Sanitizer for payment numbers
+(function() {
+  try {
+    const k = 'al_israa_cms_pages_data';
+    const r = localStorage.getItem(k);
+    if (r) {
+      const d = JSON.parse(r);
+      let changed = false;
+      if (d.checkout && d.checkout.wallets) {
+        if (d.checkout.wallets.vodafoneCash !== '01091109880') {
+          d.checkout.wallets.vodafoneCash = '01091109880';
+          changed = true;
+        }
+        if (d.checkout.wallets.instaPay !== '01014852255') {
+          d.checkout.wallets.instaPay = '01014852255';
+          changed = true;
+        }
+      }
+      if (changed) localStorage.setItem(k, JSON.stringify(d));
+    }
+  } catch(e) {}
+})();
+
 /**
  * جمعية الإسراء الخيرية لتنمية المجتمع بدمنهور
  * Comprehensive Donation Store, Cart, Page-by-Page Dynamic CMS Sync & Interactive Engine
@@ -594,15 +617,15 @@ function hydratePageByPageContent() {
   }
 
   // --- 6. CHECKOUT PAGE (checkout.html) ---
-  if (pagesData.checkout && currentPath.includes('checkout.html')) {
+  if (currentPath.includes('checkout.html')) {
     const vfNumbers = document.querySelectorAll('.vodafone-num-val');
     vfNumbers.forEach(elem => {
-      elem.textContent = (pagesData.checkout.wallets && pagesData.checkout.wallets.vodafoneCash) || '01091109880';
+      elem.textContent = '01091109880';
     });
 
     const ipPhones = document.querySelectorAll('.instapay-phone-val');
     ipPhones.forEach(elem => {
-      elem.textContent = (pagesData.checkout.wallets && pagesData.checkout.wallets.instaPay) || '01014852255';
+      elem.textContent = '01014852255';
     });
   }
 
