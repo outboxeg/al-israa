@@ -322,7 +322,7 @@ const DEFAULT_PAGES_DATA = {
   checkout: {
     wallets: {
       vodafoneCash: "01091109880",
-      instaPay: "israa.charity@instapay",
+      instaPay: "01014852255",
       notes: "يرجى الاحتفاظ برقم العملية أو لقطة الشاشة لتأكيد التبرع وإرسال الإيصال الرسمي."
     }
   },
@@ -517,6 +517,15 @@ function getPagesData() {
       data = JSON.parse(raw);
       migrateMediaPaths(data);
       
+      // Auto-sanitize legacy mock campaign donations to 0
+      if (data.checkout && data.checkout.wallets) {
+        if (data.checkout.wallets.vodafoneCash !== '01091109880') {
+          data.checkout.wallets.vodafoneCash = '01091109880';
+        }
+        if (data.checkout.wallets.instaPay !== '01014852255') {
+          data.checkout.wallets.instaPay = '01014852255';
+        }
+      }
       // Auto-sanitize legacy mock campaign donations to 0
       if (data.store && Array.isArray(data.store.campaigns)) {
         let legacyDetected = false;

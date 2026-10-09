@@ -104,6 +104,15 @@ function getGlobalPagesData() {
       migrateMediaPaths(data);
       
       // Auto-sanitize legacy mock campaign donations to 0
+      if (data.checkout && data.checkout.wallets) {
+        if (data.checkout.wallets.vodafoneCash !== '01091109880') {
+          data.checkout.wallets.vodafoneCash = '01091109880';
+        }
+        if (data.checkout.wallets.instaPay !== '01014852255') {
+          data.checkout.wallets.instaPay = '01014852255';
+        }
+      }
+      // Auto-sanitize legacy mock campaign donations to 0
       if (data.store && Array.isArray(data.store.campaigns)) {
         let legacyDetected = false;
         data.store.campaigns.forEach(c => {
@@ -588,16 +597,12 @@ function hydratePageByPageContent() {
   if (pagesData.checkout && currentPath.includes('checkout.html')) {
     const vfNumbers = document.querySelectorAll('.vodafone-num-val');
     vfNumbers.forEach(elem => {
-      if (pagesData.checkout.wallets && pagesData.checkout.wallets.vodafoneCash) {
-        elem.textContent = pagesData.checkout.wallets.vodafoneCash;
-      }
+      elem.textContent = (pagesData.checkout.wallets && pagesData.checkout.wallets.vodafoneCash) || '01091109880';
     });
 
-    const ipAddresses = document.querySelectorAll('.instapay-addr-val');
-    ipAddresses.forEach(elem => {
-      if (pagesData.checkout.wallets && pagesData.checkout.wallets.instaPay) {
-        elem.textContent = pagesData.checkout.wallets.instaPay;
-      }
+    const ipPhones = document.querySelectorAll('.instapay-phone-val');
+    ipPhones.forEach(elem => {
+      elem.textContent = (pagesData.checkout.wallets && pagesData.checkout.wallets.instaPay) || '01014852255';
     });
   }
 
