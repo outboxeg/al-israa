@@ -3723,6 +3723,68 @@ button, input, select, textarea {
   font-weight: 700;
 }
 
+/* Youth Initiative - Real Training Photos Showcase */
+.youth-photos-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-bottom: 30px;
+}
+
+.youth-photo-card {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border: 2px solid #E2E8F0;
+  background: #FFFFFF;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.youth-photo-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(21, 128, 61, 0.15);
+  border-color: #86EFAC;
+}
+
+.youth-photo-wrap {
+  position: relative;
+  width: 100%;
+  height: 270px;
+  overflow: hidden;
+}
+
+.youth-photo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.youth-photo-card:hover .youth-photo-wrap img {
+  transform: scale(1.03);
+}
+
+.youth-photo-caption {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  left: 10px;
+  background: rgba(15, 23, 42, 0.82);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: #FFFFFF;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  pointer-events: none;
+  line-height: 1.4;
+}
+
 .youth-pillars-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -3883,6 +3945,21 @@ button, input, select, textarea {
     gap: 10px;
     margin-bottom: 22px;
   }
+  .youth-photos-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-bottom: 22px;
+  }
+  .youth-photo-wrap {
+    height: 220px;
+  }
+  .youth-photo-caption {
+    font-size: 0.78rem;
+    padding: 5px 10px;
+    bottom: 8px;
+    right: 8px;
+    left: 8px;
+  }
   .youth-stat-card {
     padding: 12px 14px;
     gap: 10px;
@@ -3967,6 +4044,24 @@ button, input, select, textarea {
     grid-template-columns: 1fr 1fr;
     gap: 8px;
     margin-bottom: 18px;
+  }
+  .youth-photos-grid {
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .youth-photo-wrap {
+    height: 185px;
+  }
+  .youth-photo-card {
+    border-radius: 12px;
+    border-width: 1.5px;
+  }
+  .youth-photo-caption {
+    font-size: 0.72rem;
+    padding: 4px 8px;
+    bottom: 6px;
+    right: 6px;
+    left: 6px;
   }
   .youth-stat-card {
     padding: 10px 10px;
