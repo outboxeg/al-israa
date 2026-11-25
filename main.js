@@ -1442,14 +1442,15 @@ window.hydrateHomeNewsTicker = function() {
 
   const buildGroupHtml = (isClone) => {
     let itemsHtml = '';
-    tickerItems.forEach(item => {
+    tickerItems.forEach((item, idx) => {
       const displayText = item.id === 'tender_fao_2026'
         ? 'طرح مناقصة عامة لتصنيع وتوريد آلة لقطع وتجميع سيقان القطن في صفوف داخل الحقل (آخر موعد للعطاءات الثلاثاء 1/12/2026 الساعة 12 ظهراً)'
         : item.title;
+      const activeCls = (!isClone && idx === 0) ? ' is-active' : '';
       itemsHtml += `
-        <a href="${item.link}" class="news-ticker-item ${item.urgent ? 'news-ticker-urgent' : ''}" ${isClone ? 'tabindex="-1"' : ''}>
+        <a href="${item.link}" class="news-ticker-item ${item.urgent ? 'news-ticker-urgent' : ''}${activeCls}" ${isClone ? 'tabindex="-1"' : ''}>
           <span class="ticker-tag">${item.tag}</span>
-          <span>${displayText}</span>
+          <span class="ticker-text">${displayText}</span>
         </a>
         <span class="news-ticker-sep" aria-hidden="true">◆</span>
       `;
@@ -1458,6 +1459,73 @@ window.hydrateHomeNewsTicker = function() {
   };
 
   track.innerHTML = buildGroupHtml(false) + buildGroupHtml(true);
+  track.classList.add('has-ticker-js');
+
+  // Mobile Rotating Ticker Controller + Touch Swipe + Prev/Next Buttons
+  const primaryGroup = track.querySelector('.news-ticker-group:first-child');
+  const mobileItems = primaryGroup ? Array.from(primaryGroup.querySelectorAll('.news-ticker-item')) : [];
+  const prevBtn = document.getElementById('tickerPrevBtn');
+  const nextBtn = document.getElementById('tickerNextBtn');
+  const counterEl = document.getElementById('tickerCounter');
+  const viewportEl = document.getElementById('newsTickerViewport');
+
+  if (mobileItems.length > 0) {
+    let currentIdx = 0;
+    let rotateTimer = null;
+
+    const showSlide = (idx) => {
+      currentIdx = (idx + mobileItems.length) % mobileItems.length;
+      mobileItems.forEach((el, i) => {
+        el.classList.toggle('is-active', i === currentIdx);
+      });
+      if (counterEl) {
+        counterEl.textContent = `${currentIdx + 1} / ${mobileItems.length}`;
+      }
+    };
+
+    const resetAutoRotate = () => {
+      if (rotateTimer) clearInterval(rotateTimer);
+      rotateTimer = setInterval(() => {
+        if (window.innerWidth <= 768) {
+          showSlide(currentIdx + 1);
+        }
+      }, 5000);
+    };
+
+    showSlide(0);
+    resetAutoRotate();
+
+    if (prevBtn) {
+      prevBtn.onclick = () => {
+        showSlide(currentIdx - 1);
+        resetAutoRotate();
+      };
+    }
+    if (nextBtn) {
+      nextBtn.onclick = () => {
+        showSlide(currentIdx + 1);
+        resetAutoRotate();
+      };
+    }
+
+    if (viewportEl && !viewportEl.dataset.swipeBound) {
+      viewportEl.dataset.swipeBound = '1';
+      let touchStartX = 0;
+      viewportEl.addEventListener('touchstart', (e) => {
+        if (e.touches && e.touches[0]) touchStartX = e.touches[0].clientX;
+        if (rotateTimer) clearInterval(rotateTimer);
+      }, { passive: true });
+      viewportEl.addEventListener('touchend', (e) => {
+        if (e.changedTouches && e.changedTouches[0]) {
+          const dx = e.changedTouches[0].clientX - touchStartX;
+          if (Math.abs(dx) > 40) {
+            showSlide(dx > 0 ? currentIdx - 1 : currentIdx + 1);
+          }
+        }
+        resetAutoRotate();
+      }, { passive: true });
+    }
+  }
 };
 
 window.renderNewsFeed = function() {

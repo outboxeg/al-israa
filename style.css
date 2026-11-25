@@ -4152,6 +4152,69 @@ button, input, select, textarea {
   min-width: 0;
 }
 
+.news-ticker-controls-row {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.news-ticker-mobile-actions {
+  display: none;
+  align-items: center;
+  gap: 6px;
+}
+
+.ticker-nav-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.ticker-nav-btn:hover,
+.ticker-nav-btn:active {
+  background: rgba(254, 240, 138, 0.22);
+  border-color: #FEF08A;
+  color: #FEF08A;
+}
+
+.ticker-counter {
+  font-size: 0.74rem;
+  font-weight: 800;
+  color: #DCFCE7;
+  min-width: 32px;
+  text-align: center;
+  direction: ltr;
+}
+
+.news-ticker-all-mobile {
+  color: #FEF08A;
+  font-size: 0.76rem;
+  font-weight: 800;
+  white-space: nowrap;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(254, 240, 138, 0.35);
+  background: rgba(255, 255, 255, 0.08);
+  text-decoration: none;
+}
+
+@keyframes tickerMobileFade {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .news-ticker-label {
   display: inline-flex;
   align-items: center;
@@ -4299,39 +4362,121 @@ button, input, select, textarea {
 
 @media (max-width: 768px) {
   .news-ticker-inner {
+    flex-direction: column;
+    align-items: stretch;
     gap: 8px;
-    min-height: 40px;
-    padding-block: 5px;
+    padding-block: 8px;
+  }
+  .news-ticker-controls-row {
+    width: 100%;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .news-ticker-mobile-actions {
+    display: flex;
+  }
+  .news-ticker-all-link {
+    display: none;
   }
   .news-ticker-label {
-    font-size: 0.76rem;
+    font-size: 0.78rem;
     padding: 4px 10px;
     gap: 6px;
   }
-  .news-ticker-item {
-    font-size: 0.84rem;
-    gap: 6px;
+  .news-ticker-viewport {
+    width: 100%;
+    overflow: visible;
+    mask-image: none;
+    -webkit-mask-image: none;
   }
-  .ticker-tag {
+  .news-ticker-track {
+    animation: none !important;
+    transform: none !important;
+    width: 100%;
+    display: block;
+  }
+  .news-ticker-group {
+    display: block;
+    width: 100%;
+    padding-inline-end: 0;
+  }
+  .news-ticker-group[aria-hidden="true"],
+  .news-ticker-sep {
+    display: none;
+  }
+  .news-ticker-item {
+    display: none;
+    white-space: normal;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px 10px;
+    min-height: 44px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 10px;
+    font-size: 0.86rem;
+    line-height: 1.55;
+  }
+  .news-ticker-item.is-active,
+  .news-ticker-track:not(.has-ticker-js) .news-ticker-group:first-child .news-ticker-item:first-child {
+    display: block;
+    animation: tickerMobileFade 0.3s ease;
+  }
+  .news-ticker-item .ticker-tag {
     font-size: 0.72rem;
     padding: 2px 8px;
+    margin-inline-end: 6px;
+    vertical-align: middle;
   }
-  .news-ticker-all-link {
-    font-size: 0.76rem;
-    padding: 4px 8px;
+  .news-ticker-item .ticker-text {
+    display: inline;
+    vertical-align: middle;
   }
 }
 
 @media (max-width: 480px) {
   .news-ticker-inner {
     gap: 6px;
+    padding-block: 7px;
   }
   .news-ticker-label {
-    font-size: 0.72rem;
-    padding: 4px 8px;
+    font-size: 0.73rem;
+    padding: 3px 9px;
   }
-  .news-ticker-all-link {
-    display: none;
+  .ticker-nav-btn {
+    width: 26px;
+    height: 26px;
+    font-size: 0.95rem;
+  }
+  .ticker-counter {
+    font-size: 0.7rem;
+    min-width: 28px;
+  }
+  .news-ticker-all-mobile {
+    font-size: 0.72rem;
+    padding: 3px 8px;
+  }
+  .news-ticker-item {
+    font-size: 0.82rem;
+    padding: 7px 9px;
+    line-height: 1.5;
+  }
+  .news-ticker-item .ticker-tag {
+    font-size: 0.68rem;
+    padding: 1px 7px;
+  }
+}
+
+@media (max-width: 360px) {
+  .news-ticker-controls-row {
+    gap: 4px;
+  }
+  .news-ticker-mobile-actions {
+    gap: 4px;
+  }
+  .news-ticker-all-mobile {
+    padding: 3px 6px;
+    font-size: 0.68rem;
   }
 }
 

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>جمعية الإسراء الخيرية لتنمية المجتمع بدمنهور | المنصة الرسمية ومتجر التبرعات</title>
   <meta name="description" content="الموقع الرسمي ومتجر التبرعات لجمعية الإسراء الخيرية بدمنهور - ذات نفع عام بقرار 646 لسنة 2024. رعاية مجانية لمرضى الأورام، كفالات تعليمية، تمكين اقتصادي، ومشروع برة الصندوق Outbox.">
-  <link rel="stylesheet" href="style.css?v=20261125">
+  <link rel="stylesheet" href="style.css?v=20261125_v2">
   <link rel="icon" type="image/png" href="images/logo.png">
   <script src="i18n.js?v=20261009_v4"></script>
 </head>
@@ -79,56 +79,64 @@
     </div>
   </header>
 
-  <!-- Breaking / Latest News Ticker Bar (Right Under Header) -->
+  <!-- Breaking / Latest News Ticker Bar (Right Under Header - Desktop Marquee & Mobile Interactive Strip) -->
   <section class="news-ticker-bar" aria-label="شريط آخر الأخبار">
     <div class="container news-ticker-inner">
-      <div class="news-ticker-label">
-        <span class="ticker-pulse-dot" aria-hidden="true"></span>
-        <span>آخر الأخبار</span>
+      <div class="news-ticker-controls-row">
+        <div class="news-ticker-label">
+          <span class="ticker-pulse-dot" aria-hidden="true"></span>
+          <span>آخر الأخبار</span>
+        </div>
+        <div class="news-ticker-mobile-actions">
+          <button type="button" class="ticker-nav-btn" id="tickerPrevBtn" aria-label="الخبر السابق" title="الخبر السابق">›</button>
+          <span class="ticker-counter" id="tickerCounter">1 / 4</span>
+          <button type="button" class="ticker-nav-btn" id="tickerNextBtn" aria-label="الخبر التالي" title="الخبر التالي">‹</button>
+          <a href="news.html" class="news-ticker-all-mobile">كل الأخبار ←</a>
+        </div>
       </div>
-      <div class="news-ticker-viewport">
+      <div class="news-ticker-viewport" id="newsTickerViewport">
         <div class="news-ticker-track" id="homeNewsTickerTrack">
           <div class="news-ticker-group">
-            <a href="news.html?article=tender_fao_2026" class="news-ticker-item news-ticker-urgent">
+            <a href="news.html?article=tender_fao_2026" class="news-ticker-item news-ticker-urgent is-active">
               <span class="ticker-tag">مناقصة عامة • الفاو FAO</span>
-              <span>طرح مناقصة عامة لتصنيع وتوريد آلة لقطع وتجميع سيقان القطن في صفوف داخل الحقل (آخر موعد للعطاءات الثلاثاء 1/12/2026 الساعة 12 ظهراً)</span>
+              <span class="ticker-text">طرح مناقصة عامة لتصنيع وتوريد آلة لقطع وتجميع سيقان القطن في صفوف داخل الحقل (آخر موعد للعطاءات الثلاثاء 1/12/2026 الساعة 12 ظهراً)</span>
             </a>
             <span class="news-ticker-sep" aria-hidden="true">◆</span>
             <a href="news.html?article=news_1" class="news-ticker-item">
               <span class="ticker-tag">شراكات رسمية</span>
-              <span>بحث سبل التوسع في مشروعات التمكين الاقتصادي بالبحيرة ورعاية مرضى معهد أورام دمنهور</span>
+              <span class="ticker-text">بحث سبل التوسع في مشروعات التمكين الاقتصادي بالبحيرة ورعاية مرضى معهد أورام دمنهور</span>
             </a>
             <span class="news-ticker-sep" aria-hidden="true">◆</span>
             <a href="news.html?article=news_2" class="news-ticker-item">
               <span class="ticker-tag">التعليم والطفولة</span>
-              <span>توزيع الشنط والزي المدرسي لأطفال الفصول المجتمعية بالشراكة مع إنقاذ الطفولة وUSAID</span>
+              <span class="ticker-text">توزيع الشنط والزي المدرسي لأطفال الفصول المجتمعية بالشراكة مع إنقاذ الطفولة وUSAID</span>
             </a>
             <span class="news-ticker-sep" aria-hidden="true">◆</span>
             <a href="news.html?article=news_3" class="news-ticker-item">
               <span class="ticker-tag">مشروع أرزاق</span>
-              <span>تسليم دفعة جديدة من تروسيكلات الطعام المصنعة بمدرسة دمنهور الزخرفية للشباب</span>
+              <span class="ticker-text">تسليم دفعة جديدة من تروسيكلات الطعام المصنعة بمدرسة دمنهور الزخرفية للشباب</span>
             </a>
             <span class="news-ticker-sep" aria-hidden="true">◆</span>
           </div>
           <div class="news-ticker-group" aria-hidden="true">
             <a href="news.html?article=tender_fao_2026" class="news-ticker-item news-ticker-urgent" tabindex="-1">
               <span class="ticker-tag">مناقصة عامة • الفاو FAO</span>
-              <span>طرح مناقصة عامة لتصنيع وتوريد آلة لقطع وتجميع سيقان القطن في صفوف داخل الحقل (آخر موعد للعطاءات الثلاثاء 1/12/2026 الساعة 12 ظهراً)</span>
+              <span class="ticker-text">طرح مناقصة عامة لتصنيع وتوريد آلة لقطع وتجميع سيقان القطن في صفوف داخل الحقل (آخر موعد للعطاءات الثلاثاء 1/12/2026 الساعة 12 ظهراً)</span>
             </a>
             <span class="news-ticker-sep">◆</span>
             <a href="news.html?article=news_1" class="news-ticker-item" tabindex="-1">
               <span class="ticker-tag">شراكات رسمية</span>
-              <span>بحث سبل التوسع في مشروعات التمكين الاقتصادي بالبحيرة ورعاية مرضى معهد أورام دمنهور</span>
+              <span class="ticker-text">بحث سبل التوسع في مشروعات التمكين الاقتصادي بالبحيرة ورعاية مرضى معهد أورام دمنهور</span>
             </a>
             <span class="news-ticker-sep">◆</span>
             <a href="news.html?article=news_2" class="news-ticker-item" tabindex="-1">
               <span class="ticker-tag">التعليم والطفولة</span>
-              <span>توزيع الشنط والزي المدرسي لأطفال الفصول المجتمعية بالشراكة مع إنقاذ الطفولة وUSAID</span>
+              <span class="ticker-text">توزيع الشنط والزي المدرسي لأطفال الفصول المجتمعية بالشراكة مع إنقاذ الطفولة وUSAID</span>
             </a>
             <span class="news-ticker-sep">◆</span>
             <a href="news.html?article=news_3" class="news-ticker-item" tabindex="-1">
               <span class="ticker-tag">مشروع أرزاق</span>
-              <span>تسليم دفعة جديدة من تروسيكلات الطعام المصنعة بمدرسة دمنهور الزخرفية للشباب</span>
+              <span class="ticker-text">تسليم دفعة جديدة من تروسيكلات الطعام المصنعة بمدرسة دمنهور الزخرفية للشباب</span>
             </a>
             <span class="news-ticker-sep">◆</span>
           </div>
@@ -1255,6 +1263,6 @@
   <!-- Toast Notification Box -->
   <div class="toast-notice"></div>
 
-  <script src="main.js?v=20261125"></script>
+  <script src="main.js?v=20261125_v2"></script>
 </body>
 </html>
