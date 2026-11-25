@@ -607,9 +607,47 @@ window.closeMobileNav = function() {
 // ============================================================================
 // DYNAMIC PAGE-BY-PAGE HYDRATION ENGINE
 // ============================================================================
+function applyThemeAndSections(pagesData) {
+  if (!pagesData) return;
+  if (pagesData.theme) {
+    const r = document.documentElement.style;
+    if (pagesData.theme.primaryColor) r.setProperty('--brand-green', pagesData.theme.primaryColor);
+    if (pagesData.theme.accentColor) r.setProperty('--accent-orange', pagesData.theme.accentColor);
+    if (pagesData.theme.defaultMode === 'dark' && !localStorage.getItem('al_israa_theme')) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  }
+  if (pagesData.sections) {
+    const map = {
+      stats: '.stats-strip',
+      outbox: '.outbox-showcase-section',
+      news: '.news-ticker-bar',
+      partners: '.partners-section',
+      customBlocks: '.wp-custom-blocks-section'
+    };
+    Object.keys(map).forEach(k => {
+      const el = document.querySelector(map[k]);
+      if (el && pagesData.sections[k] === false) el.style.display = 'none';
+      else if (el && pagesData.sections[k] === true) el.style.display = '';
+    });
+  }
+}
+
+function renderFloatingAdminBar() {
+  if (sessionStorage.getItem('al_israa_admin_session') !== 'true') return;
+  if (document.getElementById('floatingAdminQuickBar')) return;
+  const bar = document.createElement('a');
+  bar.id = 'floatingAdminQuickBar';
+  bar.href = 'admin.html';
+  bar.textContent = '✏️ تعديل الموقع في لوحة التحكم';
+  bar.style.cssText = 'position:fixed;bottom:18px;left:18px;z-index:9999;background:#0F172A;color:#FFFFFF;padding:10px 16px;border-radius:999px;font-family:Cairo,sans-serif;font-size:0.85rem;font-weight:700;text-decoration:none;box-shadow:0 8px 20px rgba(15,23,42,0.28);border:1px solid rgba(255,255,255,0.2);';
+  document.body.appendChild(bar);
+}
+
 function hydratePageByPageContent() {
   const pagesData = getGlobalPagesData();
   if (!pagesData) return;
+  applyThemeAndSections(pagesData);
 
   const currentPath = window.location.pathname;
 
@@ -1785,6 +1823,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 2. Hydrate Dynamic Page-by-Page CMS Data & WordPress Blocks
   hydratePageByPageContent();
+  renderFloatingAdminBar();
+  if (localStorage.getItem('al_israa_cms_unpublished') !== '1') {
+    fetch('site-data.json?t=' + Date.now())
+      .then(r => r.ok ? r.json() : null)
+      .then(remote => {
+        if (remote && typeof remote === 'object') {
+          if (remote.admin && 'pass' in remote.admin) delete remote.admin.pass;
+          localStorage.setItem(PAGES_DATA_KEY, JSON.stringify(remote));
+          hydratePageByPageContent();
+          renderDynamicCampaignCards();
+          renderCustomPageBlocks();
+          hydrateGlobalFooterAndBranches();
+          hydrateHomeNewsTicker();
+        }
+      }).catch(() => {});
+  }
   renderDynamicCampaignCards();
   renderCustomPageBlocks();
   hydrateGlobalFooterAndBranches();

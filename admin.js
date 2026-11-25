@@ -4,11 +4,14 @@
  * Powered by NGOhub
  */
 
-// Storage Keys
+// Storage Keys & Secure Worker Endpoint
 const PAGES_DATA_KEY = 'al_israa_cms_pages_data';
 const CMS_INBOX_KEY = 'al_israa_cms_inbox';
 const CMS_AUTH_KEY = 'al_israa_admin_session';
+const CMS_SESSION_PASS_KEY = 'al_israa_admin_pass_session';
+const CMS_UNPUBLISHED_KEY = 'al_israa_cms_unpublished';
 const VISITOR_STATS_KEY = 'al_israa_visitor_analytics';
+const CMS_WORKER_URL = 'https://al-israa-cms-api.youssefkhedr92.workers.dev';
 
 // Complete High-Fidelity Default Seed Data for All 7 Pages
 const DEFAULT_PAGES_DATA = {
@@ -451,9 +454,20 @@ const DEFAULT_PAGES_DATA = {
     email: "al_israa_ngo@yahoo.com",
     rightsText: "© 2026 جمعية الإسراء الخيرية لتنمية المجتمع بدمنهور. جميع الحقوق محفوظة."
   },
+  theme: {
+    primaryColor: "#15803D",
+    accentColor: "#EA580C",
+    defaultMode: "light"
+  },
+  sections: {
+    stats: true,
+    outbox: true,
+    news: true,
+    partners: true,
+    customBlocks: true
+  },
   admin: {
     user: "admin",
-    pass: "israa2026",
     webhookUrl: ""
   }
 };
@@ -696,7 +710,11 @@ function clearCmsAuditLogs() {
 
 function savePagesData(data, toastMsg = 'تم الحفظ بنجاح 💾') {
   try {
+    if (data && data.admin && 'pass' in data.admin) delete data.admin.pass;
     localStorage.setItem(PAGES_DATA_KEY, JSON.stringify(data));
+    localStorage.setItem(CMS_UNPUBLISHED_KEY, '1');
+    updateUnpublishedBadge();
+    refreshLivePreviewFrame();
     showAdminToast(toastMsg);
     logCmsAction(toastMsg);
     updateOverviewStats();
@@ -704,6 +722,95 @@ function savePagesData(data, toastMsg = 'تم الحفظ بنجاح 💾') {
     alert('تعذر حفظ البيانات: ' + e.message);
   }
 }
+
+function updateUnpublishedBadge() {
+  const badge = document.getElementById('unpublishedBadge');
+  if (!badge) return;
+  badge.style.display = localStorage.getItem(CMS_UNPUBLISHED_KEY) === '1' ? 'inline-flex' : 'none';
+}
+
+function refreshLivePreviewFrame() {
+  const frame = document.getElementById('adminLivePreviewFrame');
+  const pane = document.getElementById('adminPreviewSplitPane');
+  if (!frame || !pane || pane.style.display === 'none') return;
+  const base = frame.getAttribute('data-base-src') || 'index.html';
+  frame.src = base + '?preview=' + Date.now();
+}
+
+function toggleLivePreview() {
+  const pane = document.getElementById('adminPreviewSplitPane');
+  const btn = document.getElementById('toggleLivePreviewBtn');
+  const frame = document.getElementById('adminLivePreviewFrame');
+  const previewLink = document.getElementById('pageLivePreviewLink');
+  if (!pane || !frame) return;
+  const isHidden = pane.style.display === 'none' || !pane.style.display;
+  pane.style.display = isHidden ? 'flex' : 'none';
+  if (btn) btn.textContent = isHidden ? 'إخفاء المعاينة ✕' : 'معاينة حية 👁️';
+  if (isHidden) {
+    const url = (previewLink && previewLink.getAttribute('href')) || 'index.html';
+    frame.setAttribute('data-base-src', url);
+    frame.src = url + '?preview=' + Date.now();
+  }
+}
+
+function handleAdminQuickSearch(query) {
+  const box = document.getElementById('adminQuickSearchResults');
+  if (!box) return;
+  const q = (query || '').trim().toLowerCase();
+  if (!q) { box.style.display = 'none'; box.innerHTML = ''; return; }
+
+  const items = [];
+  document.querySelectorAll('.admin-nav-item button').forEach(btn => {
+    const pageId = btn.getAttribute('data-page-target');
+    const label = btn.textContent.trim().replace(/s+/g, ' ');
+    if (pageId && label.toLowerCase().includes(q)) {
+      items.push({ pageId, title: label, sub: 'تبويب رئيسي', el: null });
+    }
+  });
+  document.querySelectorAll('.admin-page-pane .admin-accordion, .admin-page-pane .admin-card').forEach(card => {
+    const pane = card.closest('.admin-page-pane');
+    if (!pane) return;
+    const titleEl = card.querySelector('.admin-accordion-title, .admin-card-title');
+    const subEl = card.querySelector('.admin-accordion-subtitle');
+    const title = titleEl ? titleEl.textContent.trim() : '';
+    const sub = subEl ? subEl.textContent.trim() : '';
+    if ((title + ' ' + sub).toLowerCase().includes(q)) {
+      items.push({ pageId: pane.id, title, sub: sub || 'إعداد داخل الصفحة', el: card });
+    }
+  });
+
+  if (items.length === 0) {
+    box.innerHTML = '<div style="padding:10px 14px; color:#64748B; font-size:0.88rem;">لا توجد نتائج مطابقة لـ "' + q + '"</div>';
+    box.style.display = 'block';
+    return;
+  }
+
+  box.innerHTML = '';
+  items.slice(0, 10).forEach(item => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'admin-search-item';
+    btn.innerHTML = '<span style="font-weight:800; color:#0F172A;">' + item.title + '</span><span style="font-size:0.78rem; color:#64748B;">' + item.sub + '</span>';
+    btn.onclick = () => {
+      switchAdminPage(item.pageId);
+      box.style.display = 'none';
+      if (item.el) {
+        if (item.el.classList.contains('admin-accordion')) item.el.classList.add('open');
+        item.el.classList.add('search-highlight');
+        item.el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        setTimeout(() => item.el.classList.remove('search-highlight'), 1800);
+      }
+    };
+    box.appendChild(btn);
+  });
+  box.style.display = 'block';
+}
+
+document.addEventListener('click', (e) => {
+  const wrap = document.querySelector('.admin-search-wrap');
+  const box = document.getElementById('adminQuickSearchResults');
+  if (wrap && box && !wrap.contains(e.target)) box.style.display = 'none';
+});
 
 // Toast Engine
 function showAdminToast(msg, icon = '✅') {
@@ -742,19 +849,11 @@ function closeAdminMobileNav() {
   if (bd) bd.classList.remove('active');
 }
 
-// Password Visibility & Auto-fill Helpers
+// Password Visibility Helper
 function togglePasswordVisibility() {
   const pwd = document.getElementById('adminPassword');
   if (!pwd) return;
   pwd.type = pwd.type === 'password' ? 'text' : 'password';
-}
-
-function autoFillCredentials() {
-  const u = document.getElementById('adminUsername');
-  const p = document.getElementById('adminPassword');
-  if (u) u.value = 'admin';
-  if (p) p.value = 'israa2026';
-  showAdminToast('تم ملء بيانات الدخول الافتراضية بنجاح 🔑');
 }
 
 function switchAdminPage(targetPageId) {
@@ -786,20 +885,21 @@ function switchAdminPage(targetPageId) {
 
   const pageMetaAr = {
     'page-overview': { title: 'نظرة عامة ومؤشرات المنصة', desc: 'إحصائيات سريعة وخريطة لكافة صفحات الموقع وعناصرها.', url: 'index.html' },
-    'page-home': { title: 'إدارة الصفحة الرئيسية (index.html)', desc: 'تحكم كامل في الهيرو، الأرقام، المدارس الخضراء، الأخبار، والشركاء.', url: 'index.html' },
-    'page-store': { title: 'إدارة متجر التبرعات (store.html)', desc: 'تحكم كامل في ترويسة المتجر وحملات وأسهم التبرع والأسعار.', url: 'store.html' },
-    'page-complex': { title: 'إدارة مجمع الإسراء التنموي (complex.html)', desc: 'تحكم في مقدمة المجمع وتفاصيل وأقسام الطوابق الخمسة.', url: 'complex.html' },
-    'page-hostel': { title: 'إدارة دار ضيافة الأورام (hostel.html)', desc: 'تحكم في خدمات الدار، السعة الاستيعابية، وشروط القبول المجاني.', url: 'hostel.html' },
-    'page-projects': { title: 'إدارة المشروعات والتمكين (projects.html)', desc: 'تحكم في مشروع أرزاق، مشاغل النول، وفصول التعليم المجتمعي.', url: 'projects.html' },
-    'page-checkout': { title: 'إدارة إتمام التبرع (فودافون كاش وإنستاباي)', desc: 'تحكم في محافظ الكاش، ومعرف إنستاباي لصفحة الدفع.', url: 'checkout.html' },
-    'page-contact': { title: 'إدارة تواصل معنا والمقر (contact.html)', desc: 'تحكم في خريطة Google Map لدمنهور، الهواتف، والبيانات القانونية.', url: 'contact.html' },
-    'page-about': { title: 'إدارة صفحة عن الجمعية (about.html)', desc: 'تحكم في الهوية الرسمية، الإشهار 2006، قرار النفع العام، ومجلس الإدارة.', url: 'about.html' },
-    'page-news': { title: 'إدارة آخر الأخبار والتغطيات (news.html)', desc: 'نشر الأخبار والمقالات وتحديد الـ Tag والمكان والتاريخ ورفع الصور المتعددة.', url: 'news.html' },
+    'page-home': { title: 'تعديل الصفحة الرئيسية', desc: 'تحكم كامل في الهيرو، الأرقام، المدارس الخضراء، الأخبار، والشركاء.', url: 'index.html' },
+    'page-store': { title: 'تعديل التبرعات والحملات', desc: 'تحكم كامل في ترويسة المتجر وحملات وأسهم التبرع والأسعار.', url: 'store.html' },
+    'page-complex': { title: 'تعديل مجمع الإسراء الطبي', desc: 'تحكم في مقدمة المجمع وتفاصيل وأقسام الطوابق الخمسة.', url: 'complex.html' },
+    'page-hostel': { title: 'تعديل دار ضيافة الأورام', desc: 'تحكم في خدمات الدار، السعة الاستيعابية، وشروط القبول المجاني.', url: 'hostel.html' },
+    'page-projects': { title: 'تعديل المشروعات والتمكين', desc: 'تحكم في مشروع أرزاق، مشاغل النول، وفصول التعليم المجتمعي.', url: 'projects.html' },
+    'page-checkout': { title: 'تعديل طرق التبرع والحسابات', desc: 'تحكم في محافظ الكاش، ومعرف إنستاباي لصفحة الدفع.', url: 'checkout.html' },
+    'page-contact': { title: 'تعديل تواصل معنا والخريطة', desc: 'تحكم في خريطة Google Map لدمنهور، الهواتف، والبيانات القانونية.', url: 'contact.html' },
+    'page-about': { title: 'تعديل صفحة عن الجمعية', desc: 'تحكم في الهوية الرسمية، الإشهار 2006، قرار النفع العام، ومجلس الإدارة.', url: 'about.html' },
+    'page-news': { title: 'تعديل آخر الأخبار', desc: 'نشر الأخبار والمقالات وتحديد الـ Tag والمكان والتاريخ ورفع الصور المتعددة.', url: 'news.html' },
     'page-branches': { title: 'إدارة مقرات وفروع الجمعية المتعددة', desc: 'تحكم في عناوين وأرقام مقرات الجمعية وتحديد المقر الرئيسي ليظهر في كامل الموقع.', url: 'contact.html' },
     'page-footer': { title: 'إدارة تذييل الموقع وصفحة فيسبوك الرسمية', desc: 'تحديث رابط صفحة فيسبوك المعتمدة وبيانات التواصل ونبذة الفوتر.', url: 'index.html' },
     'page-inbox': { title: 'صندوق الطلبات والاستفسارات الواردة', desc: 'استعراض وفرز طلبات دار الضيافة، التدريب، والتواصل، وتصدير Excel.', url: 'contact.html' },
-    'page-backup': { title: 'النسخ الاحتياطي والربط السحابي', desc: 'تصدير واستعادة ملف JSON الشامل، وربط Google Sheets Webhook.', url: 'index.html' },
-    'page-log': { title: 'سجل عمليات لوحة التحكم (CMS Audit Log)', desc: 'تتبع ومراقبة كافة التعديلات، وتحميل ملف سجل التعديلات المحدث cms_log.txt فورياً.', url: 'admin.html' }
+    'page-backup': { title: 'النسخ الاحتياطي وجوجل شيت', desc: 'تصدير واستعادة ملف JSON الشامل، وربط Google Sheets Webhook.', url: 'index.html' },
+    'page-theme': { title: 'الهوية والمظهر وترتيب الأقسام', desc: 'تخصيص ألوان الموقع، الوضع الافتراضي، وإظهار أو إخفاء أقسام الصفحة الرئيسية.', url: 'index.html' },
+    'page-log': { title: 'سجل التعديلات', desc: 'متابعة كافة التعديلات السابقة وتحميل نسخة منها.', url: 'admin.html' }
   };
 
   const pageMetaEn = {
@@ -817,6 +917,7 @@ function switchAdminPage(targetPageId) {
     'page-footer': { title: 'Footer Settings & Official Facebook Page', desc: 'Control official Facebook page link, contact info, and footer bio.', url: 'index.html' },
     'page-inbox': { title: 'Incoming Inquiries & Assistance Requests', desc: 'Review and manage oncology hostel and training submissions.', url: 'contact.html' },
     'page-backup': { title: 'JSON Backup & Cloud Webhook Integration', desc: 'Export and restore full site data, and connect Google Sheets.', url: 'index.html' },
+    'page-theme': { title: 'Brand, Theme & Section Controls', desc: 'Customize site colors, default mode, and home section visibility.', url: 'index.html' },
     'page-log': { title: 'CMS Audit Trail (cms_log.txt)', desc: 'Track all changes and export updated cms_log.txt directly.', url: 'admin.html' }
   };
 
@@ -840,6 +941,8 @@ function switchAdminPage(targetPageId) {
     loadBranchesPage();
   } else if (targetPageId === 'page-footer') {
     loadFooterPage();
+  } else if (targetPageId === 'page-theme') {
+    loadThemePage();
   } else if (targetPageId === 'page-log') {
     renderCmsLogTable();
   }
@@ -2478,10 +2581,6 @@ function loadBackupPage() {
   if (webhookInput) {
     webhookInput.value = (d.admin && d.admin.webhookUrl) || localStorage.getItem('al_israa_cms_webhook') || '';
   }
-  const userElem = document.getElementById('settingAdminUser');
-  const passElem = document.getElementById('settingAdminPass');
-  if (userElem) userElem.value = (d.admin && d.admin.user) || 'admin';
-  if (passElem) passElem.value = (d.admin && d.admin.pass) || 'israa2026';
 }
 
 function saveWebhookUrl() {
@@ -2522,12 +2621,72 @@ function testWebhookConnection() {
   });
 }
 
-function saveAdminCredentials() {
+function loadThemePage() {
   const d = getPagesData();
-  if (!d.admin) d.admin = {};
-  d.admin.user = document.getElementById('settingAdminUser').value.trim() || 'admin';
-  d.admin.pass = document.getElementById('settingAdminPass').value.trim() || 'israa2026';
-  savePagesData(d, 'تم تحديث بيانات دخول لوحة التحكم 🔒');
+  const t = d.theme || DEFAULT_PAGES_DATA.theme;
+  const s = d.sections || DEFAULT_PAGES_DATA.sections;
+  const pCol = document.getElementById('themePrimaryColor');
+  const aCol = document.getElementById('themeAccentColor');
+  const mode = document.getElementById('themeDefaultMode');
+  if (pCol) pCol.value = t.primaryColor || '#15803D';
+  if (aCol) aCol.value = t.accentColor || '#EA580C';
+  if (mode) mode.value = t.defaultMode || 'light';
+  ['stats', 'outbox', 'news', 'partners', 'customBlocks'].forEach(k => {
+    const el = document.getElementById('secToggle_' + k);
+    if (el) el.checked = s[k] !== false;
+  });
+}
+
+function saveThemeSettings() {
+  const d = getPagesData();
+  d.theme = {
+    primaryColor: (document.getElementById('themePrimaryColor') && document.getElementById('themePrimaryColor').value) || '#15803D',
+    accentColor: (document.getElementById('themeAccentColor') && document.getElementById('themeAccentColor').value) || '#EA580C',
+    defaultMode: (document.getElementById('themeDefaultMode') && document.getElementById('themeDefaultMode').value) || 'light'
+  };
+  d.sections = {};
+  ['stats', 'outbox', 'news', 'partners', 'customBlocks'].forEach(k => {
+    const el = document.getElementById('secToggle_' + k);
+    d.sections[k] = el ? el.checked : true;
+  });
+  savePagesData(d, 'تم حفظ إعدادات الهوية والأقسام بنجاح 🎨');
+}
+
+async function publishToLiveSite() {
+  const pass = sessionStorage.getItem(CMS_SESSION_PASS_KEY);
+  if (!pass) {
+    alert('انتهت جلسة الأمان. يرجى تسجيل الخروج والدخول مرة أخرى للنشر.');
+    return;
+  }
+  const btn = document.getElementById('globalPublishBtn');
+  const origText = btn ? btn.textContent : '';
+  if (btn) { btn.disabled = true; btn.textContent = 'جاري النشر... ⏳'; }
+  try {
+    const cleanData = JSON.parse(JSON.stringify(getPagesData()));
+    if (cleanData.admin && 'pass' in cleanData.admin) delete cleanData.admin.pass;
+    const res = await fetch(CMS_WORKER_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + pass
+      },
+      body: JSON.stringify({
+        action: 'publish',
+        data: cleanData,
+        message: 'CMS update from Al-Israa Admin Dashboard'
+      })
+    });
+    const out = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(out.error || ('HTTP ' + res.status));
+    localStorage.removeItem(CMS_UNPUBLISHED_KEY);
+    updateUnpublishedBadge();
+    logCmsAction('نشر التعديلات للموقع الحي (site-data.json)');
+    showAdminToast('تم نشر التعديلات بنجاح! ستظهر للجميع خلال ثوانٍ 🚀');
+  } catch (err) {
+    alert('تعذر النشر على الموقع: ' + err.message);
+  } finally {
+    if (btn) { btn.disabled = false; btn.textContent = origText; }
+  }
 }
 
 function exportDataJSON() {
@@ -2612,8 +2771,9 @@ function saveAllPages() {
 // Authentication Controller
 function checkAuth() {
   const isLogged = sessionStorage.getItem(CMS_AUTH_KEY);
+  const hasPass = sessionStorage.getItem(CMS_SESSION_PASS_KEY);
   const overlay = document.getElementById('loginOverlay');
-  if (isLogged === 'true') {
+  if (isLogged === 'true' && hasPass) {
     if (overlay) overlay.style.display = 'none';
   } else {
     if (overlay) overlay.style.display = 'flex';
@@ -2626,20 +2786,39 @@ function initAuth() {
   const errorMsg = document.getElementById('loginErrorMsg');
 
   if (loginForm) {
-    loginForm.addEventListener('submit', (e) => {
+    loginForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const userInput = document.getElementById('adminUsername').value.trim();
       const passInput = document.getElementById('adminPassword').value.trim();
-      const d = getPagesData();
-      const adminConf = d.admin || DEFAULT_PAGES_DATA.admin;
+      const submitBtn = loginForm.querySelector('button[type="submit"]');
+      if (!userInput || !passInput) return;
 
-      if (userInput === adminConf.user && passInput === adminConf.pass) {
-        sessionStorage.setItem(CMS_AUTH_KEY, 'true');
-        document.getElementById('loginOverlay').style.display = 'none';
-        if (errorMsg) errorMsg.style.display = 'none';
-        showAdminToast('مرحباً بك في لوحة تحكم صفحات جمعية الإسراء 🌟');
-      } else {
-        if (errorMsg) errorMsg.style.display = 'block';
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'جاري التحقق... ⏳'; }
+      try {
+        const res = await fetch(CMS_WORKER_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + passInput
+          },
+          body: JSON.stringify({ action: 'verify' })
+        });
+        if (res.ok) {
+          sessionStorage.setItem(CMS_AUTH_KEY, 'true');
+          sessionStorage.setItem(CMS_SESSION_PASS_KEY, passInput);
+          document.getElementById('loginOverlay').style.display = 'none';
+          if (errorMsg) errorMsg.style.display = 'none';
+          showAdminToast('مرحباً بك في لوحة تحكم صفحات جمعية الإسراء 🌟');
+        } else {
+          if (errorMsg) errorMsg.style.display = 'block';
+        }
+      } catch (err) {
+        if (errorMsg) {
+          errorMsg.textContent = '⚠️ تعذر الاتصال بخادم التحقق السحابي!';
+          errorMsg.style.display = 'block';
+        }
+      } finally {
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'دخول إلى لوحة التحكم 🔐'; }
       }
     });
   }
@@ -2647,6 +2826,7 @@ function initAuth() {
   if (logoutBtn) {
     logoutBtn.addEventListener('click', () => {
       sessionStorage.removeItem(CMS_AUTH_KEY);
+      sessionStorage.removeItem(CMS_SESSION_PASS_KEY);
       window.location.reload();
     });
   }
@@ -3234,6 +3414,20 @@ function downloadCmsUploadsJson() {
 document.addEventListener('DOMContentLoaded', () => {
   checkAuth();
   initAuth();
+  updateUnpublishedBadge();
+  const pubBtn = document.getElementById('globalPublishBtn');
+  if (pubBtn) pubBtn.addEventListener('click', publishToLiveSite);
+  if (localStorage.getItem(CMS_UNPUBLISHED_KEY) !== '1') {
+    fetch('site-data.json?t=' + Date.now())
+      .then(r => r.ok ? r.json() : null)
+      .then(remote => {
+        if (remote && typeof remote === 'object') {
+          if (remote.admin && 'pass' in remote.admin) delete remote.admin.pass;
+          localStorage.setItem(PAGES_DATA_KEY, JSON.stringify(remote));
+          updateOverviewStats();
+        }
+      }).catch(() => {});
+  }
 
   // Navigation Click Handlers
   const navBtns = document.querySelectorAll('.admin-nav-item button');

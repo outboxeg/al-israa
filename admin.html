@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>لوحة التحكم والإدارة بالصفحات (Page-by-Page CMS) | جمعية الإسراء بدمنهور</title>
+  <title>إدارة موقع جمعية الإسراء | لوحة التحكم السهلة</title>
   <meta name="robots" content="noindex, nofollow">
   <link rel="icon" href="images/logo.png" type="image/png">
   
@@ -18,10 +18,40 @@
   <style>
     :root {
       --admin-sidebar-w: 270px;
-      --admin-bg: #F4F6F9;
+      --admin-bg: #F1F5F9;
       --admin-card: #FFFFFF;
       --admin-border: #E2E8F0;
     }
+    .admin-search-wrap { position: relative; margin-bottom: 18px; }
+    .admin-search-input {
+      width: 100%; padding: 12px 18px; border-radius: 14px;
+      border: 1.5px solid #CBD5E1; background: #FFFFFF;
+      font-family: 'Cairo', sans-serif; font-size: 0.95rem; font-weight: 600;
+      box-sizing: border-box; box-shadow: 0 2px 10px rgba(15,23,42,0.04);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .admin-search-input:focus { outline: none; border-color: #15803D; box-shadow: 0 0 0 3px rgba(21,128,61,0.12); }
+    .admin-search-results {
+      position: absolute; top: 100%; right: 0; left: 0; z-index: 200;
+      background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 14px;
+      margin-top: 6px; box-shadow: 0 12px 28px rgba(15,23,42,0.12);
+      max-height: 300px; overflow-y: auto; display: none; padding: 8px;
+    }
+    .admin-search-item {
+      display: flex; justify-content: space-between; align-items: center; gap: 10px;
+      width: 100%; text-align: right; padding: 10px 14px; border: none;
+      background: transparent; border-radius: 10px; cursor: pointer;
+      font-family: 'Cairo', sans-serif; transition: background 0.15s;
+    }
+    .admin-search-item:hover { background: #F0FDF4; }
+    .admin-accordion.search-highlight { border-color: #15803D; box-shadow: 0 0 0 3px rgba(21,128,61,0.18); }
+    .admin-sidebar-preview-btn {
+      width: 100%; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.22);
+      color: #FFFFFF !important; font-size: 0.85rem; font-weight: 700; padding: 9px;
+      border-radius: 8px; text-align: center; display: block; margin-bottom: 10px;
+      text-decoration: none; box-sizing: border-box; transition: background 0.2s;
+    }
+    .admin-sidebar-preview-btn:hover { background: rgba(255,255,255,0.18); }
     body.admin-body {
       background-color: var(--admin-bg);
       font-family: 'Cairo', sans-serif;
@@ -125,7 +155,7 @@
     }
     .admin-sidebar {
       width: var(--admin-sidebar-w);
-      background: #0F172A;
+      background: linear-gradient(180deg, #0B132B 0%, #111C3A 100%);
       color: #F8FAFC;
       display: flex;
       flex-direction: column;
@@ -189,9 +219,9 @@
       color: #FFFFFF;
     }
     .admin-nav-item.active button {
-      background: var(--brand-green);
+      background: linear-gradient(90deg, #15803D, #16A34A);
       color: #FFFFFF;
-      box-shadow: 0 4px 12px rgba(47,110,58,0.3);
+      box-shadow: 0 4px 14px rgba(21,128,61,0.35);
     }
     .admin-nav-footer {
       padding: 16px;
@@ -202,9 +232,10 @@
     /* Main Content Area */
     .admin-main {
       flex: 1;
+      min-width: 0;
       margin-right: var(--admin-sidebar-w);
-      padding: 28px 32px;
-      background-color: var(--admin-bg);
+      padding: 24px 28px;
+      background: radial-gradient(circle at top left, rgba(21,128,61,0.04), transparent 45%), var(--admin-bg);
       min-height: 100vh;
       box-sizing: border-box;
     }
@@ -585,7 +616,7 @@
 
       <img src="images/logo.png" alt="جمعية الإسراء بدمنهور" class="admin-login-logo">
       <h2 style="font-size:1.35rem; font-weight:900; margin-bottom:6px; color:#0F172A;">لوحة إدارة جمعية الإسراء</h2>
-      <p style="font-size:0.85rem; color:#64748B; margin-bottom:20px;">نظام التحكم الكامل المبوب بالصفحات (Page-by-Page CMS)</p>
+      <p style="font-size:0.85rem; color:#64748B; margin-bottom:20px;">لوحة إدارة سهلة لتعديل محتوى الموقع بالكامل</p>
       
       <form id="adminLoginForm">
         <div class="admin-form-group" style="text-align:right;">
@@ -624,7 +655,7 @@
         <img src="images/logo.png" alt="لوجو الجمعية">
         <div>
           <div style="font-size:0.95rem; font-weight:900; color:#FFFFFF;">جمعية الإسراء</div>
-          <div style="font-size:0.75rem; color:#94A3B8;">لوحة التحكم بالصفحات v3.0</div>
+          <div style="font-size:0.75rem; color:#94A3B8;">الإصدار الجديد v4.0 ✨</div>
         </div>
       </div>
       
@@ -723,19 +754,25 @@
         <li class="admin-nav-item">
           <button type="button" data-page-target="page-backup">
             <span>☁️</span>
-            <span>النسخ الاحتياطي والربط</span>
+            <span>النسخ الاحتياطي وجوجل شيت</span>
+          </button>
+        </li>
+        <li class="admin-nav-item">
+          <button type="button" data-page-target="page-theme">
+            <span>🎨</span>
+            <span>الهوية والمظهر والأقسام</span>
           </button>
         </li>
         <li class="admin-nav-item">
           <button type="button" data-page-target="page-log">
             <span>📜</span>
-            <span>سجل العمليات (CMS Log)</span>
+            <span>سجل التعديلات</span>
           </button>
         </li>
       </ul>
       
       <div class="admin-nav-footer">
-        <a href="index.html" target="_blank" class="btn-outline" style="width:100%; border-color:rgba(255,255,255,0.2); color:#FFFFFF !important; font-size:0.85rem; padding:8px; text-align:center; display:block; margin-bottom:10px;">
+        <a href="index.html" target="_blank" class="admin-sidebar-preview-btn">
           معاينة الموقع الحي ↗
         </a>
         <button id="adminLogoutBtn" type="button" style="width:100%; background:transparent; border:1px solid rgba(239,68,68,0.4); color:#FCA5A5; padding:8px; border-radius:6px; cursor:pointer; font-family:'Cairo'; font-weight:700; font-size:0.85rem;">
@@ -750,6 +787,12 @@
     <!-- Main Content Area -->
     <main class="admin-main">
       
+      <!-- Quick Settings Search Bar -->
+      <div class="admin-search-wrap">
+        <input type="search" id="adminQuickSearchInput" class="admin-search-input" placeholder="🔍 ابحث عن أي إعداد أو قسم... (مثال: أخبار، ألوان، فودافون كاش، فيسبوك، دار الضيافة)" oninput="handleAdminQuickSearch(this.value)" onfocus="handleAdminQuickSearch(this.value)">
+        <div id="adminQuickSearchResults" class="admin-search-results"></div>
+      </div>
+
       <!-- Top Bar -->
       <div class="admin-header-bar">
         <div style="display:flex; align-items:center; gap:12px;">
@@ -759,7 +802,7 @@
               نظرة عامة وإحصائيات المنصة
             </h1>
             <p id="pageSubtitleDesc" style="font-size:0.85rem; color:#64748B; margin:0;" data-i18n="admin.overviewDesc">
-              إدارة مباشرة وفورية لكافة عناصر الموقع مقسمة حسب الصفحات مع أزرار حفظ مستقلة لكل قسم.
+              اختر أي صفحة من القائمة أو ابحث بالأعلى لتعديل المحتوى ثم اضغط نشر للموقع.
             </p>
           </div>
         </div>
@@ -768,11 +811,20 @@
             <span class="lang-icon">🌐</span>
             <span class="lang-label">English</span>
           </button>
-          <a id="pageLivePreviewLink" href="index.html" target="_blank" class="btn-outline" style="padding:8px 16px; font-size:0.88rem;" data-i18n="admin.previewBtn">
-            معاينة هذه الصفحة ↗
+          <span id="unpublishedBadge" style="display:none; align-items:center; gap:6px; background:#FEF3C7; color:#92400E; border:1px solid #F59E0B; padding:5px 12px; border-radius:999px; font-size:0.8rem; font-weight:700;">
+            ● تغييرات غير منشورة
+          </span>
+          <button id="toggleLivePreviewBtn" type="button" class="btn-outline" onclick="toggleLivePreview()" style="padding:8px 14px; font-size:0.88rem;">
+            معاينة حية 👁️
+          </button>
+          <a id="pageLivePreviewLink" href="index.html" target="_blank" class="btn-outline" style="padding:8px 14px; font-size:0.88rem;" data-i18n="admin.previewBtn">
+            فتح الصفحة ↗
           </a>
-          <button id="globalSaveBtn" class="btn-primary" style="padding:8px 18px; font-size:0.88rem;" data-i18n="admin.saveAllBtn">
-            حفظ كافة الصفحات 💾
+          <button id="globalSaveBtn" class="btn-outline" style="padding:8px 16px; font-size:0.88rem;" data-i18n="admin.saveAllBtn">
+            حفظ المسودة 💾
+          </button>
+          <button id="globalPublishBtn" type="button" class="btn-primary" style="padding:8px 18px; font-size:0.88rem; background:#15803D;">
+            نشر للموقع 🚀
           </button>
         </div>
       </div>
@@ -1027,7 +1079,7 @@
                 <div style="font-size:0.8rem; color:#64748B;">استعراض الحجوزات وتصدير Excel</div>
               </button>
               <button class="btn-outline" onclick="switchAdminPage('page-backup')" style="padding:14px; text-align:right;">
-                <strong>☁️ النسخ الاحتياطي والربط</strong>
+                <strong>☁️ النسخ الاحتياطي وجوجل شيت</strong>
                 <div style="font-size:0.8rem; color:#64748B;">تصدير واستيراد JSON وربط Webhook</div>
               </button>
             </div>
@@ -1060,7 +1112,7 @@
             <div class="admin-accordion-title-wrap">
               <div class="admin-accordion-icon">🎯</div>
               <div>
-                <h3 class="admin-accordion-title">قسم الهيرو الرئيسي (Hero Section)</h3>
+                <h3 class="admin-accordion-title">واجهة الترحيب الرئيسية</h3>
                 <div class="admin-accordion-subtitle">العنوان الرئيسي، الشارة الترويجية، الوصف، وصورة الهيرو</div>
               </div>
             </div>
@@ -1102,7 +1154,7 @@
             <div class="admin-accordion-title-wrap">
               <div class="admin-accordion-icon">📊</div>
               <div>
-                <h3 class="admin-accordion-title">قسم إحصائيات الأثر بالأرقام (Impact Counters)</h3>
+                <h3 class="admin-accordion-title">أرقام الإنجازات والأثر</h3>
                 <div class="admin-accordion-subtitle">أرقام الأسر المكفولة، الوجبات، الأسرة، والمدارس</div>
               </div>
             </div>
@@ -1144,7 +1196,7 @@
             <div class="admin-accordion-title-wrap">
               <div class="admin-accordion-icon">📦</div>
               <div>
-                <h3 class="admin-accordion-title">قسم مبادرة المدارس الخضراء الذكية (Outbox)</h3>
+                <h3 class="admin-accordion-title">قسم المدارس الخضراء (برة الصندوق)</h3>
                 <div class="admin-accordion-subtitle">العنوان، الوصف، مؤشرات التدوير والأثر البيئي بالبحيرة</div>
               </div>
             </div>
@@ -1252,8 +1304,8 @@
             <div class="admin-accordion-title-wrap">
               <div class="admin-accordion-icon" style="background:#EEF2FF; color:#4F46E5;">🧩</div>
               <div>
-                <h3 class="admin-accordion-title">بناء وتخصيص البلوكات والمحتوى الإضافي (WordPress Block Builder)</h3>
-                <div class="admin-accordion-subtitle">أضف نصوصاً، صوراً، بطاقات محتوى، أو أقساماً إضافية بحرية كاملة كأنك في ووردبريس</div>
+                <h3 class="admin-accordion-title">إضافة أقسام ومحتوى حر</h3>
+                <div class="admin-accordion-subtitle">أضف نصوصاً أو صوراً أو بطاقات إضافية بسهولة في أي صفحة</div>
               </div>
             </div>
             <span class="admin-accordion-chevron">▼</span>
@@ -1498,7 +1550,7 @@
             <div class="admin-accordion-title-wrap">
               <div class="admin-accordion-icon" style="background:#EEF2FF; color:#4F46E5;">🧩</div>
               <div>
-                <h3 class="admin-accordion-title">بناء وتخصيص البلوكات والمحتوى الإضافي (WordPress Block Builder)</h3>
+                <h3 class="admin-accordion-title">إضافة أقسام ومحتوى حر</h3>
                 <div class="admin-accordion-subtitle">أضف بنرات توعوية، فقرات فضل الصدقة، صوراً، أو بطاقات إضافية لمتجر التبرعات</div>
               </div>
             </div>
@@ -1610,7 +1662,7 @@
             <div class="admin-accordion-title-wrap">
               <div class="admin-accordion-icon" style="background:#EEF2FF; color:#4F46E5;">🧩</div>
               <div>
-                <h3 class="admin-accordion-title">بناء وتخصيص البلوكات والمحتوى الإضافي (WordPress Block Builder)</h3>
+                <h3 class="admin-accordion-title">إضافة أقسام ومحتوى حر</h3>
                 <div class="admin-accordion-subtitle">أضف مواعيد عيادات، أطباء زائرين، أجهزة جديدة، أو بطاقات إضافية لمجمع الإسراء</div>
               </div>
             </div>
@@ -1713,7 +1765,7 @@
             <div class="admin-accordion-title-wrap">
               <div class="admin-accordion-icon" style="background:#EEF2FF; color:#4F46E5;">🧩</div>
               <div>
-                <h3 class="admin-accordion-title">بناء وتخصيص البلوكات والمحتوى الإضافي (WordPress Block Builder)</h3>
+                <h3 class="admin-accordion-title">إضافة أقسام ومحتوى حر</h3>
                 <div class="admin-accordion-subtitle">أضف تنويهات النزلاء، صور الغرف والتجهيزات، أو بطاقات إضافية لدار الضيافة</div>
               </div>
             </div>
@@ -1842,7 +1894,7 @@
             <div class="admin-accordion-title-wrap">
               <div class="admin-accordion-icon" style="background:#EEF2FF; color:#4F46E5;">🧩</div>
               <div>
-                <h3 class="admin-accordion-title">بناء وتخصيص البلوكات والمحتوى الإضافي (WordPress Block Builder)</h3>
+                <h3 class="admin-accordion-title">إضافة أقسام ومحتوى حر</h3>
                 <div class="admin-accordion-subtitle">أضف مشروعات جديدة، قصص نجاح مستفيدين، صور منتجات، أو بطاقات إضافية</div>
               </div>
             </div>
@@ -2148,7 +2200,7 @@
             <div class="admin-accordion-title-wrap">
               <div class="admin-accordion-icon" style="background:#EEF2FF; color:#4F46E5;">🧩</div>
               <div>
-                <h3 class="admin-accordion-title">بناء وتخصيص البلوكات والمحتوى الإضافي (WordPress Block Builder)</h3>
+                <h3 class="admin-accordion-title">إضافة أقسام ومحتوى حر</h3>
                 <div class="admin-accordion-subtitle">أضف تعليمات الوصول، إرشادات ركن السيارات، أو بطاقات تواصل إضافية</div>
               </div>
             </div>
@@ -2434,24 +2486,14 @@
           </div>
         </div>
 
-        <!-- Security Credentials Setting -->
+        <!-- Cloudflare Worker Security Status -->
         <div class="admin-card">
           <div class="admin-card-title">
-            <span>🔒 تعديل بيانات دخول لوحة التحكم</span>
+            <span>🔒 الأمان والنشر السحابي (Cloudflare Worker)</span>
           </div>
-          <div class="admin-grid-2">
-            <div class="admin-form-group">
-              <label>اسم مستخدم الإدارة الجديد</label>
-              <input type="text" id="settingAdminUser" class="admin-input">
-            </div>
-            <div class="admin-form-group">
-              <label>كلمة المرور الجديدة</label>
-              <input type="text" id="settingAdminPass" class="admin-input">
-            </div>
-          </div>
-          <button type="button" class="btn-primary" onclick="saveAdminCredentials()" style="padding:10px 24px;">
-            حفظ بيانات الدخول الجديدة 💾
-          </button>
+          <p style="font-size:0.9rem; color:#475569; margin:0; line-height:1.7;">
+            يتم التحقق من كلمة مرور الإدارة وحفظ مفتاح GitHub بأمان تام داخل <strong>Cloudflare Secrets</strong> ولا يُخزّن أي مفتاح أو كلمة مرور داخل ملفات الموقع. لتغيير كلمة المرور، حدّث متغير <code>ADMIN_PASSWORD</code> من لوحة Cloudflare.
+          </p>
         </div>
 
       </div>
@@ -2501,7 +2543,62 @@
 
       </div>
 
+      <!-- ====================================================================
+           PAGE: Brand, Theme & Sections Visibility
+           ==================================================================== -->
+      <div id="page-theme" class="admin-page-pane">
+        <div class="admin-card">
+          <div class="admin-card-title">
+            <span>🎨 ألوان الهوية والمظهر العام</span>
+          </div>
+          <div class="admin-grid-3">
+            <div class="admin-form-group">
+              <label for="themePrimaryColor">اللون الأساسي للجمعية</label>
+              <input type="color" id="themePrimaryColor" value="#15803D" style="width:100%; height:44px; border:1px solid #CBD5E1; border-radius:8px; cursor:pointer;">
+            </div>
+            <div class="admin-form-group">
+              <label for="themeAccentColor">لون الإبراز والأزرار</label>
+              <input type="color" id="themeAccentColor" value="#EA580C" style="width:100%; height:44px; border:1px solid #CBD5E1; border-radius:8px; cursor:pointer;">
+            </div>
+            <div class="admin-form-group">
+              <label for="themeDefaultMode">المظهر الافتراضي</label>
+              <select id="themeDefaultMode" class="admin-select">
+                <option value="light">الوضع الفاتح (Light)</option>
+                <option value="dark">الوضع الداكن (Dark)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <div class="admin-card-title">
+            <span>🧩 إظهار وإخفاء أقسام الصفحة الرئيسية</span>
+          </div>
+          <div class="admin-grid-2" style="gap:12px;">
+            <label style="display:flex; align-items:center; gap:10px; cursor:pointer;"><input type="checkbox" id="secToggle_stats" checked> شريط الإحصائيات والأرقام</label>
+            <label style="display:flex; align-items:center; gap:10px; cursor:pointer;"><input type="checkbox" id="secToggle_outbox" checked> قسم المدارس الخضراء (Outbox)</label>
+            <label style="display:flex; align-items:center; gap:10px; cursor:pointer;"><input type="checkbox" id="secToggle_news" checked> شريط آخر الأخبار</label>
+            <label style="display:flex; align-items:center; gap:10px; cursor:pointer;"><input type="checkbox" id="secToggle_partners" checked> قسم شركاء النجاح</label>
+            <label style="display:flex; align-items:center; gap:10px; cursor:pointer;"><input type="checkbox" id="secToggle_customBlocks" checked> الكتل المخصصة الإضافية</label>
+          </div>
+          <div style="margin-top:18px;">
+            <button type="button" class="btn-primary" onclick="saveThemeSettings()" style="padding:10px 24px;">
+              حفظ إعدادات المظهر والأقسام 🎨
+            </button>
+          </div>
+        </div>
+      </div>
+
     </main>
+
+    <!-- Live Split-View Preview Pane -->
+    <aside id="adminPreviewSplitPane" style="display:none; flex-direction:column; width:42%; min-width:360px; height:100vh; position:sticky; top:0; border-right:2px solid #E2E8F0; background:#FFFFFF;">
+      <div style="padding:12px 16px; background:#0F172A; color:#FFFFFF; display:flex; justify-content:space-between; align-items:center; font-size:0.88rem; font-weight:700;">
+        <span>👁️ معاينة حية للموقع</span>
+        <button type="button" onclick="toggleLivePreview()" style="background:transparent; border:none; color:#94A3B8; cursor:pointer; font-size:1rem;">✕</button>
+      </div>
+      <iframe id="adminLivePreviewFrame" src="about:blank" style="flex:1; width:100%; border:none;"></iframe>
+    </aside>
   </div>
 
   <!-- ==========================================================================
