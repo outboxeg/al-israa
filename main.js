@@ -118,6 +118,76 @@ function migrateMediaPaths(obj) {
   return obj;
 }
 
+const DEFAULT_NEWS_ARTICLES = [
+  {
+    id: "tender_fao_2026",
+    title: "إعلان مناقصة عامة لتصنيع وتوريد آلة زراعية لقطع وتجميع سيقان القطن",
+    tag: "مناقصات وإعلانات",
+    category: "tenders",
+    location: "مقر جمعية الإسراء - دمنهور",
+    date: "25 نوفمبر 2026",
+    desc: "ضمن مشروع تعزيز الزراعة الذكية والتنوع البيولوجي الزراعي المنفذ بواسطة منظمة الأغذية والزراعة (الفاو) بالتعاون مع جمعية الإسراء الخيرية بدمنهور؛ آخر موعد لتقديم العطاءات الثلاثاء 1/12/2026 الساعة 12 ظهراً.",
+    fullContent: `إعلان مناقصة عامة لتصنيع وتوريد آلة زراعية
+
+ضمن مشروع تعزيز الزراعة الذكية والتنوع البيولوجي الزراعي المنفذ بواسطة منظمة الأغذية والزراعة (الفاو) بالتعاون مع جمعية الإسراء الخيرية لتنمية المجتمع بدمنهور:
+تعلن الجمعية عن طرح مناقصة عامة بين الشركات والورش الهندسية المتخصصة لتصنيع وتنفيذ نموذج لـ:
+«آلة لقطع وتجميع سيقان القطن في صفوف داخل الحقل لدعم الزراعة المستدامة»
+وذلك طبقاً لكراسة الشروط والمواصفات الفنية والرسومات الهندسية المعتمدة. ويُشترط في التصنيع الالتزام الكامل والدقيق بالمواصفات الموجودة بكراسة الشروط.
+
+طريقة التقديم وموعد تسليم العطاءات:
+على السادة الراغبين في التقدم إلى هذه المناقصة التوجه إلى مقر الجمعية لسحب كراسة الشروط والمواصفات والرسومات التنفيذية.
+ويتم تقديم العطاءات في مظروف (مالي) باسم السيدة / فاطمة راضي - رئيس مجلس إدارة جمعية الإسراء لتنمية المجتمع.
+في موعد أقصاه الساعة الثانية عشرة ظهراً يوم الثلاثاء الموافق 1/12/2026.
+
+شروط التقديم:
+١- البطاقة الضريبية والسجل التجاري.
+٢- سابقة الأعمال في تصنيع المعدات الزراعية.
+٣- مبلغ 20000 ج تأمين.`,
+    images: ["images/fao-cotton-tender.jpg"],
+    image: "images/fao-cotton-tender.jpg",
+    link: "news.html?article=tender_fao_2026"
+  },
+  {
+    id: "news_1",
+    title: "بحث سبل التوسع في مشروعات التمكين الاقتصادي بالبحيرة",
+    tag: "شراكات رسمية",
+    category: "empowerment",
+    location: "ديوان عام محافظة البحيرة",
+    date: "24 سبتمبر 2026",
+    desc: "لقاء رسمي لبحث دعم تروسيكلات أرزاق ومشاغل النول والسجاد، والتنسيق لدعم ورعاية مرضى معهد أورام دمنهور.",
+    fullContent: "لقاء رسمي مع القيادات التنفيذية بمحافظة البحيرة لبحث التوسع في مشروعات التمكين الاقتصادي للأسر الأولى بالرعاية، ودعم مبادرة تروسيكلات أرزاق ومشاغل النول والسجاد اليدوي، إلى جانب تعزيز التعاون لتوفير الرعاية المجانية لمرضى معهد أورام دمنهور.",
+    images: ["images/governor.jpg"],
+    image: "images/governor.jpg",
+    link: "news.html?article=news_1"
+  },
+  {
+    id: "news_2",
+    title: "توزيع الشنط والزي المدرسي لأطفال الفصول المجتمعية",
+    tag: "التعليم والطفولة",
+    category: "education",
+    location: "قرى دمنهور - البحيرة",
+    date: "18 سبتمبر 2026",
+    desc: "بالشراكة مع هيئة إنقاذ الطفولة وUSAID، احتفت الجمعية بتسليم الأدوات المدرسية والوجبات للأطفال المتفوقين في قرى دمنهور.",
+    fullContent: "ضمن مشروع التعليم المجتمعي (قرية متعلمة) وبالشراكة مع هيئة إنقاذ الطفولة الدولية والوكالة الأمريكية للتنمية الدولية USAID، احتفت جمعية الإسراء بتوزيع الحقائب والزي المدرسي والكتب والوجبات الصحية على تلاميذ الفصول المجتمعية بقرى دمنهور.",
+    images: ["images/school.jpg"],
+    image: "images/school.jpg",
+    link: "news.html?article=news_2"
+  },
+  {
+    id: "news_3",
+    title: "تسليم دفعة جديدة من تروسيكلات الطعام المصنعة بمدرسة دمنهور الزخرفية",
+    tag: "مشروع أرزاق",
+    category: "empowerment",
+    location: "دمنهور - البحيرة",
+    date: "10 سبتمبر 2026",
+    desc: "تم تسليم عربات مجهزة بالكامل لعدد من الشباب والمعيلين بالبحيرة لبدء أنشطتهم وتوفير دخل شهري كريم ومستدام.",
+    fullContent: "سلمت جمعية الإسراء الخيرية دفعة جديدة من عربات وتروسيكلات أرزاق المجهزة بالكامل والمصنعة بشراكة فنية مع مدرسة دمنهور الثانوية الزخرفية المعمارية، لتمكين الشباب المعيلين وذوي الهمم من بدء مشروعاتهم الصغيرة وتوفير مصدر دخل ثابت.",
+    images: ["images/arzaq.jpg"],
+    image: "images/arzaq.jpg",
+    link: "news.html?article=news_3"
+  }
+];
+
 // Global Data Accessor with Auto-Sanitization
 function getGlobalPagesData() {
   try {
@@ -125,6 +195,30 @@ function getGlobalPagesData() {
     if (raw) {
       const data = JSON.parse(raw);
       migrateMediaPaths(data);
+
+      // One-time non-destructive injection of FAO Cotton Tender & default articles
+      if (!localStorage.getItem('al_israa_fao_tender_v1')) {
+        if (!Array.isArray(data.news) || data.news.length === 0) {
+          data.news = JSON.parse(JSON.stringify(DEFAULT_NEWS_ARTICLES));
+        } else if (!data.news.some(n => n && n.id === 'tender_fao_2026')) {
+          data.news.unshift(JSON.parse(JSON.stringify(DEFAULT_NEWS_ARTICLES[0])));
+        }
+        if (data.home) {
+          if (!Array.isArray(data.home.news)) data.home.news = [];
+          if (!data.home.news.some(n => n && n.id === 'tender_fao_2026')) {
+            data.home.news.unshift({
+              id: "tender_fao_2026",
+              title: "إعلان مناقصة عامة لتصنيع وتوريد آلة لقطع وتجميع سيقان القطن",
+              date: "25 نوفمبر 2026",
+              tag: "مناقصات عامة • الفاو FAO",
+              desc: "ضمن مشروع تعزيز الزراعة الذكية المنفذ بواسطة منظمة الأغذية والزراعة (الفاو) بالتعاون مع جمعية الإسراء بدمنهور؛ آخر موعد لتقديم العطاءات الثلاثاء 1/12/2026 الساعة 12 ظهراً.",
+              image: "images/fao-cotton-tender.jpg",
+              link: "news.html?article=tender_fao_2026"
+            });
+          }
+        }
+        try { localStorage.setItem('al_israa_fao_tender_v1', '1'); } catch (e) {}
+      }
       
       // Auto-sanitize legacy mock campaign donations to 0
       if (data.checkout && data.checkout.wallets) {
@@ -546,17 +640,19 @@ function hydratePageByPageContent() {
     if (newsGrid && pagesData.home.news && pagesData.home.news.length > 0) {
       let newsHtml = '';
       pagesData.home.news.forEach(item => {
+        const isFeatured = item.id === 'tender_fao_2026' || item.featured;
+        const targetLink = item.link || ('news.html?article=' + encodeURIComponent(item.id || ''));
         newsHtml += `
-          <article class="news-card">
+          <article class="news-card${isFeatured ? ' news-card-featured' : ''}">
             <div class="news-card-img">
               <img src="${item.image || 'images/complex.jpg'}" alt="${item.title}" onerror="this.src='images/complex.jpg'">
-              <span class="news-card-date">${item.date || 'سبتمبر 2026'}</span>
+              <span class="news-card-date">${item.date || 'نوفمبر 2026'}</span>
             </div>
             <div class="news-card-body">
               <span class="news-tag">${item.tag || 'أخبار الجمعية'}</span>
               <h3 class="news-title">${item.title}</h3>
               <p class="news-excerpt">${item.desc}</p>
-              <a href="${item.link || 'projects.html'}" class="news-link">اقرأ التفاصيل الكاملة ←</a>
+              <a href="${targetLink}" class="news-link">${isFeatured ? 'عرض شروط التقديم والتفاصيل الكاملة ←' : 'اقرأ التفاصيل الكاملة ←'}</a>
             </div>
           </article>
         `;
@@ -1301,6 +1397,69 @@ function saveSubmissionToInbox(data) {
 let currentNewsArticles = [];
 let currentNewsTagFilter = 'all';
 
+window.hydrateHomeNewsTicker = function() {
+  const track = document.getElementById('homeNewsTickerTrack');
+  if (!track) return;
+
+  const pagesData = getGlobalPagesData();
+  let tickerItems = [];
+
+  if (pagesData && Array.isArray(pagesData.news) && pagesData.news.length > 0) {
+    tickerItems = pagesData.news.map(n => ({
+      id: n.id,
+      title: n.title,
+      tag: n.tag || 'أخبار الجمعية',
+      link: n.link || ('news.html?article=' + encodeURIComponent(n.id || '')),
+      urgent: n.id === 'tender_fao_2026' || n.category === 'tenders'
+    }));
+  }
+
+  const homeNews = (pagesData && pagesData.home && Array.isArray(pagesData.home.news) && pagesData.home.news.length > 0)
+    ? pagesData.home.news
+    : DEFAULT_NEWS_ARTICLES;
+
+  homeNews.forEach(item => {
+    if (!tickerItems.some(t => t.id === item.id || t.title === item.title)) {
+      tickerItems.push({
+        id: item.id,
+        title: item.title,
+        tag: item.tag || 'أخبار الجمعية',
+        link: item.link || ('news.html?article=' + encodeURIComponent(item.id || '')),
+        urgent: item.id === 'tender_fao_2026'
+      });
+    }
+  });
+
+  if (tickerItems.length === 0) {
+    tickerItems = DEFAULT_NEWS_ARTICLES.map(n => ({
+      id: n.id,
+      title: n.title,
+      tag: n.tag,
+      link: n.link,
+      urgent: n.id === 'tender_fao_2026'
+    }));
+  }
+
+  const buildGroupHtml = (isClone) => {
+    let itemsHtml = '';
+    tickerItems.forEach(item => {
+      const displayText = item.id === 'tender_fao_2026'
+        ? 'طرح مناقصة عامة لتصنيع وتوريد آلة لقطع وتجميع سيقان القطن في صفوف داخل الحقل (آخر موعد للعطاءات الثلاثاء 1/12/2026 الساعة 12 ظهراً)'
+        : item.title;
+      itemsHtml += `
+        <a href="${item.link}" class="news-ticker-item ${item.urgent ? 'news-ticker-urgent' : ''}" ${isClone ? 'tabindex="-1"' : ''}>
+          <span class="ticker-tag">${item.tag}</span>
+          <span>${displayText}</span>
+        </a>
+        <span class="news-ticker-sep" aria-hidden="true">◆</span>
+      `;
+    });
+    return `<div class="news-ticker-group" ${isClone ? 'aria-hidden="true"' : ''}>${itemsHtml}</div>`;
+  };
+
+  track.innerHTML = buildGroupHtml(false) + buildGroupHtml(true);
+};
+
 window.renderNewsFeed = function() {
   const container = document.getElementById('newsFeedContainer');
   const emptyState = document.getElementById('newsEmptyState');
@@ -1308,7 +1467,10 @@ window.renderNewsFeed = function() {
   if (!container || !emptyState || !bentoGrid) return;
 
   const pagesData = getGlobalPagesData();
-  const articles = (pagesData && Array.isArray(pagesData.news)) ? pagesData.news : [];
+  const hasSavedNews = pagesData && Array.isArray(pagesData.news);
+  const articles = hasSavedNews
+    ? (pagesData.news.length > 0 ? pagesData.news : (localStorage.getItem('al_israa_fao_tender_v1') ? [] : DEFAULT_NEWS_ARTICLES))
+    : DEFAULT_NEWS_ARTICLES;
   currentNewsArticles = articles;
 
   if (articles.length === 0) {
@@ -1558,8 +1720,16 @@ document.addEventListener('DOMContentLoaded', () => {
   renderDynamicCampaignCards();
   renderCustomPageBlocks();
   hydrateGlobalFooterAndBranches();
+  hydrateHomeNewsTicker();
   if (document.getElementById('newsFeedContainer')) {
     renderNewsFeed();
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const articleId = params.get('article');
+      if (articleId) {
+        openArticleModal(articleId);
+      }
+    } catch (e) {}
   }
 
   // 3. Cart Drawer Triggers
